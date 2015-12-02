@@ -1,0 +1,74 @@
+﻿@model  SchoolManagement.MVC.ViewModels.TurmaViewModel
+
+@{
+    ViewBag.Title = "VisualizaMinhaTurma";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Aluno
+            <small>Detalhes Aluno</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Aluno</li>
+            <li class="active">Detalhes Aluno</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Vagas)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Descricao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.HorariosTurmaId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Vagas)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.anoletivoSelecionado)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalhes", "DetalhesMinhaTurma", new { id = Model.TurmaId })
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

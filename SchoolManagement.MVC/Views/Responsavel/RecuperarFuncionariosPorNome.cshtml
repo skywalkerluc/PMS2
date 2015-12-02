@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResponsavelViewModel>
+
+@{
+    ViewBag.Title = "RecuperarFuncionariosPorNome";
+}
+
+<h2>RecuperarFuncionariosPorNome</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nacionalidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naturalidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserLogin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmarSenha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuncaoTrabalhista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Renda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cpf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nacionalidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naturalidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserLogin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Senha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmarSenha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuncaoTrabalhista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Renda)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

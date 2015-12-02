@@ -1,0 +1,121 @@
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResponsavelViewModel>
+
+@{
+    ViewBag.Title = "RecuperarResponsavelPorNome";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Funcionario
+            <small>Consulta de Funcionarios</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Funcionario</li>
+            <li class="active">Consulta de Funcionarios</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Resultado Consulta Funcionario</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DataNascimento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Rg)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Cpf)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nacionalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Naturalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserLogin)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Senha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ConfirmarSenha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FuncaoTrabalhista)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Renda)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Rg)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cpf)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nacionalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Naturalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserLogin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Senha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ConfirmarSenha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuncaoTrabalhista)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Renda)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

@@ -1,0 +1,102 @@
+﻿@model SchoolManagement.MVC.ViewModels.FiltroViewModel.FiltroFuncionario
+@{
+    ViewBag.Title = "Filtro - Funcionário";
+}
+
+<style>
+    .example-modal .modal 
+    {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal 
+    {
+        background: transparent !important;
+    }
+</style>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Funcionario
+            <small>Consultar Funcionario</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Funcionario</a></li>
+            <li class="active">Consultar Funcionario</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal">
+                <div class="modal-dialog">
+                    @using (Html.BeginForm("RecuperarFuncionariosPorNome", "Funcionario", FormMethod.Post))
+                    {
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Filtro para consulta de Funcionarios</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- nome -->
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeFuncionario)
+                                    @Html.TextBoxFor(m => m.NomeFuncionario, new { @placeholder = "nome", @id = "nome", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NomeFuncionario)
+                                </div>
+
+                                <div class="form-group">
+<<<<<<< HEAD
+                                    @Html.LabelFor(m => m.Funcao)
+                                    @{
+                                        List<SelectListItem> listafuncoes = new List<SelectListItem>();
+                                        foreach (var item in @ViewBag.ListaFuncoes)
+                                        {
+                                            SelectListItem selec = new SelectListItem()
+                                            {
+                                                Value = item.Value,
+                                                Text = item.Text
+                                            };
+                                            listafuncoes.Add(selec);
+                                        }
+                                    @Html.DropDownListFor(m => m.FuncaoSelecionada, listafuncoes, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+=======
+                                    @Html.LabelFor(m => m.Funcao)
+                                    @{
+                                        List<SelectListItem> listafuncoes = new List<SelectListItem>();
+                                        foreach (var item in @ViewBag.ListaFuncoes)
+                                        {
+                                            SelectListItem selec = new SelectListItem()
+                                            {
+                                                Value = item.Value,
+                                                Text = item.Text
+                                            };
+                                            listafuncoes.Add(selec);
+                                        }
+                                    @Html.DropDownListFor(m => m.FuncaoSelecionada, listafuncoes, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+>>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
+                                    }                              
+                                  </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div><!-- /.example-modal -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+

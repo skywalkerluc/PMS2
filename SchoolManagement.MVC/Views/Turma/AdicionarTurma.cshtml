@@ -1,0 +1,144 @@
+﻿@model SchoolManagement.MVC.ViewModels.TurmaViewModel
+
+@{
+    ViewBag.Title = "Adicionar - Turma";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Turmas
+            <small>Cadastro de Turmas</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Turmas</li>
+            <li class="active">Cadastro de Turmas</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastro</h3>
+                    </div><!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Turma", FormMethod.Post))
+                    {
+                        <div class="box-body">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <!-- nome -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Descricao)
+                                @Html.TextBoxFor(m => m.Descricao, new { @placeholder = "Descricao", @id = "Descricao", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Descricao)
+                            </div>
+
+                            <!-- nome -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Vagas)
+
+                                @Html.TextBoxFor(m => m.Vagas, new { @placeholder = "Vagas", @id = "Vagas", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Vagas)
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.HorariosTurmaId)
+                                @{
+<<<<<<< HEAD
+                                    List<SelectListItem> listaHorarios = new List<SelectListItem>();
+                                    SelectListItem itemVazio = new SelectListItem()
+                                    {
+                                        Value = "0",
+                                        Text = ""
+=======
+                                    List<SelectListItem> listaHorarios = new List<SelectListItem>();
+                                    SelectListItem itemVazio = new SelectListItem()
+                                    {
+                                        Value = "0",
+                                        Text = ""
+>>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
+                                    };
+                                    SelectListItem itemManha = new SelectListItem()
+                                    {
+                                        Value = "1",
+                                        Text = "Manhã"
+                                    };
+                                    SelectListItem itemTarde = new SelectListItem()
+                                    {
+                                        Value = "2",
+                                        Text = "Tarde"
+                                    };
+                                    SelectListItem itemNoite = new SelectListItem()
+                                    {
+                                        Value = "3",
+                                        Text = "Noite"
+<<<<<<< HEAD
+                                    };
+=======
+                                    };
+>>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
+                                    listaHorarios.Add(itemVazio);
+                                    listaHorarios.Add(itemManha);
+                                    listaHorarios.Add(itemTarde);
+                                    listaHorarios.Add(itemNoite);
+                                }
+                                @Html.DropDownListFor(m => m.HorariosTurmaId, listaHorarios, new { @class = "form-control select2", placeholder = "Selecione o horário da turma", style = "width: 100%;", id = "HorarioTurma" })
+                                @Html.ValidationMessageFor(model => model.HorariosTurmaId)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Disciplinas)
+                                @{
+                                    List<SelectListItem> listaDisciplina = new List<SelectListItem>();
+                                    foreach (var item in @ViewBag.ListaDisciplinas)
+                                    {
+                                        SelectListItem selec = new SelectListItem()
+                                        {
+                                            Value = item.Value,
+                                            Text = item.Text
+                                        };
+                                        listaDisciplina.Add(selec);
+                                    }
+                                    @Html.DropDownListFor(m => m.disciplinasSelecionadas, listaDisciplina, new { @class = "form-control select2", multiple = "multiple", placeholder = "Selecione as Disciplinas da Turma", style = "width: 100%;", id = "Disciplinas" })
+                                }
+                                @Html.ValidationMessageFor(model => model.Disciplinas)
+                            </div><!-- /.form-group -->
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.AnoLetivo)
+                                @{
+                                    List<SelectListItem> listaAnoLetivo = new List<SelectListItem>();
+                                    foreach (var itemAno in @ViewBag.ListaAnoLetivo)
+                                    {
+                                        SelectListItem selecAno = new SelectListItem()
+                                                    {
+                                                        Value = itemAno.Value,
+                                                        Text = itemAno.Text
+                                                    };
+                                        listaAnoLetivo.Add(selecAno);
+                                    }
+                                    @Html.DropDownListFor(m => m.anoletivoSelecionado, listaAnoLetivo, new { @class = "form-control select2", placeholder = "Selecione o ano letivo da turma", style = "width: 100%;", id = "AnoLetivo" })
+                                }
+                                @Html.ValidationMessageFor(model => model.AnoLetivo)
+                            </div>
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    }
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<!-- Select2 -->
+<script src="~/Content/plugins/select2/select2.full.min.js"></script>

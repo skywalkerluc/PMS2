@@ -1,0 +1,116 @@
+﻿@model SchoolManagement.MVC.ViewModels.FiltroViewModel.FiltroLivro
+
+@{
+    ViewBag.Title = "Filtro - Materiais";
+}
+
+<style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+</style>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Material
+            <small>Consulta de Material</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Material</a></li>
+            <li class="active">Consulta de Material</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal">
+                <div class="modal-dialog">
+                    @using (Html.BeginForm("FiltrarLivros", "Livro", FormMethod.Post))
+                    {
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Filtro para consulta de Materiais</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- nome -->
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeLivro)
+                                    @Html.TextBoxFor(m => m.NomeLivro, new { @placeholder = "NomeLivro", @id = "NomeLivro", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NomeLivro)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeEditora)
+                                    @Html.TextBoxFor(m => m.NomeEditora, new { @placeholder = "NomeEditora", @id = "NomeEditora", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NomeEditora)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeAutor)
+                                    @Html.TextBoxFor(m => m.NomeAutor, new { @placeholder = "NomeAutor", @id = "NomeAutor", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NomeAutor)
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Turma)
+                                    @{
+                        List<SelectListItem> listaTurmas = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaTurmas)
+                        {
+                            SelectListItem selec = new SelectListItem()
+                            {
+                                Value = item.Value,
+                                Text = item.Text
+                            };
+                            listaTurmas.Add(selec);
+                        }
+                        @Html.DropDownListFor(m => m.turmaEscolhida, listaTurmas, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+                                    }
+                                    @Html.ValidationMessageFor(model => model.Turma)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Disciplina)
+                                    @{
+                        List<SelectListItem> listaDisciplina = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaDisciplinas)
+                        {
+                            SelectListItem selec = new SelectListItem()
+                            {
+                                Value = item.Value,
+                                Text = item.Text
+                            };
+                            listaDisciplina.Add(selec);
+                        }
+                                @Html.DropDownListFor(m => m.disciplinaEscolhida, listaDisciplina, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+                                    }
+                                    @Html.ValidationMessageFor(model => model.Disciplina)
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div><!-- /.example-modal -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

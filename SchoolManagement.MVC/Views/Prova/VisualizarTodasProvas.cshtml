@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ProvaViewModel>
+
+@{
+    ViewBag.Title = "Visualizar Todas Provas";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Prova
+            <small>Visualizar Todas Provas</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Prova</li>
+            <li class="active">Visualizar Todas Provas</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Visualizar Todas Provas</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DataProva)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Unidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Disciplina)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Professores)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataProva)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Unidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Disciplina.DisciplinaId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Professores.Id)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.ProvaId }) |
+                                        @Html.ActionLink("Detalhes", "Details", new { id = item.ProvaId }) |
+                                        @Html.ActionLink("Deletar", "Delete", new { id = item.ProvaId })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

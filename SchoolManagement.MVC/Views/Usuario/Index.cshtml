@@ -1,0 +1,61 @@
+﻿@*@model SchoolManagement.MVC.ViewModels.UsuarioViewModel
+
+
+@{
+    ViewBag.Title = "Tela Perfil";
+}
+
+<h2>Meu Perfil</h2>
+<p>
+    @Html.ActionLink("Alterar Dados", "Alterar")
+</p>
+<div>
+    <hr />
+    <fieldset>
+        <legend>Informações Básicas</legend>
+        <dl class="dl-horizontal">
+            <dt>
+                Nome:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NomeCompleto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DataNascimento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
+
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend>Endereço</legend>
+
+        <dl class="dl-horizontal">
+
+         
+    </dl>
+</fieldset>
+    <fieldset>
+        <legend>Empresa</legend>
+        <dl class="dl-horizontal">
+
+
+        </dl>
+    </fieldset>
+</div>
+<p>
+    <!--Html.ActionLink("Edit", "Edit", new { id = Model.UsuarioId })  -->
+   <!--Html.ActionLink("Back to List", "Index")  --> 
+</p>*@

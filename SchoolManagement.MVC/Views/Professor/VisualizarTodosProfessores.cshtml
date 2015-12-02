@@ -1,0 +1,133 @@
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ProfessorViewModel>
+
+@{
+    ViewBag.Title = "Visualizar Todos Professores";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Professor
+            <small>Visualizar Todos Professores</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Professor</li>
+            <li class="active">Visualizar Todos Professores</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Visualizar Todos Professores</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DataNascimento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Rg)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Cpf)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nacionalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Naturalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserLogin)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Senha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ConfirmarSenha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Funcao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PoderAdministrativo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Matricula)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Especialidade)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Rg)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cpf)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nacionalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Naturalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserLogin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Senha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ConfirmarSenha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Funcao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PoderAdministrativo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Matricula)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Especialidade)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

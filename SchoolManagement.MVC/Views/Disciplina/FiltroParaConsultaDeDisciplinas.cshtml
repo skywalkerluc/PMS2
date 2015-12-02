@@ -1,0 +1,89 @@
+﻿@model SchoolManagement.MVC.ViewModels.DisciplinaViewModel
+
+@{
+    ViewBag.Title = "Filtro - Disciplinas";
+}
+
+<style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+</style>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Disciplina
+            <small>Consultar Disciplina</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Disciplina</a></li>
+            <li class="active">Consultar Disciplina</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal">
+                <div class="modal-dialog">
+                    @using (Html.BeginForm("RecuperarDisciplinaPorNome", "Disciplina", FormMethod.Post))
+                    {
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Filtro para consulta de Disciplinas</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- nome -->
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeDisciplina)
+                                    @Html.TextBoxFor(m => m.NomeDisciplina, new { @placeholder = "NomeDisciplina", @id = "NomeDisciplina", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.NomeDisciplina)
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Turma</label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Professor</label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Livro</label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div><!-- /.example-modal -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

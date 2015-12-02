@@ -1,0 +1,85 @@
+﻿@model SchoolManagement.MVC.ViewModels.FiltroViewModel.FiltroAluno
+
+@{
+    ViewBag.Title = "Filtro - Alunos";
+}
+
+<style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+</style>
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Aluno
+            <small>Consultar Aluno</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Aluno</a></li>
+            <li class="active">Consultar Aluno</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal">
+                <div class="modal-dialog">
+                    @using (Html.BeginForm("RecuperarAlunosPorNome", "Aluno", FormMethod.Post))
+                    {
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Filtro para consulta de Aluno</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- nome -->
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.NomeAluno)
+                                    @Html.TextBoxFor(m => m.NomeAluno, new { @placeholder = "Nome", @id = "nome", @class = "form-control" })
+                                </div>
+
+                                
+                                <div class="form-group">
+                                        @Html.LabelFor(m => m.Turmas)
+                                        @{
+                                            List<SelectListItem> listaTurmas = new List<SelectListItem>();
+                                            foreach (var item in @ViewBag.ListaTurmas)
+                                            {
+                                                SelectListItem selec = new SelectListItem()
+                                                {
+                                                    Value = item.Value,
+                                                    Text = item.Text
+                                                };
+                                                listaTurmas.Add(selec);
+                                            }
+                                         @Html.DropDownListFor(m => m.turmaSelecionada, listaTurmas, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+                                        }
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div><!-- /.example-modal -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

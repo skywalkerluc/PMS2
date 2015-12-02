@@ -1,0 +1,80 @@
+﻿@model SchoolManagement.MVC.ViewModels.TurmaViewModel
+
+@{
+    ViewBag.Title = "DetalhesMinhaTurma";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Disciplinas
+            <small>Visualizar Disciplinas</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Disciplinas</li>
+            <li class="active">Visualizar Disciplinas</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Disciplinas</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <h4>TurmaViewModel</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.HorariosTurmaId)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Vagas)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Vagas)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.anoletivoSelecionado)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Voltar", "Index")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

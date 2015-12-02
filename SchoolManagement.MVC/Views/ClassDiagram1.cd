@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SchoolManagement.MVC.ViewModels.AnoLetivoViewModel">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAIAACAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AnoLetivoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.ContatoViewModel">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>ViewModels\ContatoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.DisciplinaViewModel">
+    <Position X="12" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ViewModels\DisciplinaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.EnderecoViewModel">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAQAACAEAAAAAACAAIAAAAACAAAAAAABAAg=</HashCode>
+      <FileName>ViewModels\EnderecoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.ExperienciaViewModel">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAQ=</HashCode>
+      <FileName>ViewModels\ExperienciaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.FuncionarioViewModel">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIAA=</HashCode>
+      <FileName>ViewModels\FuncionarioViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.UsuarioViewModel">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAEAACgAAQAAIAAAJAAAAAAAAAAICAEAA=</HashCode>
+      <FileName>ViewModels\UsuarioViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.ProfessorViewModel">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAACIAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProfessorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SchoolManagement.MVC.ViewModels.TurmaViewModel">
+    <Position X="12" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABACAAACQAAAAAEAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TurmaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SchoolManagement.MVC.ViewModels.Sexo">
+    <Position X="10.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Enumeradores.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SchoolManagement.MVC.ViewModels.Etnia">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAIAAAAAgAAAAAAAAAAAAAAAAgQCAAAAAABAAA=</HashCode>
+      <FileName>ViewModels\Enumeradores.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

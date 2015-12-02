@@ -1,0 +1,122 @@
+﻿@model SchoolManagement.MVC.ViewModels.ProvaViewModel
+
+@{
+    ViewBag.Title = "Adicionar - Prova";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Provas
+            <small>Cadastro de Provas</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Provas</li>
+            <li class="active">Cadastro de Provas</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastro</h3>
+                    </div><!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Prova", FormMethod.Post))
+                    {
+                        <div class="box-body">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group col-md-6">
+                                <label>Unidade</label>
+                                <input type="number" class="form-control" placeholder="nome">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.TipoProva)
+                                @Html.EnumDropDownListFor(model => model.TipoProva, new { @class = "form-control select2", placeholder = "tipo", style = "width: 100%;", id = "tipo" })
+                                @Html.ValidationMessageFor(model => model.TipoProva)
+                            </div>
+
+                            <!-- Date dd/mm/yyyy -->
+                            <div class="form-group col-md-6">
+                                <label>Data da Prova</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Disciplina)
+
+                                @{
+                                    List<SelectListItem> listaDisciplina = new List<SelectListItem>();
+                                    foreach (var item in @ViewBag.ListaDisciplinas)
+                                    {
+                                        SelectListItem selec = new SelectListItem()
+                                        {
+                                            Value = item.Value,
+                                            Text = item.Text
+                                        };
+                                        listaDisciplina.Add(selec);
+                                    }                                                                   
+                                @Html.DropDownListFor(m => m.disciplinasTeste, listaDisciplina, new { @class = "form-control select2", placeholder = "Selecione as Disciplinas", style = "width: 100%;", id = "Disciplinas" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.Disciplina)
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Professores)
+
+                                @{
+                                    List<SelectListItem> listaProfessores = new List<SelectListItem>();
+                                    foreach (var item in @ViewBag.ListaProfessores)
+                                    {
+                                        SelectListItem selec = new SelectListItem()
+                                        {
+                                            Value = item.Value,
+                                            Text = item.Text
+                                        };
+                                        listaProfessores.Add(selec);
+                                    }
+                                    @Html.DropDownListFor(m => m.professoresLista, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione o Professor", style = "width: 100%;", id = "professor" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.Professores)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.StatusProva)
+                                @Html.EnumDropDownListFor(model => model.StatusProva, new { @class = "form-control select2", placeholder = "status", style = "width: 100%;", id = "status" })
+                                @Html.ValidationMessageFor(model => model.StatusProva)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputFile">Anexo da Prova</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block"> </p>
+                            </div>
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    }
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

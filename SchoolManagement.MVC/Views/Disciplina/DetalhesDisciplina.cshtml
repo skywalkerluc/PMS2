@@ -1,0 +1,54 @@
+﻿@model SchoolManagement.MVC.ViewModels.DisciplinaViewModel
+
+@{
+    ViewBag.Title = "Detalhes - Disciplina";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Disciplina
+            <small>Detalhes Disciplina</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Disciplina</li>
+            <li class="active">Detalhes Disciplina</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NomeDisciplina)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NomeDisciplina)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.DisciplinaId }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

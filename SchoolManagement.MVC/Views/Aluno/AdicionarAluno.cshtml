@@ -1,0 +1,218 @@
+﻿@model SchoolManagement.MVC.ViewModels.AlunoViewModel
+
+@{
+    ViewBag.Title = "Adicionar - Aluno";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Aluno
+            <small>Cadastro de Aluno</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Aluno</li>
+            <li class="active">Cadastro de Aluno</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastro</h3>
+                    </div><!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Aluno", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="box-body">
+                            @Html.ValidationSummary(true)
+                            <!-- nome -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Nome)
+                                @Html.TextBoxFor(m => m.Nome, new { @placeholder = "Nome completo", @id = "nome", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nome)
+                            </div>
+
+                            <!-- sexo -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Sexo)
+                                <select name="sexo" class="form-control">
+                                    <option id="Vazio" value=""></option>
+                                    <option id="MASCULINO" value="masculino">Masculino</option>
+                                    <option id="FEMININO" value="feminino">Feminino</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Sexo)
+                            </div>
+
+                            <!-- data de nascimento - Date dd/mm/yyyy -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.DataNascimento)
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.DataNascimento, new { @id = "data", @size = "11", @maxlength = "11", @placeholder = "Data de nascimento", @class = "form-control datepicker col-md-12", @style = "height: 34px" })
+                                    @Html.ValidationMessageFor(model => model.DataNascimento)
+                                    @*<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>*@
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Cep)
+                                @Html.TextBoxFor(m => m.Endereco.Cep, new { @placeholder = "CEP", @id = "Cep", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Cep)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Endereco)
+                                @Html.TextBoxFor(m => m.Endereco.Endereco, new { @placeholder = "Endereço", @id = "Endereco", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Endereco)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Numero)
+                                @Html.TextBoxFor(m => m.Endereco.Numero, new { @placeholder = "Número", @id = "numerorua", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Numero)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Complemento)
+                                @Html.TextBoxFor(m => m.Endereco.Complemento, new { @placeholder = "Complemento", @id = "complemento", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Complemento)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Bairro)
+                                @Html.TextBoxFor(m => m.Endereco.Bairro, new { @placeholder = "Bairro", @id = "Bairro", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Cidade)
+                                @Html.TextBoxFor(m => m.Endereco.Cidade, new { @placeholder = "Cidade", @id = "Cidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Estado)
+                                @Html.TextBoxFor(m => m.Endereco.Estado, new { @placeholder = "Estado", @id = "Estado", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Estado)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Nacionalidade)
+                                @Html.TextBoxFor(m => m.Nacionalidade, new { @placeholder = "Nacionalidade", @id = "nacionalidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nacionalidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Naturalidade)
+                                @Html.TextBoxFor(m => m.Naturalidade, new { @placeholder = "Naturalidade", @id = "naturalidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Naturalidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Rg)
+                                @Html.TextBoxFor(m => m.Rg, new { @placeholder = "RG", @id = "rg", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Rg)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Cpf)
+                                @Html.TextBoxFor(m => m.Cpf, new { @placeholder = "CPF", @id = "cpf", @class = "form-control", @size = "14", @maxlength = "14", @onKeyPress = "return Apenas_Numeros(event);", @onBlur = "validaCPF(this);" })
+                                @Html.ValidationMessageFor(model => model.Cpf)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Turma)
+                                @{
+                        List<SelectListItem> listaTurmas = new List<SelectListItem>();
+
+                        foreach (var item in @ViewBag.ListaTurmas)
+                        {
+                            SelectListItem selec = new SelectListItem()
+                            {
+                                Value = item.Value,
+                                Text = item.Text
+                            };
+                            listaTurmas.Add(selec);
+                        }
+                        @Html.DropDownListFor(m => m.turmaEscolhida, listaTurmas, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+                                }
+                                @Html.ValidationMessageFor(model => model.Turma)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Telefone)
+                                @Html.TextBoxFor(m => m.Contato.Telefone, new { @id = "telefone", @maxLength = "14", @size = "14", @onKeyPress = "fone(this,document.form.data)", @placeholder = "Telefone", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Telefone)
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Celular)
+                                @Html.TextBoxFor(m => m.Contato.Celular, new { @placeholder = "Celular", @id = "celular", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Celular)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Email)
+                                @Html.TextBoxFor(m => m.Contato.Email, new { @placeholder = "E-mail", @id = "email", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Email)
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.UserLogin)
+                                @Html.TextBoxFor(m => m.UserLogin, new { @placeholder = "Nome de usuário", @id = "login", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UserLogin)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Senha)
+                                @Html.PasswordFor(m => m.Senha, new { @placeholder = "Senha", @id = "login", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Senha)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ConfirmarSenha)
+                                @Html.PasswordFor(m => m.ConfirmarSenha, new { @placeholder = "Confirmar Senha", @id = "confirmarSenha", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ConfirmarSenha)
+                            </div>
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+
+                    }
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<script src="~/Content/plugins/select2/select2.full.min.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="~/Content/util/util.js"></script>
+<script src="~/Content/bootstrap/jquery_ui_min.js"></script>
+<script src="~/Content/bootstrap/raphael-min.js"></script>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery-1.11.3.min.js"></script>

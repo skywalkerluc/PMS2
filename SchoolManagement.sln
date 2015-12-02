@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{3B33C4E4-D292-4F6D-A599-DF5C641A508A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{DAF97AD5-0643-411D-B196-054B055C80DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Data", "3 - Data", "{E8283367-68FE-4567-8D76-D9180D7487B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Data", "SchoolManagement.Data\SchoolManagement.Data.csproj", "{B0A252C2-00B3-4D5D-8AB0-B27609700915}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Domain", "SchoolManagement.Domain\SchoolManagement.Domain.csproj", "{DBD6E816-3222-4321-AB6F-E2078CCEE79B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.MVC", "SchoolManagement.MVC\SchoolManagement.MVC.csproj", "{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0A252C2-00B3-4D5D-8AB0-B27609700915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A252C2-00B3-4D5D-8AB0-B27609700915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A252C2-00B3-4D5D-8AB0-B27609700915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A252C2-00B3-4D5D-8AB0-B27609700915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD6E816-3222-4321-AB6F-E2078CCEE79B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD6E816-3222-4321-AB6F-E2078CCEE79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD6E816-3222-4321-AB6F-E2078CCEE79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD6E816-3222-4321-AB6F-E2078CCEE79B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B0A252C2-00B3-4D5D-8AB0-B27609700915} = {E8283367-68FE-4567-8D76-D9180D7487B9}
+		{DBD6E816-3222-4321-AB6F-E2078CCEE79B} = {DAF97AD5-0643-411D-B196-054B055C80DF}
+		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239} = {3B33C4E4-D292-4F6D-A599-DF5C641A508A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://luqueskywalker.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SchoolManagement.Data\\SchoolManagement.Data.csproj
+		SccProjectTopLevelParentUniqueName1 = SchoolManagement.sln
+		SccProjectName1 = SchoolManagement.Data
+		SccLocalPath1 = SchoolManagement.Data
+		SccProjectUniqueName2 = SchoolManagement.Domain\\SchoolManagement.Domain.csproj
+		SccProjectTopLevelParentUniqueName2 = SchoolManagement.sln
+		SccProjectName2 = SchoolManagement.Domain
+		SccLocalPath2 = SchoolManagement.Domain
+		SccProjectUniqueName3 = SchoolManagement.MVC\\SchoolManagement.MVC.csproj
+		SccProjectTopLevelParentUniqueName3 = SchoolManagement.sln
+		SccProjectName3 = SchoolManagement.MVC
+		SccLocalPath3 = SchoolManagement.MVC
+	EndGlobalSection
+EndGlobal

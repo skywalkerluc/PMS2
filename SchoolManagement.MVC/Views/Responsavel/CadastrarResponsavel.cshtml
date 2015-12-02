@@ -1,0 +1,266 @@
+﻿@model SchoolManagement.MVC.ViewModels.ResponsavelViewModel
+
+@{
+    ViewBag.Title = "Cadastro - Responsável";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Responsável
+            <small>Cadastro de Responsável</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Responsavel</li>
+            <li class="active">Cadastro de Responsável</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastro</h3>
+                    </div><!-- /.box-header -->
+                    @using (Html.BeginForm("Create", "Responsavel", FormMethod.Post))
+                    {
+
+                        <div class="box-body">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <!-- nome -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Nome)
+                                @Html.TextBoxFor(m => m.Nome, new { @placeholder = "nome", @id = "nome", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nome)
+                            </div>
+
+                            <!-- sexo -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Sexo)
+                                <select name="sexo" class="form-control">
+                                    <option id="MASCULINO" value="masculino">Masculino</option>
+                                    <option id="FEMININO" value="feminino">Feminino</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Sexo)
+                            </div>
+
+                            <!-- data de nascimento - Date dd/mm/yyyy -->
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.DataNascimento)
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.DataNascimento, new { @id = "data", @size = "11", @maxlength = "11", @placeholder = "Data de nascimento", @class = "form-control datepicker col-md-12", @style = "height: 34px" })
+                                    @Html.ValidationMessageFor(model => model.DataNascimento)
+                                    @*<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>*@
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Cep)
+                                @Html.TextBoxFor(m => m.Endereco.Cep, new { @placeholder = "CEP", @id = "Cep", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Cep)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Endereco)
+                                @Html.TextBoxFor(m => m.Endereco.Endereco, new { @placeholder = "Endereço", @id = "Endereco", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Endereco)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Numero)
+                                @Html.TextBoxFor(m => m.Endereco.Numero, new { @placeholder = "Número", @id = "numerorua", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Numero)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Complemento)
+                                @Html.TextBoxFor(m => m.Endereco.Complemento, new { @placeholder = "Complemento", @id = "complemento", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Complemento)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Bairro)
+                                @Html.TextBoxFor(m => m.Endereco.Bairro, new { @placeholder = "Bairro", @id = "Bairro", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Cidade)
+                                @Html.TextBoxFor(m => m.Endereco.Cidade, new { @placeholder = "Cidade", @id = "Cidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Endereco.Estado)
+                                @Html.TextBoxFor(m => m.Endereco.Estado, new { @placeholder = "Estado", @id = "Estado", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Estado)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Nacionalidade)
+                                @Html.TextBoxFor(m => m.Nacionalidade, new { @placeholder = "Nacionalidade", @id = "nacionalidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Nacionalidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Naturalidade)
+                                @Html.TextBoxFor(m => m.Naturalidade, new { @placeholder = "Naturalidade", @id = "naturalidade", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Naturalidade)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Rg)
+                                @Html.TextBoxFor(m => m.Rg, new { @placeholder = "RG", @id = "rg", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Rg)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Cpf)
+                                @Html.TextBoxFor(m => m.Cpf, new { @placeholder = "CPF", @id = "cpf", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Cpf)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Alunos)
+                                @{
+                        List<SelectListItem> listaAlunos = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaAlunos)
+                        {
+                            SelectListItem selec = new SelectListItem()
+                            {
+                                Value = item.Value,
+                                Text = item.Text
+                            };
+                            listaAlunos.Add(selec);
+                        }
+                        @Html.DropDownListFor(m => m.alunosselecionados, listaAlunos, new { @class = "form-control select2", multiple = "multiple", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "aluno" })
+                                }
+                                @Html.ValidationMessageFor(model => model.Alunos)
+                            </div><!-- /.form-group -->
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.FuncaoTrabalhista)
+                                @Html.TextBoxFor(m => m.FuncaoTrabalhista, new { @placeholder = "Função Trabalhista", @id = "funcaoTrabalhista", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FuncaoTrabalhista)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Renda)
+                                @Html.TextBoxFor(m => m.Renda, new { @placeholder = "Renda Financeira", @id = "Renda", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Renda)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.UserLogin)
+                                @Html.TextBoxFor(m => m.UserLogin, new { @placeholder = "Login", @id = "login", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UserLogin)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Senha)
+                                @Html.PasswordFor(m => m.Senha, new { @placeholder = "Senha", @id = "senha", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Senha)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ConfirmarSenha)
+                                @Html.PasswordFor(m => m.ConfirmarSenha, new { @placeholder = "Confirmar Senha", @id = "confirmarSenha", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ConfirmarSenha)
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Celular)
+                                @Html.TextBoxFor(m => m.Contato.Celular, new { @placeholder = "Celular", @id = "celular", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Celular)
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Email)
+                                @Html.TextBoxFor(m => m.Contato.Email, new { @placeholder = "email", @id = "email", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Email)
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.Contato.Telefone)
+                                @Html.TextBoxFor(m => m.Contato.Telefone, new { @placeholder = "telefone", @id = "telefone", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contato.Telefone)
+                            </div>
+
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    }
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<script src="~/Content/plugins/select2/select2.full.min.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="~/Content/util/util.js"></script>
+<script src="~/Content/bootstrap/jquery_ui_min.js"></script>
+<script src="~/Content/bootstrap/raphael-min.js"></script>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script>
+    $(function () {
+        $(".select2").select2();
+
+        $("#data").datepicker();
+        $("#cpf").inputmask("999.999.999-99");
+        $("#data").inputmask("99/99/9999");
+        $("#telefone").inputmask("(99) 9999-9999");
+        $("#celular").inputmask("(99) 99999-9999");
+        $("#rg").inputmask("9.999.999");
+        $("#cep").inputmask("99.999-999");
+    });
+</script>
+
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+
+<script>
+
+    $('#Cep').change(function (e) {
+
+        e.preventDefault();
+
+        $("#Endereco").val('');
+        $("#Bairro").val('');
+        $("#Cidade").val('');
+        $("#Estado").val('');
+
+        var cep = $('#Cep').val().replace(".", "");
+
+        $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
+
+            if (data.resultado_txt == 'sucesso - cep completo') {
+
+                $("#Endereco").val(data.tipo_logradouro + ' ' + data.logradouro);
+                $("#Bairro").val(data.bairro);
+                $("#Cidade").val(data.cidade);
+                $("#Estado").val(data.uf);
+            }
+        });
+    });
+
+</script>
