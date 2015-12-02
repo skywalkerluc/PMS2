@@ -52,7 +52,6 @@ namespace SchoolManagement.Domain.Servicos
         public IEnumerable<Aluno> RecuperarAlunosTurma(int TurmaId)
         {
             return this._alunoRepositorio.RecuperarAlunosTurma(TurmaId);
-<<<<<<< HEAD
         }
 
         public IEnumerable<ResultadosProvas> RecuperarResultadosAluno(Aluno aluno)
@@ -61,9 +60,5 @@ namespace SchoolManagement.Domain.Servicos
         }
 
         
-=======
-        }
-
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
     }
 }

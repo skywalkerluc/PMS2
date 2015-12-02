@@ -19,7 +19,7 @@ namespace SchoolManagement.Data.Repositorios
         {
             var funcionarioFiltro = from d in Db.Funcionarios
                                    where d.Funcao == funcao || funcao == string.Empty || funcao == null
-                                   where d.Nome.Contains(nome) || nome == string.Empty || nome == null
+                                   where d.Nome == nome || nome == string.Empty || nome == null
                                    select d;
 
             return funcionarioFiltro;

@@ -20,11 +20,7 @@ namespace SchoolManagement.MVC.ViewModels
         [Display(Name = "Descricao da Turma")]
         public string Descricao { get; set; }
 
-<<<<<<< HEAD
         [Display(Name = "Horários da turma")]
-=======
-        [Display(Name = "Horários da turma")]
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
         public int HorariosTurmaId { get; set; }
 
         [Display(Name = "Ano letivo")]

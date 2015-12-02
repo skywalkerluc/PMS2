@@ -56,7 +56,6 @@
                                 </div>
 
                                 <div class="form-group">
-<<<<<<< HEAD
                                     @Html.LabelFor(m => m.Funcao)
                                     @{
                                         List<SelectListItem> listafuncoes = new List<SelectListItem>();
@@ -70,21 +69,6 @@
                                             listafuncoes.Add(selec);
                                         }
                                     @Html.DropDownListFor(m => m.FuncaoSelecionada, listafuncoes, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
-=======
-                                    @Html.LabelFor(m => m.Funcao)
-                                    @{
-                                        List<SelectListItem> listafuncoes = new List<SelectListItem>();
-                                        foreach (var item in @ViewBag.ListaFuncoes)
-                                        {
-                                            SelectListItem selec = new SelectListItem()
-                                            {
-                                                Value = item.Value,
-                                                Text = item.Text
-                                            };
-                                            listafuncoes.Add(selec);
-                                        }
-                                    @Html.DropDownListFor(m => m.FuncaoSelecionada, listafuncoes, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
                                     }                              
                                   </div>
 

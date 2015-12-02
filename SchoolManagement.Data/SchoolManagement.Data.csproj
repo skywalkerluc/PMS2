@@ -67,15 +67,9 @@
     <Compile Include="EntityConfig\UsuarioConfig.cs" />
     <Compile Include="EntityConfig\ProfessorConfig.cs" />
     <Compile Include="EntityConfig\ResponsavelConfig.cs" />
-<<<<<<< HEAD
     <Compile Include="Migrations\201512021731139_DBSchoolManagement.cs" />
     <Compile Include="Migrations\201512021731139_DBSchoolManagement.Designer.cs">
       <DependentUpon>201512021731139_DBSchoolManagement.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\201511290331598_school.cs" />
-    <Compile Include="Migrations\201511290331598_school.Designer.cs">
-      <DependentUpon>201511290331598_school.cs</DependentUpon>
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,10 +87,7 @@
     <Compile Include="Repositorios\ProvaRepositorio.cs" />
     <Compile Include="Repositorios\RepositorioBase.cs" />
     <Compile Include="Repositorios\ResponsavelRepositorio.cs" />
-<<<<<<< HEAD
     <Compile Include="Repositorios\ResultadosProvasRepositorio.cs" />
-=======
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
     <Compile Include="Repositorios\TrabalhosExtrasRepositorio.cs" />
     <Compile Include="Repositorios\TurmaRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
@@ -114,7 +105,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201512021731139_DBSchoolManagement.resx">
       <DependentUpon>201512021731139_DBSchoolManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,18 +116,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
-=======
-    <EmbeddedResource Include="Migrations\201511290331598_school.resx">
-      <DependentUpon>201511290331598_school.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
   -->
 </Project>

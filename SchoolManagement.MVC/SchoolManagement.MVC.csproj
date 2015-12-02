@@ -183,10 +183,7 @@
     <Compile Include="ViewModels\AnoLetivoViewModel.cs" />
     <Compile Include="ViewModels\BoletoViewModel.cs" />
     <Compile Include="ViewModels\ContatoViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\ConteudosExtrasViewModel.cs" />
-=======
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
     <Compile Include="ViewModels\DisciplinaViewModel.cs" />
     <Compile Include="ViewModels\EnderecoViewModel.cs" />
     <Compile Include="ViewModels\Enumeradores.cs" />
@@ -1112,7 +1109,6 @@
     <Content Include="Views\Notificacao\ResultadoConsultaNotificacao.cshtml" />
     <Content Include="Views\Funcionario\AdicionarFuncionarioNormal.cshtml" />
     <Content Include="Views\Funcionario\FiltroFuncaoCadastrar.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Aluno\VisualizarDisciplinasMinhaTurma.cshtml" />
     <Content Include="Views\Aluno\DetalhesDisciplinasMinhaTurma.cshtml" />
     <Content Include="Views\Aluno\VisualizaMinhaTurma.cshtml" />
@@ -1131,9 +1127,6 @@
     <Content Include="Views\Turma\VisualizarTodasTurmas.cshtml" />
     <Content Include="Views\Prova\VisualizarTodasProvas.cshtml" />
     <Content Include="Views\Notificacao\VisualizarTodasNotificacoes.cshtml" />
-=======
-    <Content Include="Views\Aluno\VisualizarDisciplinasAluno.cshtml" />
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
@@ -1208,18 +1201,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-<<<<<<< HEAD
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-=======
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
   </Target> -->
 </Project>

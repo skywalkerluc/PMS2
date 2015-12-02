@@ -98,7 +98,7 @@ namespace SchoolManagement.MVC.Controllers
                         turma.AnoLetivo = anoLetivoViewModel;
                     }
 
-                    
+
                     var turmaDomain = Mapper.Map<TurmaViewModel, Turma>(turma);
                     _turmaServico.IncluirTurma(turmaDomain);
                     return RedirectToAction("Index", "Home");

@@ -238,21 +238,6 @@ namespace SchoolManagement.MVC.Controllers
             return View("VerAlunosMinhaTurma", alunosMapeados);
         }
 
-
-        public ActionResult VisualizarDisciplinasAluno()
-        {
-            //int AlunoId = Convert.ToInt32(Session["UsuarioId"].ToString());
-
-            //var aluno = _alunoApp.Recuperar(AlunoId);
-            //var disciplinaAluno = _alunoApp.RecuperarDisciplinasAluno(aluno.Turma.TurmaId);
-
-            //var disciplinasMapeadas = Mapper.Map<IEnumerable<Disciplina>, IEnumerable<DisciplinaViewModel>>(disciplinaAluno);
-
-            //return View("VisualizarDisciplinasAluno", disciplinasMapeadas);
-            return null;
-        }
-
-<<<<<<< HEAD
         public ActionResult VerDisciplinasMinhaTurma()
         {
             int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
@@ -287,8 +272,6 @@ namespace SchoolManagement.MVC.Controllers
             var notasMapeadas = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(notas);
             return View("VisualizarMinhasNotas", notasMapeadas);
         }
-=======
->>>>>>> 47221abbbeff2cbed25e535b0cb20e2bfd2188b3
 
         private void PreencherListaTurma(AlunoViewModel aluno, FiltroAluno filtroAluno)
         {

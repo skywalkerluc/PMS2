@@ -161,17 +161,6 @@ namespace SchoolManagement.Data.Repositorios
             return alunosTurma;
         }
 
-        public IEnumerable<Disciplina> RecuperarDisciplinasAluno(int TurmaId)
-        {
-            //var disciplinasTurma = from a in Db.Turmas.d
-            //                  where a.Turma.TurmaId == TurmaId
-            //                  select a;
-
-            //IEnumerable<Disciplina> retorno = disciplinasTurma;
-
-            return null;
-        }
-
         public bool RematricularAlunos(ICollection<Aluno> alunos)
         {
             throw new NotImplementedException();
