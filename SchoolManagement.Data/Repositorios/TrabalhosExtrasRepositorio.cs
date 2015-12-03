@@ -11,6 +11,23 @@ namespace SchoolManagement.Data.Repositorios
 {
     public class TrabalhosExtrasRepositorio : RepositorioBase<TrabalhosExtras>, ITrabalhosExtrasRepositorio
     {
+        public bool IncluirTrabalhoExtra(TrabalhosExtras trabalhoExtra)
+        {
+            try
+            {
+                Db.Entry(trabalhoExtra.Aluno).State = EntityState.Unchanged;
+                Db.Entry(trabalhoExtra.Professor).State = EntityState.Unchanged;
+                Db.Entry(trabalhoExtra.TurmaSelecionada).State = EntityState.Unchanged;
+                Db.TrabalhosExtras.Add(trabalhoExtra);
+                Db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool LancarNota(Aluno aluno, Professor professor, TrabalhosExtras trab, Prova prova, int nota)
         {
             try

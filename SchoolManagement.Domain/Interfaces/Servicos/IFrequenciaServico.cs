@@ -9,5 +9,9 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
 {
     public interface IFrequenciaServico : IServicoBase<Frequencia>
     {
+        Frequencia IncluirFrequenciaAluno(Frequencia frequencia);
+        IEnumerable<Frequencia> RecuperarHistoricoFrequenciasAluno(int AlunoId);
+        Frequencia AlterarFrequenciaAluno(Frequencia frequencia);
+        bool RemoverFrequenciasAlunos(List<Frequencia> frequenciasAlunos);
     }
 }

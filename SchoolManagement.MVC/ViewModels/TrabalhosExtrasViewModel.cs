@@ -22,5 +22,7 @@ namespace SchoolManagement.MVC.ViewModels
         
         [Display(Name = "Data de conclusão")]
         public DateTime DataConclusao { get; set; }
+
+        public int TurmaSelecionada { get; set; }
     }
 }

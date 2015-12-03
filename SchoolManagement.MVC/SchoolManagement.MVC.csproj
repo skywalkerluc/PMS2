@@ -142,9 +142,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Acesso\" />
+    <Folder Include="Views\AnoLetivo\" />
     <Folder Include="Views\ConteudoExtra\" />
     <Folder Include="Views\CustomActions\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Frequencia\" />
     <Folder Include="Views\TrabalhosExtras\" />
   </ItemGroup>
   <ItemGroup>
@@ -157,10 +159,12 @@
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
+    <Compile Include="Controllers\AnoLetivoController.cs" />
     <Compile Include="Controllers\ConteudoExtraController.cs" />
     <Compile Include="Controllers\CustomActionsController.cs" />
     <Compile Include="Controllers\DisciplinaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
+    <Compile Include="Controllers\FrequenciaController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivroController.cs" />
@@ -199,6 +203,7 @@
     <Compile Include="ViewModels\FiltroViewModel\FiltroNotificacao.cs" />
     <Compile Include="ViewModels\FiltroViewModel\FiltroResponsavel.cs" />
     <Compile Include="ViewModels\FiltroViewModel\FiltroTurma.cs" />
+    <Compile Include="ViewModels\FrequenciaViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioViewModel.cs" />
     <Compile Include="ViewModels\LivroViewModel.cs" />
     <Compile Include="ViewModels\LojasRecomendadasViewModel.cs" />

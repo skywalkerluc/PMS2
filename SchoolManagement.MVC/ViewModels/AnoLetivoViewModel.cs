@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace SchoolManagement.MVC.ViewModels
 {
@@ -16,5 +17,7 @@ namespace SchoolManagement.MVC.ViewModels
         public ICollection<TurmaViewModel> Turmas { get; set; }
         
         public int Ano { get; set; }
+
+        
     }
 }

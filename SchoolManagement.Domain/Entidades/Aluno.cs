@@ -18,5 +18,6 @@ namespace SchoolManagement.Domain.Entidades
         public ICollection<Responsavel> Responsaveis { get; set; }
         public StatusCadastro StatusCadastro { get; set; }
         public virtual Turma Turma { get; set; }
+        public Frequencia Frequencia { get; set; }
     }
 }

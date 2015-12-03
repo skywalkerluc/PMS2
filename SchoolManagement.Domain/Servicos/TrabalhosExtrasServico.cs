@@ -19,6 +19,11 @@ namespace SchoolManagement.Domain.Servicos
             _trabalhosExtrasRep = trabalhosExtrasRep;
         }
 
+        public bool IncluirTrabalhoExtra(TrabalhosExtras trabalhoExtra)
+        {
+            return _trabalhosExtrasRep.IncluirTrabalhoExtra(trabalhoExtra);
+        }
+
         public bool LancarNota(Aluno aluno, Professor professor, TrabalhosExtras trab, Prova prova, int nota)
         {
             return _trabalhosExtrasRep.LancarNota(aluno, professor, trab, prova, nota);

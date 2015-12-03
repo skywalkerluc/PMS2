@@ -1,4 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using SchoolManagement.Domain.Entidades;
+using SchoolManagement.Domain.Interfaces.Servicos;
+using SchoolManagement.MVC.Utilitarios;
+using SchoolManagement.MVC.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,41 +13,74 @@ namespace SchoolManagement.MVC.Controllers
 {
     public class TrabalhosExtrasController : Controller
     {
+        private readonly ITrabalhosExtrasServico _trabalhosExtrasServico;
+        private readonly Utilizavel _util;
+        private readonly ITurmaServico _turmaServico;
+
+
+        public TrabalhosExtrasController(ITrabalhosExtrasServico trabalhosExtrasServico, Utilizavel util, ITurmaServico turmaServico)
+        {
+            _trabalhosExtrasServico = trabalhosExtrasServico;
+            _util = util;
+            _turmaServico = turmaServico;
+        }
+
         //
         // GET: /TrabalhosExtras/
         public ActionResult Index()
         {
-            return View();
+            var trabalhos = _trabalhosExtrasServico.RecuperarTodos();
+            var trabalhosMapped = Mapper.Map<IEnumerable<TrabalhosExtras>, IEnumerable<TrabalhosExtrasViewModel>>(trabalhos);
+            return View("VisualizarTodosTrabalhosExtras", trabalhosMapped);
         }
 
         //
         // GET: /TrabalhosExtras/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var trabalhoExtra = _trabalhosExtrasServico.Recuperar(id);
+            var trabalhoExtraMapped = Mapper.Map<TrabalhosExtras, TrabalhosExtrasViewModel>(trabalhoExtra);
+            return View("DetalhesTrabalhoExtra", trabalhoExtraMapped);
         }
 
         //
         // GET: /TrabalhosExtras/Create
         public ActionResult Create()
         {
-            return View();
+            TrabalhosExtrasViewModel trabalho = new TrabalhosExtrasViewModel();
+            _util.PreencherListaTurmas();
+            return View("AdicionarConteudoExtra", trabalho);
         }
 
         //
         // POST: /TrabalhosExtras/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TrabalhosExtrasViewModel trabalho)
         {
             try
             {
-                // TODO: Add insert logic here
+                var turmaSelecionada = _turmaServico.Recuperar(trabalho.TurmaSelecionada);
+                if (turmaSelecionada == null)
+                {
+                    throw new NotImplementedException("Turma não encontrada. Erro ao adicionar trabalho extra.");
+                }
 
-                return RedirectToAction("Index");
+                var trabalhoMapped = Mapper.Map<TrabalhosExtrasViewModel, TrabalhosExtras>(trabalho);
+                trabalhoMapped.TurmaSelecionada = turmaSelecionada;
+                var attmpt = _trabalhosExtrasServico.IncluirTrabalhoExtra(trabalhoMapped);
+
+                if (!attmpt)
+                {
+                    throw new NotImplementedException("Erro ao adicionar trabalho extra.");
+                }
+                else
+                {
+                    return View("Index", "Home");
+                }
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                throw new NotImplementedException("Erro ao adicionar trabalho extra.");
             }
         }
 
@@ -50,23 +88,32 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /TrabalhosExtras/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var trabalhoExtra = _trabalhosExtrasServico.Recuperar(id);
+            var trabalhoExtraMapped = Mapper.Map<TrabalhosExtras, TrabalhosExtrasViewModel>(trabalhoExtra);
+            return View("AtualizarDadosConteudoExtra", trabalhoExtraMapped);
         }
 
         //
         // POST: /TrabalhosExtras/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(TrabalhosExtrasViewModel trabalhosExtras)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var trabalhosExtrasMapped = Mapper.Map<TrabalhosExtrasViewModel, TrabalhosExtras>(trabalhosExtras);
+                var attempt = _trabalhosExtrasServico.Atualizar(trabalhosExtrasMapped);
+                if (attempt)
+                {
+                    return View("Index", "Home");
+                }
+                else
+                {
+                    throw new NotImplementedException("Erro ao editar trabalho extra");
+                }
             }
             catch
             {
-                return View();
+                throw new NotImplementedException("Erro ao editar trabalho extra");
             }
         }
 
@@ -74,23 +121,32 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /TrabalhosExtras/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var trabalhosExtras = _trabalhosExtrasServico.Recuperar(id);
+            var trabalhosExtrasMapped = Mapper.Map<TrabalhosExtras, TrabalhosExtrasViewModel>(trabalhosExtras);
+            return View("RemoverConteudoExtra", trabalhosExtrasMapped);
         }
 
         //
         // POST: /TrabalhosExtras/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(TrabalhosExtrasViewModel trabalhosExtras)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                var trabalhosExtrasMapped = Mapper.Map<TrabalhosExtrasViewModel, TrabalhosExtras>(trabalhosExtras);
+                var attempt = _trabalhosExtrasServico.Remover(trabalhosExtrasMapped);
+                if (attempt)
+                {
+                    return View("Index", "Home");
+                }
+                else
+                {
+                    throw new NotImplementedException("Erro ao remover conteúdo extra.");
+                }
             }
             catch
             {
-                return View();
+                throw new NotImplementedException("Erro ao remover conteúdo extra.");
             }
         }
     }

@@ -18,5 +18,25 @@ namespace SchoolManagement.Domain.Servicos
         {
             _frequenciaRep = frequenciaRep;
         }
+
+        public Frequencia IncluirFrequenciaAluno(Frequencia frequencia)
+        {
+            return this._frequenciaRep.IncluirFrequenciaAluno(frequencia);
+        }
+
+        public IEnumerable<Frequencia> RecuperarHistoricoFrequenciasAluno(int AlunoId)
+        {
+            return this._frequenciaRep.RecuperarHistoricoFrequenciasAluno(AlunoId);
+        }
+
+        public Frequencia AlterarFrequenciaAluno(Frequencia frequencia)
+        {
+            return this._frequenciaRep.AlterarFrequenciaAluno(frequencia);
+        }
+
+        public bool RemoverFrequenciasAlunos(List<Frequencia> frequenciasAlunos)
+        {
+            return this._frequenciaRep.RemoverFrequenciasAlunos(frequenciasAlunos);
+        }
     }
 }

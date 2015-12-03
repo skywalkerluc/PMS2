@@ -17,7 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.MVC", "Sch
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{DF09FFC8-55A3-466C-8CFA-613154EAA30F}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Disciplinas.txt = ..\..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Disciplinas.txt
 		..\..\..\Source\Workspaces\SchoolManagement\Base de Conhecimento PMS\IdeiaProjeto.txt = ..\..\..\Source\Workspaces\SchoolManagement\Base de Conhecimento PMS\IdeiaProjeto.txt
 		..\..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Query.txt = ..\..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Query.txt
 	EndProjectSection
