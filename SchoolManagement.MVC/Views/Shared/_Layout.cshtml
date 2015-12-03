@@ -506,7 +506,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="Aluno/consultaraluno.html"><i class="fa fa-circle-o"></i> Consultar Aluno</a></li>
+                                        <li>@Html.ActionLink("Consultar Aluno", "", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Disciplinas-->
@@ -516,7 +516,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Consultar Disciplinas</a></li>
+                                        <li>@Html.ActionLink("Consultar Disciplinas", "", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Turmas-->
@@ -526,7 +526,8 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Consultar Turmas</a></li>
+                                        <li>@Html.ActionLink("Visualizar Turmas Professor", "VisualizarTurmasProfessor", "Professor", new { @id="ObterSession"})</li>
+                                        <li>@Html.ActionLink("Visualizar Todas Turmas", "VisualizarTodasTurmas", "Turma")</li>
                                     </ul>
                                 </li>
 
@@ -537,9 +538,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Cadastro de Provas</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Provas</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Calendario de Provas</a></li>
+                                        <li>@Html.ActionLink("Cadastro de Provas", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Provas", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Calendário de Provas", "", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Eventos-->
@@ -549,9 +550,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Cadastro de Eventos</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Eventos</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Calendario de Eventos</a></li>
+                                        <li>@Html.ActionLink("Cadastro de Eventos", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Eventos", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Calendário de Eventos", "", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Notificacoes-->
@@ -561,9 +562,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="Notificacoes/cadastrarnotificacoes.html"><i class="fa fa-circle-o"></i> Cadastro de Notificacoes</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Notificacoes</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Visualizar de Notificacoes</a></li>
+                                        <li>@Html.ActionLink("Cadastro de Notificacoes", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Notificações", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Visualizar de Notificacoes", "", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Conteudos Extras-->
@@ -573,9 +574,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="Notificacoes/cadastrarnotificacoes.html"><i class="fa fa-circle-o"></i> Cadastro de Conteudos</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Conteudos</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Visualizar Conteudos</a></li>
+                                        <li>@Html.ActionLink("Cadastro de Conteudos", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Conteudos", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Visualizar Conteudos", "", "Professor")</li>
                                     </ul>
                                 </li>
 
@@ -586,9 +587,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="Notificacoes/cadastrarnotificacoes.html"><i class="fa fa-circle-o"></i> Lançar Notas</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Notas</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Visualizar Notas</a></li>
+                                        <li>@Html.ActionLink("Lançar Notas", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Notas", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Visualizar Notas", "", "Professor")</li>
                                     </ul>
                                 </li>
 
@@ -599,9 +600,9 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li><a href="Notificacoes/cadastrarnotificacoes.html"><i class="fa fa-circle-o"></i> Preencher Caderneta</a></li>
-                                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Editar Caderneta</a></li>
-                                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Visualizar Caderneta</a></li>
+                                        <li>@Html.ActionLink("Preencher Caderneta", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Editar Caderneta", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Visualizar Caderneta", "", "Professor")</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -913,3 +914,26 @@
 
 </body>
 </html>
+
+<!--
+<script>
+    $('#btnSaveComments').click(function () {
+        var comments = $('#txtComments').val();
+        var selectedId = $('#hdnSelectedId').val();
+
+        $.ajax({
+            url: '<%: Url.Action("SaveComments")%>',
+            data: { 'id': selectedId, 'comments': comments },
+            type: "post",
+            cache: false,
+            success: function (savingStatus) {
+                $("#hdnOrigComments").val($('#txtComments').val());
+                $('#lblCommentsNotification').text(savingStatus);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#lblCommentsNotification').text("Error encountered while saving the comments.");
+            }
+        });
+    });
+</script>
+-->

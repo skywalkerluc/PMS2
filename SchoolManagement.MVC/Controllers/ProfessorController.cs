@@ -163,7 +163,7 @@ namespace SchoolManagement.MVC.Controllers
             }
 
             IEnumerable<TurmaViewModel> TurmasRetorno = ListaTurmas;
-            return View("VisualizarTurmasLeciono", TurmasRetorno);
+            return View("VisualizarTurmasProfessor", TurmasRetorno);
         }
 
 
