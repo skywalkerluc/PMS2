@@ -240,12 +240,15 @@ namespace SchoolManagement.Data.Migrations
                         TipoProva = c.Int(nullable: false),
                         Disciplina_DisciplinaId = c.Int(),
                         Professores_Id = c.Int(),
+                        Turma_TurmaId = c.Int(),
                     })
                 .PrimaryKey(t => t.ProvaId)
                 .ForeignKey("dbo.Disciplina", t => t.Disciplina_DisciplinaId)
                 .ForeignKey("dbo.Professor", t => t.Professores_Id)
+                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
                 .Index(t => t.Disciplina_DisciplinaId)
-                .Index(t => t.Professores_Id);
+                .Index(t => t.Professores_Id)
+                .Index(t => t.Turma_TurmaId);
             
             CreateTable(
                 "dbo.Rematricula",
@@ -414,6 +417,7 @@ namespace SchoolManagement.Data.Migrations
             DropForeignKey("dbo.ResultadosProvas", "Aluno_Id", "dbo.Aluno");
             DropForeignKey("dbo.Rematricula", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Rematricula", "Aluno_Id", "dbo.Aluno");
+            DropForeignKey("dbo.Prova", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Prova", "Professores_Id", "dbo.Professor");
             DropForeignKey("dbo.Prova", "Disciplina_DisciplinaId", "dbo.Disciplina");
             DropForeignKey("dbo.Notificacao", "UsuarioCriacao_Id", "dbo.Usuario");
@@ -453,6 +457,7 @@ namespace SchoolManagement.Data.Migrations
             DropIndex("dbo.ResultadosProvas", new[] { "Aluno_Id" });
             DropIndex("dbo.Rematricula", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Rematricula", new[] { "Aluno_Id" });
+            DropIndex("dbo.Prova", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Prova", new[] { "Professores_Id" });
             DropIndex("dbo.Prova", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.Notificacao", new[] { "UsuarioCriacao_Id" });
