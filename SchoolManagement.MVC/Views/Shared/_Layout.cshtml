@@ -516,7 +516,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Disciplinas", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Consultar Disciplinas", "VisualizarTurmasProfessorLeciona", "Professor")</li>
                                     </ul>
                                 </li>
                                 <!--Turmas-->
@@ -526,7 +526,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Turmas Professor", "VisualizarTurmasProfessor", "Professor", new { @id="ObterSession"})</li>
+                                        <li>@Html.ActionLink("Visualizar Turmas Professor", "", "")</li>
                                         <li>@Html.ActionLink("Visualizar Todas Turmas", "VisualizarTodasTurmas", "Turma")</li>
                                     </ul>
                                 </li>
@@ -565,6 +565,8 @@
                                         <li>@Html.ActionLink("Cadastro de Notificacoes", "", "Professor")</li>
                                         <li>@Html.ActionLink("Editar Notificações", "", "Professor")</li>
                                         <li>@Html.ActionLink("Visualizar de Notificacoes", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Visualizar Notificacoes Minha Turma", "VisualizarNotificacoesMinhaTurma", "Notificacao")</li>
+
                                     </ul>
                                 </li>
                                 <!--Conteudos Extras-->
@@ -636,7 +638,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Aluno", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Consultar Aluno", "RecuperarMeusAlunosResponsavel", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Disciplinas-->
@@ -646,7 +648,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Disciplinas", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Consultar Disciplinas", "", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Provas-->
@@ -656,7 +658,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Calendario de Provas", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Visualizar Calendario de Provas", "", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Notas-->
@@ -666,7 +668,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Notas", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Consultar Notas", "", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Eventos-->
@@ -676,7 +678,8 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Calendario de Eventos", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Calendario de Eventos", "", "Responsavel")</li>
+                                        <li>@Html.ActionLink("Visualizar Todos Eventos", "VisualizarTodosEventos", "Evento")</li>
                                     </ul>
                                 </li>
                                 <!--Notificacoes-->
@@ -686,7 +689,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar de Notificacoes", "", "Responsavel", new { @class = "fa fa-circle-o" })</li>
+                                        <li>@Html.ActionLink("Visualizar de Notificacoes", "", "Responsavel")</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -819,7 +822,7 @@
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Cadastro de Eventos", "Create", "Evento")</li>
                                         <li>@Html.ActionLink("Calendario de Eventos", "RecuperarEventoPorDescricao", "Evento")</li>
-                                        <li>@Html.ActionLink("Consultar Eventos", "", "Evento")</li>
+                                        <li>@Html.ActionLink("Visualizar Todos Eventos", "VisualizarTodosEventos", "Evento")</li>
                                     </ul>
                                 </li>
                                 <!--Notificacoes-->
@@ -914,26 +917,3 @@
 
 </body>
 </html>
-
-<!--
-<script>
-    $('#btnSaveComments').click(function () {
-        var comments = $('#txtComments').val();
-        var selectedId = $('#hdnSelectedId').val();
-
-        $.ajax({
-            url: '<%: Url.Action("SaveComments")%>',
-            data: { 'id': selectedId, 'comments': comments },
-            type: "post",
-            cache: false,
-            success: function (savingStatus) {
-                $("#hdnOrigComments").val($('#txtComments').val());
-                $('#lblCommentsNotification').text(savingStatus);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                $('#lblCommentsNotification').text("Error encountered while saving the comments.");
-            }
-        });
-    });
-</script>
--->

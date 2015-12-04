@@ -1134,7 +1134,11 @@
     <Content Include="Views\Turma\VisualizarTodasTurmas.cshtml" />
     <Content Include="Views\Prova\VisualizarTodasProvas.cshtml" />
     <Content Include="Views\Notificacao\VisualizarTodasNotificacoes.cshtml" />
-    <Content Include="Views\Professor\VisualizarTurmasProfessor.cshtml" />
+    <Content Include="Views\Professor\VisualizarTurmasProfessorLeciona.cshtml" />
+    <Content Include="Views\Evento\VisualizarTodosEventos.cshtml" />
+    <Content Include="Views\Notificacao\VisualizarNotificacoesMinhaTurma.cshtml" />
+    <Content Include="Views\Responsavel\RecuperarMeusAlunosResponsavel.cshtml" />
+    <Content Include="Views\Responsavel\VisualizarTodosEventos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
