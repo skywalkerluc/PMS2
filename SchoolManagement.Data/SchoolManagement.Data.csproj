@@ -113,6 +113,11 @@
       <DependentUpon>201512040159036_DBSchoolManagement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sql\[dbo].[AlterarNotificacao].sql" />
+    <Content Include="Util\IdeiaProjeto.txt" />
+    <Content Include="Util\Query.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

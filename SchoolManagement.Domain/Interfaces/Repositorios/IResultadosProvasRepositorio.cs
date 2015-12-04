@@ -9,6 +9,10 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
 {
     public interface IResultadosProvasRepositorio : IRepositorioBase<ResultadosProvas>
     {
+        ResultadosProvas IncluirNotaAluno(ResultadosProvas resultadoProva);
         IEnumerable<ResultadosProvas> RecuperarNotasAluno(int AlunoId);
+        IEnumerable<ResultadosProvas> RecuperarHistoricoNotasTurma(int TurmaId);
+        bool AlterarResultadoAluno(ResultadosProvas resultado);
+        bool RemoverResultadosAlunos(List<ResultadosProvas> resultadosProvas);
     }
 }

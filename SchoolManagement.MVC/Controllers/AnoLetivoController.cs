@@ -58,7 +58,7 @@ namespace SchoolManagement.MVC.Controllers
                 }
 
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
-                var attempt = _anoLetivoServico.Incluir(anoLetivoMapped);
+                var attempt = _anoLetivoServico.IncluirAnoLetivo(anoLetivoMapped);
 
                 if (attempt != null)
                 {
@@ -99,7 +99,7 @@ namespace SchoolManagement.MVC.Controllers
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
                 var attempt = _anoLetivoServico.Atualizar(anoLetivoMapped);
 
-                if (attempt != null)
+                if (attempt)
                 {
                     return View("Index", "Home");
                 }

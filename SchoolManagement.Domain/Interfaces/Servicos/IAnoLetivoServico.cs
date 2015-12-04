@@ -9,6 +9,6 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
 {
     public interface IAnoLetivoServico : IServicoBase<AnoLetivo>
     {
-
+        AnoLetivo IncluirAnoLetivo(AnoLetivo anoLetivo);
     }
 }
