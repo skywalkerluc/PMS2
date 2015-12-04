@@ -33,7 +33,7 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Evento> BuscarEventoPorDescricao(string descricao)
         {
-            return Db.Eventos.Where(p => p.Descricao == descricao);
+            return Db.Eventos.Where(p => p.Descricao.Contains(descricao));
         }
 
         public IEnumerable<Evento> RecuperarEventosFuturos()

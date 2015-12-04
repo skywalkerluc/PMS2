@@ -9,6 +9,6 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
 {
     public interface IAnoLetivoRepositorio : IRepositorioBase<AnoLetivo>
     {
-
+        AnoLetivo IncluirAnoLetivo(AnoLetivo anoLetivo);
     }
 }

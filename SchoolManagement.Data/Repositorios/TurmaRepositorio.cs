@@ -3,6 +3,7 @@ using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,7 +71,7 @@ namespace SchoolManagement.Data.Repositorios
                                   || t.AnoLetivo.AnoLetivoId == 0 || t.AnoLetivo.AnoLetivoId == ano.AnoLetivoId
                                   || t.HorariosTurmaId == 0 || t.HorariosTurmaId == horarioId)
                               select t;
-             
+
             if (professor != null)
             {
                 foreach (var turmaFiltrada in turmaFiltro)
@@ -93,6 +94,43 @@ namespace SchoolManagement.Data.Repositorios
             }
 
         }
+
+        public bool RemoverAlunosTurma(int TurmaId, List<Aluno> ListaAlunos)
+        {
+            try
+            {
+                foreach (var aluno in ListaAlunos)
+                {
+                    var AlunoParameter = new SqlParameter("@AlunoId", aluno.Id);
+                    var query = Db.Set<Aluno>().SqlQuery("UPDATE Aluno SET Turma_TurmaId = NULL WHERE Aluno.Id = @AlunoId", AlunoParameter);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool AdicionarAlunosTurma(int TurmaId, List<Aluno> ListaAlunos)
+        {
+            try
+            {
+                foreach (var aluno in ListaAlunos)
+                {
+                    var AlunoParameter = new SqlParameter("@AlunoId", aluno.Id);
+                    var TurmaParameter = new SqlParameter("@TurmaId", TurmaId);
+                    var query = Db.Set<Aluno>().SqlQuery("UPDATE Aluno SET Turma_TurmaId = @TurmaId WHERE Aluno.Id = @AlunoId", TurmaParameter, AlunoParameter);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        
 
     }
 }

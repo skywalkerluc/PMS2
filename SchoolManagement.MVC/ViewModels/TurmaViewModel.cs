@@ -28,6 +28,8 @@ namespace SchoolManagement.MVC.ViewModels
 
         public int Vagas { get; set; }
 
+        public virtual ICollection<LivroViewModel> Materiais { get; set; }
+
         public List<SelectListItem> ListaDisciplinas { get; set; }
         public List<SelectListItem> ListaAnoLetivo { get; set; }
 

@@ -3,7 +3,7 @@ namespace SchoolManagement.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBSchoolmanagement : DbMigration
+    public partial class DBSchoolManagement : DbMigration
     {
         public override void Up()
         {
@@ -80,10 +80,13 @@ namespace SchoolManagement.Data.Migrations
                         Autor = c.String(maxLength: 100, unicode: false),
                         Editora = c.String(maxLength: 100, unicode: false),
                         Disciplina_DisciplinaId = c.Int(),
+                        Turma_TurmaId = c.Int(),
                     })
                 .PrimaryKey(t => t.LivroId)
                 .ForeignKey("dbo.Disciplina", t => t.Disciplina_DisciplinaId)
-                .Index(t => t.Disciplina_DisciplinaId);
+                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
+                .Index(t => t.Disciplina_DisciplinaId)
+                .Index(t => t.Turma_TurmaId);
             
             CreateTable(
                 "dbo.Experiencia",
@@ -328,6 +331,19 @@ namespace SchoolManagement.Data.Migrations
                 .Index(t => t.Disciplina_DisciplinaId);
             
             CreateTable(
+                "dbo.ProfessorTurma",
+                c => new
+                    {
+                        Professor_Id = c.Int(nullable: false),
+                        Turma_TurmaId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Professor_Id, t.Turma_TurmaId })
+                .ForeignKey("dbo.Professor", t => t.Professor_Id)
+                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
+                .Index(t => t.Professor_Id)
+                .Index(t => t.Turma_TurmaId);
+            
+            CreateTable(
                 "dbo.DisciplinaTurma",
                 c => new
                     {
@@ -377,17 +393,14 @@ namespace SchoolManagement.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Turma_TurmaId = c.Int(),
                         Notificacao_NotificacaoId = c.Int(),
                         Matricula = c.String(maxLength: 100, unicode: false),
                         Especialidade = c.String(maxLength: 100, unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Funcionario", t => t.Id)
-                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
                 .ForeignKey("dbo.Notificacao", t => t.Notificacao_NotificacaoId)
                 .Index(t => t.Id)
-                .Index(t => t.Turma_TurmaId)
                 .Index(t => t.Notificacao_NotificacaoId);
             
             CreateTable(
@@ -408,7 +421,6 @@ namespace SchoolManagement.Data.Migrations
         {
             DropForeignKey("dbo.Responsavel", "Id", "dbo.Usuario");
             DropForeignKey("dbo.Professor", "Notificacao_NotificacaoId", "dbo.Notificacao");
-            DropForeignKey("dbo.Professor", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Professor", "Id", "dbo.Funcionario");
             DropForeignKey("dbo.Funcionario", "Evento_EventoId", "dbo.Evento");
             DropForeignKey("dbo.Funcionario", "Id", "dbo.Usuario");
@@ -432,8 +444,11 @@ namespace SchoolManagement.Data.Migrations
             DropForeignKey("dbo.ConteudosExtras", "TurmaPublicoAlvo_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.ConteudosExtras", "Professor_Id", "dbo.Professor");
             DropForeignKey("dbo.Boleto", "Aluno_Id", "dbo.Aluno");
+            DropForeignKey("dbo.Livro", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.DisciplinaTurma", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.DisciplinaTurma", "Disciplina_DisciplinaId", "dbo.Disciplina");
+            DropForeignKey("dbo.ProfessorTurma", "Turma_TurmaId", "dbo.Turma");
+            DropForeignKey("dbo.ProfessorTurma", "Professor_Id", "dbo.Professor");
             DropForeignKey("dbo.Experiencia", "Funcionario_Id", "dbo.Funcionario");
             DropForeignKey("dbo.ProfessorDisciplina", "Disciplina_DisciplinaId", "dbo.Disciplina");
             DropForeignKey("dbo.ProfessorDisciplina", "Professor_Id", "dbo.Professor");
@@ -443,7 +458,6 @@ namespace SchoolManagement.Data.Migrations
             DropForeignKey("dbo.ResponsavelAluno", "Responsavel_Id", "dbo.Responsavel");
             DropIndex("dbo.Responsavel", new[] { "Id" });
             DropIndex("dbo.Professor", new[] { "Notificacao_NotificacaoId" });
-            DropIndex("dbo.Professor", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Professor", new[] { "Id" });
             DropIndex("dbo.Funcionario", new[] { "Evento_EventoId" });
             DropIndex("dbo.Funcionario", new[] { "Id" });
@@ -451,6 +465,8 @@ namespace SchoolManagement.Data.Migrations
             DropIndex("dbo.Aluno", new[] { "Id" });
             DropIndex("dbo.DisciplinaTurma", new[] { "Turma_TurmaId" });
             DropIndex("dbo.DisciplinaTurma", new[] { "Disciplina_DisciplinaId" });
+            DropIndex("dbo.ProfessorTurma", new[] { "Turma_TurmaId" });
+            DropIndex("dbo.ProfessorTurma", new[] { "Professor_Id" });
             DropIndex("dbo.ProfessorDisciplina", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.ProfessorDisciplina", new[] { "Professor_Id" });
             DropIndex("dbo.ResponsavelAluno", new[] { "Aluno_Id" });
@@ -474,6 +490,7 @@ namespace SchoolManagement.Data.Migrations
             DropIndex("dbo.ConteudosExtras", new[] { "Professor_Id" });
             DropIndex("dbo.Boleto", new[] { "Aluno_Id" });
             DropIndex("dbo.Experiencia", new[] { "Funcionario_Id" });
+            DropIndex("dbo.Livro", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Livro", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.Turma", new[] { "AnoLetivo_AnoLetivoId" });
             DropTable("dbo.Responsavel");
@@ -481,6 +498,7 @@ namespace SchoolManagement.Data.Migrations
             DropTable("dbo.Funcionario");
             DropTable("dbo.Aluno");
             DropTable("dbo.DisciplinaTurma");
+            DropTable("dbo.ProfessorTurma");
             DropTable("dbo.ProfessorDisciplina");
             DropTable("dbo.ResponsavelAluno");
             DropTable("dbo.TrabalhosExtras");

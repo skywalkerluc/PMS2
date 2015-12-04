@@ -16,5 +16,9 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
         IEnumerable<Disciplina> BuscarPorNome(string nome);
 
         IEnumerable<Disciplina> RecuperarDisciplinasTurma(int TurmaId);
+
+        bool IncluirDisciplinasEmTurma(int TurmaId, List<Disciplina> ListaDisciplinas);
+
+        bool RemoverDisciplinasTurma(int TurmaId, List<Disciplina> ListaDisciplinas);
     }
 }
