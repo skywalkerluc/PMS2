@@ -1,0 +1,71 @@
+Administrador
+
+Ver todos os alunos ---------------------------------------------- FEITO
+ver todos os funcionarios ---------------------------------------- FEITO
+ver todos os professores ----------------------------------------- FEITO
+ver todos os responsáveis ---------------------------------------- FEITO
+ver todos os materiais ------------------------------------------- FEITO
+ver todas as disciplinas ----------------------------------------- FEITO
+inserir disciplina em turma  ------------------- NADA
+ver todas as turmas ---------------------------------------------- FEITO
+ver todas as provas de uma turma --------------------------------- FEITO
+ver todos os eventos (com filtro por data do evento) ------------- FEITO
+ver todas as notificações ---------------------------------------- FEITO
+ver todas as notificações (excluir consulta de notificações)------ FEITO
+Ao criar evento (criar notificação) ---------------- EX
+Ao criar prova (criar notificação) ----------------- EX
+
+
+Aluno
+
+Ver alunos da minha turma ----------------------------- VerAlunosMinhaTurma
+ver professores da turma ------------------------------ NADA
+ver dados meu responsável ----------------------- VisualizarDadosMeuResponsavel
+ver materiais associados a minha turma ----------- NADA
+ver disciplinas minha turma ------------------------ VerDisciplinasMinhaTurma
+ver calendário de provas da minha turma ------------- OBS
+ver eventos futuros ---------------- VisualizarEventosFuturos
+criar notificacao ------------------- Create
+excluir notificacao ----------------- DELETE
+visualizar notificações para minha turma ----------------------- VisualizarNotificacoesMinhaTurma
+
+Professor
+ver turmas que eu leciono --------------------------------------- FEITO
+ver todas as turmas --------------------------------------------- FEITO
+ver todas as notificações (por turma) --------------------------- FEITO
+ver alunos turmas que eu leciono -------------------- NADA
+ver dados aluno/ver dados responsavel 
+ 
+adicionar conteudo extra ---------------------- Create
+excluir conteudo extra ----------------------- Delete
+adicionar prova ------------------------------ Create
+visualizar calendário provas 
+criar evento -------------------------------- Create
+cancelar evento ----------------------------- OBS
+criar notificação ---------------------------- Create
+excluir notificação -------------------------- Delete
+Atribuir nota a Aluno ------------------- OBS
+
+
+Responsável
+Ver alunos que sou responsável --------------------------------- FEITO
+Ver notas alunos ------------------- OBS
+ver professores das turmas dos meus alunos --------------- OBS
+ver meus dados ---------------------------------- Details
+atualizar meus dados ----------------------------- Edit
+Ver eventos (filtro por data) ---------------------------------- FEITO
+ver notificações de alunos pelos quais é responsável ------------ OBS
+
+
+
+
+
+
+
+
+
+
+
+______________________________________
+
+OBS: Verificar como se envia um código através de uma função ajax.
