@@ -33,6 +33,9 @@ namespace SchoolManagement.MVC.ViewModels
         public List<SelectListItem> ListaDisciplinas { get; set; }
         public List<SelectListItem> ListaAnoLetivo { get; set; }
 
+        [Display(Name = "Turma")]
+        public List<SelectListItem> ListaTurmas { get; set; }
+
         public List<int> disciplinasSelecionadas { get; set; }
 
         public int anoletivoSelecionado { get; set; }

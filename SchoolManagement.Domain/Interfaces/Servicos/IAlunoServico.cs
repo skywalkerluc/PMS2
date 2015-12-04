@@ -17,5 +17,6 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
         IEnumerable<Aluno> PesquisarAlunoPorNomeEmTurma(string nomeAluno, int codigoTurma);
         IEnumerable<Aluno> RecuperarAlunosTurma(int TurmaId);
         IEnumerable<ResultadosProvas> RecuperarResultadosAluno(Aluno aluno);
+        IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId);
     }
 }

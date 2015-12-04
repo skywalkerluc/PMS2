@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using SchoolManagement.Domain.Entidades;
 using SchoolManagement.Domain.Interfaces.Servicos;
+using SchoolManagement.MVC.Utilitarios;
 using SchoolManagement.MVC.ViewModels;
+using SchoolManagement.MVC.ViewModels.FiltroViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +18,17 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IUsuarioServico _usuarioApp;
         private readonly IDisciplinaServico _disciplinaApp;
         private readonly ITurmaServico _turmaServico;
+        private readonly IAlunoServico _alunoServico;
+        private readonly Utilizavel _util;
 
-        public ProfessorController(IProfessorServico professorApp, IUsuarioServico usuarioApp, IDisciplinaServico disciplinaApp, ITurmaServico turmaServico)
+        public ProfessorController(IProfessorServico professorApp, IUsuarioServico usuarioApp, IDisciplinaServico disciplinaApp, ITurmaServico turmaServico, IAlunoServico alunoServico, Utilizavel util)
         {
             _professorApp = professorApp;
             _usuarioApp = usuarioApp;
             _disciplinaApp = disciplinaApp;
             _turmaServico = turmaServico;
+            _alunoServico = alunoServico;
+            _util = util;
         }
 
         // GET: Professor
@@ -189,6 +195,36 @@ namespace SchoolManagement.MVC.Controllers
 
             return View("VisualizarTodosProfessores");
         }
+
+        public ActionResult FiltroTurmasProfessorLeciona()
+        {
+            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+
+            return View("FiltroTurmasProfessorLeciona");
+        }
+
+        [HttpPost, ActionName("TurmasProfessorLeciona")]
+        [ValidateAntiForgeryToken]
+        public ActionResult VisualizarTurmasProfessorLeciona()
+        {
+            List<Aluno> AlunosBackEnd = new List<Aluno>();
+
+            int professorId = (int)Session["UsuarioId"];
+            var professorRecup = _professorApp.Recuperar(professorId);
+
+            foreach (var turma in professorRecup.Turmas)
+            {
+                var alunos = _alunoServico.RecuperarAlunosTurmaProfessor(professorId, turma.TurmaId).ToList();
+                foreach (var aluno in alunos)
+                {
+                    AlunosBackEnd.Add(aluno);
+                }
+            }
+
+            var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
+            return View("VisualizarTurmasProfessorLeciona", alunosMapped);
+        }
+
 
     }
 }

@@ -59,6 +59,11 @@ namespace SchoolManagement.Domain.Servicos
             return this._alunoRepositorio.RecuperarResultadosAluno(aluno);
         }
 
+        public IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId)
+        {
+            return this._alunoRepositorio.RecuperarAlunosTurmaProfessor(professorId, turmaId);
+        }
+
         
     }
 }

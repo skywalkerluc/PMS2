@@ -18,5 +18,7 @@ namespace SchoolManagement.MVC.ViewModels
 
         public string Especialidade { get; set; }
 
+        public ICollection<TurmaViewModel> Turmas { get; set; }
+
     }
 }

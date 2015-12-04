@@ -25,6 +25,7 @@ namespace SchoolManagement.MVC.ViewModels.FiltroViewModel
         List<SelectListItem> ListaProfessores { get; set; }
         List<SelectListItem> AnosLetivos { get; set; }
         List<SelectListItem> Horarios { get; set; }
+        List<SelectListItem> ListaTurmas { get; set; }
 
         public int professorSelecionado { get; set; }
         public int anoLetivoSelecionado { get; set; }

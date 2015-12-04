@@ -167,12 +167,14 @@ namespace SchoolManagement.Data.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId)
+        public IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId)
         {
             try
             {
                 var professorParameter = new SqlParameter("@ProfessorId", professorId);
-                var query = this.Db.Set<Aluno>().SqlQuery("SELECT * FROM Aluno AS A JOIN ProfessorTurma AS PT ON A.Turma_TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorParameter).ToList();
+                var turmaParameter = new SqlParameter("@TurmaId", turmaId);
+
+                var query = this.Db.Set<Aluno>().SqlQuery("SELECT * FROM Aluno AS A JOIN ProfessorTurma AS PT ON A.Turma_TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorParameter, turmaParameter).ToList();
                 return query;
             }
             catch (Exception)
