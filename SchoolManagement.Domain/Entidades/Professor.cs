@@ -13,6 +13,6 @@ namespace SchoolManagement.Domain.Entidades
         public string Matricula { get; set; }
         public virtual ICollection<Disciplina> Disciplinas { get; set; }
         public string Especialidade { get; set; }
-       
+        public ICollection<Turma> Turmas { get; set; }
     }
 }

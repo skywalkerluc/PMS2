@@ -71,9 +71,9 @@
     <Compile Include="EntityConfig\UsuarioConfig.cs" />
     <Compile Include="EntityConfig\ProfessorConfig.cs" />
     <Compile Include="EntityConfig\ResponsavelConfig.cs" />
-    <Compile Include="Migrations\201512040159036_DBSchoolManagement.cs" />
-    <Compile Include="Migrations\201512040159036_DBSchoolManagement.Designer.cs">
-      <DependentUpon>201512040159036_DBSchoolManagement.cs</DependentUpon>
+    <Compile Include="Migrations\201512041903582_DBSchoolManagement.cs" />
+    <Compile Include="Migrations\201512041903582_DBSchoolManagement.Designer.cs">
+      <DependentUpon>201512041903582_DBSchoolManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,14 +109,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512040159036_DBSchoolManagement.resx">
-      <DependentUpon>201512040159036_DBSchoolManagement.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Sql\[dbo].[AlterarNotificacao].sql" />
     <Content Include="Util\IdeiaProjeto.txt" />
     <Content Include="Util\Query.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512041903582_DBSchoolManagement.resx">
+      <DependentUpon>201512041903582_DBSchoolManagement.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

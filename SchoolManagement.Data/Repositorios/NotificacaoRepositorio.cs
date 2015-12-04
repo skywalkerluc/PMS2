@@ -42,7 +42,7 @@ namespace SchoolManagement.Data.Repositorios
                 tratarParametros(notificacao.Assunto, NotificacaoAssunto);
                 tratarParametros(notificacao.Descricao, NotificacaoDescricao);
 
-                var query = Db.Set<Notificacao>().SqlQuery("EXEC dbo.AlterarNotificacao @NotificacaoId, " + "@NotificacaoAssunto, " + "@NotificacaoDescricao" + NotificacaoId, NotificacaoAssunto, NotificacaoDescricao);
+                var query = Db.Database.ExecuteSqlCommand("EXEC dbo.AlterarNotificacao @NotificacaoId, " + "@NotificacaoAssunto, " + "@NotificacaoDescricao" + NotificacaoId, NotificacaoAssunto, NotificacaoDescricao);
                 return true;
             }
             catch (Exception)

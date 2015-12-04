@@ -322,5 +322,7 @@ namespace SchoolManagement.MVC.Controllers
             var turmasMapped = Mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaViewModel>>(turmas);
             return View("VisualizarTodasTurmas", turmasMapped);
         }
+
+        
     }
 }

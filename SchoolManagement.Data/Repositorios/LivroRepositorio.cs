@@ -2,6 +2,7 @@
 using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,20 @@ namespace SchoolManagement.Data.Repositorios
         public IEnumerable<Livro> BuscarPorNome(string nome)
         {
             return Db.Livros.Where(p => p.NomeLivro.Contains(nome));
+        }
+
+        public IEnumerable<Livro> RecuperarLivrosTurma(int TurmaId)
+        {
+            try
+            {
+                var turmaParameter = new SqlParameter("@TurmaId", TurmaId);
+                var query = this.Db.Livros.SqlQuery("SELECT * FROM Livro AS L WHERE L.Turma_TurmaId = @TurmaId", turmaParameter).ToList();
+                return query;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException("Erro ao recuperar materiais da turma.");
+            }
         }
     }
 }

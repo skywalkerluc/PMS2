@@ -18,7 +18,7 @@ namespace SchoolManagement.Domain.Entidades
         public int HorariosTurmaId { get; set; }
         public virtual AnoLetivo AnoLetivo { get; set; }
         public int Vagas { get; set; }
-
+        public virtual ICollection<Livro> Materiais { get; set; }
         //public Caderneta Caderneta { get; set; }
 
     }
