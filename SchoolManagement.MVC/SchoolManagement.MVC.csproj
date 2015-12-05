@@ -1116,10 +1116,10 @@
     <Content Include="Views\Notificacao\ResultadoConsultaNotificacao.cshtml" />
     <Content Include="Views\Funcionario\AdicionarFuncionarioNormal.cshtml" />
     <Content Include="Views\Funcionario\FiltroFuncaoCadastrar.cshtml" />
-    <Content Include="Views\Aluno\VisualizarDisciplinasMinhaTurma.cshtml" />
-    <Content Include="Views\Aluno\DetalhesDisciplinasMinhaTurma.cshtml" />
-    <Content Include="Views\Aluno\VisualizaMinhaTurma.cshtml" />
-    <Content Include="Views\Aluno\DetalhesMinhaTurma.cshtml" />
+    <Content Include="Views\Disciplina\VisualizarDisciplinasMinhaTurma.cshtml" />
+    <Content Include="Views\Disciplina\DetalhesDisciplinasMinhaTurma.cshtml" />
+    <Content Include="Views\Turma\VisualizaMinhaTurma.cshtml" />
+    <Content Include="Views\Turma\DetalhesMinhaTurma.cshtml" />
     <Content Include="Views\Evento\FiltroParaConsultaDeEventosOutroUsuario.cshtml" />
     <Content Include="Views\Evento\ResultaConsultaEventosOutroUsuario.cshtml" />
     <Content Include="Views\Evento\DetalhesEventoOutroUsuario.cshtml" />
@@ -1145,6 +1145,9 @@
     <Content Include="Views\Aluno\VisualizarDisciplinasAluno.cshtml" />
     <Content Include="Views\Professor\FiltroTurmasProfessorLeciona.cshtml" />
     <Content Include="Views\Professor\VisualizarAlunosTurmasProfessor.cshtml" />
+    <Content Include="Views\Prova\filtroVisualizarProvasPorUnidade.cshtml" />
+    <Content Include="Views\Prova\VisualizarProvasTurma.cshtml" />
+    <Content Include="Views\Prova\DetalhesProvaSelecionada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

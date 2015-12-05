@@ -3,7 +3,7 @@ namespace SchoolManagement.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBSchoolmanagement : DbMigration
+    public partial class school : DbMigration
     {
         public override void Up()
         {
