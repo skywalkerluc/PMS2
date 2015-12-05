@@ -100,7 +100,7 @@ namespace SchoolManagement.MVC.Controllers
                 var mes = aluno.DataNascimento.Month;
                 var ano = aluno.DataNascimento.Year;
 
-                DateTime date = Convert.ToDateTime(mes + "/" + dia + "/" + ano);
+                DateTime date = Convert.ToDateTime(dia + "/" + mes + "/" + ano);
                 var data = date.ToString("dd/MM/yyyy");
                 aluno.DataNascimento = Convert.ToDateTime(data);
                 var alunoDomain = Mapper.Map<AlunoViewModel, Aluno>(aluno);

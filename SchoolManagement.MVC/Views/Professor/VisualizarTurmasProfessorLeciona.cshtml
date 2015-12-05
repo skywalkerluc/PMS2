@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TurmaViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.AlunoViewModel>
 
 @{
     ViewBag.Title = "Visualizar Turmas Professor";
@@ -31,16 +31,40 @@
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Descricao)
+                                    @Html.DisplayNameFor(model => model.Nome)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
+                                    @Html.DisplayNameFor(model => model.DataNascimento)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Vagas)
+                                    @Html.DisplayNameFor(model => model.Rg)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
+                                    @Html.DisplayNameFor(model => model.Cpf)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nacionalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Naturalidade)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserLogin)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Senha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ConfirmarSenha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NumeroMatricula)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Observacoes)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.turmaEscolhida)
                                 </th>
                                 <th></th>
                             </tr>
@@ -49,21 +73,45 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                        @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HorariosTurmaId)
+                                        @Html.DisplayFor(modelItem => item.DataNascimento)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Vagas)
+                                        @Html.DisplayFor(modelItem => item.Rg)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.anoletivoSelecionado)
+                                        @Html.DisplayFor(modelItem => item.Cpf)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        @Html.DisplayFor(modelItem => item.Nacionalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Naturalidade)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserLogin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Senha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ConfirmarSenha)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NumeroMatricula)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Observacoes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.turmaEscolhida)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                                     </td>
                                 </tr>
                             }
