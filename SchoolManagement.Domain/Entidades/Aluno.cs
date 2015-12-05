@@ -10,9 +10,6 @@ namespace SchoolManagement.Domain.Entidades
 {
     public class Aluno : Usuario
     {
-        [Key]
-        [Column(Order = 20)]
-        public string NumeroMatricula { get; set; }
         public Etnia Etnia { get; set; }
         public string Observacoes { get; set; }
         public ICollection<Responsavel> Responsaveis { get; set; }

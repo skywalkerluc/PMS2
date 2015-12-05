@@ -71,9 +71,6 @@ namespace SchoolManagement.MVC.Controllers
         {
             try
             {
-                var matricula = "3" + "-" + DateTime.Now.Year + "" + DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second;
-                professor.Matricula = matricula;
-
                 List<DisciplinaViewModel> ListaDisciplinas = new List<DisciplinaViewModel>();
                 if(professor.disciplinasTeste.Count > 0)
                 {
@@ -199,19 +196,9 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult VisualizarAlunosTurmasProfessor()
         {
             int professorId = (int)Session["UsuarioId"];
-            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
             var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
-            foreach (var item in listaTurmas)
-            {
-                SelectListItem select = new SelectListItem()
-                {
-                    Value = item.TurmaId.ToString(),
-                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
-                };
-                ListaTurmas.Add(select);
-            }
 
-            return View("VisualizarAlunosTurmasProfessor", ListaTurmas);
+            return View("VisualizarAlunosTurmasProfessor", listaTurmas);
         }
 
         [HttpGet]
@@ -264,11 +251,12 @@ namespace SchoolManagement.MVC.Controllers
             List<Aluno> AlunosBackEnd = new List<Aluno>();
 
             int professorId = (int)Session["UsuarioId"];
-            var professorRecup = _professorApp.Recuperar(professorId);
+            //VisualizarTurmasProfessor
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
 
-            foreach (var turma in professorRecup.Turmas)
+            foreach (var turma in turmas)
             {
-                var alunos = _alunoServico.RecuperarAlunosTurmaProfessor(professorId, turma.TurmaId).ToList();
+                var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
                 foreach (var aluno in alunos)
                 {
                     AlunosBackEnd.Add(aluno);
@@ -278,7 +266,5 @@ namespace SchoolManagement.MVC.Controllers
             var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
             return View("VisualizarTurmasProfessorLeciona", alunosMapped);
         }
-
-
     }
 }

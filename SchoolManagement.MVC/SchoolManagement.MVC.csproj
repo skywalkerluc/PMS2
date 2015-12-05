@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\ProvaController.cs" />
     <Compile Include="Controllers\ResponsavelController.cs" />
+    <Compile Include="Controllers\ResultadosProvasController.cs" />
     <Compile Include="Controllers\TrabalhosExtrasController.cs" />
     <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />

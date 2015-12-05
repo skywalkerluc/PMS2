@@ -37,13 +37,66 @@ namespace SchoolManagement.MVC.Controllers
         [HttpGet]
         public ActionResult LancarNotasTurma()
         {
-            throw new NotImplementedException();   
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmas.Add(select);
+            }
+
+            return View("LancarNotasSelecaoTurma", ListaTurmas);
         }
 
         [HttpPost]
-        public ActionResult LancarNotasTurma(int turmaId)
+        public ActionResult LancarNotasTurma(List<ResultadosProvasViewModel> resultados)
         {
-            throw new NotImplementedException();
+            try
+            {
+                foreach (var item in resultados)
+                {
+                    var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
+                    var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
+                }
+                return View("Home", "Index");
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
+        public ActionResult RecuperarNotasAluno(int alunoId)
+        {
+            var attmpt = _resultadosProvasApp.RecuperarNotasAluno(alunoId);
+            var attmptMapped = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(attmpt);
+            return View("VisualizarNotasAluno", attmptMapped);
+        }
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
         }
 	}
 }

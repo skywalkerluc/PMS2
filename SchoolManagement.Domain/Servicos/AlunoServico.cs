@@ -24,19 +24,9 @@ namespace SchoolManagement.Domain.Servicos
             return this._alunoRepositorio.IncluirAluno(param);
         }
 
-        public bool VerificarNumeroDeMatriculaJaExistente(string numeroMatricula)
-        {
-            return this._alunoRepositorio.VerificarNumeroDeMatriculaJaExistente(numeroMatricula);
-        }
-
         public IEnumerable<Aluno> PesquisarAlunoPorNome(string nomeAluno)
         {
             return this._alunoRepositorio.PesquisarAlunoPorNome(nomeAluno);
-        }
-
-        public IEnumerable<Aluno> PesquisarAlunoPorNumeroMatricula(string numeroMatricula)
-        {
-            return this._alunoRepositorio.PesquisarAlunoPorNumeroMatricula(numeroMatricula);
         }
 
         public IEnumerable<Aluno> FiltrarAluno(string nomeAluno, int? turmaId)
@@ -59,10 +49,6 @@ namespace SchoolManagement.Domain.Servicos
             return this._alunoRepositorio.RecuperarResultadosAluno(aluno);
         }
 
-        public IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId)
-        {
-            return this._alunoRepositorio.RecuperarAlunosTurmaProfessor(professorId, turmaId);
-        }
 
         
     }
