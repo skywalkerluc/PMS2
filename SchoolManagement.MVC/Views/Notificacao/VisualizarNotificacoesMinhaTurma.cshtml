@@ -55,9 +55,7 @@
                                         @Html.DisplayFor(modelItem => item.turmaEscolhida)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.NotificacaoId }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.NotificacaoId }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.NotificacaoId })
+                                        @Html.ActionLink("Detalhes", "DetalhesNotificacaoAluno", new { id = item.NotificacaoId })
                                     </td>
                                 </tr>
                             }

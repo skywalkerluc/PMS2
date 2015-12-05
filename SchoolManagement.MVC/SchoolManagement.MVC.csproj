@@ -1149,6 +1149,7 @@
     <Content Include="Views\Prova\filtroVisualizarProvasPorUnidade.cshtml" />
     <Content Include="Views\Prova\VisualizarProvasTurma.cshtml" />
     <Content Include="Views\Prova\DetalhesProvaSelecionada.cshtml" />
+    <Content Include="Views\Notificacao\DetalhesNotificacaoAluno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

@@ -236,5 +236,13 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarMinhasNotificacoes", notifMapped);
         }
 
+        public ActionResult DetalhesNotificacaoAluno(int id)
+        {
+            var notf = _notificacaoServico.Recuperar(id);
+            var notfViewModel = Mapper.Map<Notificacao, NotificacaoViewModel>(notf);
+
+            return View("DetalhesNotificacaoAluno", notfViewModel);
+        }
+
     }
 }
