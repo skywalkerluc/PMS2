@@ -226,5 +226,15 @@ namespace SchoolManagement.MVC.Controllers
             var notifMapped = Mapper.Map<IEnumerable<Notificacao>, IEnumerable<NotificacaoViewModel>>(notif);
             return View("VisualizarNotificacoesMinhaTurma", notifMapped);
         }
+
+        public ActionResult VisualizarNotificacoesPorCriador()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"]);
+
+            var notif = _notificacaoServico.VisualizarNotificacoesPorCriador(idUsuario);
+            var notifMapped = Mapper.Map<IEnumerable<Notificacao>, IEnumerable<NotificacaoViewModel>>(notif);
+            return View("VisualizarMinhasNotificacoes", notifMapped);
+        }
+
     }
 }

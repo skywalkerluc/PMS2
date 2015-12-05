@@ -34,16 +34,14 @@ namespace SchoolManagement.Data.Repositorios
         {
             try
             {
-                var NotificacaoId = new SqlParameter("@NotificacaoId", SqlDbType.Int);
-                var NotificacaoAssunto = new SqlParameter("@NotificacaoAssunto", SqlDbType.VarChar);
-                var NotificacaoDescricao = new SqlParameter("@NotificacaoDescricao", SqlDbType.VarChar);
+                var NotificacaoIdParameter = new SqlParameter("@NotificacaoId", notificacao.NotificacaoId);
+                var NotificacaoAssuntoParameter = new SqlParameter("@NotificacaoAssunto", notificacao.Assunto);
+                var NotificacaoDescricaoParameter = new SqlParameter("@NotificacaoDescricao", notificacao.Descricao);
 
-                tratarParametros(notificacao.NotificacaoId, NotificacaoId);
-                tratarParametros(notificacao.Assunto, NotificacaoAssunto);
-                tratarParametros(notificacao.Descricao, NotificacaoDescricao);
-
-                var query = Db.Database.ExecuteSqlCommand("EXEC dbo.AlterarNotificacao @NotificacaoId, " + "@NotificacaoAssunto, " + "@NotificacaoDescricao" + NotificacaoId, NotificacaoAssunto, NotificacaoDescricao);
+                var query = Db.Database.ExecuteSqlCommand("UPDATE Notificacao SET Assunto = @NotificacaoAssunto, Descricao = @NotificacaoDescricao WHERE NotificacaoId = @NotificacaoId", NotificacaoIdParameter, NotificacaoAssuntoParameter, NotificacaoDescricaoParameter);
                 return true;
+
+
             }
             catch (Exception)
             {
@@ -72,6 +70,14 @@ namespace SchoolManagement.Data.Repositorios
         {
             var notif = from n in Db.Notificacoes
                         where n.TurmaPublicoAlvo.TurmaId == TurmaId
+                        select n;
+            return notif;
+        }
+
+        public IEnumerable<Notificacao> VisualizarNotificacoesPorCriador(int UsuarioId)
+        {
+            var notif = from n in Db.Notificacoes
+                        where n.UsuarioCriacao.Id == UsuarioId
                         select n;
             return notif;
         }

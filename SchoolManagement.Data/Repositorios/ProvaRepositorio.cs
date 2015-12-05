@@ -3,6 +3,7 @@ using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,27 @@ namespace SchoolManagement.Data.Repositorios
             Db.SaveChanges();
 
             return prova;
+        }
+
+        public bool AtualizarDadosProva(Prova prova)
+        {
+            try
+            {
+                var provaIdParameter = new SqlParameter("@ProvaId", prova.ProvaId);
+                var dataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
+                var unidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
+                var statusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
+                var tipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
+                var disciplinaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
+                var turmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
+
+                var query = this.Db.Database.ExecuteSqlCommand("UPDATE Prova SET DataProva = @DataProva, Unidade = @Unidade, StatusProva = @StatusProva, TipoProva = @TipoProva, Disciplina_DisciplinaId = @DisciplinaId, Turma_TurmaId = @TurmaId WHERE ProvaId = @ProvaId", provaIdParameter, dataProvaParameter, unidadeParameter, statusProvaParameter, tipoProvaParameter, disciplinaIdParameter, turmaIdParameter);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<Prova> BuscarPorDisciplina(int codDisciplina)
