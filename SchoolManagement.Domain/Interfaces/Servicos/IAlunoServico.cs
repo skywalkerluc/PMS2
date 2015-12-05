@@ -10,13 +10,10 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
     public interface IAlunoServico : IServicoBase<Aluno>
     {
         Aluno IncluirAluno(Aluno param);
-        bool VerificarNumeroDeMatriculaJaExistente(string numeroMatricula);
         IEnumerable<Aluno> PesquisarAlunoPorNome(string nomeAluno);
-        IEnumerable<Aluno> PesquisarAlunoPorNumeroMatricula(string numeroMatricula);
         IEnumerable<Aluno> FiltrarAluno(string nomeAluno, int? turmaId);
         IEnumerable<Aluno> PesquisarAlunoPorNomeEmTurma(string nomeAluno, int codigoTurma);
         IEnumerable<Aluno> RecuperarAlunosTurma(int TurmaId);
         IEnumerable<ResultadosProvas> RecuperarResultadosAluno(Aluno aluno);
-        IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId);
     }
 }

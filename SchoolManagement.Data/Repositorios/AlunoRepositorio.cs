@@ -73,24 +73,9 @@ namespace SchoolManagement.Data.Repositorios
         //    }
         //}
 
-        public bool VerificarNumeroDeMatriculaJaExistente(string numeroMatricula)
-        {
-            var identico = Db.Alunos.Where(p => p.NumeroMatricula == numeroMatricula);
-
-            if (identico.Count() < 0)
-                return true;
-            else
-                return false;
-        }
-
         public IEnumerable<Aluno> PesquisarAlunoPorNome(string nomeAluno)
         {
             return Db.Alunos.Where(p => p.Nome.Contains(nomeAluno));
-        }
-
-        public IEnumerable<Aluno> PesquisarAlunoPorNumeroMatricula(string numeroMatricula)
-        {
-            return Db.Alunos.Where(p => p.NumeroMatricula == numeroMatricula);
         }
 
         public IEnumerable<Aluno> PesquisarAlunoPorNomeEmTurma(string nomeAluno, int codigoTurma)
@@ -165,23 +150,6 @@ namespace SchoolManagement.Data.Repositorios
         public bool RematricularAlunos(ICollection<Aluno> alunos)
         {
             throw new NotImplementedException();
-        }
-
-        public IEnumerable<Aluno> RecuperarAlunosTurmaProfessor(int professorId, int turmaId)
-        {
-            try
-            {
-                var professorParameter = new SqlParameter("@ProfessorId", professorId);
-                var turmaParameter = new SqlParameter("@TurmaId", turmaId);
-
-                var query = this.Db.Set<Aluno>().SqlQuery("SELECT * FROM Aluno AS A JOIN ProfessorTurma AS PT ON A.Turma_TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorParameter, turmaParameter).ToList();
-                return query;
-            }
-            catch (Exception)
-            {
-                throw new NotImplementedException("Erro ao recuperar alunos da turma");
-            }
-            
         }
 
     }
