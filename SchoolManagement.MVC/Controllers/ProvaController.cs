@@ -115,7 +115,7 @@ namespace SchoolManagement.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var provaDomain = Mapper.Map<ProvaViewModel, Prova>(prova);
-                _provaApp.Atualizar(provaDomain);
+                _provaApp.AtualizarDadosProva(provaDomain);
 
                 return RedirectToAction("Index", "Home");
             }

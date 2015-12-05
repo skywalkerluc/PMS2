@@ -13,5 +13,6 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<Notificacao> BuscarNotificacaoPorAssunto(string assunto, int turma);
         bool EditarNotificacao(Notificacao notificacao);
         IEnumerable<Notificacao> VisualizarNotificacoesMinhaTurma(int TurmaId);
+        IEnumerable<Notificacao> VisualizarNotificacoesPorCriador(int UsuarioId);
     }
 }

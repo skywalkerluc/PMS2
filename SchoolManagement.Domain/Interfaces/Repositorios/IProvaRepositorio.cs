@@ -10,6 +10,7 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
     public interface IProvaRepositorio : IRepositorioBase<Prova>
     {
         Prova IncluirProva(Prova prova);
+        bool AtualizarDadosProva(Prova prova);
         IEnumerable<Prova> BuscarPorDisciplina(int codDisciplina);
         IEnumerable<Prova> RecuperarProvasProfessor(int ProfessorId);
         IEnumerable<Prova> RecuperarProvasTurma(int TurmaId);

@@ -24,6 +24,11 @@ namespace SchoolManagement.Domain.Servicos
             return this._provaRep.IncluirProva(prova);
         }
 
+        public bool AtualizarDadosProva(Prova prova)
+        {
+            return this._provaRep.AtualizarDadosProva(prova);
+        }
+
         public IEnumerable<Prova> BuscarPorDisciplina(int codDisciplina)
         {
             return this._provaRep.BuscarPorDisciplina(codDisciplina);

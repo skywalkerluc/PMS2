@@ -37,5 +37,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._notificacaoRep.VisualizarNotificacoesMinhaTurma(TurmaId);
         }
+
+        public IEnumerable<Notificacao> VisualizarNotificacoesPorCriador(int UsuarioId)
+        {
+            return this._notificacaoRep.VisualizarNotificacoesPorCriador(UsuarioId);
+        }
     }
 }

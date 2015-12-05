@@ -24,6 +24,11 @@ namespace SchoolManagement.Domain.Servicos
             return this._eventoRep.IncluirEvento(evento);
         }
 
+        public bool AtualizarDadosEvento(Evento evento)
+        {
+            return this._eventoRep.AtualizarDadosEvento(evento);
+        }
+
         public IEnumerable<Evento> BuscarEventoPorDescricao(string descricao)
         {
             return this._eventoRep.BuscarEventoPorDescricao(descricao);

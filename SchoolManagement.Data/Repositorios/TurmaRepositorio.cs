@@ -130,7 +130,13 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
-        
+        public IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId)
+        {
+            var professorIdParameter = new SqlParameter("@ProfessorId", professorId);
+
+            var query = this.Db.Turmas.SqlQuery("SELECT * FROM Turma AS T INNER JOIN ProfessorTurma AS PT ON T.TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorIdParameter).ToList();
+            return query;
+        }
 
     }
 }
