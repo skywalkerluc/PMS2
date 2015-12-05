@@ -69,5 +69,43 @@ namespace SchoolManagement.Data.Repositorios
             }
             return ListaRetorno;
         }
+
+        public bool IncluirDisciplinasEmTurma(int TurmaId, List<Disciplina> ListaDisciplinas)
+        {
+            try
+            {
+                foreach (var disc in ListaDisciplinas)
+                {
+                    var turmaParameter = new SqlParameter("@TurmaId", TurmaId);
+                    var disciplinaParameter = new SqlParameter("@DisciplinaId", disc.DisciplinaId);
+
+                    var query = Db.Database.ExecuteSqlCommand("INSERT INTO DisciplinaTurma (Turma_TurmaId, Disciplina_DisciplinaId) VALUES (@TurmaId, @DisciplinaId)", turmaParameter, disciplinaParameter);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool RemoverDisciplinasTurma(int TurmaId, List<Disciplina> ListaDisciplinas)
+        {
+            try
+            {
+                foreach (var disc in ListaDisciplinas)
+                {
+                    var turmaParameter = new SqlParameter("@TurmaId", TurmaId);
+                    var disciplinaParameter = new SqlParameter("@DisciplinaId", disc.DisciplinaId);
+
+                    var query = Db.Database.ExecuteSqlCommand("DELETE FROM DisciplinaTurma WHERE Turma_TurmaId = @TurmaId AND Disciplina_DisciplinaId = @DisciplinaId", turmaParameter, disciplinaParameter);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

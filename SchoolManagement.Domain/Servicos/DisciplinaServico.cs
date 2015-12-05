@@ -38,5 +38,15 @@ namespace SchoolManagement.Domain.Servicos
         {
             return _disciplinaRep.RecuperarDisciplinasTurma(TurmaId);
         }
+
+        public bool IncluirDisciplinasEmTurma(int TurmaId, List<Disciplina> ListaDisciplinas)
+        {
+            return _disciplinaRep.IncluirDisciplinasEmTurma(TurmaId, ListaDisciplinas);
+        }
+
+        public bool RemoverDisciplinasTurma(int TurmaId, List<Disciplina> ListaDisciplinas)
+        {
+            return _disciplinaRep.RemoverDisciplinasTurma(TurmaId, ListaDisciplinas);
+        }
     }
 }

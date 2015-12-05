@@ -29,6 +29,11 @@ namespace SchoolManagement.Domain.Servicos
             return this._frequenciaRep.RecuperarHistoricoFrequenciasAluno(AlunoId);
         }
 
+        public IEnumerable<Frequencia> RecuperarHistorioFrequenciasTurma(int TurmaId)
+        {
+            return this._frequenciaRep.RecuperarHistorioFrequenciasTurma(TurmaId);
+        }
+
         public Frequencia AlterarFrequenciaAluno(Frequencia frequencia)
         {
             return this._frequenciaRep.AlterarFrequenciaAluno(frequencia);

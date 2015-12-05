@@ -37,6 +37,22 @@ namespace SchoolManagement.Data.Repositorios
             return query;
         }
 
+        public IEnumerable<Frequencia> RecuperarHistorioFrequenciasTurma(int TurmaId)
+        {
+            try
+            {
+                var TurmaParameter = new SqlParameter("@TurmaId", TurmaId);
+                var query = this.Db.Set<Frequencia>().SqlQuery("SELECT * FROM Frequencia AS F INNER JOIN Aluno AS A ON F.Aluno_Id = A.Id INNER JOIN Turma AS T ON T.TurmaId = A.Turma_TurmaId WHERE T.TurmaId = @TurmaId", TurmaParameter);
+                return query;
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message.ToString();
+                throw new NotImplementedException(message);
+            }
+            
+        }
+
         public Frequencia AlterarFrequenciaAluno(Frequencia frequencia)
         {
             var frequenciaId = new SqlParameter("@FrequenciaId", SqlDbType.Int);

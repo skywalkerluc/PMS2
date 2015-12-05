@@ -38,5 +38,15 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this.turmaRep.FiltrarTurma(descTurma, professor, ano, horarioId);
         }
+
+        public bool RemoverAlunosTurma(int TurmaId, List<Aluno> ListaAlunos)
+        {
+            return this.turmaRep.RemoverAlunosTurma(TurmaId, ListaAlunos);
+        }
+
+        public bool AdicionarAlunosTurma(int TurmaId, List<Aluno> ListaAlunos)
+        {
+            return this.turmaRep.AdicionarAlunosTurma(TurmaId, ListaAlunos);
+        }
     }
 }

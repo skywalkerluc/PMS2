@@ -19,9 +19,29 @@ namespace SchoolManagement.Domain.Servicos
             _resultadosProvasRep = resultadosProvasRep;
         }
 
+        public ResultadosProvas IncluirNotaAluno(ResultadosProvas resultadoProva)
+        {
+            return this._resultadosProvasRep.IncluirNotaAluno(resultadoProva);
+        }
+
         public IEnumerable<ResultadosProvas> RecuperarNotasAluno(int AlunoId)
         {
-            return _resultadosProvasRep.RecuperarNotasAluno(AlunoId);
+            return this._resultadosProvasRep.RecuperarNotasAluno(AlunoId);
+        }
+
+        public IEnumerable<ResultadosProvas> RecuperarHistoricoNotasTurma(int TurmaId)
+        {
+            return this._resultadosProvasRep.RecuperarHistoricoNotasTurma(TurmaId);
+        }
+
+        public bool AlterarResultadoAluno(ResultadosProvas resultado)
+        {
+            return this._resultadosProvasRep.AlterarResultadoAluno(resultado);
+        }
+
+        public bool RemoverResultadosAlunos(List<ResultadosProvas> resultadosProvas)
+        {
+            return this._resultadosProvasRep.RemoverResultadosAlunos(resultadosProvas);
         }
     }
 }

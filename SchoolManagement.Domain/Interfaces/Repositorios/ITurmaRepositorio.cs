@@ -13,5 +13,7 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<Aluno> RecuperarTodosAlunosTurma(int TurmaId);
         IEnumerable<Turma> FiltrarTurma(string descTurma, Professor professor, AnoLetivo ano, int horarioId);
         IEnumerable<ResultadosProvas> RecuperarResultadosProvasTurma(int TurmaId);
+        bool RemoverAlunosTurma(int TurmaId, List<Aluno> ListaAlunos);
+        bool AdicionarAlunosTurma(int TurmaId, List<Aluno> ListaAlunos);
     }
 }
