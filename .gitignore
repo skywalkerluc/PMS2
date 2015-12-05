@@ -229,3 +229,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+*.csproj
+SchoolManagement.Data/Migrations/201512051141336_DBSchool.cs
+SchoolManagement.Data/Migrations/201512051141336_DBSchool.resx
+SchoolManagement.Data/Migrations/201512051141336_DBSchool.Designer.cs
+SchoolManagement.Data/SchoolManagement.Data.csproj
+SchoolManagement.MVC/Web.config
+SchoolManagement.Data/SchoolManagement.Data.csproj
