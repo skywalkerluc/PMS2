@@ -18,16 +18,18 @@ namespace SchoolManagement.MVC.Controllers
         private readonly ITurmaServico _turmaServico;
         private readonly IProfessorServico _profServico;
         private readonly ILivroServico _livroServicoApp;
+        private readonly IAlunoServico _alunoApp;
 
         private Utilizavel utilizavel;
 
-        public DisciplinaController(IDisciplinaServico disciplinaApp, ITurmaServico turmaServico, IProfessorServico professorServico, ILivroServico livroServico)
+        public DisciplinaController(IDisciplinaServico disciplinaApp, ITurmaServico turmaServico, IProfessorServico professorServico, ILivroServico livroServico, IAlunoServico alunoApp)
         {
             _disciplinaApp = disciplinaApp;
             utilizavel = new Utilizavel(null, turmaServico, professorServico, livroServico, null);
             _turmaServico = turmaServico;
             _profServico = professorServico;
             _livroServicoApp = livroServico;
+            _alunoApp = alunoApp;
         }
 
         // GET: Disciplina
@@ -185,6 +187,27 @@ namespace SchoolManagement.MVC.Controllers
             var discMapped = Mapper.Map<IEnumerable<Disciplina>, IEnumerable<DisciplinaViewModel>>(disc);
             return View("VisualizarTodasDisciplinas", discMapped);
         }
+
+        public ActionResult VerDisciplinasMinhaTurma()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+
+            var aluno = _alunoApp.Recuperar(idUsuario);
+            var alunosTurma = _disciplinaApp.RecuperarDisciplinasTurma(aluno.Turma.TurmaId);
+
+            var disciplinasMapeados = Mapper.Map<IEnumerable<Disciplina>, IEnumerable<DisciplinaViewModel>>(alunosTurma);
+
+            return View("VisualizarDisciplinasMinhaTurma", disciplinasMapeados);
+        }
+
+        public ActionResult DetalhesDisciplinasMinhaTurma(int id)
+        {
+            var disciplina = _disciplinaApp.Recuperar(id);
+            var disciplinaViewModel = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
+
+            return View("DetalhesDisciplinasMinhaTurma", disciplinaViewModel);
+        }
+
 
     }
 }

@@ -15,13 +15,15 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IDisciplinaServico _disciplinaServico;
         private readonly IAnoLetivoServico _anoLetivoServico;
         private readonly IProfessorServico _profServico;
+        private readonly IAlunoServico _alunoApp;
 
-        public TurmaController(ITurmaServico turmaServico, IDisciplinaServico disciplinaServico, IAnoLetivoServico anoLetivoServico, IProfessorServico profServico)
+        public TurmaController(ITurmaServico turmaServico, IDisciplinaServico disciplinaServico, IAnoLetivoServico anoLetivoServico, IProfessorServico profServico, IAlunoServico alunoApp)
         {
             _turmaServico = turmaServico;
             _disciplinaServico = disciplinaServico;
             _anoLetivoServico = anoLetivoServico;
             _profServico = profServico;
+            _alunoApp = alunoApp;
         }
 
         //
@@ -322,6 +324,28 @@ namespace SchoolManagement.MVC.Controllers
             var turmasMapped = Mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaViewModel>>(turmas);
             return View("VisualizarTodasTurmas", turmasMapped);
         }
+
+        public ActionResult VerMinhaTurma()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+
+            var aluno = _alunoApp.Recuperar(idUsuario);
+            var alunoTurma = _turmaServico.Recuperar(aluno.Turma.TurmaId);
+
+            var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(alunoTurma);
+
+            return View("VisualizaMinhaTurma", turmaViewModel);
+        }
+
+        public ActionResult DetalhesMinhaTurma(int id)
+        {
+            var turma = _turmaServico.Recuperar(id);
+            var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(turma);
+
+            return View("DetalhesMinhaTurma", turmaViewModel);
+        }
+
+
 
         
     }

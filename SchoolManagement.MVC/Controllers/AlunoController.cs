@@ -21,8 +21,9 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IDisciplinaServico _disciplinaApp;
         private readonly IResultadosProvasServico _resultadosProvasApp;
         private readonly IResponsavelServico _responsavelApp;
+        private readonly IProvaServico _provalApp;
 
-        public AlunoController(IAlunoServico alunoApp, IUsuarioServico usuarioApp, ITurmaServico turmaApp, IDisciplinaServico disciplinaApp, IResultadosProvasServico resultadosProvasApp, IResponsavelServico responsavelApp)
+        public AlunoController(IAlunoServico alunoApp, IUsuarioServico usuarioApp, ITurmaServico turmaApp, IDisciplinaServico disciplinaApp, IResultadosProvasServico resultadosProvasApp, IResponsavelServico responsavelApp, IProvaServico provalApp)
         {
             _alunoApp = alunoApp;
             _usuarioApp = usuarioApp;
@@ -30,6 +31,7 @@ namespace SchoolManagement.MVC.Controllers
             _disciplinaApp = disciplinaApp;
             _resultadosProvasApp = resultadosProvasApp;
             _responsavelApp = responsavelApp;
+            _provalApp = provalApp;
         }
 
         //
@@ -238,30 +240,7 @@ namespace SchoolManagement.MVC.Controllers
             return View("VerAlunosMinhaTurma", alunosMapeados);
         }
 
-        public ActionResult VerDisciplinasMinhaTurma()
-        {
-            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
-
-            var aluno = _alunoApp.Recuperar(idUsuario);
-            var alunosTurma = _disciplinaApp.RecuperarDisciplinasTurma(aluno.Turma.TurmaId);
-
-            var disciplinasMapeados = Mapper.Map<IEnumerable<Disciplina>, IEnumerable<DisciplinaViewModel>>(alunosTurma);
-
-            return View("VisualizarDisciplinasMinhaTurma", disciplinasMapeados);
-        }
-
-        public ActionResult VerMinhaTurma()
-        {
-            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
-
-            var aluno = _alunoApp.Recuperar(idUsuario);
-            var alunoTurma = _turmaApp.Recuperar(aluno.Turma.TurmaId);
-
-            var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(alunoTurma);
-
-            return View("VisualizaMinhaTurma", turmaViewModel);
-        }
-
+        
         [HttpGet]
         public ActionResult VisualizarMinhasNotas()
         {
@@ -320,22 +299,6 @@ namespace SchoolManagement.MVC.Controllers
                     break;
             }
             return descricaoRetorno;
-        }
-
-        public ActionResult DetalhesDisciplinasMinhaTurma(int id)
-        {
-            var disciplina = _disciplinaApp.Recuperar(id);
-            var disciplinaViewModel = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
-
-            return View("DetalhesDisciplinasMinhaTurma", disciplinaViewModel);
-        }
-
-        public ActionResult DetalhesMinhaTurma(int id)
-        {
-            var turma = _turmaApp.Recuperar(id);
-            var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(turma);
-
-            return View("DetalhesMinhaTurma", turmaViewModel);
         }
 
         public ActionResult VisualizarTodosAlunos()

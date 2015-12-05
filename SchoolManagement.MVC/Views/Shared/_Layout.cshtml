@@ -284,7 +284,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Disciplinas", "VerDisciplinasMinhaTurma", "Aluno")</li>
+                                        <li>@Html.ActionLink("Visualizar Disciplinas", "VerDisciplinasMinhaTurma", "Disciplina")</li>
                                     </ul>
                                 </li>
                                 <!--Turmas-->
@@ -294,7 +294,17 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Turma", "VerMinhaTurma", "Aluno")</li>
+                                        <li>@Html.ActionLink("Visualizar Turma", "VerMinhaTurma", "Turma")</li>
+                                    </ul>
+                                </li>
+                                <!--Provas-->
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-edit"></i> <span>Provas</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>@Html.ActionLink("Visualizar Provas", "VisualizarProvasTurma", "Prova")</li>
                                     </ul>
                                 </li>
                                 <!--Notas-->

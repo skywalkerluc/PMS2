@@ -230,23 +230,33 @@ namespace SchoolManagement.MVC.Controllers
             return View("DetalhesResultadoNotaSelecionada", provaViewModel);
         }
 
-        public ActionResult voltarPaginaPrincipal()
-        {
-           return View("Index");
-        }
-
-        public ActionResult VisualizarProvasTurma(int TurmaId)
-        {
-            var provasTurma = _provaApp.RecuperarProvasTurma(TurmaId);
-            var provasTurmaMapped = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(provasTurma);
-            return View("VisualizarProvasTurma", TurmaId);
-        }
-
+        
         public ActionResult RecuperarProvasProfessor(int ProfessorId)
         {
             var attmpt = _provaApp.RecuperarProvasProfessor(ProfessorId);
             var provasMapped = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(attmpt);
             return View("RecuperarProvasProfessor", provasMapped);
         }
+
+        public ActionResult VisualizarProvasTurma()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+
+            var aluno = _alunoApp.Recuperar(idUsuario);
+
+            var prova = _provaApp.RecuperarProvasTurma(aluno.Turma.TurmaId);
+            var provaViewModel = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(prova);
+
+            return View("VisualizarProvasTurma", provaViewModel);
+        }
+
+        public ActionResult DetalhesProvaSelecionada(int id)
+        {
+            var prova = _provaApp.Recuperar(id);
+            var provaViewModel = Mapper.Map<Prova, ProvaViewModel>(prova);
+
+            return View("DetalhesProvaSelecionada", provaViewModel);
+        }
+        
     }
 }
