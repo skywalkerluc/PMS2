@@ -1,19 +1,21 @@
-﻿@model SchoolManagement.MVC.ViewModels.NotificacaoViewModel
+﻿@model SchoolManagement.MVC.ViewModels.TrabalhosExtrasViewModel
 
 @{
-    ViewBag.Title = "DetalhesNotificacaoAluno";
+    ViewBag.Title = "DetalhesTrabalhosExtrasMinhaTurma";
 }
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Notificação
-            <small>Detalhes Notificação</small>
+            Trabalhos Extras
+            <small>Detalhes Trabalhos Extras</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Notificação</li>
-            <li class="active">Detalhes Notificação</li>
+            <li class="active">Trabalhos Extras</li>
+            <li class="active">Detalhes Trabalhos Extras</</li>
         </ol>
     </section>
 
@@ -28,36 +30,45 @@
                     <div class="box-body">
 
                         <div>
+                            <h4>TrabalhosExtrasViewModel</h4>
                             <hr />
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Assunto)
+                                    @Html.DisplayNameFor(model => model.Nota)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Assunto)
+                                    @Html.DisplayFor(model => model.Nota)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Descricao)
+                                    @Html.DisplayNameFor(model => model.DataProposta)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Descricao)
+                                    @Html.DisplayFor(model => model.DataProposta)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.turmaEscolhida)
+                                    @Html.DisplayNameFor(model => model.DataConclusao)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.turmaEscolhida)
+                                    @Html.DisplayFor(model => model.DataConclusao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TurmaSelecionada)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TurmaSelecionada)
                                 </dd>
 
                             </dl>
                         </div>
                         <p>
-                            @Html.ActionLink("Voltar", "VisualizarNotificacoesMinhaTurma")
+                            @Html.ActionLink("Voltar", "VisualizarTrabalhosExtrasMinhaTurma")
                         </p>
                     </div><!-- /.box-body -->
                 </div>

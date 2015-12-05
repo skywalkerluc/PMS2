@@ -18,13 +18,15 @@ namespace SchoolManagement.MVC.Controllers
         private readonly Utilizavel _util;
         private readonly IProfessorServico _professorApp;
         private readonly ITurmaServico _turmaApp;
+        private readonly IAlunoServico _alunoApp;
 
-        public ConteudoExtraController(IConteudoExtraServico conteudoExtraServico, Utilizavel util, IProfessorServico professorApp, ITurmaServico turmaApp)
+        public ConteudoExtraController(IConteudoExtraServico conteudoExtraServico, Utilizavel util, IProfessorServico professorApp, ITurmaServico turmaApp, IAlunoServico alunoApp)
         {
             _conteudoExtraServico = conteudoExtraServico;
             _util = util;
             _professorApp = professorApp;
             _turmaApp = turmaApp;
+            _alunoApp = alunoApp;
         }
 
         //
@@ -156,6 +158,26 @@ namespace SchoolManagement.MVC.Controllers
             var conteudos = _conteudoExtraServico.RecuperarConteudosExtrasProfessor(professorId);
             var conteudosMapped = Mapper.Map<IEnumerable<ConteudosExtras>, IEnumerable<ConteudosExtrasViewModel>>(conteudos);
             return View("RecuperarConteudosExtrasProfessor", conteudosMapped);
+        }
+
+        public ActionResult VisualizarConteudosExtrasMinhaTurma()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+
+            var aluno = _alunoApp.Recuperar(idUsuario);
+            var conteudoTurma = _conteudoExtraServico.RecuperarConteudosExtrasTurma(aluno.Turma.TurmaId);
+
+            var conteudoViewModel = Mapper.Map<IEnumerable<ConteudosExtras>, IEnumerable<ConteudosExtrasViewModel>>(conteudoTurma);
+
+            return View("VisualizarConteudosExtrasMinhaTurma", conteudoViewModel);
+        }
+
+        public ActionResult DetalhesConteudosExtrasMinhaTurma(int id)
+        {
+            var conteudo = _conteudoExtraServico.Recuperar(id);
+            var conteudoViewModel = Mapper.Map<ConteudosExtras, ConteudosExtrasViewModel>(conteudo);
+
+            return View("DetalhesConteudosExtrasMinhaTurma", conteudoViewModel);
         }
     }
 }

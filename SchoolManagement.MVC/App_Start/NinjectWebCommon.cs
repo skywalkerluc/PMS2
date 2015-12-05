@@ -82,6 +82,7 @@ namespace SchoolManagement.MVC.App_Start
             kernel.Bind<ILojasRecomendadasServico>().To<LojasRecomendadasServico>();
             kernel.Bind<ILivroServico>().To<LivroServico>();
             kernel.Bind<IResultadosProvasServico>().To<ResultadosProvasServico>();
+            kernel.Bind<IConteudoExtraServico>().To<ConteudoExtraServico>();
 
 
             kernel.Bind(typeof(IRepositorioBase<>)).To(typeof(RepositorioBase<>));
@@ -101,6 +102,7 @@ namespace SchoolManagement.MVC.App_Start
             kernel.Bind<ILojasRecomendadasRepositorio>().To<LojasRecomendadasRepositorio>();
             kernel.Bind<ILivroRepositorio>().To<LivroRepositorio>();
             kernel.Bind<IResultadosProvasRepositorio>().To<ResultadosProvasRepositorio>();
+            kernel.Bind<IConteudoExtraRepositorio>().To<ConteudosExtrasRepositorio>();
         }        
     }
 }

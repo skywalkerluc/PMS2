@@ -16,13 +16,15 @@ namespace SchoolManagement.MVC.Controllers
         private readonly ITrabalhosExtrasServico _trabalhosExtrasServico;
         private readonly Utilizavel _util;
         private readonly ITurmaServico _turmaServico;
+        private readonly IAlunoServico _alunoApp;
 
 
-        public TrabalhosExtrasController(ITrabalhosExtrasServico trabalhosExtrasServico, Utilizavel util, ITurmaServico turmaServico)
+        public TrabalhosExtrasController(ITrabalhosExtrasServico trabalhosExtrasServico, Utilizavel util, ITurmaServico turmaServico, IAlunoServico alunoApp)
         {
             _trabalhosExtrasServico = trabalhosExtrasServico;
             _util = util;
             _turmaServico = turmaServico;
+            _alunoApp = alunoApp;
         }
 
         //
@@ -149,5 +151,26 @@ namespace SchoolManagement.MVC.Controllers
                 throw new NotImplementedException("Erro ao remover conteúdo extra.");
             }
         }
+
+        public ActionResult VisualizarTrabalhosExtrasMinhaTurma()
+        {
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+
+            var aluno = _alunoApp.Recuperar(idUsuario);
+            var trabalhoTurma = _trabalhosExtrasServico.RecuperarTrabalhosTurma(aluno.Turma.TurmaId);
+
+            var trabalhoViewModel = Mapper.Map < IEnumerable<TrabalhosExtras>, IEnumerable<TrabalhosExtrasViewModel>>(trabalhoTurma);
+
+            return View("VisualizarTrabalhosExtrasMinhaTurma", trabalhoViewModel);
+        }
+
+        public ActionResult DetalhesTrabalhosExtrasMinhaTurma(int id)
+        {
+            var trabalho = _trabalhosExtrasServico.Recuperar(id);
+            var trabalhoViewModel = Mapper.Map<TrabalhosExtras, TrabalhosExtrasViewModel>(trabalho);
+
+            return View("DetalhesTrabalhosExtrasMinhaTurma", trabalhoViewModel);
+        }
+
     }
 }

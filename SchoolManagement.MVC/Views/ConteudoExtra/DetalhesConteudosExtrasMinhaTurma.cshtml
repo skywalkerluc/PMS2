@@ -1,19 +1,20 @@
-﻿@model SchoolManagement.MVC.ViewModels.NotificacaoViewModel
+﻿@model SchoolManagement.MVC.ViewModels.ConteudosExtrasViewModel
 
 @{
-    ViewBag.Title = "DetalhesNotificacaoAluno";
+    ViewBag.Title = "DetalhesConteudosExtrasMinhaTurma";
 }
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Notificação
-            <small>Detalhes Notificação</small>
+            Conteudos Extras
+            <small>Detalhes Conteudos Extras</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Notificação</li>
-            <li class="active">Detalhes Notificação</li>
+            <li class="active">Conteudos Extras</li>
+            <li class="active">Detalhes Conteudos Extras</</li>
         </ol>
     </section>
 
@@ -28,14 +29,31 @@
                     <div class="box-body">
 
                         <div>
+                            <h4>ConteudosExtrasViewModel</h4>
                             <hr />
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Assunto)
+                                    @Html.DisplayNameFor(model => model.ConteudoId)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Assunto)
+                                    @Html.DisplayFor(model => model.ConteudoId)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataHoraCriacao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataHoraCriacao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Anexo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Anexo)
                                 </dd>
 
                                 <dt>
@@ -47,17 +65,17 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.turmaEscolhida)
+                                    @Html.DisplayNameFor(model => model.TurmaSelecionada)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.turmaEscolhida)
+                                    @Html.DisplayFor(model => model.TurmaSelecionada)
                                 </dd>
 
                             </dl>
                         </div>
                         <p>
-                            @Html.ActionLink("Voltar", "VisualizarNotificacoesMinhaTurma")
+                            @Html.ActionLink("Voltar", "VisualizarConteudosExtrasMinhaTurma")
                         </p>
                     </div><!-- /.box-body -->
                 </div>

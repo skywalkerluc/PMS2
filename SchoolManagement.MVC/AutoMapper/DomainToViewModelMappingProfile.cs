@@ -31,6 +31,8 @@ namespace SchoolManagement.MVC.AutoMapper
             Mapper.CreateMap<ResultadosProvasViewModel, ResultadosProvas>();
             Mapper.CreateMap<TurmaViewModel, Turma>();
             Mapper.CreateMap<LivroViewModel, Livro>();
+            Mapper.CreateMap<TrabalhosExtrasViewModel, TrabalhosExtras>();
+            Mapper.CreateMap<ConteudosExtrasViewModel, ConteudosExtras>();
 
         }
     }

@@ -143,11 +143,9 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Acesso\" />
     <Folder Include="Views\AnoLetivo\" />
-    <Folder Include="Views\ConteudoExtra\" />
     <Folder Include="Views\CustomActions\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Frequencia\" />
-    <Folder Include="Views\TrabalhosExtras\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1150,6 +1148,10 @@
     <Content Include="Views\Prova\VisualizarProvasTurma.cshtml" />
     <Content Include="Views\Prova\DetalhesProvaSelecionada.cshtml" />
     <Content Include="Views\Notificacao\DetalhesNotificacaoAluno.cshtml" />
+    <Content Include="Views\TrabalhosExtras\VisualizarTrabalhosExtrasMinhaTurma.cshtml" />
+    <Content Include="Views\TrabalhosExtras\DetalhesTrabalhosExtrasMinhaTurma.cshtml" />
+    <Content Include="Views\ConteudoExtra\VisualizarConteudosExtrasMinhaTurma.cshtml" />
+    <Content Include="Views\ConteudoExtra\DetalhesConteudosExtrasMinhaTurma.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

@@ -1,20 +1,20 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TrabalhosExtrasViewModel>
 
 @{
-    ViewBag.Title = "ResultadoDeProva";
+    ViewBag.Title = "VisualizarTrabalhosExtrasMinhaTurma";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Notas
-            <small>Visualizar Notas</small>
+            Trabalhos Extras
+            <small>Visualizar Trabalhos Extras</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Notas</li>
-            <li class="active">Visualizar Notas</li>
+            <li class="active">Trabalhos Extras</li>
+            <li class="active">Visualizar Trabalhos Extras</</li>
         </ol>
     </section>
 
@@ -31,13 +31,16 @@
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Observacao)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.Nota)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Gabarito)
+                                    @Html.DisplayNameFor(model => model.DataProposta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DataConclusao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TurmaSelecionada)
                                 </th>
                                 <th></th>
                             </tr>
@@ -46,16 +49,19 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Observacao)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.Nota)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Gabarito)
+                                        @Html.DisplayFor(modelItem => item.DataProposta)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Detalhes", "DetalhesResultadoSelecionado", new { id = item.ResultadoId })
+                                        @Html.DisplayFor(modelItem => item.DataConclusao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TurmaSelecionada)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalhes", "DetalhesTrabalhosExtrasMinhaTurma", new { id = item.TrabalhoId })
                                     </td>
                                 </tr>
                             }
