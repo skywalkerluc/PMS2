@@ -17,18 +17,6 @@ namespace SchoolManagement.Data.EntityConfig
             HasKey(p => new { p.Id });
             Property(p => p.Id).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(p => p.Nome)
-                .IsRequired();
-                
-
-            Property(p => p.Cpf)
-                .IsRequired();
-
-            Property(p => p.Rg)
-                .IsRequired();
-
-            Property(p => p.Contato.Celular)
-                 .IsRequired();
 
             Map(p =>
                 {

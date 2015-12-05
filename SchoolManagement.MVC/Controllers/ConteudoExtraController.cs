@@ -101,7 +101,7 @@ namespace SchoolManagement.MVC.Controllers
             try
             {
                 var conteudoMapped = Mapper.Map<ConteudosExtrasViewModel, ConteudosExtras>(conteudosExtras);
-                var attempt = _conteudoExtraServico.Atualizar(conteudoMapped);
+                var attempt = _conteudoExtraServico.EditarDadosConteudosExtras(conteudoMapped);
                 if (attempt)
                 {
                     return View("Index", "Home");
@@ -148,6 +148,14 @@ namespace SchoolManagement.MVC.Controllers
             {
                 throw new NotImplementedException("Erro ao remover conteúdo extra.");
             }
+        }
+
+        public ActionResult RecuperarConteudosExtrasProfessor()
+        {
+            var professorId = Convert.ToInt32(Session["UsuarioId"]);
+            var conteudos = _conteudoExtraServico.RecuperarConteudosExtrasProfessor(professorId);
+            var conteudosMapped = Mapper.Map<IEnumerable<ConteudosExtras>, IEnumerable<ConteudosExtrasViewModel>>(conteudos);
+            return View("RecuperarConteudosExtrasProfessor", conteudosMapped);
         }
     }
 }

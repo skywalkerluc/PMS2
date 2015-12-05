@@ -24,6 +24,16 @@ namespace SchoolManagement.Domain.Servicos
             return this._repositorioConteudo.IncluirConteudosExtras(conteudosExtras);
         }
 
+        public bool EditarDadosConteudosExtras(ConteudosExtras conteudosExtras)
+        {
+            return this._repositorioConteudo.EditarDadosConteudosExtras(conteudosExtras);
+        }
+
+        public IEnumerable<ConteudosExtras> RecuperarConteudosExtrasProfessor(int ProfessorId)
+        {
+            return this._repositorioConteudo.RecuperarConteudosExtrasProfessor(ProfessorId);
+        }
+
         public IEnumerable<ConteudosExtras> RecuperarConteudosExtrasTurma(int TurmaId)
         {
             return _repositorioConteudo.RecuperarConteudosExtrasTurma(TurmaId);

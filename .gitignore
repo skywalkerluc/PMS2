@@ -236,3 +236,7 @@ SchoolManagement.Data/Migrations/201512051141336_DBSchool.Designer.cs
 SchoolManagement.Data/SchoolManagement.Data.csproj
 SchoolManagement.MVC/Web.config
 SchoolManagement.Data/SchoolManagement.Data.csproj
+SchoolManagement.MVC/Web.config
+*.config
+SchoolManagement.MVC/SchoolManagement.MVC.csproj
+*.config
