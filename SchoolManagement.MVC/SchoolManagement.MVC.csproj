@@ -1144,6 +1144,7 @@
     <Content Include="Views\Turma\ConsultarTurma.cshtml" />
     <Content Include="Views\Aluno\VisualizarDisciplinasAluno.cshtml" />
     <Content Include="Views\Professor\FiltroTurmasProfessorLeciona.cshtml" />
+    <Content Include="Views\Professor\VisualizarAlunosTurmasProfessor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

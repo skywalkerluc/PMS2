@@ -196,14 +196,67 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarTodosProfessores");
         }
 
+        public ActionResult VisualizarAlunosTurmasProfessor()
+        {
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmas.Add(select);
+            }
+
+            return View("VisualizarAlunosTurmasProfessor", ListaTurmas);
+        }
+
         [HttpGet]
         public ActionResult FiltroTurmasProfessorLeciona()
         {
-            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
-            //RecuperarTurmasQueProfessorLeciona
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmas.Add(select);
+            }
+
+            ViewBag.ListaTurmas = ListaTurmas;
 
             return View("FiltroTurmasProfessorLeciona");
+
         }
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
+        }
+
 
         [HttpPost]
         public ActionResult VisualizarTurmasProfessorLeciona()
