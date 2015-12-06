@@ -12,6 +12,20 @@ namespace SchoolManagement.Data.Repositorios
 {
     public class ProvaRepositorio : RepositorioBase<Prova>, IProvaRepositorio
     {
+        public Prova RecuperarProva(int ProvaId)
+        {
+            try
+            {
+                var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
+                var query = this.Db.Set<Prova>().SqlQuery("SELECT * FROM Prova AS P INNER JOIN Disciplina AS D ON P.Disciplina_DisciplinaId = D.DisciplinaId INNER JOIN Professor AS PR ON P.Professores_Id = PR.Id INNER JOIN Funcionario AS F ON PR.Id = F.Id INNER JOIN Usuario AS U ON F.Id = U.Id INNER JOIN Turma AS T ON P.Turma_TurmaId = T.TurmaId WHERE P.ProvaId = @ProvaId", ProvaIdParameter).First();
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
         public Prova IncluirProva(Prova prova)
         {
             //Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
@@ -74,6 +88,21 @@ namespace SchoolManagement.Data.Repositorios
                          where p.Turma.TurmaId == TurmaId
                          select p;
             return provas;
+        }
+
+        public bool ExcluirProva(int ProvaId)
+        {
+            try
+            {
+                var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
+                var query = this.Db.Database.ExecuteSqlCommand("DELETE FROM Prova WHERE ProvaId = @ProvaId", ProvaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+            
         }
 
     }

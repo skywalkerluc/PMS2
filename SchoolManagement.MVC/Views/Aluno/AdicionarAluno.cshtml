@@ -220,8 +220,22 @@
 <script src="~/Scripts/jquery-2.1.4.min.js"></script>
 <script src="~/Scripts/jquery-1.11.3.min.js"></script>
 
-<script>
+@*<script>
     $(".modal-body").change(function () {
         alert(@ViewBag.MensagemErro);
+    });
+</script>*@
+@{
+    if (ViewBag.AlertMessage != null)
+    {
+        <div id="dialog" title="Aviso!">
+            <p>@ViewBag.AlertMessage</p>
+        </div>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $("#dialog").dialog("open");
     });
 </script>

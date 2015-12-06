@@ -133,6 +133,7 @@ namespace SchoolManagement.MVC.Controllers
             }
             else
             {
+                ViewBag.AlertMessage = "Erro ao incluir dados de frequência de um aluno.";
                 throw new NotImplementedException("Erro ao incluir dados de frequência de um aluno.");
             }
             

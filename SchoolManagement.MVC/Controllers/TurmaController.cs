@@ -314,6 +314,7 @@ namespace SchoolManagement.MVC.Controllers
             }
             else
             { 
+                ViewBag.AlertMessage = "Não foi possível adicionar disciplinas na turma selecionada";
                 throw new NotImplementedException("Não foi possível adicionar disciplinas na turma selecionada");
             }
         }
@@ -344,6 +345,6 @@ namespace SchoolManagement.MVC.Controllers
 
             return View("DetalhesMinhaTurma", turmaViewModel);
         }
-        
+
     }
 }

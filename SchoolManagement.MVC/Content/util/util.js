@@ -1,4 +1,17 @@
-﻿$(document).ready(function () {
+﻿$("#dialog").dialog({
+    autoOpen: false,
+    width: 400,
+    buttons: [
+        {
+            text: "Ok",
+            click: function () {
+                $(this).dialog("close");
+            }
+        }
+    ]
+});
+
+$(document).ready(function () {
     $(".select2").select2();
     $("#cpf").inputmask("999.999.999-99");
     $("#data").inputmask("99/99/9999");
@@ -9,7 +22,7 @@
 
     $('#Cep').change(function (e) {
 
-        //e.preventDefault();
+        e.preventDefault();
 
         $("#Endereco").val('');
         $("#Bairro").val('');

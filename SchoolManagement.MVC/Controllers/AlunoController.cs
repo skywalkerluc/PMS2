@@ -90,11 +90,20 @@ namespace SchoolManagement.MVC.Controllers
 
 
                 if (!_usuarioApp.verificarCPFSendoUtilizado(aluno.Cpf))
+                {
+                    ViewBag.AlertMessage = "Este CPF já está sendo utilizado.";
                     throw new ArgumentNullException(aluno.Cpf, "Este CPF já está sendo utilizado.");
+                }
                 if (!_usuarioApp.VerificarLoginExistente(aluno.UserLogin))
+                {
+                    ViewBag.AlertMessage = "Este nome de usuário já está sendo utilizado.";
                     throw new ArgumentNullException(aluno.UserLogin, "Este nome de usuário já está sendo utilizado.");
+                }
                 if (!_usuarioApp.VerificarRGSendoUtilizado(aluno.Rg))
+                {
+                    ViewBag.AlertMessage = "Este RG já está sendo utilizado.";
                     throw new ArgumentNullException(aluno.Rg, "Este RG já está sendo utilizado.");
+                }
 
                 var dia = aluno.DataNascimento.Day;
                 var mes = aluno.DataNascimento.Month;
@@ -115,8 +124,10 @@ namespace SchoolManagement.MVC.Controllers
                 turmaRecuperada.Alunos = ListaAlunos;
                 _turmaApp.Atualizar(turmaRecuperada);
 
-                ViewBag.TituloMensagem = "Sucesso";
-                ViewBag.MensagemErro = "Aluno cadastrado com sucesso!";
+                //ViewBag.TituloMensagem = "Sucesso";
+                //ViewBag.MensagemErro = "Aluno cadastrado com sucesso!";
+
+                ViewBag.AlertMessage = "Aluno cadastrado com sucesso!";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -174,6 +185,7 @@ namespace SchoolManagement.MVC.Controllers
             if (sucesso)
                 return RedirectToAction("Index", "Aluno");
             else
+                ViewBag.AlertMessage = "Erro ao tentar excluir um aluno";
                 throw new NotImplementedException("Erro ao tentar excluir um aluno");
         }
 
