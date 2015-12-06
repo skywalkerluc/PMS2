@@ -20,5 +20,7 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
         bool IncluirDisciplinasEmTurma(int TurmaId, List<Disciplina> ListaDisciplinas);
 
         bool RemoverDisciplinasTurma(int TurmaId, List<Disciplina> ListaDisciplinas);
+
+        IEnumerable<Disciplina> RecuperarDisciplinasProfessorLeciona(int ProfessorId);
     }
 }

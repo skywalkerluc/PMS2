@@ -52,9 +52,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.UserLogin)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.NumeroMatricula)
-                                </th>
                                 <th></th>
                             </tr>
 
@@ -82,9 +79,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.UserLogin)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NumeroMatricula)
-                                    </td>
+                                    
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                                         @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |

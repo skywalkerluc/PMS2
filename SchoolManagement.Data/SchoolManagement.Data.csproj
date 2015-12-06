@@ -66,6 +66,7 @@
     <Compile Include="EntityConfig\ConteudosExtrasConfig.cs" />
     <Compile Include="EntityConfig\FuncionarioConfig.cs" />
     <Compile Include="EntityConfig\LojasRecomendadasConfig.cs" />
+    <Compile Include="EntityConfig\NotificacaoConfig.cs" />
     <Compile Include="EntityConfig\ProvasConfig.cs" />
     <Compile Include="EntityConfig\RematriculaConfig.cs" />
     <Compile Include="EntityConfig\UsuarioConfig.cs" />

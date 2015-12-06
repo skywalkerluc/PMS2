@@ -35,7 +35,7 @@
 
                             <div class="form-group col-md-6">
                                 <label>Unidade</label>
-                                <input type="number" class="form-control" placeholder="nome">
+                                <input type="number" class="form-control" placeholder="Unidade">
                             </div>
 
                             <div class="form-group col-md-6">
@@ -44,7 +44,7 @@
                                 @Html.ValidationMessageFor(model => model.TipoProva)
                             </div>
 
-                            <!-- Date dd/mm/yyyy -->
+                            @*<!-- Date dd/mm/yyyy -->
                             <div class="form-group col-md-6">
                                 <label>Data da Prova</label>
                                 <div class="input-group">
@@ -53,7 +53,21 @@
                                     </div>
                                     <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
                                 </div><!-- /.input group -->
+                            </div><!-- /.form group -->*@
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.DataProva)
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.DataProva, new { @id = "data", @size = "11", @maxlength = "11", @placeholder = "Data da prova", @class = "form-control datepicker col-md-12", @style = "height: 34px" })
+                                    @Html.ValidationMessageFor(model => model.DataProva)
+                                    @*<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>*@
+                                </div><!-- /.input group -->
                             </div><!-- /.form group -->
+
 
                             <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Disciplina)
@@ -75,25 +89,22 @@
                                 @Html.ValidationMessageFor(model => model.Disciplina)
                             </div>
 
-
                             <div class="form-group col-md-6">
-                                @Html.LabelFor(m => m.Professores)
-
+                                @Html.LabelFor(m => m.Turma)
                                 @{
-                                    List<SelectListItem> listaProfessores = new List<SelectListItem>();
-                                    foreach (var item in @ViewBag.ListaProfessores)
+                                    List<SelectListItem> listaTurma = new List<SelectListItem>();
+                                    foreach (var item in @ViewBag.ListaTurmas)
                                     {
                                         SelectListItem selec = new SelectListItem()
                                         {
                                             Value = item.Value,
                                             Text = item.Text
                                         };
-                                        listaProfessores.Add(selec);
+                                        listaTurma.Add(selec);
                                     }
-                                    @Html.DropDownListFor(m => m.professoresLista, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione o Professor", style = "width: 100%;", id = "professor" })
+                                    @Html.DropDownListFor(m => m.turmaLista, listaTurma, new { @class = "form-control select2", placeholder = "Selecione a turma", style = "width: 100%;", id = "Turmas" })
                                 }
-
-                                @Html.ValidationMessageFor(model => model.Professores)
+                                @Html.ValidationMessageFor(model => model.Disciplina)
                             </div>
 
                             <div class="form-group col-md-6">

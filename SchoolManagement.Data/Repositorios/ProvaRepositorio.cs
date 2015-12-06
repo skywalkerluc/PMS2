@@ -14,11 +14,23 @@ namespace SchoolManagement.Data.Repositorios
     {
         public Prova IncluirProva(Prova prova)
         {
-            Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
-            Db.Entry(prova.Professores).State = EntityState.Unchanged;
-            Db.Provas.Add(prova);
-            Db.SaveChanges();
+            //Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
+            //Db.Entry(prova.Professores).State = EntityState.Unchanged;
+            //Db.Provas.Add(prova);
+            //Db.SaveChanges();
 
+            //return prova;
+
+            var dataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
+            var unidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
+            var statusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
+            var tipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
+            var disciplinaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
+            var professorIdParameter = new SqlParameter("@ProfessorId", prova.Professores.Id);
+            var turmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
+
+            var query = this.Db.Database.ExecuteSqlCommand("INSERT INTO [dbo].[Prova] ([DataProva], [Unidade], [StatusProva], [TipoProva], [Disciplina_DisciplinaId], [Professores_Id], [Turma_TurmaId]) VALUES (@DataProva, @Unidade, @StatusProva, @TipoProva, @DisciplinaId, @ProfessorId, @TurmaId)", 
+                dataProvaParameter, unidadeParameter, statusProvaParameter, tipoProvaParameter, disciplinaIdParameter, professorIdParameter, turmaIdParameter);
             return prova;
         }
 

@@ -107,5 +107,19 @@ namespace SchoolManagement.Data.Repositorios
                 return false;
             }
         }
+
+        public IEnumerable<Disciplina> RecuperarDisciplinasProfessorLeciona(int ProfessorId)
+        {
+            try
+            {
+                var ProfessorIdParameter = new SqlParameter("@ProfessorId", ProfessorId);
+                var query = this.Db.Disciplinas.SqlQuery("SELECT * FROM Disciplina AS D INNER JOIN ProfessorDisciplina AS PD ON D.DisciplinaId = PD.Disciplina_DisciplinaId WHERE PD.Professor_Id = @ProfessorId", ProfessorIdParameter).ToList();
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
     }
 }

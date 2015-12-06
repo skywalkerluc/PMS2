@@ -62,9 +62,6 @@ namespace SchoolManagement.MVC.ViewModels
         [MinLength(4, ErrorMessage = "Número de caracteres não permitido.")]
         public string Senha { get; set; }
         
-        [Display(Name = "Confirmar senha")]
-        public string ConfirmarSenha { get; set; }
-
         [ScaffoldColumn(false)]
         public int indicadorAcesso { get; set; }
 

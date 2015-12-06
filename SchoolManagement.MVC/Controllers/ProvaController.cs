@@ -18,14 +18,18 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IProfessorServico _professorApp;
         private readonly IResultadosProvasServico _resultadoProvaApp;
         private readonly IAlunoServico _alunoApp;
+        private readonly INotificacaoServico _notificacaoServico;
+        private readonly ITurmaServico _turmaServico;
 
-        public ProvaController(IProvaServico provaApp, IDisciplinaServico disciplinaServico, IProfessorServico professorApp, IResultadosProvasServico resultadoProvaApp, IAlunoServico alunoApp)
+        public ProvaController(IProvaServico provaApp, IDisciplinaServico disciplinaServico, IProfessorServico professorApp, IResultadosProvasServico resultadoProvaApp, IAlunoServico alunoApp, INotificacaoServico notificacaoServico, ITurmaServico turmaServico)
         {
             _provaApp = provaApp;
             _disciplinaServico = disciplinaServico;
             _professorApp = professorApp;
             _resultadoProvaApp = resultadoProvaApp;
             _alunoApp = alunoApp;
+            _notificacaoServico = notificacaoServico;
+            _turmaServico = turmaServico;
         }
 
         // GET: Prova
@@ -48,8 +52,8 @@ namespace SchoolManagement.MVC.Controllers
         {
 
             var prova = new ProvaViewModel();
-            PreencherListaDisciplina(prova);
-            PreencherListaProfessor(prova);
+            PreencherListaDisciplinaProfessor(prova);
+            PreencherListaTurmasProfessor(prova);
             return View("CadastrarProva");
         }
 
@@ -59,13 +63,6 @@ namespace SchoolManagement.MVC.Controllers
         {
             try
             {
-                if (prova.professoresLista != 0)
-                {
-                   var professor = _professorApp.Recuperar(prova.professoresLista);
-                   var professorViewModel = Mapper.Map<Professor, ProfessorViewModel>(professor);
-
-                   prova.Professores = professorViewModel;
-                }
                 if(prova.disciplinasTeste != 0)
                 {
                     var disciplina = _disciplinaServico.Recuperar(prova.disciplinasTeste);
@@ -85,11 +82,32 @@ namespace SchoolManagement.MVC.Controllers
                 prova.status = valorEnumStatus;
                 prova.tipo = valorEnumTipo;
 
-                prova.DataProva = DateTime.Now.Date;
+                var turma = Mapper.Map<Turma,TurmaViewModel>(_turmaServico.Recuperar(prova.turmaLista));
+                prova.Turma = turma;
+
+                var professor = Mapper.Map<Professor, ProfessorViewModel>(_professorApp.Recuperar((int)Session["UsuarioId"]));
+                prova.Professores = professor;
 
                 var provaDomain = Mapper.Map<ProvaViewModel, Prova>(prova);
                 
-                _provaApp.IncluirProva(provaDomain);
+                var attmpt = _provaApp.IncluirProva(provaDomain);
+
+                if (attmpt != null)
+                {
+                    
+                    var notif = new NotificacaoViewModel()
+                    {
+                        Assunto = "Uma nova prova foi adicionada.",
+                        DataCriacao = DateTime.Now,
+                        Descricao = "Uma nova prova foi adicionada pelo professor: " + attmpt.Professores.Nome + ", para a turma: " + attmpt.Turma.Descricao + "(" + RecuperarValorHorarioTurma(attmpt.Turma.HorariosTurmaId) + ")"
+                        + "para o dia: " + attmpt.DataProva.ToString() + ". É uma prova do tipo '" + RecuperarTipoProva(attmpt.TipoProva) + "'.",
+                        UsuarioCriacao = Mapper.Map<Professor, ProfessorViewModel>(_professorApp.Recuperar((int)Session["UsuarioId"])),
+                        TurmaPublicoAlvo = Mapper.Map<Turma, TurmaViewModel>(attmpt.Turma)
+                    };
+                    var notifMapped = Mapper.Map<NotificacaoViewModel, Notificacao>(notif);
+                    var attmptNotf = _notificacaoServico.CriarNotificacao(notifMapped);
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -159,6 +177,40 @@ namespace SchoolManagement.MVC.Controllers
                 listaDisciplinas.Add(listItem);
             }
 
+            prova.ListaDisciplinas = listaDisciplinas;
+            ViewBag.ListaDisciplinas = prova.ListaDisciplinas;
+        }
+
+        private void PreencherListaTurmasProfessor(ProvaViewModel prova)
+        {
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona((int)Session["UsuarioId"]);
+            foreach (var turma in turmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = turma.TurmaId.ToString(),
+                    Text = String.Concat(turma.Descricao, " (", this.RecuperarValorHorarioTurma(turma.HorariosTurmaId), ")")
+                };
+                prova.ListaTurmas = new List<SelectListItem>();
+                prova.ListaTurmas.Add(select);
+            }
+            ViewBag.ListaTurmas = prova.ListaTurmas;
+        }
+
+        private void PreencherListaDisciplinaProfessor(ProvaViewModel prova)
+        {
+            List<SelectListItem> listaDisciplinas = new List<SelectListItem>();
+            var disciplinas = _disciplinaServico.RecuperarDisciplinasProfessorLeciona((int)Session["UsuarioId"]);
+
+            foreach (var disciplina in disciplinas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = disciplina.DisciplinaId.ToString(),
+                    Text = disciplina.NomeDisciplina
+                };
+                listaDisciplinas.Add(select);
+            }
             prova.ListaDisciplinas = listaDisciplinas;
             ViewBag.ListaDisciplinas = prova.ListaDisciplinas;
         }
@@ -256,6 +308,53 @@ namespace SchoolManagement.MVC.Controllers
             var provaViewModel = Mapper.Map<Prova, ProvaViewModel>(prova);
 
             return View("DetalhesProvaSelecionada", provaViewModel);
+        }
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
+        }
+
+        private string RecuperarTipoProva(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Prova normal";
+                    break;
+                case 2:
+                    descricaoRetorno = "Prova de recuperação";
+                    break;
+                case 3:
+                    descricaoRetorno = "Prova de recuperação";
+                    break;
+                case 4:
+                    descricaoRetorno = "Prova de segunda chamada";
+                    break;
+                case 5:
+                    descricaoRetorno = "Prova final";
+                    break;
+                default:
+                    break;
+            }
+            return descricaoRetorno;
         }
         
     }

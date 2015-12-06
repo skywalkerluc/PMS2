@@ -174,12 +174,6 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                @Html.LabelFor(m => m.ConfirmarSenha)
-                                @Html.PasswordFor(m => m.ConfirmarSenha, new { @placeholder = "Confirmar Senha", @id = "confirmarSenha", @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ConfirmarSenha)
-                            </div>
-
-                            <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Contato.Celular)
                                 @Html.TextBoxFor(m => m.Contato.Celular, new { @placeholder = "Celular", @id = "celular", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Contato.Celular)
@@ -237,30 +231,4 @@
 
 <script src="~/Scripts/jquery-2.1.4.min.js"></script>
 <script src="~/Scripts/jquery-1.11.3.min.js"></script>
-
-<script>
-
-    $('#Cep').change(function (e) {
-
-        e.preventDefault();
-
-        $("#Endereco").val('');
-        $("#Bairro").val('');
-        $("#Cidade").val('');
-        $("#Estado").val('');
-
-        var cep = $('#Cep').val().replace(".", "");
-
-        $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
-
-            if (data.resultado_txt == 'sucesso - cep completo') {
-
-                $("#Endereco").val(data.tipo_logradouro + ' ' + data.logradouro);
-                $("#Bairro").val(data.bairro);
-                $("#Cidade").val(data.cidade);
-                $("#Estado").val(data.uf);
-            }
-        });
-    });
-
-</script>
+<script src="~/Content/util/util.js"></script>

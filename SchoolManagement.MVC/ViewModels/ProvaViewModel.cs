@@ -14,6 +14,7 @@ namespace SchoolManagement.MVC.ViewModels
 
         public DisciplinaViewModel Disciplina { get; set; }
         public ProfessorViewModel Professores { get; set; }
+        public TurmaViewModel Turma { get; set; }
 
         [Display(Name = "Data da prova")]
         public DateTime DataProva { get; set; }
@@ -29,9 +30,11 @@ namespace SchoolManagement.MVC.ViewModels
 
         public List<SelectListItem> ListaDisciplinas { get; set; }
         public List<SelectListItem> ListaProfessores { get; set; }
+        public List<SelectListItem> ListaTurmas { get; set; }
 
         public int disciplinasTeste { get; set; }
         public int professoresLista { get; set; }
+        public int turmaLista { get; set; }
 
         public int status { get; set; }
         public int tipo { get; set; }
