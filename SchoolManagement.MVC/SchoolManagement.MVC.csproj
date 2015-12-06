@@ -1165,6 +1165,8 @@
     <Content Include="Views\Notificacao\DetalhesNotificacaoAlunoResponsavel.cshtml" />
     <Content Include="Views\Professor\AssociarProfessorTurmaParte1.cshtml" />
     <Content Include="Views\Professor\DesassociarProfessorTurmaParte1.cshtml" />
+    <Content Include="Views\Professor\DetalhesTurmaProfessorLeciona.cshtml" />
+    <Content Include="Views\Evento\CadastrarEventosProfessor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

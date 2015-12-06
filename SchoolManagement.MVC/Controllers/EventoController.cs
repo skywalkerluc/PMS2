@@ -245,5 +245,44 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarEventosFuturos", eventoMapped);
         }
 
+        public ActionResult CreateEventoProfessor()
+        {
+            var evento = new EventoViewModel();
+            PreencherListaFuncionario(evento);
+            return View("CadastrarEventosProfessor");
+        }
+
+        //
+        // POST: /Evento/Create
+        [HttpPost]
+        public ActionResult CreateEventoProfessor(EventoViewModel evento)
+        {
+            try
+            {
+                evento.DataEvento = DateTime.Now.Date;
+                evento.DataCriacao = DateTime.Now.Date;
+
+                int ProfessorId = (int)Session["UsuarioId"];
+
+                List<FuncionarioViewModel> ListaFuncionarios = new List<FuncionarioViewModel>();
+
+                var funcionario = _funcionarioServico.Recuperar(ProfessorId);
+                var funcionarioViewModel = Mapper.Map<Funcionario, FuncionarioViewModel>(funcionario);
+
+                ListaFuncionarios.Add(funcionarioViewModel);
+
+                evento.FuncionarioResponsavel = ListaFuncionarios;
+
+                var eventoDomain = Mapper.Map<EventoViewModel, Evento>(evento);
+                _eventoServico.IncluirEvento(eventoDomain);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                var mensagemErro = ex.Message.ToString();
+                return RedirectToAction("Index", "Home", mensagemErro);
+            }
+        }
+
     }
 }

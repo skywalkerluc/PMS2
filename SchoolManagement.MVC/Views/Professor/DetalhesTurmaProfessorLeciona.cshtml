@@ -1,22 +1,22 @@
-﻿@model SchoolManagement.MVC.ViewModels.ProvaViewModel
+﻿@model SchoolManagement.MVC.ViewModels.TurmaViewModel
 
 @{
-    ViewBag.Title = "Excluir - Prova";
+    ViewBag.Title = "DetalhesTurmaProfessorLeciona";
 }
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Prova
-            <small>Deletar Prova</small>
+            Professor
+            <small>Visualizar Alunos Professores</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Prova</li>
-            <li class="active">Deletar Prova</li>
+            <li class="active">Professor</li>
+            <li class="active">Visualizar Alunos Professores</li>
         </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -24,57 +24,50 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
+                        <h3 class="box-title">Visualizar Alunos Professores</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
                         <div>
-                            <h4>ProvaViewModel</h4>
                             <hr />
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.DataProva)
+                                    @Html.DisplayNameFor(model => model.Descricao)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.DataProva)
+                                    @Html.DisplayFor(model => model.Descricao)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Unidade)
+                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Unidade)
+                                    @Html.DisplayFor(model => model.HorariosTurmaId)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.disciplinasTeste)
+                                    @Html.DisplayNameFor(model => model.Vagas)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.disciplinasTeste)
+                                    @Html.DisplayFor(model => model.Vagas)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.professoresLista)
+                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.professoresLista)
+                                    @Html.DisplayFor(model => model.anoletivoSelecionado)
                                 </dd>
 
                             </dl>
-
-                            @using (Html.BeginForm("Delete", "Prova", FormMethod.Post))
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <div class="form-actions no-color">
-                                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                                    @Html.ActionLink("Voltar", "Index")
-                                </div>
-                            }
                         </div>
+                        <p>
+                            @Html.ActionLink("Voltar", "VisualizarTurmasProfessorLeciona", "Professor")
+                        </p>
                     </div><!-- /.box-body -->
                 </div>
             </div><!--/.col (left) -->

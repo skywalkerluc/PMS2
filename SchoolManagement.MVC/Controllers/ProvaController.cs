@@ -244,7 +244,7 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult RecuperarProvaPorDisciplina()
         {
             var prova = new ProvaViewModel();
-            PreencherListaDisciplina(prova);
+            PreencherListaDisciplinaProfessor(prova);
             return View("FiltroConsultaProva");
         }
 

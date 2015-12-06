@@ -344,9 +344,6 @@ namespace SchoolManagement.MVC.Controllers
 
             return View("DetalhesMinhaTurma", turmaViewModel);
         }
-
-
-
         
     }
 }

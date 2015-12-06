@@ -263,5 +263,60 @@ namespace SchoolManagement.MVC.Controllers
             return View("DetalhesNotificacaoAlunoResponsavel", notfViewModel);
         }
 
+        // GET: /Notificacao/Create
+        public ActionResult CreateNotificacaoProfessor()
+        {
+            PreencherListaTurmasProfessor();
+            return View("CadastrarNotificacao");
+        }
+
+        [HttpGet]
+        public ActionResult RecuperarNotificacaoProfessor()
+        {
+            PreencherListaTurmasProfessor();
+            return View("FiltroParaConsultaDeNotificacao");
+        }
+
+        [HttpGet]
+        public void PreencherListaTurmasProfessor()
+        {
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmas.Add(select);
+            }
+
+            ViewBag.ListaTurmas = ListaTurmas;
+        }
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
+        }
+
+
     }
 }

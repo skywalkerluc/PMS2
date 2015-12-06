@@ -537,7 +537,6 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Cadastro de Provas", "Create", "Prova")</li>
-                                        <li>@Html.ActionLink("Editar Provas", "Edit", "Prova")</li>
                                         <li>@Html.ActionLink("Calendário de Provas", "RecuperarProvaPorDisciplina", "Prova")</li>
                                         
                                     </ul>
@@ -549,8 +548,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Cadastro de Eventos", "Create", "Evento")</li>
-                                        <li>@Html.ActionLink("Editar Eventos", "Edit", "Evento")</li>
+                                        <li>@Html.ActionLink("Cadastro de Eventos", "CreateEventoProfessor", "Evento")</li>
                                         <li>@Html.ActionLink("Calendário de Eventos", "RecuperarEventoPorDescricao", "Evento")</li>
                                     </ul>
                                 </li>
@@ -562,9 +560,8 @@
                                     </a>
                                     <ul class="treeview-menu">
 
-                                        <li>@Html.ActionLink("Cadastro de Notificações", "Create", "Notificacao")</li>
-                                        <li>@Html.ActionLink("Editar Notificações", "Edit", "Notificacao")</li>
-                                        <li>@Html.ActionLink("Visualizar Notificaçães", "VisualizarNotificacoesPorCriador", "Professor")</li>
+                                        <li>@Html.ActionLink("Cadastro de Notificações", "CreateNotificacaoProfessor", "Notificacao")</li>
+                                        <li>@Html.ActionLink("Consultar Notificações", "RecuperarNotificacaoProfessor", "Notificacao")</li>
                                     </ul>
                                 </li>
                                 <!--Conteudos Extras-->
@@ -575,8 +572,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Cadastro de Conteudos", "", "Professor")</li>
-                                        <li>@Html.ActionLink("Editar Conteudos", "", "Professor")</li>
-                                        <li>@Html.ActionLink("Visualizar Conteudos", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Consultar Conteudos", "", "Professor")</li>
                                     </ul>
                                 </li>
 
@@ -588,8 +584,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Lançar Notas", "Create", "Prova")</li>
-                                        <li>@Html.ActionLink("Editar Notas", "Edit", "Prova")</li>
-                                        <li>@Html.ActionLink("Visualizar Notas", "VisualizarNotasDoAluno", "Prova")</li>
+                                        <li>@Html.ActionLink("Consultar Notas", "VisualizarNotasDoAluno", "Prova")</li>
                                     </ul>
                                 </li>
 
@@ -601,8 +596,7 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Preencher Caderneta", "", "Professor")</li>
-                                        <li>@Html.ActionLink("Editar Caderneta", "", "Professor")</li>
-                                        <li>@Html.ActionLink("Visualizar Caderneta", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Consultar Caderneta", "", "Professor")</li>
                                     </ul>
                                 </li>
                             </ul>

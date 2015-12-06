@@ -249,6 +249,16 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarAlunosTurmasProfessorLeciona", alunosMapped);
         }
 
+        public ActionResult DetalhesTurmaProfessorLeciona(int id)
+        {
+            var turma = _turmaServico.Recuperar(id);
+            var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(turma);
+
+            return View("DetalhesTurmaProfessorLeciona", turmaViewModel);
+        }
+
+
+
         [HttpGet]
         public ActionResult IncluirProfessorEmTurma()
         {
