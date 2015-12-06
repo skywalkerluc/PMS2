@@ -19,6 +19,11 @@ namespace SchoolManagement.Domain.Servicos
             _provaRep = provaRep;
         }
 
+        public Prova RecuperarProva(int ProvaId)
+        {
+            return this._provaRep.RecuperarProva(ProvaId);
+        }
+
         public Prova IncluirProva(Prova prova)
         {
             return this._provaRep.IncluirProva(prova);

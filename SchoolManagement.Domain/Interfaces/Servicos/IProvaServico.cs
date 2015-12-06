@@ -9,6 +9,7 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
 {
     public interface IProvaServico : IServicoBase<Prova>
     {
+        Prova RecuperarProva(int ProvaId);
         Prova IncluirProva(Prova prova);
         bool AtualizarDadosProva(Prova prova);
         IEnumerable<Prova> BuscarPorDisciplina(int codDisciplina);
