@@ -17,5 +17,8 @@ namespace SchoolManagement.MVC.ViewModels
 
         public ICollection<TurmaViewModel> Turmas { get; set; }
 
+        public int professorSelecionado { get; set; }
+        public int turmaSelecionada { get; set; }
+
     }
 }

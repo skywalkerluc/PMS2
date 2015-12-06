@@ -1163,6 +1163,8 @@
     <Content Include="Views\Responsavel\FiltroAlunosResponsavelNotificacoes.cshtml" />
     <Content Include="Views\Notificacao\VisualizarNotificacoesMinhaTurmaResponsavel.cshtml" />
     <Content Include="Views\Notificacao\DetalhesNotificacaoAlunoResponsavel.cshtml" />
+    <Content Include="Views\Professor\AssociarProfessorTurmaParte1.cshtml" />
+    <Content Include="Views\Professor\DesassociarProfessorTurmaParte1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

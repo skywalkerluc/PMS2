@@ -255,24 +255,34 @@ namespace SchoolManagement.MVC.Controllers
             ViewBag.ListaProfessores = _util.PreencherListaProfessores();
             ViewBag.ListaTurmas = _util.PreencherListaTurmas();
 
-            return View("IncluirProfessorEmTurmaSelecao");
+            return View("AssociarProfessorTurmaParte1");
         }
 
         [HttpPost]
-        public ActionResult IncluirProfessorEmTurma(int ProfessorId, int TurmaId)
+        public ActionResult IncluirProfessorEmTurma(ProfessorViewModel professor)
         {
-            var attmpt = _professorApp.IncluirProfessorEmTurma(ProfessorId, TurmaId);
+            var attmpt = _professorApp.IncluirProfessorEmTurma(professor.professorSelecionado, professor.turmaSelecionada);
             if (attmpt)
-                return View("Index", "Home");
+                return RedirectToAction("Index", "Home");
             else
                 throw new NotImplementedException("Erro ao incluir Professor em Turma");
         }
 
-        public ActionResult RemoverProfessorTurma(int ProfessorId, int TurmaId)
+
+        [HttpGet]
+        public ActionResult RemoverProfessorDeTurma()
         {
-            var attmpt = _professorApp.RemoverProfessorDeTurma(ProfessorId, TurmaId);
+            ViewBag.ListaProfessores = _util.PreencherListaProfessores();
+            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+
+            return View("AssociarProfessorTurmaParte1");
+        }
+
+        public ActionResult RemoverProfessorTurma(ProfessorViewModel professor)
+        {
+            var attmpt = _professorApp.RemoverProfessorDeTurma(professor.professorSelecionado, professor.turmaSelecionada);
             if (attmpt)
-                return View("Index", "Home");
+                return RedirectToAction("Index", "Home");
             else
                 throw new NotImplementedException("Erro ao remover Professor de Turma");
         }
