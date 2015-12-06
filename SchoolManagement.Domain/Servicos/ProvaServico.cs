@@ -48,5 +48,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._provaRep.RecuperarProvasTurma(TurmaId);
         }
+
+        public bool ExcluirProva(int ProvaId)
+        {
+            return this._provaRep.ExcluirProva(ProvaId);
+        }
     }
 }

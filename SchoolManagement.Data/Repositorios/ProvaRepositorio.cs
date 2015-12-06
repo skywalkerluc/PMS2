@@ -90,5 +90,20 @@ namespace SchoolManagement.Data.Repositorios
             return provas;
         }
 
+        public bool ExcluirProva(int ProvaId)
+        {
+            try
+            {
+                var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
+                var query = this.Db.Database.ExecuteSqlCommand("DELETE FROM Prova WHERE ProvaId = @ProvaId", ProvaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+            
+        }
+
     }
 }
