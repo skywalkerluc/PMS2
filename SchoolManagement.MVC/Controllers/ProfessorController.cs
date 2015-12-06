@@ -248,5 +248,33 @@ namespace SchoolManagement.MVC.Controllers
             var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
             return View("VisualizarAlunosTurmasProfessorLeciona", alunosMapped);
         }
+
+        [HttpGet]
+        public ActionResult IncluirProfessorEmTurma()
+        {
+            ViewBag.ListaProfessores = _util.PreencherListaProfessores();
+            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+
+            return View("IncluirProfessorEmTurmaSelecao");
+        }
+
+        [HttpPost]
+        public ActionResult IncluirProfessorEmTurma(int ProfessorId, int TurmaId)
+        {
+            var attmpt = _professorApp.IncluirProfessorEmTurma(ProfessorId, TurmaId);
+            if (attmpt)
+                return View("Index", "Home");
+            else
+                throw new NotImplementedException("Erro ao incluir Professor em Turma");
+        }
+
+        public ActionResult RemoverProfessorTurma(int ProfessorId, int TurmaId)
+        {
+            var attmpt = _professorApp.RemoverProfessorDeTurma(ProfessorId, TurmaId);
+            if (attmpt)
+                return View("Index", "Home");
+            else
+                throw new NotImplementedException("Erro ao remover Professor de Turma");
+        }
     }
 }

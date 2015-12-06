@@ -65,7 +65,7 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Professor> VisualizarProfessoresTurma(int TurmaId)
         {
-            var query = "SELECT * FROM Professor AS P WHERE P.Turma_TurmaId = @TurmaId";
+            var query = "SELECT * FROM Professor AS P INNER JOIN ProfessorTurma AS PT ON P.Id = PT.Professor_Id WHERE PT.Turma_TurmaId = @TurmaId";
             
             List<Professor> ListaRetorno = new List<Professor>();
             var TurmaIdParam = new SqlParameter("@TurmaId", TurmaId);
@@ -79,6 +79,38 @@ namespace SchoolManagement.Data.Repositorios
                 }
             }
             return ListaRetorno;
+        }
+
+        public bool IncluirProfessorEmTurma(int ProfessorId, int TurmaId)
+        {
+            try
+            {
+                var TurmaIdParameter = new SqlParameter("@TurmaId", TurmaId);
+                var ProfessorIdParameter = new SqlParameter("@ProfessorId", ProfessorId);
+
+                var query = this.Db.Database.ExecuteSqlCommand("INSERT INTO [dbo].[ProfessorTurma] ([Professor_Id], [Turma_TurmaId]) VALUES (@ProfessorId, @TurmaId)", ProfessorIdParameter, TurmaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
+        public bool RemoverProfessorDeTurma(int ProfessorId, int TurmaId)
+        {
+            try
+            {
+                var TurmaIdParameter = new SqlParameter("@TurmaId", TurmaId);
+                var ProfessorIdParameter = new SqlParameter("@ProfessorId", ProfessorId);
+
+                var query = this.Db.Database.ExecuteSqlCommand("DELETE FROM ProfessorTurma WHERE Professor_Id = @ProfessorId AND Turma_TurmaId = @TurmaId", ProfessorIdParameter, TurmaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
         }
 
     }
