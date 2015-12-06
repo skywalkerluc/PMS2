@@ -87,9 +87,7 @@ namespace SchoolManagement.MVC.Controllers
                 aluno.DataCadastro = DateTime.Now;
                 aluno.indicadorAcesso = 2;
                 aluno.Endereco.Pais = "Brasil";
-                
-                var matricula = aluno.turmaEscolhida + "-" + DateTime.Now.Year + "" + DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second;
-                aluno.NumeroMatricula = matricula;
+
 
                 if (!_usuarioApp.verificarCPFSendoUtilizado(aluno.Cpf))
                     throw new ArgumentNullException(aluno.Cpf, "Este CPF já está sendo utilizado.");
@@ -109,20 +107,22 @@ namespace SchoolManagement.MVC.Controllers
 
                 TurmaViewModel turmaT = new TurmaViewModel();
                 turmaT.TurmaId = aluno.turmaEscolhida;
-                
+
                 var turmaRecuperada = _turmaApp.Recuperar(turmaT.TurmaId);
-                
+
                 List<Aluno> ListaAlunos = new List<Aluno>();
                 ListaAlunos.Add(alunoDomain);
                 turmaRecuperada.Alunos = ListaAlunos;
                 _turmaApp.Atualizar(turmaRecuperada);
 
+                ViewBag.TituloMensagem = "Sucesso";
+                ViewBag.MensagemErro = "Aluno cadastrado com sucesso!";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
                 var mensagemErro = ex.Message.ToString();
-                return RedirectToAction("Index", "Home", mensagemErro);
+                throw new NotImplementedException(mensagemErro);
             }
         }
 

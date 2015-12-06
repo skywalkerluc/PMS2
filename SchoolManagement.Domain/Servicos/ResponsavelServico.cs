@@ -19,6 +19,16 @@ namespace SchoolManagement.Domain.Servicos
             _responsavelRepositorio = responsavelRepositorio;
         }
 
+        public Responsavel IncluirResponsavel(Responsavel responsavel)
+        {
+            return _responsavelRepositorio.IncluirResponsavel(responsavel);
+        }
+
+        public bool CriarRelacaoResponsavelAluno(int ResponsavelId, int AlunoId)
+        {
+            return _responsavelRepositorio.CriarRelacaoResponsavelAluno(ResponsavelId, AlunoId);
+        }
+
         public IEnumerable<Responsavel> PesquisarResponsavelPorNome(string nomeResponsavel)
         {
             return _responsavelRepositorio.PesquisarResponsavelPorNome(nomeResponsavel);

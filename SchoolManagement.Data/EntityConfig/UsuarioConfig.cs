@@ -26,6 +26,14 @@ namespace SchoolManagement.Data.EntityConfig
               .IsRequired()
               .HasMaxLength(20);
 
+            Property(m => m.Endereco.Numero)
+                .IsOptional();
+
+            Property(m => m.Foto)
+                .IsOptional();
+
+            
+
         }
     }
 }

@@ -72,6 +72,8 @@ namespace SchoolManagement.Data.Contexto
             modelBuilder.Configurations.Add(new ProvasConfig());
             modelBuilder.Configurations.Add(new ResultadosProvasConfig());
             modelBuilder.Configurations.Add(new RematriculaConfig());
+            modelBuilder.Configurations.Add(new NotificacaoConfig());
+            modelBuilder.Configurations.Add(new UsuarioConfig());
 
             //modelBuilder.Entity<Aluno>().MapToStoredProcedures();
             #endregion

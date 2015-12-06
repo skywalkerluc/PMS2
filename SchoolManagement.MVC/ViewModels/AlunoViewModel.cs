@@ -11,8 +11,6 @@ namespace SchoolManagement.MVC.ViewModels
 {
     public class AlunoViewModel : UsuarioViewModel
     {
-        public string NumeroMatricula { get; set; }
-
         public Etnia Etnia { get; set; }
 
         [Display(Name = "Observações")]

@@ -48,5 +48,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return _disciplinaRep.RemoverDisciplinasTurma(TurmaId, ListaDisciplinas);
         }
+
+        public IEnumerable<Disciplina> RecuperarDisciplinasProfessorLeciona(int ProfessorId)
+        {
+            return _disciplinaRep.RecuperarDisciplinasProfessorLeciona(ProfessorId);
+        }
     }
 }

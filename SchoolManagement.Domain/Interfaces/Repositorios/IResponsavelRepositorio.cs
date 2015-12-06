@@ -9,6 +9,8 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
 {
     public interface IResponsavelRepositorio : IRepositorioBase<Responsavel>
     {
+        Responsavel IncluirResponsavel(Responsavel responsavel);
+        bool CriarRelacaoResponsavelAluno(int ResponsavelId, int AlunoId);
         IEnumerable<Responsavel> PesquisarResponsavelPorNome(string nomeResponsavel);
         IEnumerable<Aluno> ExibirDadosAlunoRelacionado(int responsavelId);
         IEnumerable<Responsavel> FiltrarResponsavel(string nomeResponsavel, int idAluno);

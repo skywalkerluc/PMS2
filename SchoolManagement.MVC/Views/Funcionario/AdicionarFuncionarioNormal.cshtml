@@ -136,11 +136,6 @@
                                 @Html.ValidationMessageFor(model => model.Senha)
                             </div>
                             <div class="form-group col-md-6">
-                                @Html.LabelFor(m => m.ConfirmarSenha)
-                                @Html.PasswordFor(m => m.ConfirmarSenha, new { @placeholder = "Confirmar Senha", @id = "confirmarSenha", @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ConfirmarSenha)
-                            </div>
-                            <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Contato.Celular)
                                 @Html.TextBoxFor(m => m.Contato.Celular, new { @placeholder = "Celular", @id = "senha", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Contato.Celular)
