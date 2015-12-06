@@ -64,6 +64,7 @@ namespace SchoolManagement.MVC.Controllers
                 var turmaSelecionada = _turmaServico.Recuperar(trabalho.TurmaSelecionada);
                 if (turmaSelecionada == null)
                 {
+                    ViewBag.AlertMessage = "Turma não encontrada. Erro ao adicionar trabalho extra.";
                     throw new NotImplementedException("Turma não encontrada. Erro ao adicionar trabalho extra.");
                 }
 
@@ -73,6 +74,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 if (!attmpt)
                 {
+                    ViewBag.AlertMessage = "Erro ao adicionar trabalho extra.";
                     throw new NotImplementedException("Erro ao adicionar trabalho extra.");
                 }
                 else
@@ -82,6 +84,7 @@ namespace SchoolManagement.MVC.Controllers
             }
             catch (Exception)
             {
+                ViewBag.AlertMessage = "Erro ao adicionar trabalho extra.";
                 throw new NotImplementedException("Erro ao adicionar trabalho extra.");
             }
         }
@@ -110,11 +113,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao editar trabalho extra";
                     throw new NotImplementedException("Erro ao editar trabalho extra");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao editar trabalho extra";
                 throw new NotImplementedException("Erro ao editar trabalho extra");
             }
         }
@@ -143,11 +148,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao remover conteúdo extra.";
                     throw new NotImplementedException("Erro ao remover conteúdo extra.");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao remover conteúdo extra.";
                 throw new NotImplementedException("Erro ao remover conteúdo extra.");
             }
         }

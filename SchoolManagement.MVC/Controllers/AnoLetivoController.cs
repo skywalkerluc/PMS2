@@ -54,6 +54,7 @@ namespace SchoolManagement.MVC.Controllers
             {
                 if (anoLetivo.QntUnidades < 1)
                 {
+
                     throw new NotImplementedException("Erro ao adicionar novo ano letivo");
                 }
 
@@ -66,11 +67,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao adicionar novo ano letivo";
                     throw new NotImplementedException("Erro ao adicionar novo ano letivo");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao adicionar novo ano letivo";
                 throw new NotImplementedException("Erro ao adicionar novo ano letivo");
             }
         }
@@ -93,6 +96,7 @@ namespace SchoolManagement.MVC.Controllers
             {
                 if (anoLetivo.QntUnidades < 1)
                 {
+                    ViewBag.AlertMessage = "Erro ao atualizar dados de determinado ano letivo";
                     throw new NotImplementedException("Erro ao atualizar dados de determinado ano letivo");
                 }
 
@@ -105,11 +109,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao atualizar dados de determinado ano letivo";
                     throw new NotImplementedException("Erro ao atualizar dados de determinado ano letivo");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao atualizar dados de determinado ano letivo";
                 throw new NotImplementedException("Erro ao atualizar dados de determinado ano letivo");
             }
         }
@@ -133,17 +139,19 @@ namespace SchoolManagement.MVC.Controllers
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
                 var attempt = _anoLetivoServico.Remover(anoLetivoMapped);
 
-                if (attempt != null)
+                if (attempt != false)
                 {
                     return View("Index", "Home");
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao remover determinado ano letivo";
                     throw new NotImplementedException("Erro ao remover determinado ano letivo");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao remover determinado ano letivo";
                 throw new NotImplementedException("Erro ao remover determinado ano letivo");
             }
         }

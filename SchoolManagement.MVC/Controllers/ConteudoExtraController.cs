@@ -77,11 +77,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao incluir conteúdo extra";
                     throw new NotImplementedException("Erro ao incluir conteúdo extra");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao incluir conteúdo extra";
                 throw new NotImplementedException("Erro ao incluir conteúdo extra");
             }
         }
@@ -110,11 +112,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao editar conteúdo extra";
                     throw new NotImplementedException("Erro ao editar conteúdo extra");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao editar conteúdo extra";
                 throw new NotImplementedException("Erro ao editar conteúdo extra");
             }
         }
@@ -143,11 +147,13 @@ namespace SchoolManagement.MVC.Controllers
                 }
                 else
                 {
+                    ViewBag.AlertMessage = "Erro ao remover conteúdo extra.";
                     throw new NotImplementedException("Erro ao remover conteúdo extra.");
                 }
             }
             catch
             {
+                ViewBag.AlertMessage = "Erro ao remover conteúdo extra.";
                 throw new NotImplementedException("Erro ao remover conteúdo extra.");
             }
         }

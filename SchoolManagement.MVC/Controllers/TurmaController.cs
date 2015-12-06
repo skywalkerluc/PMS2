@@ -313,7 +313,8 @@ namespace SchoolManagement.MVC.Controllers
                 return View("Index", "Home");
             }
             else
-            { 
+            {
+                ViewBag.AlertMessage = "Não foi possível adicionar disciplinas na turma selecionada";
                 throw new NotImplementedException("Não foi possível adicionar disciplinas na turma selecionada");
             }
         }

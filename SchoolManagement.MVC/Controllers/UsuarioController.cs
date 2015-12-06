@@ -70,10 +70,11 @@ namespace SchoolManagement.MVC.Controllers
             }
             catch (InvalidOperationException e)
             {
-                ModelState.AddModelError("", "Usuário ou senha incorretos");
+                ViewBag.AlertMessage = "Usuário ou senha incorretos";
                 return View(usuario);
             }
-            ModelState.AddModelError("", "Desculpe erro, Contate o Administrador");
+            //ModelState.AddModelError("", "Desculpe erro, Contate o Administrador");
+            ViewBag.AlertMessage = "Desculpe erro, Contate o Administrador";
             return View(usuario);
         }
 

@@ -1,0 +1,66 @@
+﻿<!--modal-->
+<link href="~/Content/modal/css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="~/Content/modal/js/jquery-1.10.2.js"></script>
+<script src="~/Content/modal/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<div id="dialog" title="Dialog Title">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<a href="#" id="dialog-link"></a>
+
+<script>
+    $(document).ready(function () {
+        $("#dialog-link").click()
+    });
+    $("#dialog").dialog({
+        autoOpen: false,
+        width: 400,
+        buttons: [
+            {
+                text: "Ok",
+                click: function () {
+                    $(this).dialog("close");
+                }
+            },
+            {
+                text: "Cancel",
+                click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ]
+    });
+
+    // Link to open the dialog
+    $("#dialog-link").click(function (event) {
+        $("#dialog").dialog("open");
+        event.preventDefault();
+    });
+
+    // Hover states on the static widgets
+    $("#dialog-link, #icons li").hover(
+        function () {
+            $(this).addClass("ui-state-hover");
+        },
+        function () {
+            $(this).removeClass("ui-state-hover");
+        }
+    );
+</script>
+
+<style>
+    #dialog-link {
+        padding: .4em 1em .4em 20px;
+        text-decoration: none;
+        position: relative;
+    }
+
+        #dialog-link span.ui-icon {
+            margin: 0 5px 0 0;
+            position: absolute;
+            left: .2em;
+            top: 50%;
+            margin-top: -8px;
+        }
+</style>

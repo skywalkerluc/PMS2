@@ -1,15 +1,13 @@
 ﻿@model SchoolManagement.MVC.ViewModels.UsuarioViewModel
-
 <link rel="stylesheet" href="Content/login/css/login.css">
 <script src="Content/login/js/login.js"></script>
+<script src="~/Content/util/util.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
 @{
     ViewBag.Title = "Login";
 }
-
 <div id="fullscreen_bg" class="fullscreen_bg" />
 <div class="container ">
     @using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { @class = "form-signin" }))
@@ -17,7 +15,7 @@
         @Html.AntiForgeryToken()
         <img src="~/Content/imagens/LogoPMS.png" />
         <hr />
-        @Html.ValidationSummary(true)
+
         @Html.TextBoxFor(m => m.UserLogin, new { @class = "form-control", @placeholder = "Login", @required = "", @autofocus = "" })
         @Html.ValidationMessageFor(m => m.UserLogin)
 
@@ -28,7 +26,17 @@
         </button>
     }
 </div>
+@{
+    if (ViewBag.AlertMessage != null)
+    {
+        <div id="dialog" title="Aviso!">
+            <p>@ViewBag.AlertMessage</p>
+        </div>
+    }
+}
 
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+<script>
+    $(document).ready(function () {
+        $("#dialog").dialog("open");
+    });
+</script>
