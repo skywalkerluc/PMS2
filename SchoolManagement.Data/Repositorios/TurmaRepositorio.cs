@@ -138,5 +138,29 @@ namespace SchoolManagement.Data.Repositorios
             return query;
         }
 
+        public IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId)
+        {
+            try
+            {
+                List<Turma> ListaRetorno = new List<Turma>();
+                var turmas = this.RecuperarTodos();
+                foreach (var turma in turmas)
+                {
+                    foreach (var prof in turma.Professores)
+                    {
+                        if (prof.Id != ProfessorId)
+                        {
+                            ListaRetorno.Add(turma);
+                        }
+                    }
+                }
+                return ListaRetorno;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
     }
 }

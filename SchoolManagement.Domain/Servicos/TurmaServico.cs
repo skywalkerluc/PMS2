@@ -53,5 +53,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this.turmaRep.RecuperarTurmasQueProfessorLeciona(professorId);
         }
+
+        public IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId)
+        {
+            return this.turmaRep.RecuperarTurmasProfessorNaoLeciona(ProfessorId);
+        }
     }
 }
