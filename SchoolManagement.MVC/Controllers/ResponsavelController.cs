@@ -78,6 +78,8 @@ namespace SchoolManagement.MVC.Controllers
 
                 //responsavel.DataNascimento = Convert.ToDateTime(data);
 
+                responsavel.indicadorAcesso = 5;
+
                 if (!_usuarioApp.verificarCPFSendoUtilizado(responsavel.Cpf))
                     throw new ArgumentNullException("Este CPF já está sendo utilizado.");
                 if (!_usuarioApp.VerificarLoginExistente(responsavel.UserLogin))
@@ -236,7 +238,7 @@ namespace SchoolManagement.MVC.Controllers
                 int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
                 var attmpt = _responsavelApp.ExibirDadosAlunoRelacionado(idUsuario);
                 var alunoMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(attmpt);
-                return View("ExibirDadosAlunoResponsavel", alunoMapped);
+                return View("RecuperarMeusAlunosResponsavel", alunoMapped);
             }
             catch (Exception)
             {

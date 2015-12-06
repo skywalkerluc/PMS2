@@ -86,6 +86,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 professor.Disciplinas = ListaDisciplinas;
                 professor.Funcao = "1";
+                professor.indicadorAcesso = 4;
 
                 var professorDomain = Mapper.Map<ProfessorViewModel, Professor>(professor);
                 _professorApp.IncluirProfessor(professorDomain);

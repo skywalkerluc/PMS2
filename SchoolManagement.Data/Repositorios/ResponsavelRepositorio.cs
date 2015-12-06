@@ -55,22 +55,33 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Aluno> ExibirDadosAlunoRelacionado(int responsavelId)
         {
-            var alunos = (new AlunoRepositorio().RecuperarTodos());
-            List<Aluno> listaAlunosRelacionados = new List<Aluno>();
+            //var alunos = (new AlunoRepositorio().RecuperarTodos());
+            //List<Aluno> listaAlunosRelacionados = new List<Aluno>();
 
-            foreach (var aluno in alunos)
+            //foreach (var aluno in alunos)
+            //{
+            //    foreach (var responsavelAluno in aluno.Responsaveis)
+            //    {
+            //        if (responsavelAluno.Id == responsavelId)
+            //        {
+            //            listaAlunosRelacionados.Add(aluno);
+            //        }
+            //    }
+            //}
+
+            //IEnumerable<Aluno> RetornoAlunoRelacionado = listaAlunosRelacionados;
+            //return RetornoAlunoRelacionado;
+
+            try
             {
-                foreach (var responsavelAluno in aluno.Responsaveis)
-                {
-                    if (responsavelAluno.Id == responsavelId)
-                    {
-                        listaAlunosRelacionados.Add(aluno);
-                    }
-                }
+                var ResponsavelIdParameter = new SqlParameter("@ResponsavelId", responsavelId);
+                var query = this.Db.Set<Aluno>().SqlQuery("SELECT * FROM Aluno AS A INNER JOIN ResponsavelAluno AS RA ON A.Id = RA.Aluno_Id WHERE RA.Responsavel_Id = @ResponsavelId", ResponsavelIdParameter).ToList();
+                return query;
             }
-
-            IEnumerable<Aluno> RetornoAlunoRelacionado = listaAlunosRelacionados;
-            return RetornoAlunoRelacionado;
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
         }
 
         public IEnumerable<Responsavel> FiltrarResponsavel(string nomeResponsavel, int idAluno)
