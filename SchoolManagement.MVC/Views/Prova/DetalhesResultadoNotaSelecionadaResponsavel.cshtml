@@ -1,0 +1,68 @@
+﻿@model SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel
+
+@{
+    ViewBag.Title = "DetalhesProvaSelecionada";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Notas
+            <small>Detalhes Nota Selecionada</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Notas</li>
+            <li class="active">Detalhes Nota Selecionada</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Observacao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Observacao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nota)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nota)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Gabarito)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Gabarito)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Voltar", "RecuperarAluno", "Responsavel")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

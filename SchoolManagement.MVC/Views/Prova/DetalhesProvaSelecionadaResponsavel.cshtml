@@ -1,0 +1,93 @@
+﻿@model SchoolManagement.MVC.ViewModels.ProvaViewModel
+
+@{
+    ViewBag.Title = "DetalhesProvaSelecionada";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Provas
+            <small>Detalhes Prova</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Provas</li>
+            <li class="active">Detalhes Prova</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataProva)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataProva)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Unidade)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Unidade)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.disciplinasTeste)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.disciplinasTeste)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.professoresLista)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.professoresLista)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.status)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.status)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.tipo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.tipo)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Voltar", "RecuperarAluno", "Responsavel")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
