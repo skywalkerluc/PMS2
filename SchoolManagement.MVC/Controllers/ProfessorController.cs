@@ -148,25 +148,14 @@ namespace SchoolManagement.MVC.Controllers
         /// </summary>
         /// <param name="ProfessorId"></param>
         /// <returns></returns>
-        public ActionResult VisualizarTurmasProfessor(int ProfessorId)
+        public ActionResult VisualizarTurmasProfessorLeciona()
         {
-            var turmas = _turmaServico.RecuperarTodos();
+            int ProfessorId = (int)Session["UsuarioId"];
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(ProfessorId);
             var turmasMapped = Mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaViewModel>>(turmas);
-            List<TurmaViewModel> ListaTurmas = new List<TurmaViewModel>(); 
 
-            foreach (var turma in turmasMapped)
-            {
-                foreach (var professor in turma.Professores)
-                {
-                    if (professor.Id == ProfessorId)
-                    {
-                        ListaTurmas.Add(turma);
-                    }
-                }
-            }
-
-            IEnumerable<TurmaViewModel> TurmasRetorno = ListaTurmas;
-            return View("VisualizarTurmasProfessor", TurmasRetorno);
+            IEnumerable<TurmaViewModel> TurmasRetorno = turmasMapped;
+            return View("VisualizarTurmasProfessorLeciona", TurmasRetorno);
         }
 
 
@@ -193,14 +182,6 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarTodosProfessores");
         }
 
-        public ActionResult VisualizarAlunosTurmasProfessor()
-        {
-            int professorId = (int)Session["UsuarioId"];
-            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
-
-            return View("VisualizarAlunosTurmasProfessor", listaTurmas);
-        }
-
         [HttpGet]
         public ActionResult FiltroTurmasProfessorLeciona()
         {
@@ -216,7 +197,7 @@ namespace SchoolManagement.MVC.Controllers
                 };
                 ListaTurmas.Add(select);
             }
-
+            
             ViewBag.ListaTurmas = ListaTurmas;
 
             return View("FiltroTurmasProfessorLeciona");
@@ -246,7 +227,7 @@ namespace SchoolManagement.MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult VisualizarTurmasProfessorLeciona()
+        public ActionResult VisualizarAlunosTurmasProfessorLeciona()
         {
             List<Aluno> AlunosBackEnd = new List<Aluno>();
 
@@ -264,7 +245,7 @@ namespace SchoolManagement.MVC.Controllers
             }
 
             var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
-            return View("VisualizarTurmasProfessorLeciona", alunosMapped);
+            return View("VisualizarAlunosTurmasProfessorLeciona", alunosMapped);
         }
     }
 }

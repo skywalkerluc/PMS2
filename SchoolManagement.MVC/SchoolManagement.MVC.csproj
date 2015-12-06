@@ -1143,7 +1143,7 @@
     <Content Include="Views\Turma\ConsultarTurma.cshtml" />
     <Content Include="Views\Aluno\VisualizarDisciplinasAluno.cshtml" />
     <Content Include="Views\Professor\FiltroTurmasProfessorLeciona.cshtml" />
-    <Content Include="Views\Professor\VisualizarAlunosTurmasProfessor.cshtml" />
+    <Content Include="Views\Professor\VisualizarAlunosTurmasProfessorLeciona.cshtml" />
     <Content Include="Views\Prova\filtroVisualizarProvasPorUnidade.cshtml" />
     <Content Include="Views\Prova\VisualizarProvasTurma.cshtml" />
     <Content Include="Views\Prova\DetalhesProvaSelecionada.cshtml" />
