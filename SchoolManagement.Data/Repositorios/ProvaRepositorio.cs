@@ -16,9 +16,14 @@ namespace SchoolManagement.Data.Repositorios
         {
             try
             {
-                var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
-                var query = this.Db.Set<Prova>().SqlQuery("SELECT * FROM Prova AS P INNER JOIN Disciplina AS D ON P.Disciplina_DisciplinaId = D.DisciplinaId INNER JOIN Professor AS PR ON P.Professores_Id = PR.Id INNER JOIN Funcionario AS F ON PR.Id = F.Id INNER JOIN Usuario AS U ON F.Id = U.Id INNER JOIN Turma AS T ON P.Turma_TurmaId = T.TurmaId WHERE P.ProvaId = @ProvaId", ProvaIdParameter).First();
-                return query;
+                //var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
+                //var query = this.Db.Set<Prova>().SqlQuery("SELECT * FROM Prova AS P INNER JOIN Disciplina AS D ON P.Disciplina_DisciplinaId = D.DisciplinaId INNER JOIN Professor AS PR ON P.Professores_Id = PR.Id INNER JOIN Funcionario AS F ON PR.Id = F.Id INNER JOIN Usuario AS U ON F.Id = U.Id INNER JOIN Turma AS T ON P.Turma_TurmaId = T.TurmaId WHERE P.ProvaId = @ProvaId", ProvaIdParameter).First();
+                //return query;
+
+                var result = from d in Db.Provas
+                             where d.ProvaId.Equals(ProvaId)
+                             select d;
+                return result.First();
             }
             catch (Exception ex)
             {
@@ -96,6 +101,7 @@ namespace SchoolManagement.Data.Repositorios
             {
                 var ProvaIdParameter = new SqlParameter("@ProvaId", ProvaId);
                 var query = this.Db.Database.ExecuteSqlCommand("DELETE FROM Prova WHERE ProvaId = @ProvaId", ProvaIdParameter);
+                var query2 = this.Db.Database.ExecuteSqlCommand("DELETE FROM ResultadosProvas WHERE Prova_ProvaId = @ProvaId", ProvaIdParameter);
                 return true;
             }
             catch (Exception ex)
