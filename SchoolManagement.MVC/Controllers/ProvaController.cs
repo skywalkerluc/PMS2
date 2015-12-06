@@ -356,6 +356,44 @@ namespace SchoolManagement.MVC.Controllers
             }
             return descricaoRetorno;
         }
-        
+
+        public ActionResult VisualizarProvasTurmaAlunoResponsavel(ResponsavelViewModel responsavel)
+        {
+            var aluno1 = responsavel.alunoSelecionado;
+            var aluno2 = _alunoApp.Recuperar(aluno1);
+
+            var prova = _provaApp.RecuperarProvasTurma(aluno2.Turma.TurmaId);
+            var provaViewModel = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(prova);
+
+            return View("VisualizarProvasTurmaAlunoResponsavel", provaViewModel);
+        }
+
+        public ActionResult DetalhesProvaSelecionadaResponsavel(int id)
+        {
+            var prova = _provaApp.Recuperar(id);
+            var provaViewModel = Mapper.Map<Prova, ProvaViewModel>(prova);
+
+            return View("DetalhesProvaSelecionadaResponsavel", provaViewModel);
+        }
+
+        public ActionResult VisualizarNotasDoAlunoResponsavelSelecionado(ResponsavelViewModel responsavel)
+        {
+            var aluno1 = responsavel.alunoSelecionado;
+            var aluno2 = _alunoApp.Recuperar(aluno1);
+
+            var provaAluno = _alunoApp.RecuperarResultadosAluno(aluno2);
+
+            var provaMapeados = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(provaAluno);
+
+            return View("ResultadoDeNotasDeProvaResponsavelAluno", provaMapeados);
+        }
+
+        public ActionResult DetalhesResultadoSelecionadoResponsavel(int id)
+        {
+            var prova = _resultadoProvaApp.Recuperar(id);
+            var provaViewModel = Mapper.Map<ResultadosProvas, ResultadosProvasViewModel>(prova);
+
+            return View("DetalhesResultadoNotaSelecionadaResponsavel", provaViewModel);
+        }
     }
 }

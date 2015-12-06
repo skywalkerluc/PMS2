@@ -527,8 +527,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Turmas Professor", "VisualizarTurmasProfessorLeciona", "Professor")</li>
-                                        <li>@Html.ActionLink("Visualizar Todas Turmas", "VisualizarTodasTurmas", "Turma")</li>
+                                        <li>@Html.ActionLink("Visualizar Turmas Professor", "VisualizarTurmasProfessorLeciona", "Professor")</li>   
                                     </ul>
                                 </li>
 
@@ -639,17 +638,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Aluno", "RecuperarMeusAlunosResponsavel", "Responsavel")</li>
-                                    </ul>
-                                </li>
-                                <!--Disciplinas-->
-                                <li class="treeview">
-                                    <a href="#">
-                                        <i class="fa fa-edit"></i> <span>Disciplinas</span>
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </a>
-                                    <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Disciplinas", "", "Responsavel")</li>
+                                        <li>@Html.ActionLink("Consultar Aluno", "RecuperarAluno", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Provas-->
@@ -659,7 +648,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar Calendario de Provas", "", "Responsavel")</li>
+                                        <li>@Html.ActionLink("Visualizar Provas", "RecuperarAlunoProva", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Notas-->
@@ -669,7 +658,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Consultar Notas", "", "Responsavel")</li>
+                                        <li>@Html.ActionLink("Visualizar Notas", "RecuperarAlunoNotas", "Responsavel")</li>
                                     </ul>
                                 </li>
                                 <!--Eventos-->
@@ -679,8 +668,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Calendario de Eventos", "", "Responsavel")</li>
-                                        <li>@Html.ActionLink("Visualizar Todos Eventos", "VisualizarTodosEventos", "Evento")</li>
+                                        <li>@Html.ActionLink("Calendario de Eventos", "RecuperarEventoPorDescricaoOutroUsuario", "Evento")</li>
                                     </ul>
                                 </li>
                                 <!--Notificacoes-->
@@ -690,7 +678,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar de Notificacoes", "", "Responsavel")</li>
+                                        <li>@Html.ActionLink("Visualizar Notificações", "RecuperarAlunosNotificacao", "Responsavel")</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -737,6 +725,8 @@
                                     </a>
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Visualizar Todos Professores", "VisualizarTodosProfessores", "Professor") </li>
+                                        <li>@Html.ActionLink("Associar Professores a Turmas", "IncluirProfessorEmTurma", "Professor") </li>
+                                        <li>@Html.ActionLink("Desassociar Professores de Turmas", "RemoverProfessorDeTurma", "Professor") </li>
                                     </ul>
                                 </li>
                                 <!--Funcionario-->

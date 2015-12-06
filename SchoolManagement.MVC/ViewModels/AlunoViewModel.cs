@@ -27,5 +27,10 @@ namespace SchoolManagement.MVC.ViewModels
         public List<SelectListItem> ListaTurmas { get; set; }
 
         public int turmaEscolhida { get; set; }
+
+        [Display(Name = "Alunos")]
+        public List<SelectListItem> AlunosResponsavel { get; set; }
+
+        public int alunoSelecionadoResponsavel { get; set; }
     }
 }

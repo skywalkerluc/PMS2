@@ -39,5 +39,15 @@ namespace SchoolManagement.Domain.Servicos
             return _professorRepositorio.VisualizarProfessoresTurma(TurmaId);
         }
 
+        public bool IncluirProfessorEmTurma(int ProfessorId, int TurmaId)
+        {
+            return _professorRepositorio.IncluirProfessorEmTurma(ProfessorId, TurmaId);
+        }
+
+        public bool RemoverProfessorDeTurma(int ProfessorId, int TurmaId)
+        {
+            return _professorRepositorio.RemoverProfessorDeTurma(ProfessorId, TurmaId);
+        }
+
     }
 }

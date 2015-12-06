@@ -1,22 +1,23 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TurmaViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ProvaViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Turmas Professor";
+    ViewBag.Title = "VisualizarProvasTurma";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Professor
-            <small>Visualizar Alunos Professores</small>
+            Provas
+            <small>Visualizar Provas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Professor</li>
-            <li class="active">Visualizar Alunos Professores</li>
+            <li class="active">Provas</li>
+            <li class="active">Visualizar Provas</li>
         </ol>
     </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -24,23 +25,29 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Alunos Professores</h3>
+                        <h3 class="box-title">Disciplinas</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Descricao)
+                                    @Html.DisplayNameFor(model => model.DataProva)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
+                                    @Html.DisplayNameFor(model => model.Unidade)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Vagas)
+                                    @Html.DisplayNameFor(model => model.disciplinasTeste)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
+                                    @Html.DisplayNameFor(model => model.professoresLista)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tipo)
                                 </th>
                                 <th></th>
                             </tr>
@@ -49,21 +56,25 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                        @Html.DisplayFor(modelItem => item.DataProva)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HorariosTurmaId)
+                                        @Html.DisplayFor(modelItem => item.Unidade)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Vagas)
+                                        @Html.DisplayFor(modelItem => item.disciplinasTeste)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.anoletivoSelecionado)
+                                        @Html.DisplayFor(modelItem => item.professoresLista)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        @Html.DisplayFor(modelItem => item.status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tipo)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalhes", "DetalhesProvaSelecionadaResponsavel", new { id = item.ProvaId })
                                     </td>
                                 </tr>
                             }

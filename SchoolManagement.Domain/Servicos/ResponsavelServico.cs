@@ -43,5 +43,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return _responsavelRepositorio.FiltrarResponsavel(nomeResponsavel, idAluno);
         }
+
+        public List<Dictionary<int, string>> ExibirDadosAlunoRelacionado2(int responsavelId)
+        {
+            return _responsavelRepositorio.ExibirDadosAlunoRelacionado2(responsavelId);
+        }
     }
 }

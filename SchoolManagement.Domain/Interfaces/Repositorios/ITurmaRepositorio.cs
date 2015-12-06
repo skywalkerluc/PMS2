@@ -16,5 +16,6 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         bool RemoverAlunosTurma(int TurmaId, List<Aluno> ListaAlunos);
         bool AdicionarAlunosTurma(int TurmaId, List<Aluno> ListaAlunos);
         IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId);
+        IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId);
     }
 }

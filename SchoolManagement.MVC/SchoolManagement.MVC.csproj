@@ -1155,7 +1155,19 @@
     <Content Include="Views\TrabalhosExtras\DetalhesTrabalhosExtrasMinhaTurma.cshtml" />
     <Content Include="Views\ConteudoExtra\VisualizarConteudosExtrasMinhaTurma.cshtml" />
     <Content Include="Views\ConteudoExtra\DetalhesConteudosExtrasMinhaTurma.cshtml" />
-    <Content Include="Views\Shared\_modalErro.cshtml" />
+    <Content Include="Views\Responsavel\FiltroAlunosResponsavel.cshtml" />
+    <Content Include="Views\Responsavel\DetalhesAlunoSelecionado.cshtml" />
+    <Content Include="Views\Prova\VisualizarProvasTurmaAlunoResponsavel.cshtml" />
+    <Content Include="Views\Prova\DetalhesProvaSelecionadaResponsavel.cshtml" />
+    <Content Include="Views\Responsavel\FiltroAlunosResponsavelProva.cshtml" />
+    <Content Include="Views\Responsavel\FiltroAlunosResponsavelNotas.cshtml" />
+    <Content Include="Views\Prova\ResultadoDeNotasDeProvaResponsavelAluno.cshtml" />
+    <Content Include="Views\Prova\DetalhesResultadoNotaSelecionadaResponsavel.cshtml" />
+    <Content Include="Views\Responsavel\FiltroAlunosResponsavelNotificacoes.cshtml" />
+    <Content Include="Views\Notificacao\VisualizarNotificacoesMinhaTurmaResponsavel.cshtml" />
+    <Content Include="Views\Notificacao\DetalhesNotificacaoAlunoResponsavel.cshtml" />
+    <Content Include="Views\Professor\AssociarProfessorTurmaParte1.cshtml" />
+    <Content Include="Views\Professor\DesassociarProfessorTurmaParte1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

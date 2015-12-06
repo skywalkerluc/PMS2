@@ -1,22 +1,23 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TurmaViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.NotificacaoViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Turmas Professor";
+    ViewBag.Title = "Visualizar Notificações Minha Turma";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Professor
-            <small>Visualizar Alunos Professores</small>
+            Notificação
+            <small>Visualizar Notificações</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Professor</li>
-            <li class="active">Visualizar Alunos Professores</li>
+            <li class="active">Notificação</li>
+            <li class="active">Visualizar Notificações</li>
         </ol>
     </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -24,23 +25,19 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Alunos Professores</h3>
+                        <h3 class="box-title">Visualizar Notificações Minha Turma</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-
                         <table class="table">
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Assunto)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Descricao)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.HorariosTurmaId)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Vagas)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
+                                    @Html.DisplayNameFor(model => model.turmaEscolhida)
                                 </th>
                                 <th></th>
                             </tr>
@@ -49,21 +46,16 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.Assunto)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.Descricao)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HorariosTurmaId)
+                                        @Html.DisplayFor(modelItem => item.turmaEscolhida)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Vagas)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.anoletivoSelecionado)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        @Html.ActionLink("Detalhes", "DetalhesNotificacaoAlunoResponsavel", new { id = item.NotificacaoId })
                                     </td>
                                 </tr>
                             }

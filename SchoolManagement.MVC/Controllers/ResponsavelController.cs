@@ -78,6 +78,8 @@ namespace SchoolManagement.MVC.Controllers
 
                 //responsavel.DataNascimento = Convert.ToDateTime(data);
 
+                responsavel.indicadorAcesso = 5;
+
                 if (!_usuarioApp.verificarCPFSendoUtilizado(responsavel.Cpf))
                     throw new ArgumentNullException("Este CPF já está sendo utilizado.");
                 if (!_usuarioApp.VerificarLoginExistente(responsavel.UserLogin))
@@ -234,14 +236,80 @@ namespace SchoolManagement.MVC.Controllers
             try
             {
                 int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
-                var attmpt = _responsavelApp.ExibirDadosAlunoRelacionado(idUsuario);
-                var alunoMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(attmpt);
-                return View("ExibirDadosAlunoResponsavel", alunoMapped);
+                //var attmpt = _responsavelApp.ExibirDadosAlunoRelacionado(idUsuario);
+                var attmpt = _responsavelApp.ExibirDadosAlunoRelacionado2(idUsuario);
+                //var alunoMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(attmpt);
+                return View("RecuperarMeusAlunosResponsavel");
             }
             catch (Exception)
             {
                 throw new NotImplementedException("Erro ao recuperar alunos.");
             }
+        }
+
+        public void PreencherListaAlunosResponsavel(ResponsavelViewModel responsavel)
+        {
+            List<SelectListItem> listaAlunosResponsavel = new List<SelectListItem>();
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
+            var attmpt = _responsavelApp.ExibirDadosAlunoRelacionado2(idUsuario);
+
+            foreach (var aluno in attmpt)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = aluno.Keys.First().ToString(),
+                    Text = aluno.Values.First().ToString()
+                };
+                listaAlunosResponsavel.Add(select);
+            }
+            responsavel.ListaAlunos = listaAlunosResponsavel;
+            ViewBag.ListaAlunosResponsavel = responsavel.ListaAlunos;
+        }
+
+        [HttpGet]
+        public ActionResult RecuperarAluno()
+        {
+            var responsavel = new ResponsavelViewModel();
+            PreencherListaAlunosResponsavel(responsavel);
+            return View("FiltroAlunosResponsavel");
+        }
+
+        [HttpPost]
+        public ActionResult RecuperarAluno(ResponsavelViewModel responsavel)
+        {
+
+            var aluno = responsavel.alunoSelecionado;
+            var aluno2 = _alunoApp.Recuperar(aluno);
+            var alunolViewModel = Mapper.Map<Aluno, AlunoViewModel>(aluno2);
+
+            return View("DetalhesAlunoSelecionado", alunolViewModel);
+        }
+
+
+        [HttpGet]
+        public ActionResult RecuperarAlunoProva()
+        {
+            var responsavel = new ResponsavelViewModel();
+            PreencherListaAlunosResponsavel(responsavel);
+            return View("FiltroAlunosResponsavelProva");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult RecuperarAlunoNotas()
+        {
+            var responsavel = new ResponsavelViewModel();
+            PreencherListaAlunosResponsavel(responsavel);
+            return View("FiltroAlunosResponsavelNotas");
+        }
+
+        [HttpGet]
+        public ActionResult RecuperarAlunosNotificacao()
+        {
+            var responsavel = new ResponsavelViewModel();
+            PreencherListaAlunosResponsavel(responsavel);
+            return View("FiltroAlunosResponsavelNotificacoes");
         }
 
     }

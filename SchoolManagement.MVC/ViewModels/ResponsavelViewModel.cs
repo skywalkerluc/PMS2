@@ -19,5 +19,7 @@ namespace SchoolManagement.MVC.ViewModels
         public List<SelectListItem> ListaAlunos { get; set; }
 
         public List<int> alunosselecionados { get; set; }
+
+        public int alunoSelecionado { get; set; }
     }
 }

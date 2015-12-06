@@ -244,5 +244,24 @@ namespace SchoolManagement.MVC.Controllers
             return View("DetalhesNotificacaoAluno", notfViewModel);
         }
 
+
+        public ActionResult VisualizarNotificacoesMinhaTurmaResponsavel(ResponsavelViewModel responsavel)
+        {
+            var aluno1 = responsavel.alunoSelecionado;
+            var aluno2 = _alunoServico.Recuperar(aluno1);
+
+            var notif = _notificacaoServico.VisualizarNotificacoesMinhaTurma(aluno2.Turma.TurmaId);
+            var notifMapped = Mapper.Map<IEnumerable<Notificacao>, IEnumerable<NotificacaoViewModel>>(notif);
+            return View("VisualizarNotificacoesMinhaTurmaResponsavel", notifMapped);
+        }
+
+        public ActionResult DetalhesNotificacaoAlunoResponsavel(int id)
+        {
+            var notf = _notificacaoServico.Recuperar(id);
+            var notfViewModel = Mapper.Map<Notificacao, NotificacaoViewModel>(notf);
+
+            return View("DetalhesNotificacaoAlunoResponsavel", notfViewModel);
+        }
+
     }
 }

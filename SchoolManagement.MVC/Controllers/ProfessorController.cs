@@ -86,6 +86,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 professor.Disciplinas = ListaDisciplinas;
                 professor.Funcao = "1";
+                professor.indicadorAcesso = 4;
 
                 var professorDomain = Mapper.Map<ProfessorViewModel, Professor>(professor);
                 _professorApp.IncluirProfessor(professorDomain);
@@ -246,6 +247,44 @@ namespace SchoolManagement.MVC.Controllers
 
             var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
             return View("VisualizarAlunosTurmasProfessorLeciona", alunosMapped);
+        }
+
+        [HttpGet]
+        public ActionResult IncluirProfessorEmTurma()
+        {
+            ViewBag.ListaProfessores = _util.PreencherListaProfessores();
+            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+
+            return View("AssociarProfessorTurmaParte1");
+        }
+
+        [HttpPost]
+        public ActionResult IncluirProfessorEmTurma(ProfessorViewModel professor)
+        {
+            var attmpt = _professorApp.IncluirProfessorEmTurma(professor.professorSelecionado, professor.turmaSelecionada);
+            if (attmpt)
+                return RedirectToAction("Index", "Home");
+            else
+                throw new NotImplementedException("Erro ao incluir Professor em Turma");
+        }
+
+
+        [HttpGet]
+        public ActionResult RemoverProfessorDeTurma()
+        {
+            ViewBag.ListaProfessores = _util.PreencherListaProfessores();
+            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+
+            return View("AssociarProfessorTurmaParte1");
+        }
+
+        public ActionResult RemoverProfessorTurma(ProfessorViewModel professor)
+        {
+            var attmpt = _professorApp.RemoverProfessorDeTurma(professor.professorSelecionado, professor.turmaSelecionada);
+            if (attmpt)
+                return RedirectToAction("Index", "Home");
+            else
+                throw new NotImplementedException("Erro ao remover Professor de Turma");
         }
     }
 }

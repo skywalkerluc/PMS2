@@ -55,22 +55,33 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Aluno> ExibirDadosAlunoRelacionado(int responsavelId)
         {
-            var alunos = (new AlunoRepositorio().RecuperarTodos());
-            List<Aluno> listaAlunosRelacionados = new List<Aluno>();
+            //var alunos = (new AlunoRepositorio().RecuperarTodos());
+            //List<Aluno> listaAlunosRelacionados = new List<Aluno>();
 
-            foreach (var aluno in alunos)
+            //foreach (var aluno in alunos)
+            //{
+            //    foreach (var responsavelAluno in aluno.Responsaveis)
+            //    {
+            //        if (responsavelAluno.Id == responsavelId)
+            //        {
+            //            listaAlunosRelacionados.Add(aluno);
+            //        }
+            //    }
+            //}
+
+            //IEnumerable<Aluno> RetornoAlunoRelacionado = listaAlunosRelacionados;
+            //return RetornoAlunoRelacionado;
+
+            try
             {
-                foreach (var responsavelAluno in aluno.Responsaveis)
-                {
-                    if (responsavelAluno.Id == responsavelId)
-                    {
-                        listaAlunosRelacionados.Add(aluno);
-                    }
-                }
+                var ResponsavelIdParameter = new SqlParameter("@ResponsavelId", responsavelId);
+                var query = this.Db.Set<Aluno>().SqlQuery("SELECT U.Id, U.Nome FROM Usuario AS U INNER JOIN Aluno AS A ON U.Id = A.Id INNER JOIN ResponsavelAluno AS RA ON A.Id = RA.Aluno_Id WHERE RA.Responsavel_Id = @ResponsavelId", ResponsavelIdParameter).ToList();
+                return query;
             }
-
-            IEnumerable<Aluno> RetornoAlunoRelacionado = listaAlunosRelacionados;
-            return RetornoAlunoRelacionado;
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
         }
 
         public IEnumerable<Responsavel> FiltrarResponsavel(string nomeResponsavel, int idAluno)
@@ -82,6 +93,39 @@ namespace SchoolManagement.Data.Repositorios
 
             IEnumerable<Responsavel> RetornoResponsaveis = enumResponsavel;
             return RetornoResponsaveis;
+        }
+
+        public List<Dictionary<int, string>> ExibirDadosAlunoRelacionado2(int responsavelId)
+        {
+            try
+            {
+                List<Dictionary<int, string>> ListaRetorno = new List<Dictionary<int, string>>();
+                //var ResponsavelIdParameter = new SqlParameter("@ResponsavelId", responsavelId);
+                //var query = this.Db.Database.ExecuteSqlCommand("SELECT U.Id, U.Nome FROM Usuario AS U INNER JOIN Aluno AS A ON U.Id = A.Id INNER JOIN ResponsavelAluno AS RA ON A.Id = RA.Aluno_Id WHERE RA.Responsavel_Id = @ResponsavelId", ResponsavelIdParameter);
+
+                var alunos = from a in Db.Alunos
+                             where a.Responsaveis.All(w => w.Id.Equals(responsavelId))
+                             select a;
+
+                if (alunos.ToList().Count > 0)
+                {
+                    foreach (var aluno in alunos)
+                    {
+                        Dictionary<int, string> dict = new Dictionary<int, string>();
+                        dict.Add(aluno.Id, aluno.Nome);
+                        ListaRetorno.Add(dict);
+                    }
+                    return ListaRetorno;
+                }
+                else
+                {
+                    throw new NotImplementedException("Erro ao recuperar dados de alunos");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
         }
     }
 }
