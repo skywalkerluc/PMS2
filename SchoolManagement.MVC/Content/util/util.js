@@ -1,17 +1,19 @@
-﻿$("#dialog").dialog({
-    autoOpen: false,
-    width: 400,
-    buttons: [
-        {
-            text: "Ok",
-            click: function () {
-                $(this).dialog("close");
-            }
-        }
-    ]
-});
+﻿$(document).ready(function () {
 
-$(document).ready(function () {
+    $("#dialog").dialog({
+        autoOpen: false,
+        modal:true,
+        width: 400,
+        buttons: [
+            {
+                text: "Ok",
+                click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ]
+    });
+
     $(".select2").select2();
     $("#cpf").inputmask("999.999.999-99");
     $("#data").inputmask("99/99/9999");
@@ -19,33 +21,34 @@ $(document).ready(function () {
     $("#celular").inputmask("(99) 99999-9999");
     $("#rg").inputmask("9.999.999");
     $("#Cep").inputmask("99.999-999");
+   
+});
 
-    $('#Cep').change(function (e) {
+$('#Cep').change(function () {
+    $("#Endereco").val('');
+    $("#Bairro").val('');
+    $("#Cidade").val('');
+    $("#Estado").val('');
 
-        e.preventDefault();
+    var cep = $('#Cep').val().replace(".", "");
+    cep = cep.replace("-", "");
 
-        $("#Endereco").val('');
-        $("#Bairro").val('');
-        $("#Cidade").val('');
-        $("#Estado").val('');
+    $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
 
-        var cep = $('#Cep').val().replace(".", "");
-        cep = cep.replace("-", "");
+        if (data.resultado_txt == 'sucesso - cep completo') {
 
-        $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
+            var endereco = data.tipo_logradouro + ' ' + data.logradouro;
+            var bairro = data.bairro;
+            var cidade = data.cidade;
+            var Estado = data.uf;
 
-            if (data.resultado_txt == 'sucesso - cep completo') {
+            $("#Endereco").val(endereco);
+            $("#Bairro").val(bairro);
+            $("#Cidade").val(cidade);
+            $("#Estado").val(Estado);
 
-                $("#Endereco").val(data.tipo_logradouro + ' ' + data.logradouro);
-                $("#Bairro").val(data.bairro);
-                $("#Cidade").val(data.cidade);
-                $("#Estado").val(data.uf);
-                $("#Endereco").focus();
-                $("#Bairro").focus();
-                $("#Cidade").focus();
-                $("#Estado").focus();
-            }
-        });
+            
+        }
     });
 });
 
@@ -69,10 +72,6 @@ $(document).on("change", "#func", function () {
     }
     console.log(valor);
 });
-
-
-
-
 
 
 
