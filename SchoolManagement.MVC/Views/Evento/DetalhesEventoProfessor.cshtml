@@ -1,0 +1,95 @@
+﻿@model SchoolManagement.MVC.ViewModels.EventoViewModel
+
+@{
+    ViewBag.Title = "Detalhes - Evento";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Evento
+            <small>Deletar Evento</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Evento</li>
+            <li class="active">Deletar Evento</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <h4>EventoViewModel</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Local)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Local)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataCriacao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataCriacao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataEvento)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataEvento)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.NecessidadeAprovacao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.NecessidadeAprovacao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.PrecoEvento)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.PrecoEvento)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.EventoId }) |
+                           @Html.ActionLink("Voltar", "RecuperarEventoPorDescricao", "Evento")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

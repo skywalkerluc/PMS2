@@ -51,6 +51,28 @@ namespace SchoolManagement.MVC.Utilitarios
             return ListaRetorno;
         }
 
+        public List<SelectListItem> PreencherListsConteudosExtras()
+        {
+            List<SelectListItem> ListaRetorno = new List<SelectListItem>();
+            CriarItemBrancoEmLista(ListaRetorno);
+
+            SelectListItem Professor = new SelectListItem()
+            {
+                Value = "1",
+                Text = "Conteudo Extra"
+            };
+            ListaRetorno.Add(Professor);
+
+            SelectListItem Outros = new SelectListItem()
+            {
+                Value = "2",
+                Text = "Trabalhos Extras"
+            };
+            ListaRetorno.Add(Outros);
+
+            return ListaRetorno;
+        }
+
         public List<SelectListItem> PreencherListaTurmas()
         {
             var turmas = _turmaServico.RecuperarTodos();

@@ -1170,6 +1170,14 @@
     <Content Include="Views\Professor\DesassociarProfessorTurmaParte1.cshtml" />
     <Content Include="Views\Professor\DetalhesTurmaProfessorLeciona.cshtml" />
     <Content Include="Views\Evento\CadastrarEventosProfessor.cshtml" />
+    <Content Include="Views\ResultadosProvas\FiltroTurmasProfessorLecionaLancarNotas.cshtml" />
+    <Content Include="Views\ResultadosProvas\VisualizarAlunosTurmasProfessorLecionaLancarNotas.cshtml" />
+    <Content Include="Views\Notificacao\DetalhesNotificacaoProfessor.cshtml" />
+    <Content Include="Views\Evento\DetalhesEventoProfessor.cshtml" />
+    <Content Include="Views\ConteudoExtra\FiltroTipoConteudo.cshtml" />
+    <Content Include="Views\ConteudoExtra\CadastroConteudoExtra.cshtml" />
+    <Content Include="Views\ConteudoExtra\AdicionarTrabalhosExtras.cshtml" />
+    <Content Include="Views\ConteudoExtra\FiltroTipoConteudoConsulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
