@@ -23,5 +23,7 @@ namespace SchoolManagement.MVC.ViewModels
         [Display(Name = "Tipo de Conteudo")]
         public String tipoConteudo { get; set; }
         public int tipoConteudoEscolhido { get; set; }
+
+        public int turmaSelecionada { get; set; }
     }
 }

@@ -65,6 +65,7 @@ namespace SchoolManagement.MVC.Controllers
                 var professor = _professorApp.Recuperar(usuarioLogado);
                 var turma = _turmaApp.Recuperar(conteudosExtras.TurmaSelecionada);
 
+                conteudosExtras.DataHoraCriacao = DateTime.Now;
 
                 var conteudoMapped = Mapper.Map<ConteudosExtrasViewModel, ConteudosExtras>(conteudosExtras);
                 conteudoMapped.Professor = professor;
