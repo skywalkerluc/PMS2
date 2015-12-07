@@ -53,5 +53,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._provaRep.ExcluirProva(ProvaId);
         }
+
+        public IEnumerable<Prova> RecuperarTodasAsProvas()
+        {
+            return this._provaRep.RecuperarTodasAsProvas();
+        }
     }
 }

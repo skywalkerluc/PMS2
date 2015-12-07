@@ -12,6 +12,10 @@ namespace SchoolManagement.Data.Repositorios
 {
     public class ProvaRepositorio : RepositorioBase<Prova>, IProvaRepositorio
     {
+        private readonly TurmaRepositorio _turmaRep;
+        private readonly ProfessorRepositorio _profRep;
+        private readonly DisciplinaRepositorio _discRep;
+
         public Prova RecuperarProva(int ProvaId)
         {
             try
@@ -40,16 +44,115 @@ namespace SchoolManagement.Data.Repositorios
 
             //return prova;
 
-            var dataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
-            var unidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
-            var statusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
-            var tipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
-            var disciplinaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
-            var professorIdParameter = new SqlParameter("@ProfessorId", prova.Professores.Id);
-            var turmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
+            //var dataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
+            //var unidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
+            //var statusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
+            //var tipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
+            //var disciplinaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
+            //var professorIdParameter = new SqlParameter("@ProfessorId", prova.Professores.Id);
+            //var turmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
 
-            var query = this.Db.Database.ExecuteSqlCommand("INSERT INTO [dbo].[Prova] ([DataProva], [Unidade], [StatusProva], [TipoProva], [Disciplina_DisciplinaId], [Professores_Id], [Turma_TurmaId]) VALUES (@DataProva, @Unidade, @StatusProva, @TipoProva, @DisciplinaId, @ProfessorId, @TurmaId)", 
-                dataProvaParameter, unidadeParameter, statusProvaParameter, tipoProvaParameter, disciplinaIdParameter, professorIdParameter, turmaIdParameter);
+            //var query = this.Db.Database.ExecuteSqlCommand("INSERT INTO [dbo].[Prova] ([DataProva], [Unidade], [StatusProva], [TipoProva], [Disciplina_DisciplinaId], [Professores_Id], [Turma_TurmaId]) VALUES (@DataProva, @Unidade, @StatusProva, @TipoProva, @DisciplinaId, @ProfessorId, @TurmaId)", 
+            //    dataProvaParameter, unidadeParameter, statusProvaParameter, tipoProvaParameter, disciplinaIdParameter, professorIdParameter, turmaIdParameter);
+            //return prova;
+
+
+            Db.Entry(prova.Disciplina).State = EntityState.Detached;
+
+            if (prova.Disciplina.Livros != null)
+            {
+                foreach (var livro in prova.Disciplina.Livros)
+                {
+                    Db.Entry(livro).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Disciplina.Professores != null)
+            {
+                foreach (var prof in prova.Disciplina.Professores)
+                {
+                    Db.Entry(prof).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Disciplina.Turmas != null)
+            {
+                foreach (var turma in prova.Disciplina.Turmas)
+                {
+                    Db.Entry(turma).State = EntityState.Detached;
+                }
+            }
+
+            if(prova.Professores != null)
+            { 
+                Db.Entry(prova.Professores).State = EntityState.Detached;
+            }
+
+            if (prova.Professores.Disciplinas != null)
+            {
+                foreach (var disc in prova.Professores.Disciplinas)
+                {
+                    Db.Entry(disc).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Professores.Turmas != null)
+            {
+                foreach (var turm in prova.Professores.Turmas)
+                {
+                    Db.Entry(turm).State = EntityState.Detached;
+                }
+            }
+
+
+            if (prova.Turma != null)
+            {
+                Db.Entry(prova.Turma).State = EntityState.Detached;
+            }
+
+            if (prova.Turma.Alunos != null)
+            {
+                foreach (var aluno in prova.Turma.Alunos)
+                {
+                    Db.Entry(aluno).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Turma.AnoLetivo != null)
+            {
+                Db.Entry(prova.Turma.AnoLetivo).State = EntityState.Detached;
+            }
+
+
+            if (prova.Turma.Disciplinas != null)
+            {
+                foreach (var disc in prova.Turma.Disciplinas)
+                {
+                    Db.Entry(disc).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Turma.Materiais != null)
+            {
+                foreach (var material in prova.Turma.Materiais)
+                {
+                    Db.Entry(material).State = EntityState.Detached;
+                }
+            }
+
+            if (prova.Turma.Professores != null)
+            {
+                foreach (var prof in prova.Turma.Professores)
+                {
+                    Db.Entry(prof).State = EntityState.Detached;
+                }
+            }
+
+            Db.Provas.Attach(prova);
+            Db.SaveChanges();
+            Db.Provas.Add(prova);
+            Db.SaveChanges();
+
             return prova;
         }
 
@@ -76,7 +179,35 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Prova> BuscarPorDisciplina(int codDisciplina)
         {
-            return Db.Provas.Where(p => p.Disciplina.DisciplinaId == codDisciplina);
+            List<Prova> ListaRetorno = new List<Prova>();
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+            SqlCommand command = new SqlCommand("SELECT * FROM Prova AS P WHERE P.Disciplina_DisciplinaId = " + codDisciplina, conn);
+            conn.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Prova pr = new Prova()
+                    {
+                        ProvaId = reader.GetInt32(0),
+                        DataProva = reader.GetDateTime(1),
+                        Unidade = reader.GetInt32(2),
+                        StatusProva = reader.GetInt32(3),
+                        TipoProva = reader.GetInt32(4),
+                        Disciplina = (new DisciplinaRepositorio().Recuperar(reader.GetInt32(5))),
+                        Professores = (new ProfessorRepositorio().Recuperar(reader.GetInt32(6))),
+                        Turma = (new TurmaRepositorio().Recuperar(reader.GetInt32(7)))
+                    };
+                    ListaRetorno.Add(pr);
+                }
+                return ListaRetorno;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public IEnumerable<Prova> RecuperarProvasProfessor(int ProfessorId)
@@ -109,6 +240,39 @@ namespace SchoolManagement.Data.Repositorios
                 throw new NotImplementedException(ex.Message.ToString());
             }
             
+        }
+
+        public IEnumerable<Prova> RecuperarTodasAsProvas()
+        {
+            List<Prova> ListaRetorno = new List<Prova>();
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+            SqlCommand command = new SqlCommand("SELECT * FROM Prova", conn);
+            conn.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Prova pr = new Prova()
+                    {
+                        ProvaId = reader.GetInt32(0),
+                        DataProva = reader.GetDateTime(1),
+                        Unidade = reader.GetInt32(2),
+                        StatusProva = reader.GetInt32(3),
+                        TipoProva = reader.GetInt32(4),
+                        Disciplina = (new DisciplinaRepositorio().Recuperar(reader.GetInt32(5))),
+                        Professores = (new ProfessorRepositorio().Recuperar(reader.GetInt32(6))),
+                        Turma = (new TurmaRepositorio().Recuperar(reader.GetInt32(7)))
+                    };
+                    ListaRetorno.Add(pr);
+                }
+                return ListaRetorno;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
     }
