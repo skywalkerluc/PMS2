@@ -35,7 +35,17 @@ namespace SchoolManagement.MVC.Controllers
             var evento = _eventoServico.Recuperar(id);
             var eventoViewModel = Mapper.Map<Evento, EventoViewModel>(evento);
 
-            return View("DetalhesEvento", eventoViewModel);
+            int idUsuario = Convert.ToInt32(Session["IdentidicadorAcessoUsuário"].ToString());
+
+            if (idUsuario == 4)
+            {
+                return View("DetalhesEventoProfessor", eventoViewModel);
+            }
+            else
+            {
+                return View("DetalhesEvento", eventoViewModel);
+            }
+
         }
 
         public ActionResult DetailsOutroUsuario(int id)
@@ -105,7 +115,7 @@ namespace SchoolManagement.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var eventoDomain = Mapper.Map<EventoViewModel, Evento>(evento);
-                _eventoServico.Atualizar(eventoDomain);
+                _eventoServico.AtualizarDadosEvento(eventoDomain);
 
                 return RedirectToAction("Index", "Home");
             }

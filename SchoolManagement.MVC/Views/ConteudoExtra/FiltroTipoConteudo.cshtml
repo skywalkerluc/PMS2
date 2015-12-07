@@ -1,0 +1,72 @@
+﻿@model SchoolManagement.MVC.ViewModels.ConteudosExtrasViewModel
+@{
+    ViewBag.Title = "Filtro - Funcionário";
+}
+<style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Conteudos Extras
+            <small>Cadastro de Conteudos</</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"> Conteudos Extras</a></li>
+            <li class="active">Cadastro de Conteudos</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="example-modal">
+            <div class="modal">
+                <div class="modal-dialog">
+                    @using (Html.BeginForm("EscolhaTipoConteudoCadastro", "ConteudoExtra", FormMethod.Post))
+                    {
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Cadastrar Funcionario</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.tipoConteudo)
+                                    @{
+                        List<SelectListItem> listaConteudos = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaConteudos)
+                        {
+                            SelectListItem selec = new SelectListItem()
+                            {
+                                Value = item.Value,
+                                Text = item.Text
+                            };
+                            listaConteudos.Add(selec);
+                        }
+                        @Html.DropDownListFor(m => m.tipoConteudoEscolhido, listaConteudos, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
+                                    }
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Avançar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    }
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div><!-- /.example-modal -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

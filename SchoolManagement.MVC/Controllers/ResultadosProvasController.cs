@@ -16,12 +16,13 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IResultadosProvasServico _resultadosProvasApp;
         private readonly Utilizavel _util;
         private readonly ITurmaServico _turmaServico;
-
-        public ResultadosProvasController(IResultadosProvasServico resultadosProvasApp, Utilizavel util, ITurmaServico turmaServico)
+        private readonly IAlunoServico _alunoServico;
+        public ResultadosProvasController(IResultadosProvasServico resultadosProvasApp, Utilizavel util, ITurmaServico turmaServico,  IAlunoServico alunoServico)
         {
             _resultadosProvasApp = resultadosProvasApp;
             _util = util;
             _turmaServico = turmaServico;
+            _alunoServico = alunoServico;
         }
 
         //
@@ -97,6 +98,49 @@ namespace SchoolManagement.MVC.Controllers
                     break;
             }
             return descricaoRetorno;
+        }
+
+        [HttpGet]
+        public ActionResult FiltroTurmasProfessorLeciona()
+        {
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmas.Add(select);
+            }
+
+            ViewBag.ListaTurmas = ListaTurmas;
+
+            return View("FiltroTurmasProfessorLecionaLancarNotas");
+        }
+
+        [HttpPost]
+        public ActionResult VisualizarAlunosTurmasProfessorLecionaLancarNota()
+        {
+            List<Aluno> AlunosBackEnd = new List<Aluno>();
+
+            int professorId = (int)Session["UsuarioId"];
+            //VisualizarTurmasProfessor
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+
+            foreach (var turma in turmas)
+            {
+                var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
+                foreach (var aluno in alunos)
+                {
+                    AlunosBackEnd.Add(aluno);
+                }
+            }
+
+            var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
+            return View("VisualizarAlunosTurmasProfessorLecionaLancarNotas", alunosMapped);
         }
 	}
 }

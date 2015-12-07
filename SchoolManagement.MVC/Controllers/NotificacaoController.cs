@@ -42,7 +42,17 @@ namespace SchoolManagement.MVC.Controllers
             var notf = _notificacaoServico.Recuperar(id);
             var notfViewModel = Mapper.Map<Notificacao, NotificacaoViewModel>(notf);
 
-            return View("DetalhesNotificacao", notfViewModel);
+            int idUsuario = Convert.ToInt32(Session["IdentidicadorAcessoUsuário"].ToString());
+
+            if (idUsuario == 4)
+            {
+                return View("DetalhesNotificacaoProfessor", notfViewModel);
+            }
+            else
+            {
+                return View("DetalhesNotificacao", notfViewModel);
+            }
+
         }
 
         //
@@ -316,6 +326,15 @@ namespace SchoolManagement.MVC.Controllers
             }
             return descricaoRetorno;
         }
+
+        public ActionResult DetalhesNotificacaoprofessor(int id)
+        {
+            var notf = _notificacaoServico.Recuperar(id);
+            var notfViewModel = Mapper.Map<Notificacao, NotificacaoViewModel>(notf);
+
+            return View("DetalhesNotificacaoProfessor", notfViewModel);
+        }
+
 
 
     }

@@ -120,7 +120,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: Prova/Edit/5
         public ActionResult Edit(int id)
         {
-            var prova = _provaApp.Recuperar(id);
+            var prova = _provaApp.RecuperarProva(id);
             var provaViewModel = Mapper.Map<Prova, ProvaViewModel>(prova);
 
             return View("EditarProva", provaViewModel);
@@ -143,7 +143,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: Prova/Delete/5
         public ActionResult Delete(int id)
         {
-            var prova = _provaApp.Recuperar(id);
+            var prova = _provaApp.RecuperarProva(id);
             var provaViewModel = Mapper.Map<Prova, ProvaViewModel>(prova);
 
             return View("ExcluirProva", provaViewModel);
@@ -154,11 +154,11 @@ namespace SchoolManagement.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var prova = _provaApp.Recuperar(id);
+            var prova = _provaApp.RecuperarProva(id);
 
             var provaSelecionado = Mapper.Map<Prova, Prova>(prova);
-            _provaApp.Remover(provaSelecionado);
-
+            _provaApp.ExcluirProva(provaSelecionado.ProvaId);
+            
             return RedirectToAction("Index", "Home");
         }
 

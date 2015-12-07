@@ -65,6 +65,7 @@ namespace SchoolManagement.MVC.Controllers
                 var professor = _professorApp.Recuperar(usuarioLogado);
                 var turma = _turmaApp.Recuperar(conteudosExtras.TurmaSelecionada);
 
+                conteudosExtras.DataHoraCriacao = DateTime.Now;
 
                 var conteudoMapped = Mapper.Map<ConteudosExtrasViewModel, ConteudosExtras>(conteudosExtras);
                 conteudoMapped.Professor = professor;
@@ -184,6 +185,62 @@ namespace SchoolManagement.MVC.Controllers
             var conteudoViewModel = Mapper.Map<ConteudosExtras, ConteudosExtrasViewModel>(conteudo);
 
             return View("DetalhesConteudosExtrasMinhaTurma", conteudoViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult EscolhaTipoConteudoCadastro()
+        {
+            Utilizavel util = new Utilizavel();
+            ViewBag.ListaConteudos = util.PreencherListsConteudosExtras();
+            return View("FiltroTipoConteudo");
+        }
+
+        [HttpPost]
+        public ActionResult EscolhaTipoConteudoCadastro(ConteudosExtrasViewModel conteudo)
+        {
+            if (conteudo.tipoConteudoEscolhido == 1)
+            {
+                return View("CadastroConteudoExtra");
+            }
+            else if (conteudo.tipoConteudoEscolhido == 2)
+            {
+                return View("AdicionarTrabalhosExtras");
+            }
+            else
+            {
+                Utilizavel util = new Utilizavel();
+                ViewBag.ListaConteudos = util.PreencherListsConteudosExtras();
+                return View("FiltroTipoConteudo");
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult EscolhaTipoConteudoCadastroConsulta()
+        {
+            Utilizavel util = new Utilizavel();
+            ViewBag.ListaConteudos = util.PreencherListsConteudosExtras();
+            return View("FiltroTipoConteudoConsulta");
+        }
+
+        [HttpPost]
+        public ActionResult EscolhaTipoConteudoCadastroConsulta(ConteudosExtrasViewModel conteudo)
+        {
+            if (conteudo.tipoConteudoEscolhido == 1)
+            {
+                return View("CadastroConteudoExtra");
+            }
+            else if (conteudo.tipoConteudoEscolhido == 2)
+            {
+                return View("AdicionarTrabalhosExtras");
+            }
+            else
+            {
+                Utilizavel util = new Utilizavel();
+                ViewBag.ListaConteudos = util.PreencherListsConteudosExtras();
+                return View("FiltroTipoConteudoConsulta");
+            }
+
         }
     }
 }
