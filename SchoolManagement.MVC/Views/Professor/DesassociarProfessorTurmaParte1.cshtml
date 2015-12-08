@@ -47,17 +47,17 @@
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Nome)
                                         @{
-                        List<SelectListItem> listaProfessores = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaProfessores)
-                        {
-                            SelectListItem selec = new SelectListItem()
-                            {
-                                Value = item.Value,
-                                Text = item.Text
-                            };
-                            listaProfessores.Add(selec);
-                        }
-                        @Html.DropDownListFor(m => m.professorSelecionado, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "aluno" })
+                                            List<SelectListItem> listaProfessores = new List<SelectListItem>();
+                                            foreach (var item in @ViewBag.ListaProfessores)
+                                            {
+                                                SelectListItem selec = new SelectListItem()
+                                                {
+                                                    Value = item.Value,
+                                                    Text = item.Text
+                                                };
+                                                listaProfessores.Add(selec);
+                                            }
+                                            @Html.DropDownListFor(m => m.professorSelecionado, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "professorDesassociado" })
                                         }
                                         @Html.ValidationMessageFor(model => model.Nome)
                                     </div>
@@ -65,17 +65,17 @@
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Turmas)
                                         @{
-                        List<SelectListItem> listaTurma = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaTurmas)
-                        {
-                            SelectListItem selec = new SelectListItem()
-                            {
-                                Value = item.Value,
-                                Text = item.Text
-                            };
-                            listaTurma.Add(selec);
-                        }
-                        @Html.DropDownListFor(m => m.turmaSelecionada, listaTurma, new { @class = "form-control select2", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "aluno" })
+                                            List<SelectListItem> listaTurma = new List<SelectListItem>();
+                                            foreach (var item in @ViewBag.ListaTurmas)
+                                            {
+                                                SelectListItem selec = new SelectListItem()
+                                                {
+                                                    Value = item.Value,
+                                                    Text = item.Text
+                                                };
+                                                listaTurma.Add(selec);
+                                            }
+                                            @Html.DropDownListFor(m => m.turmaSelecionada, listaTurma, new { @class = "form-control select2", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "turmaDesassociado" })
                                         }
                                         @Html.ValidationMessageFor(model => model.Turmas)
                                     </div>
@@ -93,3 +93,13 @@
         </div><!-- /.example-modal -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script>
+    $("#professorDesassociado").change(function () {
+        var professorId = $("#professorDesassociado").val();
+            $.ajax({
+                url: "/Professor/RemoverProfessorDeTurma/" + professorId,
+            });
+        });
+</script>
+

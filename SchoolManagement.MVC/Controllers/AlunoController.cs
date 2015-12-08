@@ -127,12 +127,13 @@ namespace SchoolManagement.MVC.Controllers
                 //ViewBag.TituloMensagem = "Sucesso";
                 //ViewBag.MensagemErro = "Aluno cadastrado com sucesso!";
 
-                ViewBag.AlertMessage = "Aluno cadastrado com sucesso!";
+                Session["AlertMesage"] = "Aluno cadastrado com sucesso!";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
                 var mensagemErro = ex.Message.ToString();
+                Session["AlertMesage"] = mensagemErro;
                 throw new NotImplementedException(mensagemErro);
             }
         }

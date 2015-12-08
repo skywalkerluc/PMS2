@@ -72,7 +72,7 @@ namespace SchoolManagement.MVC.Controllers
             try
             {
                 List<DisciplinaViewModel> ListaDisciplinas = new List<DisciplinaViewModel>();
-                if(professor.disciplinasTeste.Count > 0)
+                if (professor.disciplinasTeste.Count > 0)
                 {
                     for (int i = 0; i <= professor.disciplinasTeste.Count - 1; i++)
                     {
@@ -198,7 +198,7 @@ namespace SchoolManagement.MVC.Controllers
                 };
                 ListaTurmas.Add(select);
             }
-            
+
             ViewBag.ListaTurmas = ListaTurmas;
 
             return View("FiltroTurmasProfessorLeciona");
@@ -257,19 +257,25 @@ namespace SchoolManagement.MVC.Controllers
             return View("DetalhesTurmaProfessorLeciona", turmaViewModel);
         }
 
-
-
         [HttpGet]
-        public ActionResult IncluirProfessorEmTurma()
+        public ActionResult IncluirProfessorEmTurma(ProfessorViewModel professor)
         {
             ViewBag.ListaProfessores = _util.PreencherListaProfessores();
-            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
 
+            var professorId = professor.Id;
+            if (professorId != 0)
+            {
+                ViewBag.ListaTurmas = _turmaServico.RecuperarTurmasProfessorNaoLeciona(professorId);
+            }
+            else
+            {
+                ViewBag.ListaTurmas = new List<SelectListItem>();
+            }
             return View("AssociarProfessorTurmaParte1");
         }
 
         [HttpPost]
-        public ActionResult IncluirProfessorEmTurma(ProfessorViewModel professor)
+        public ActionResult IncluirProfessorEmTurmaPost(ProfessorViewModel professor)
         {
             var attmpt = _professorApp.IncluirProfessorEmTurma(professor.professorSelecionado, professor.turmaSelecionada);
             if (attmpt)
@@ -280,10 +286,18 @@ namespace SchoolManagement.MVC.Controllers
 
 
         [HttpGet]
-        public ActionResult RemoverProfessorDeTurma()
+        public ActionResult RemoverProfessorDeTurma(ProfessorViewModel professor)
         {
             ViewBag.ListaProfessores = _util.PreencherListaProfessores();
-            ViewBag.ListaTurmas = _util.PreencherListaTurmas();
+            var professorId = professor.Id;
+            if (professorId != 0)
+            {
+                ViewBag.ListaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            }
+            else
+            {
+                ViewBag.ListaTurmas = new List<SelectListItem>();
+            }
 
             return View("AssociarProfessorTurmaParte1");
         }

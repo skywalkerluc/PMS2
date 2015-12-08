@@ -523,7 +523,7 @@
                                         <li>@Html.ActionLink("Filtro de Alunos", "FiltroTurmasProfessorLeciona", "Professor")</li>
                                     </ul>
                                 </li>
-                               
+
                                 <!--Turmas-->
                                 <li class="treeview">
                                     <a href="#">
@@ -531,7 +531,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Visualizar turmas que leciono", "VisualizarTurmasProfessorLeciona", "Professor")</li>   
+                                        <li>@Html.ActionLink("Visualizar turmas que leciono", "VisualizarTurmasProfessorLeciona", "Professor")</li>
                                     </ul>
                                 </li>
 
@@ -544,7 +544,7 @@
                                     <ul class="treeview-menu">
                                         <li>@Html.ActionLink("Cadastro de Provas", "Create", "Prova")</li>
                                         <li>@Html.ActionLink("Calendário de Provas", "RecuperarProvaPorDisciplina", "Prova")</li>
-                                        
+
                                     </ul>
                                 </li>
                                 <!--Eventos-->
@@ -601,7 +601,7 @@
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </a>
                                     <ul class="treeview-menu">
-                                        <li>@Html.ActionLink("Preencher Caderneta", "", "Professor")</li>
+                                        <li>@Html.ActionLink("Preencher Caderneta", "FiltroTurmasFrequenciaProfessorLeciona", "Frequencia")</li>
                                         <li>@Html.ActionLink("Consultar Caderneta", "", "Professor")</li>
                                     </ul>
                                 </li>
@@ -845,7 +845,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Versao</b> 1.0
                 </div>
-                <div class = "footer-description">
+                <div class="footer-description">
                     <strong>Copyright &copy; 2015 .</strong> Todos os Direitos reservados a SMS - School Management System.
                 </div>
             </footer>
@@ -864,7 +864,7 @@
     </script>
     <!-- Bootstrap 3.3.5 -->
     <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Morris.js charts 
+    <!-- Morris.js charts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
      -->
     @*<script src="~/Content/plugins/morris/morris.min.js"></script>*@
@@ -906,4 +906,4 @@
     @RenderSection("scripts", required: false)
 
 </body>
-</html>
+</html> 

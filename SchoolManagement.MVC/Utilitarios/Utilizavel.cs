@@ -275,5 +275,28 @@ namespace SchoolManagement.MVC.Utilitarios
 
             return ListaRetorno;
         }
+
+
+        public List<SelectListItem> PreencherListasFrequencia()
+        {
+            List<SelectListItem> ListaRetorno = new List<SelectListItem>();
+            CriarItemBrancoEmLista(ListaRetorno);
+
+            SelectListItem presente = new SelectListItem()
+            {
+                Value = "1",
+                Text = "Presente"
+            };
+            ListaRetorno.Add(presente);
+
+            SelectListItem falta = new SelectListItem()
+            {
+                Value = "2",
+                Text = "Falta"
+            };
+            ListaRetorno.Add(falta);
+
+            return ListaRetorno;
+        }
     }
 }

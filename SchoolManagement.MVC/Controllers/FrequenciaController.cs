@@ -138,5 +138,157 @@ namespace SchoolManagement.MVC.Controllers
             }
             
         }
+
+        [HttpGet]
+        public ActionResult FiltroTurmasFrequenciaProfessorLeciona()
+        {
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmasFrequencia = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmasFrequencia.Add(select);
+            }
+
+            ViewBag.ListaTurmasFrequencia = ListaTurmasFrequencia;
+
+            return View("FiltroFrequenciaTurmaProfessor");
+        }
+
+        [HttpGet]
+        public ActionResult FiltroDisciplinaFrequenciaProfessorLeciona(TurmaViewModel turma)
+        {
+            int professorId = (int)Session["UsuarioId"];
+
+            List<SelectListItem> ListaDisciplinaFrequencia = new List<SelectListItem>();
+
+            var listaTurmas = _disciplinaServico.RecuperarDisciplinasTurmaProfessor(turma.TurmaId, professorId);
+
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = Convert.ToString(item.DisciplinaId),
+                    Text = item.NomeDisciplina
+                };
+                ListaDisciplinaFrequencia.Add(select);
+            }
+
+            ViewBag.ListaDisciplinaFrequencia = ListaDisciplinaFrequencia;
+
+            return View("FiltroDisciplinaFrequenciaProfessor");
+        }
+
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
+        }
+
+        [HttpGet]
+        public ActionResult VisualizarAlunosTurmasProfessorLecionaFrequencia(DisciplinaViewModel disciplina)
+        {
+
+            Session["disciplinaSelecionada"] = disciplina.DisciplinaId;
+
+            List<FrequenciaViewModel> AlunosBackEnd = new List<FrequenciaViewModel>();
+
+            int professorId = (int)Session["UsuarioId"];
+            //VisualizarTurmasProfessor
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+
+            foreach (var turma in turmas)
+            {
+                var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
+                var alun = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(alunos);
+                foreach (var aluno in alun)
+                {
+                    FrequenciaViewModel f = new FrequenciaViewModel();
+                    f.Aluno = aluno;
+                    AlunosBackEnd.Add(f);
+                }
+            }
+
+            Utilizavel util = new Utilizavel();
+            ViewBag.ListaTiposDeFrequencia = util.PreencherListasFrequencia();
+
+            var alunosMapped = Mapper.Map<IEnumerable<FrequenciaViewModel>, IEnumerable<FrequenciaViewModel>>(AlunosBackEnd);
+            return View("VisualizarAlunosTurmasProfessorLecionaFrequencia", alunosMapped);
+
+        }
+
+
+        //[HttpPost]
+        //public ActionResult LancarFrequenciaAluno(FormCollection resultados)
+        //{
+        //    try
+        //    {
+        //        var AlunosLista = resultados["item.Aluno.Id"];
+        //        var FrequenciaLista = resultados["item.resul"];
+        //        var dataReferencia = resultados["item.DataReferencia"];
+
+        //        int disciplinaSelecionada = (int)Session["disciplinaSelecionada"];
+
+        //        var disciplina = _disciplinaServico.Recuperar(disciplinaSelecionada);
+        //        var provaMap = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
+
+
+        //        string[] quebAlunos = AlunosLista.Split(',');
+        //        string[] quebNotas = FrequenciaLista.Split(',');
+
+
+        //        List<ResultadosProvasViewModel> listResultados = new List<ResultadosProvasViewModel>();
+
+        //        for (int i = 0; i < quebAlunos.Length; i++)
+        //        {
+        //            ResultadosProvasViewModel rp = new ResultadosProvasViewModel();
+
+        //            var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
+        //            var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
+
+        //            rp.Aluno = alunoMap;
+        //            rp.Nota = Convert.ToInt32(quebNotas[i]);
+        //            rp.Prova = provaMap;
+        //            rp.Observacao = "";
+        //            rp.Gabarito = "";
+
+        //            listResultados.Add(rp);
+        //        }
+
+
+        //        foreach (var item in listResultados)
+        //        {
+        //            var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
+        //            var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
+        //        }
+
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new NotImplementedException(ex.Message.ToString());
+        //    }
+        //}
 	}
 }

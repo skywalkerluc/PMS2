@@ -13,17 +13,3 @@
         </section>
 
     </div><!-- /.content-wrapper -->
-@{
-    if (ViewBag.AlertMessage != null)
-    {
-        <div id="dialog" title="Aviso!">
-            <p>@ViewBag.AlertMessage</p>
-        </div>
-    }
-}
-
-<script>
-    $(document).ready(function () {
-        $("#dialog").dialog("open");
-    });
-</script>
