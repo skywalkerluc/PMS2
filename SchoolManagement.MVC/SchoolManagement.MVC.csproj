@@ -1178,6 +1178,7 @@
     <Content Include="Views\ConteudoExtra\CadastroConteudoExtra.cshtml" />
     <Content Include="Views\ConteudoExtra\AdicionarTrabalhosExtras.cshtml" />
     <Content Include="Views\ConteudoExtra\FiltroTipoConteudoConsulta.cshtml" />
+    <Content Include="Views\ResultadosProvas\FiltroProvasProfessorTurma.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

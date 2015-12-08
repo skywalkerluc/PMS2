@@ -1,68 +1,97 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.AlunoViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel>
 
 @{
     ViewBag.Title = "Visualizar Alunos Professor";
 }
 
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Professor
-            <small>Visualizar Alunos Professores</small>
+            Notas
+            <small>Lançar notas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Professor</li>
-            <li class="active">Visualizar Alunos Professores</li>
+            <li><a href="#">Notas</a></li>
+            <li class="active">Lançar notas</li>
         </ol>
     </section>
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Alunos Professores</h3>
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Lançar Notas</h3>
+                        <div class="box-tools">
+                            <div class="input-group" style="width: 150px;">
+                                <div class="input-group-btn">
+                                </div>
+                            </div>
+                        </div>
                     </div><!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body table-responsive no-padding">
                         @using (Html.BeginForm("LancarNotasTurma", "ResultadosProvas", FormMethod.Post))
                         {
-                            <table class="table">
+                            <table class="table table-hover">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Nome)
+                                        @Html.DisplayNameFor(model => model.Aluno.Nome)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Observacoes)
+                                        @Html.DisplayNameFor(model => model.Nota)
                                     </th>
                                     <th></th>
                                 </tr>
 
+                                @{var cont = 1;}
                                 @foreach (var item in Model)
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
+                                            <div class="form-group col-md-6">
+                                                @Html.DisplayFor(m => item.Aluno.Nome, new {id = "nomeAluno" })
+                                                @Html.HiddenFor(m => item.Aluno.Id)
+                                            </div>
                                         </td>
                                         <td>
-                                            @Html.LabelFor(modelItem => item.Nome)
-                                            @Html.TextBoxFor(modelItem => item.Nome, new { @placeholder = "nome", @id = "nome", @class = "form-control" })
-                                            @Html.ValidationMessageFor(modelItem => item.Nome)
+                                            <div class="form-group">
+                                                @{
+                                    List<SelectListItem> listaNotas = new List<SelectListItem>();
+                                    foreach (var item2 in @ViewBag.ListaNotas)
+                                    {
+                                        SelectListItem selec = new SelectListItem()
+                                        {
+                                            Value = item2.Value,
+                                            Text = item2.Text
+                                        };
+                                        listaNotas.Add(selec);
+                                    }
+                                        @Html.DropDownListFor(m => item.resul, listaNotas, new { @class = "form-control select2", placeholder = "Selecione uma aluno", style = "width: 100%;", id = "resultadoAluno"+"["+cont+"]" })
+                                                    }
+                                            </div>
                                         </td>
                                     </tr>
+                                    cont++;
                                 }
                             </table>
-
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="submit" class="btn btn-primary">Lançar notas</button>
                             </div>
                         }
                     </div><!-- /.box-body -->
-                </div>
-            </div><!--/.col (left) -->
-            <!-- right column -->
-        </div>   <!-- /.row -->
+                </div><!-- /.box -->
+            </div>
+        </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script>
+    $("#resultadoAluno").change(function ()
+    {
+        var val = $('#resultadoAluno').val();
+        console.log(val);
+    });
+</script>

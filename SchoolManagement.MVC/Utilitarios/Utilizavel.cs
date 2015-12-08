@@ -197,5 +197,83 @@ namespace SchoolManagement.MVC.Utilitarios
 
             return listaAluno;
         }
+
+        public List<SelectListItem> PreencherListasNotas()
+        {
+            List<SelectListItem> ListaRetorno = new List<SelectListItem>();
+            CriarItemBrancoEmLista(ListaRetorno);
+
+            SelectListItem um = new SelectListItem()
+            {
+                Value = "1",
+                Text = "1"
+            };
+            ListaRetorno.Add(um);
+
+            SelectListItem dois = new SelectListItem()
+            {
+                Value = "2",
+                Text = "2"
+            };
+            ListaRetorno.Add(dois);
+
+            SelectListItem tres = new SelectListItem()
+            {
+                Value = "3",
+                Text = "3"
+            };
+            ListaRetorno.Add(tres);
+
+            SelectListItem quatro = new SelectListItem()
+            {
+                Value = "4",
+                Text = "4"
+            };
+            ListaRetorno.Add(quatro);
+
+            SelectListItem cinco = new SelectListItem()
+            {
+                Value = "5",
+                Text = "5"
+            };
+            ListaRetorno.Add(cinco);
+
+            SelectListItem seis = new SelectListItem()
+            {
+                Value = "6",
+                Text = "6"
+            };
+            ListaRetorno.Add(seis);
+
+            SelectListItem sete = new SelectListItem()
+            {
+                Value = "7",
+                Text = "7"
+            };
+            ListaRetorno.Add(sete);
+
+            SelectListItem oito = new SelectListItem()
+            {
+                Value = "8",
+                Text = "8"
+            };
+            ListaRetorno.Add(oito);
+
+            SelectListItem nove = new SelectListItem()
+            {
+                Value = "9",
+                Text = "9"
+            };
+            ListaRetorno.Add(nove);
+
+            SelectListItem dez = new SelectListItem()
+            {
+                Value = "10",
+                Text = "10"
+            };
+            ListaRetorno.Add(dez);
+
+            return ListaRetorno;
+        }
     }
 }
