@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.EventoViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Todos Eventos";
+    ViewBag.Title = "Visualizar todos os Eventos";
 }
 
 
@@ -10,12 +10,12 @@
     <section class="content-header">
         <h1>
             Evento
-            <small>Visualizar Todos Eventos</small>
+            <small>Visualizar todos os Eventos</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Evento</li>
-            <li class="active">Visualizar Todos Eventos</li>
+            <li class="active">Visualizar todos os Eventos</li>
         </ol>
     </section>
 
@@ -26,35 +26,36 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Todos Eventos</h3>
+                        <h3 class="box-title">Visualizar todos os Eventos</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table class="table">
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Local)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Descricao)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DataCriacao)
-                                </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.DataEvento)
                                 </th>
+                                
                                 <th>
-                                    @Html.DisplayNameFor(model => model.NecessidadeAprovacao)
+                                    @Html.DisplayNameFor(model => model.Descricao)
                                 </th>
+                                
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Local)
+                                </th>
+                                
                                 <th>
                                     @Html.DisplayNameFor(model => model.PrecoEvento)
                                 </th>
+
                                 <th>
-                                    @Html.DisplayNameFor(model => model.funcionariocomboselected)
+                                    @Html.DisplayNameFor(model => model.DataCriacao)
                                 </th>
+
                                 <th>
-                                    @Html.DisplayNameFor(model => model.eventoEscolhido)
+                                    @Html.DisplayNameFor(model => model.NecessidadeAprovacao)
                                 </th>
+
                                 <th></th>
                             </tr>
 
@@ -62,29 +63,29 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Local)
+                                        @Html.DisplayFor(modelItem => item.DataEvento)
                                     </td>
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Descricao)
                                     </td>
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DataCriacao)
+                                        @Html.DisplayFor(modelItem => item.Local)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DataEvento)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NecessidadeAprovacao)
-                                    </td>
+                                    
                                     <td>
                                         @Html.DisplayFor(modelItem => item.PrecoEvento)
                                     </td>
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.funcionariocomboselected)
+                                        @Html.DisplayFor(modelItem => item.DataCriacao)
                                     </td>
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.eventoEscolhido)
+                                        @Html.DisplayFor(modelItem => item.NecessidadeAprovacao)
                                     </td>
+
                                     <td>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.EventoId }) |
                                         @Html.ActionLink("Details", "Details", new { id = item.EventoId }) |

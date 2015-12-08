@@ -14,5 +14,6 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<ResultadosProvas> RecuperarHistoricoNotasTurma(int TurmaId);
         bool AlterarResultadoAluno(ResultadosProvas resultado);
         bool RemoverResultadosAlunos(List<ResultadosProvas> resultadosProvas);
+        List<ResultadosProvas> RecuperarResultadosProva(int ProvaId);
     }
 }

@@ -266,7 +266,12 @@ namespace SchoolManagement.MVC.Controllers
             return View("ResultadoPesquisaProva", prova3.ToList()); 
         }
 
-
+        public ActionResult VisualizarTodasProvas()
+        {
+            var provas = _provaApp.RecuperarTodasAsProvas();
+            var provasMapped = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(provas);
+            return View("VisualizarTodasProvas", provasMapped);
+        }
 
 
         public ActionResult VisualizarNotasDoAluno()

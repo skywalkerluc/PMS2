@@ -16,9 +16,12 @@ namespace SchoolManagement.Data.Repositorios
         {
             try
             {
-                foreach (var prof in evento.FuncionarioResponsavel)
+                if (evento.FuncionarioResponsavel != null)
                 {
-                    Db.Entry(prof).State = EntityState.Unchanged;
+                    foreach (var prof in evento.FuncionarioResponsavel)
+                    {
+                        Db.Entry(prof).State = EntityState.Unchanged;
+                    }
                 }
 
                 Db.Eventos.Add(evento);
