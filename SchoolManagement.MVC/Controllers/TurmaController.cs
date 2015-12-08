@@ -119,7 +119,7 @@ namespace SchoolManagement.MVC.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var turma = _turmaServico.Recuperar(id);
+            var turma = _turmaServico.RecuperarDadosTurma(id);
             var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(turma);
             return View("EditarTurma", turmaViewModel);
         }
@@ -135,7 +135,7 @@ namespace SchoolManagement.MVC.Controllers
                 try
                 {
                     var turmaDomain = Mapper.Map<TurmaViewModel, Turma>(turma);
-                    _turmaServico.Atualizar(turmaDomain);
+                    _turmaServico.AtualizarDadosTurma(turmaDomain);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -152,7 +152,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /Turma/Delete/5
         public ActionResult Delete(int id)
         {
-            var turma = _turmaServico.Recuperar(id);
+            var turma = _turmaServico.RecuperarDadosTurma(id);
             var turmaViewModel = Mapper.Map<Turma, TurmaViewModel>(turma);
 
             return View("DeleteTurma", turmaViewModel);
@@ -166,7 +166,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             try
             {
-                var turma = _turmaServico.Recuperar(id);
+                var turma = _turmaServico.RecuperarDadosTurma(id);
                 _turmaServico.Remover(turma);
                 return RedirectToAction("Index", "Home");
             }
@@ -233,26 +233,7 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult FiltrarTurma(FiltroTurma turma)
         {
 
-            if (turma.anoLetivoSelecionado != 0)
-            {
-                var anoLetivo = _anoLetivoServico.Recuperar(turma.anoLetivoSelecionado);
-                var anoLetivoViewModel = Mapper.Map<AnoLetivo, AnoLetivoViewModel>(anoLetivo);
-
-                turma.AnoLetivo = anoLetivoViewModel;
-            }
-
-            if (turma.professorSelecionado != 0)
-            {
-                var professor = _profServico.Recuperar(turma.professorSelecionado);
-                var professorViewModel = Mapper.Map<Professor, ProfessorViewModel>(professor);
-
-                turma.Professor = professorViewModel;
-            }
-
-            var prof = Mapper.Map<ProfessorViewModel, Professor>(turma.Professor);
-            var anoLetivo2 = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(turma.AnoLetivo);
-
-                var filtroTurma = _turmaServico.FiltrarTurma(turma.DescricaoTurma, prof, anoLetivo2, turma.HorarioId);
+            var filtroTurma = _turmaServico.FiltrarTurma(turma.DescricaoTurma, turma.professorSelecionado, turma.anoLetivoSelecionado, turma.HorarioId);
             var responsavelViewModel = Mapper.Map<IEnumerable<Turma>, IEnumerable<TurmaViewModel>>(filtroTurma);
 
             return View("ResultadoConsultaTurma", responsavelViewModel);

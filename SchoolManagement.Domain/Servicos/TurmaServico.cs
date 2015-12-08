@@ -34,9 +34,9 @@ namespace SchoolManagement.Domain.Servicos
             return this.turmaRep.RecuperarResultadosProvasTurma(TurmaId);
         }
 
-        public IEnumerable<Turma> FiltrarTurma(string descTurma, Professor professor, AnoLetivo ano, int horarioId)
+        public IEnumerable<Turma> FiltrarTurma(string descTurma, int ProfessorId, int AnoLetivo, int horarioId)
         {
-            return this.turmaRep.FiltrarTurma(descTurma, professor, ano, horarioId);
+            return this.turmaRep.FiltrarTurma(descTurma, ProfessorId, AnoLetivo, horarioId);
         }
 
         public bool RemoverAlunosTurma(int TurmaId, List<Aluno> ListaAlunos)
@@ -58,5 +58,17 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this.turmaRep.RecuperarTurmasProfessorNaoLeciona(ProfessorId);
         }
+
+        public Turma RecuperarDadosTurma(int TurmaId)
+        {
+            return this.turmaRep.RecuperarDadosTurma(TurmaId);
+        }
+
+        public bool AtualizarDadosTurma(Turma turma)
+        {
+            return this.turmaRep.AtualizarDadosTurma(turma);
+        }
+
+        
     }
 }

@@ -49,7 +49,20 @@ namespace SchoolManagement.Domain.Servicos
             return this._alunoRepositorio.RecuperarResultadosAluno(aluno);
         }
 
+        public Aluno RecuperarDadosAluno(int AlunoId)
+        {
+            return this._alunoRepositorio.RecuperarDadosAluno(AlunoId);
+        }
 
+        public bool AtualizarDadosAluno(Aluno aluno)
+        {
+            return this._alunoRepositorio.AtualizarDadosAluno(aluno);
+        }
+
+        public bool RemoverAluno(int AlunoId)
+        {
+            return this._alunoRepositorio.RemoverAluno(AlunoId);
+        }
         
     }
 }

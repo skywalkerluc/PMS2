@@ -123,7 +123,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /Responsavel/Edit/5
         public ActionResult Edit(int id)
         {
-            var responsavel = _responsavelApp.Recuperar(id);
+            var responsavel = _responsavelApp.RecuperarDadosResponsavel(id);
             var responsavelViewModel = Mapper.Map<Responsavel, ResponsavelViewModel>(responsavel);
             return View("EditarResponsavel", responsavelViewModel);
         }
@@ -136,7 +136,7 @@ namespace SchoolManagement.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var responsavelDomain = Mapper.Map<ResponsavelViewModel, Responsavel>(responsavel);
-                _responsavelApp.Atualizar(responsavelDomain);
+                _responsavelApp.AtualizarDadosResponsavel(responsavelDomain);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -147,7 +147,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /Responsavel/Delete/5
         public ActionResult Delete(int id)
         {
-            var responsavel = _responsavelApp.Recuperar(id);
+            var responsavel = _responsavelApp.RecuperarDadosResponsavel(id);
             var responsavelViewModel = Mapper.Map<Responsavel, ResponsavelViewModel>(responsavel);
 
             return View("DeleteResponsavel", responsavelViewModel);
@@ -161,9 +161,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             try
             {
-                var responsavel = _responsavelApp.Recuperar(id);
-
-                _responsavelApp.Remover(responsavel);
+                _responsavelApp.RemoverResponsavel(id);
 
                 return RedirectToAction("Index", "Home");
             }

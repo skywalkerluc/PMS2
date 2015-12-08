@@ -22,8 +22,6 @@ namespace SchoolManagement.Data.EntityConfig
                     p.ToTable("Aluno");
                 });
 
-            Property(m => m.Etnia)
-                .IsOptional();
 
         }
     }

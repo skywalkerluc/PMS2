@@ -70,12 +70,5 @@
       <FileName>ViewModels\Enumeradores.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="SchoolManagement.MVC.ViewModels.Etnia">
-    <Position X="8.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAIAAAAAgAAAAAAAAAAAAAAAAgQCAAAAAABAAA=</HashCode>
-      <FileName>ViewModels\Enumeradores.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
