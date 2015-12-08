@@ -47,7 +47,7 @@
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.HorariosTurmaId)
+                                    @Html.DisplayName(RecuperarValorHorarioTurma(Model.HorariosTurmaId))
                                 </dd>
 
                                 <dt>
@@ -58,13 +58,6 @@
                                     @Html.DisplayFor(model => model.Vagas)
                                 </dd>
 
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.anoletivoSelecionado)
-                                </dd>
 
                             </dl>
                         </div>
@@ -78,3 +71,26 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+@functions{
+    public string RecuperarValorHorarioTurma(int value)
+    {
+        string descricaoRetorno = string.Empty;
+        switch (value)
+        {
+            case 1:
+                descricaoRetorno = "Manhã";
+                break;
+            case 2:
+                descricaoRetorno = "Tarde";
+                break;
+            case 3:
+                descricaoRetorno = "Noite";
+                break;
+            default:
+                descricaoRetorno = string.Empty;
+                break;
+        }
+        return descricaoRetorno;
+    }
+}

@@ -78,14 +78,12 @@ namespace SchoolManagement.MVC.Controllers
             {
                 evento.DataCriacao = DateTime.Now.Date;
 
-                List<FuncionarioViewModel> ListaFuncionarios = new List<FuncionarioViewModel>();
                 if (evento.funcionariocomboselected != 0)
                 {
                     var funcionario = _funcionarioServico.Recuperar(evento.funcionariocomboselected);
                     var funcionarioViewModel = Mapper.Map<Funcionario, FuncionarioViewModel>(funcionario);
 
-                    ListaFuncionarios.Add(funcionarioViewModel);
-                    evento.FuncionarioResponsavel = ListaFuncionarios;
+                    evento.FuncionarioResponsavel = funcionarioViewModel;
                 }
 
                 
@@ -100,7 +98,7 @@ namespace SchoolManagement.MVC.Controllers
                     {
                         Assunto = "Um novo evento foi adicionado",
                         DataCriacao = DateTime.Now,
-                        Descricao = "Um novo evento foi adicionado por :" + usuarioCriacao.Nome + ".", 
+                        Descricao = "Um novo evento foi adicionado por: " + usuarioCriacao.Nome + ".", 
                         UsuarioCriacao = Mapper.Map<Usuario, UsuarioViewModel>(_usuarioServico.Recuperar((int)Session["UsuarioId"])),
                     };
                     var notifMapped = Mapper.Map<NotificacaoViewModel, Notificacao>(notif);
@@ -131,14 +129,10 @@ namespace SchoolManagement.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(EventoViewModel evento)
         {
-            if (ModelState.IsValid)
-            {
                 var eventoDomain = Mapper.Map<EventoViewModel, Evento>(evento);
                 _eventoServico.AtualizarDadosEvento(eventoDomain);
 
                 return RedirectToAction("Index", "Home");
-            }
-            return View("Index", "Home", evento);
         }
 
         //
@@ -300,14 +294,11 @@ namespace SchoolManagement.MVC.Controllers
 
                 int ProfessorId = (int)Session["UsuarioId"];
 
-                List<FuncionarioViewModel> ListaFuncionarios = new List<FuncionarioViewModel>();
 
                 var funcionario = _funcionarioServico.Recuperar(ProfessorId);
                 var funcionarioViewModel = Mapper.Map<Funcionario, FuncionarioViewModel>(funcionario);
 
-                ListaFuncionarios.Add(funcionarioViewModel);
-
-                evento.FuncionarioResponsavel = ListaFuncionarios;
+                evento.FuncionarioResponsavel = funcionarioViewModel;
 
                 var eventoDomain = Mapper.Map<EventoViewModel, Evento>(evento);
                 _eventoServico.IncluirEvento(eventoDomain);

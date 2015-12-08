@@ -277,7 +277,7 @@ namespace SchoolManagement.MVC.Controllers
         {
 
             var aluno = responsavel.alunoSelecionado;
-            var aluno2 = _alunoApp.Recuperar(aluno);
+            var aluno2 = _alunoApp.RecuperarDadosAluno(aluno);
             var alunolViewModel = Mapper.Map<Aluno, AlunoViewModel>(aluno2);
 
             return View("DetalhesAlunoSelecionado", alunolViewModel);

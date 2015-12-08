@@ -192,6 +192,12 @@ namespace SchoolManagement.MVC.Controllers
             List<SelectListItem> listaTurmas = new List<SelectListItem>();
             var enumTurma = _turmaServico.RecuperarTodos();
 
+            SelectListItem itemBranco = new SelectListItem()
+            {
+                Value = "0",
+                Text = string.Empty
+            };
+            listaTurmas.Add(itemBranco);
             foreach (var disc in enumTurma)
             {
                 SelectListItem listItem = new SelectListItem()
@@ -211,6 +217,13 @@ namespace SchoolManagement.MVC.Controllers
         {
             List<SelectListItem> listaTurmas = new List<SelectListItem>();
             var enumTurma = _turmaServico.RecuperarTodos();
+
+            SelectListItem itemBranco = new SelectListItem()
+            {
+                Value = "0",
+                Text = string.Empty
+            };
+            listaTurmas.Add(itemBranco);
 
             foreach (var disc in enumTurma)
             {

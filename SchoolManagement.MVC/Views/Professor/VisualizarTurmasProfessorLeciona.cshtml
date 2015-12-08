@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TurmaViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Turmas Professor";
+    ViewBag.Title = "Visualizar Turmas de Professor";
 }
 
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
     <section class="content-header">
         <h1>
             Professor
-            <small>Visualizar Alunos Professores</small>
+            <small>Visualizar Turmas de Professor</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Professor</li>
-            <li class="active">Visualizar Alunos Professores</li>
+            <li class="active">Visualizar Turmas de Professor</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -24,12 +24,15 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Alunos Professores</h3>
+                        <h3 class="box-title">Visualizar Turmas de Professor</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
                         <table class="table">
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AnoLetivo.Ano)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Descricao)
                                 </th>
@@ -39,9 +42,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Vagas)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
-                                </th>
                                 <th></th>
                             </tr>
 
@@ -49,19 +49,29 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                        @Html.DisplayFor(modelItem => item.AnoLetivo.Ano)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HorariosTurmaId)
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+
+                                    @{
+                                        var valor = item.HorariosTurmaId;
+                                        string resultado = RecuperarValorHorarioTurma(valor);
+                                    }
+                                    <td>
+                                        @*@Html.HiddenFor(modelItem => item.HorariosTurmaId)*@
+                                        @*@Html.DisplayFor(RecuperarValorHorarioTurma())*@
+                                        @Html.DisplayName(resultado)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Vagas)
                                     </td>
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.anoletivoSelecionado)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Detalhes", "DetalhesTurmaProfessorLeciona", new { id=item.TurmaId }) 
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.TurmaId }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.TurmaId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.TurmaId })
                                     </td>
                                 </tr>
                             }
@@ -74,3 +84,26 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+@functions{
+    public string RecuperarValorHorarioTurma(int value)
+    {
+        string descricaoRetorno = string.Empty;
+        switch (value)
+        {
+            case 1:
+                descricaoRetorno = "Manhã";
+                break;
+            case 2:
+                descricaoRetorno = "Tarde";
+                break;
+            case 3:
+                descricaoRetorno = "Noite";
+                break;
+            default:
+                descricaoRetorno = string.Empty;
+                break;
+        }
+        return descricaoRetorno;
+    }
+}

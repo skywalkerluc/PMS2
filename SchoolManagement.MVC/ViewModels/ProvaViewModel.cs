@@ -36,10 +36,8 @@ namespace SchoolManagement.MVC.ViewModels
         public int professoresLista { get; set; }
         public int turmaLista { get; set; }
 
-        public int status { get; set; }
-        public int tipo { get; set; }
-
-        public int provaId { get; set; }
+        public int Status { get; set; }
+        public int Tipo { get; set; }
         
     }
 }
