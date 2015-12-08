@@ -112,9 +112,11 @@ namespace SchoolManagement.Data.Repositorios
 
         public Aluno RecuperarDadosAluno(int AlunoId)
         {
+
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+
             try
             {
-                SqlConnection conn = (SqlConnection)Db.Database.Connection;
                 SqlCommand command = new SqlCommand("SELECT * FROM Usuario AS U INNER JOIN Aluno AS A ON U.Id = A.Id WHERE U.Id = " + AlunoId, conn);
                 conn.Open();
 
@@ -161,19 +163,29 @@ namespace SchoolManagement.Data.Repositorios
                             Observacoes = reader.GetString(26),
                             StatusCadastro = (StatusCadastro)reader.GetInt32(27)
                         };
+                        conn.Close();
                         return aluno;
                     }
+                    conn.Close();
                     return aluno;
+
                 }
                 else
                 {
                     throw new NotImplementedException();
+                    conn.Close();
                 }
+
+               
             }
             catch (Exception ex)
             {
                 throw new NotImplementedException(ex.Message.ToString());
+                conn.Close();
+                
             }
+
+            conn.Close();
         }
 
         public bool AtualizarDadosAluno(Aluno aluno)

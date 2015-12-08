@@ -25,12 +25,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Notas
+            Caderneta
             <small>Turmas que Leciono</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Notas</a></li>
+            <li><a href="#">Caderneta</a></li>
             <li class="active">Turmas que Leciono</li>
         </ol>
     </section>
@@ -40,7 +40,7 @@
         <div class="example-modal">
             <div class="modal">
                 <div class="modal-dialog">
-                    @using (Html.BeginForm("FiltroTurmasProvaProfessorLeciona", "ResultadosProvas", FormMethod.Get))
+                    @using (Html.BeginForm("FiltroDisciplinaFrequenciaProfessorLeciona", "Frequencia", FormMethod.Get))
                     {
                         <div class="modal-content">
                             <div class="modal-header">
@@ -52,17 +52,17 @@
                                     @Html.LabelFor(m => m.ListaTurmas)
 
                                     @{
-                        List<SelectListItem> listaTurmas = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaTurmas)
+                        List<SelectListItem> listaTurmasFrequencia = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaTurmasFrequencia)
                         {
                             SelectListItem selec = new SelectListItem()
                             {
                                 Value = item.Value,
                                 Text = item.Text
                             };
-                            listaTurmas.Add(selec);
+                            listaTurmasFrequencia.Add(selec);
                         }
-                        @Html.DropDownListFor(m => m.TurmaId, listaTurmas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
+                        @Html.DropDownListFor(m => m.TurmaId, listaTurmasFrequencia, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
                                     }
 
                                     @Html.ValidationMessageFor(model => model.ListaTurmas)

@@ -26,12 +26,12 @@
     <section class="content-header">
         <h1>
             Professor
-            <small>Filtro Alunos que Leciono</small>
+            <small>Filtro Provas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Professor</a></li>
-            <li class="active">Filtro Alunos que Leciono</li>
+            <li class="active">Filtro Provas</li>
         </ol>
     </section>
 
@@ -44,7 +44,7 @@
                     {
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Filtro Alunos que Leciono</h4>
+                                <h4 class="modal-title">Filtro Provas</h4>
                             </div>
                             <div class="modal-body">
 
@@ -52,17 +52,17 @@
                                     @Html.LabelFor(m => m.Disciplina.NomeDisciplina)
 
                                     @{
-                        List<SelectListItem> listaprovas = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaProvas)
+                        List<SelectListItem> listaprovasResultado = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaProvasResultadoNota)
                         {
                             SelectListItem selec = new SelectListItem()
                             {
                                 Value = item.Value,
                                 Text = item.Text
                             };
-                            listaprovas.Add(selec);
+                            listaprovasResultado.Add(selec);
                         }
-                        @Html.DropDownListFor(m => m.provaId, listaprovas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
+                        @Html.DropDownListFor(m => m.provaIdSelecionado, listaprovasResultado, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
                                     }
 
                                     @Html.ValidationMessageFor(model => model.Disciplina.NomeDisciplina)

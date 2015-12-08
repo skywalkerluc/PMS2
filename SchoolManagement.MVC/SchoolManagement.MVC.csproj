@@ -145,7 +145,6 @@
     <Folder Include="Views\AnoLetivo\" />
     <Folder Include="Views\CustomActions\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\Frequencia\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1179,6 +1178,8 @@
     <Content Include="Views\ConteudoExtra\AdicionarTrabalhosExtras.cshtml" />
     <Content Include="Views\ConteudoExtra\FiltroTipoConteudoConsulta.cshtml" />
     <Content Include="Views\ResultadosProvas\FiltroProvasProfessorTurma.cshtml" />
+    <Content Include="Views\Frequencia\FiltroFrequenciaTurmaProfessor.cshtml" />
+    <Content Include="Views\Frequencia\FiltroDisciplinaFrequenciaProfessor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
