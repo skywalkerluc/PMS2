@@ -237,5 +237,58 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarAlunosTurmasProfessorLecionaFrequencia", alunosMapped);
 
         }
+
+
+        //[HttpPost]
+        //public ActionResult LancarFrequenciaAluno(FormCollection resultados)
+        //{
+        //    try
+        //    {
+        //        var AlunosLista = resultados["item.Aluno.Id"];
+        //        var FrequenciaLista = resultados["item.resul"];
+        //        var dataReferencia = resultados["item.DataReferencia"];
+
+        //        int disciplinaSelecionada = (int)Session["disciplinaSelecionada"];
+
+        //        var disciplina = _disciplinaServico.Recuperar(disciplinaSelecionada);
+        //        var provaMap = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
+
+
+        //        string[] quebAlunos = AlunosLista.Split(',');
+        //        string[] quebNotas = FrequenciaLista.Split(',');
+
+
+        //        List<ResultadosProvasViewModel> listResultados = new List<ResultadosProvasViewModel>();
+
+        //        for (int i = 0; i < quebAlunos.Length; i++)
+        //        {
+        //            ResultadosProvasViewModel rp = new ResultadosProvasViewModel();
+
+        //            var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
+        //            var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
+
+        //            rp.Aluno = alunoMap;
+        //            rp.Nota = Convert.ToInt32(quebNotas[i]);
+        //            rp.Prova = provaMap;
+        //            rp.Observacao = "";
+        //            rp.Gabarito = "";
+
+        //            listResultados.Add(rp);
+        //        }
+
+
+        //        foreach (var item in listResultados)
+        //        {
+        //            var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
+        //            var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
+        //        }
+
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new NotImplementedException(ex.Message.ToString());
+        //    }
+        //}
 	}
 }

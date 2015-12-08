@@ -148,7 +148,7 @@ namespace SchoolManagement.Data.Repositorios
                 }
             }
 
-            Db.Provas.Attach(prova);
+            //Db.Provas.Attach(prova);
             Db.SaveChanges();
             Db.Provas.Add(prova);
             Db.SaveChanges();
