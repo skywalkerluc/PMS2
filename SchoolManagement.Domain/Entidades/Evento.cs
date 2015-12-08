@@ -13,10 +13,10 @@ namespace SchoolManagement.Domain.Entidades
         public string Descricao { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataEvento { get; set; }
-        public ICollection<Funcionario> FuncionarioResponsavel { get; set; }
+        public Funcionario FuncionarioResponsavel { get; set; }
         public bool NecessidadeAprovacao { get; set; }
         public decimal PrecoEvento { get; set; }
-        public List<string> NomeAcompanhante { get; set; }
+        public string NomeAcompanhante { get; set; }
 
     }
 }

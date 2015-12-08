@@ -25,7 +25,7 @@ namespace SchoolManagement.MVC.ViewModels
         public DateTime DataEvento { get; set; }
         
         [Display(Name = "Funcionário(s) responsável(is)")]
-        public ICollection<FuncionarioViewModel> FuncionarioResponsavel { get; set; }
+        public FuncionarioViewModel FuncionarioResponsavel { get; set; }
         
         [Display(Name = "Necessidade de aprovação")]
         public bool NecessidadeAprovacao { get; set; }
@@ -34,7 +34,7 @@ namespace SchoolManagement.MVC.ViewModels
         public decimal PrecoEvento { get; set; }
         
         [Display(Name = "Nome de acompanhante")]
-        public List<string> NomeAcompanhante { get; set; }
+        public string NomeAcompanhante { get; set; }
 
         public List<SelectListItem> ListaFuncionarios { get; set; }
 

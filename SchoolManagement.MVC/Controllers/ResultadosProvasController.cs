@@ -57,56 +57,7 @@ namespace SchoolManagement.MVC.Controllers
             return View("LancarNotasSelecaoTurma", ListaTurmas);
         }
 
-        [HttpPost]
-        public ActionResult LancarNotasTurma(FormCollection resultados)
-        {
-            try
-            {
-                var AlunosLista = resultados["item.Aluno.Id"];
-                var NotasLista = resultados["item.resul"];
-
-                int provaIdEscolhida = (int)Session["provaIdselecionado"];
-
-                var prova = _provaApp.RecuperarProva(provaIdEscolhida);
-                var provaMap = Mapper.Map<Prova, ProvaViewModel>(prova);
-
-                 
-                string[] quebAlunos = AlunosLista.Split(',');
-                string[] quebNotas = NotasLista.Split(',');
-
-
-                List<ResultadosProvasViewModel> listResultados = new List<ResultadosProvasViewModel>();
-
-                for (int i = 0; i < quebAlunos.Length; i++)
-                {
-                    ResultadosProvasViewModel rp = new ResultadosProvasViewModel();
-
-                    var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
-                    var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
-
-                    rp.Aluno = alunoMap;
-                    rp.Nota = Convert.ToInt32(quebNotas[i]);
-                    rp.Prova = provaMap;
-                    rp.Observacao = "";
-                    rp.Gabarito = "";
-
-                    listResultados.Add(rp);
-                }
-
-
-                foreach (var item in listResultados)
-                {
-                    var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
-                    var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
-                }
-
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
-            {
-                throw new NotImplementedException(ex.Message.ToString());
-            }
-        }
+       
 
         public ActionResult RecuperarNotasAluno(int alunoId)
         {

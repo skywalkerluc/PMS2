@@ -237,5 +237,68 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarAlunosTurmasProfessorLecionaFrequencia", alunosMapped);
 
         }
+
+
+        [HttpPost]
+        public ActionResult LancarFrequenciaAluno(FormCollection resultados)
+        {
+            try
+            {
+                var AlunosLista = resultados["item.Aluno.Id"];
+                var FrequenciaLista = resultados["item.resul"];
+                var dataReferencia = resultados["item.DataReferencia"];
+
+                int disciplinaSelecionada = (int)Session["disciplinaSelecionada"];
+
+                var disciplina = _disciplinaServico.Recuperar(disciplinaSelecionada);
+                var disciplinaMap = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
+
+
+                string[] quebAlunos = AlunosLista.Split(',');
+                string[] quebFrequencia = FrequenciaLista.Split(',');
+                string[] quebData = dataReferencia.Split(',');
+
+
+                List<FrequenciaViewModel> listResultados = new List<FrequenciaViewModel>();
+
+                for (int i = 0; i < quebAlunos.Length; i++)
+                {
+                    FrequenciaViewModel rp = new FrequenciaViewModel();
+
+                    var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
+                    var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
+
+                    rp.Aluno = alunoMap;
+                    
+                    if(Convert.ToInt32(quebFrequencia[i]) == 1)
+                    {
+                        rp.Presente = true;
+                    }
+                    else
+                    {
+                        rp.Presente = false;
+                    }
+
+                    rp.Disciplina = disciplinaMap;
+
+                    rp.DataReferencia = Convert.ToDateTime(quebData[i]);
+
+                    listResultados.Add(rp);
+                }
+
+
+                foreach (var item in listResultados)
+                {
+                    var resultMapped = Mapper.Map<FrequenciaViewModel, Frequencia>(item);
+                    var atmpt = _frequenciaServico.IncluirFrequenciaAluno(resultMapped);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
 	}
 }
