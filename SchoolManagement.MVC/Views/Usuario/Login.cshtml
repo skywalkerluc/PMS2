@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="Content/login/css/login.css">
 <script src="Content/login/js/login.js"></script>
 <script src="~/Content/util/util.js"></script>
+<script src="~/Content/modal/js/modalBlocoNotas.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -26,17 +27,149 @@
         </button>
     }
 </div>
-@{
-    if (ViewBag.AlertMessage != null)
-    {
-        <div id="dialog" title="Aviso!">
-            <p>@ViewBag.AlertMessage</p>
-        </div>
-    }
+@if (ViewBag.AlertMessage != null)
+{
+<div id="boxes">
+
+    <!-- Janela Modal com Bloco de Nota -->
+    <div id="dialog2" class="window">
+        <br />
+        @ViewBag.AlertMessage <br /><br /><br />
+        <input type="button" value="Fechar" class="close" />
+    </div>
+    <!-- Fim Janela Modal com Bloco de Nota -->
+
+</div>
+
+<ul>
+    <li><a href="#dialog2" name="modal"></a></li>
+</ul>
 }
 
-<script>
+<script type="text/javascript">
+        
     $(document).ready(function () {
-        $("#dialog").dialog("open");
+        $('a[name=modal]').click(function (e) {
+            e.preventDefault();
+
+            var id = $(this).attr('href');
+
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+
+            var winH = $(window).height();
+            var winW = $(window).width();
+
+            $(id).css('top', winH / 2 - $(id).height() / 2);
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+
+            $(id).fadeIn();
+
+        });
+
+        $('.window .close').click(function (e) {
+            e.preventDefault();
+
+            $('#mask').hide();
+            $('.window').hide();
+        });
+
+        $('#mask').click(function () {
+            $(this).hide();
+            $('.window').hide();
+        });
+
     });
+
 </script>
+<style type="text/css">
+    body {
+        font-family: verdana;
+        font-size: 15px;
+    }
+
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+    #mask {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9000;
+        background-color: #000;
+        display: none;
+    }
+
+    #boxes .window {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 440px;
+        height: 200px;
+        display: none;
+        z-index: 9999;
+        padding: 20px;
+    }
+
+    #boxes #dialog {
+        width: 375px;
+        height: 203px;
+        padding: 10px;
+        background-color: #ffffff;
+    }
+
+    #boxes #dialog1 {
+        width: 375px;
+        height: 203px;
+    }
+
+    #dialog1 .d-header {
+        background: url(login-header.png) no-repeat 0 0 transparent;
+        width: 375px;
+        height: 150px;
+    }
+
+        #dialog1 .d-header input {
+            position: relative;
+            top: 60px;
+            left: 100px;
+            border: 3px solid #cccccc;
+            height: 22px;
+            width: 200px;
+            font-size: 15px;
+            padding: 5px;
+            margin-top: 4px;
+        }
+
+    #dialog1 .d-blank {
+        float: left;
+        background: url(login-blank.png) no-repeat 0 0 transparent;
+        width: 267px;
+        height: 53px;
+    }
+
+    #dialog1 .d-login {
+        float: left;
+        width: 108px;
+        height: 53px;
+    }
+
+    #boxes #dialog2 {
+        background: url('../../Content/imagens/notice.png') no-repeat 0 0 transparent;
+        width: 326px;
+        height: 229px;
+        padding: 50px 0 20px 25px;
+    }
+
+    .close {
+        display: block;
+        text-align: right;
+    }
+</style>

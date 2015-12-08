@@ -290,12 +290,14 @@
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\imagens\BackGroundLogin.jpg" />
     <Content Include="Content\imagens\LogoPMS.png" />
+    <Content Include="Content\imagens\notice.png" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\login\css\login.css" />
     <Content Include="Content\login\js\login.js" />
     <Content Include="Content\modal\css\jquery-ui-1.10.4.custom.css" />
     <Content Include="Content\modal\js\jquery-1.10.2.js" />
     <Content Include="Content\modal\js\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="Content\modal\js\modalBlocoNotas.js" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
