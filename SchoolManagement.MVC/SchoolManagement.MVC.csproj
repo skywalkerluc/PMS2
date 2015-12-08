@@ -1180,6 +1180,7 @@
     <Content Include="Views\ResultadosProvas\FiltroProvasProfessorTurma.cshtml" />
     <Content Include="Views\Frequencia\FiltroFrequenciaTurmaProfessor.cshtml" />
     <Content Include="Views\Frequencia\FiltroDisciplinaFrequenciaProfessor.cshtml" />
+    <Content Include="Views\Frequencia\VisualizarAlunosTurmasProfessorLecionaFrequencia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

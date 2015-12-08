@@ -157,7 +157,7 @@ namespace SchoolManagement.MVC.Controllers
 
             ViewBag.ListaTurmasFrequencia = ListaTurmasFrequencia;
 
-            return View("FiltroDisciplinaFrequenciaProfessor");
+            return View("FiltroFrequenciaTurmaProfessor");
         }
 
         [HttpGet]
@@ -167,14 +167,14 @@ namespace SchoolManagement.MVC.Controllers
 
             List<SelectListItem> ListaDisciplinaFrequencia = new List<SelectListItem>();
 
-            var listaTurmas = _disciplinaServico.recupera(professorId);
+            var listaTurmas = _disciplinaServico.RecuperarDisciplinasTurmaProfessor(turma.TurmaId, professorId);
 
             foreach (var item in listaTurmas)
             {
                 SelectListItem select = new SelectListItem()
                 {
-                    Value = item.TurmaId.ToString(),
-                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                    Value = Convert.ToString(item.DisciplinaId),
+                    Text = item.NomeDisciplina
                 };
                 ListaDisciplinaFrequencia.Add(select);
             }
@@ -204,6 +204,38 @@ namespace SchoolManagement.MVC.Controllers
                     break;
             }
             return descricaoRetorno;
+        }
+
+        [HttpGet]
+        public ActionResult VisualizarAlunosTurmasProfessorLecionaFrequencia(DisciplinaViewModel disciplina)
+        {
+
+            Session["disciplinaSelecionada"] = disciplina.DisciplinaId;
+
+            List<FrequenciaViewModel> AlunosBackEnd = new List<FrequenciaViewModel>();
+
+            int professorId = (int)Session["UsuarioId"];
+            //VisualizarTurmasProfessor
+            var turmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+
+            foreach (var turma in turmas)
+            {
+                var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
+                var alun = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(alunos);
+                foreach (var aluno in alun)
+                {
+                    FrequenciaViewModel f = new FrequenciaViewModel();
+                    f.Aluno = aluno;
+                    AlunosBackEnd.Add(f);
+                }
+            }
+
+            Utilizavel util = new Utilizavel();
+            ViewBag.ListaTiposDeFrequencia = util.PreencherListasFrequencia();
+
+            var alunosMapped = Mapper.Map<IEnumerable<FrequenciaViewModel>, IEnumerable<FrequenciaViewModel>>(AlunosBackEnd);
+            return View("VisualizarAlunosTurmasProfessorLecionaFrequencia", alunosMapped);
+
         }
 	}
 }

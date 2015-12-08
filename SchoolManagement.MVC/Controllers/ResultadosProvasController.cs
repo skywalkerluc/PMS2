@@ -201,7 +201,8 @@ namespace SchoolManagement.MVC.Controllers
                     rp.Aluno = aluno;
                     AlunosBackEnd.Add(rp);
                 }
-            }
+            } 
+            
             Utilizavel util = new Utilizavel();
             ViewBag.ListaNotas = util.PreencherListasNotas();
 
