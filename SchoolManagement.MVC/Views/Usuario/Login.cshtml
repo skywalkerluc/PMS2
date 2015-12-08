@@ -27,12 +27,11 @@
         </button>
     }
 </div>
-@if (ViewBag.AlertMessage != null)
-{
+
 <div id="boxes">
 
     <!-- Janela Modal com Bloco de Nota -->
-    <div id="dialog2" class="window">
+    <div id="dialog" class="window">
         <br />
         @ViewBag.AlertMessage <br /><br /><br />
         <input type="button" value="Fechar" class="close" />
@@ -40,13 +39,19 @@
     <!-- Fim Janela Modal com Bloco de Nota -->
 
 </div>
-
-<ul>
-    <li><a href="#dialog2" name="modal"></a></li>
-</ul>
+@if (@ViewBag.AlertMessage != null)
+{
+    <script>
+        $(function () {
+            $("#dialog").dialog({
+                height: 190,
+                modal: true
+            });
+        });
+    </script>
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
         
     $(document).ready(function () {
         $('a[name=modal]').click(function (e) {
@@ -81,7 +86,7 @@
 
     });
 
-</script>
+</script>*@
 <style type="text/css">
     body {
         font-family: verdana;
