@@ -1,19 +1,5 @@
 ﻿$(document).ready(function () {
 
-    $("#dialog").dialog({
-        autoOpen: false,
-        modal:true,
-        width: 400,
-        buttons: [
-            {
-                text: "Ok",
-                click: function () {
-                    $(this).dialog("close");
-                }
-            }
-        ]
-    });
-
     $(".select2").select2();
     $("#cpf").inputmask("999.999.999-99");
     $("#data").inputmask("99/99/9999");
@@ -22,34 +8,6 @@
     $("#rg").inputmask("9.999.999");
     $("#Cep").inputmask("99.999-999");
    
-});
-
-$('#Cep').change(function () {
-    $("#Endereco").val('');
-    $("#Bairro").val('');
-    $("#Cidade").val('');
-    $("#Estado").val('');
-
-    var cep = $('#Cep').val().replace(".", "");
-    cep = cep.replace("-", "");
-
-    $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
-
-        if (data.resultado_txt == 'sucesso - cep completo') {
-
-            var endereco = data.tipo_logradouro + ' ' + data.logradouro;
-            var bairro = data.bairro;
-            var cidade = data.cidade;
-            var Estado = data.uf;
-
-            $("#Endereco").val(endereco);
-            $("#Bairro").val(bairro);
-            $("#Cidade").val(cidade);
-            $("#Estado").val(Estado);
-
-            
-        }
-    });
 });
 
 $(document).ready(function () {

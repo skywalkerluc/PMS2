@@ -10,6 +10,7 @@
 /// <reference path="../content/login/js/login.js" />
 /// <reference path="../content/modal/js/jquery-1.10.2.js" />
 /// <reference path="../content/modal/js/jquery-ui-1.10.4.custom.min.js" />
+/// <reference path="../content/modal/js/modalbloconotas.js" />
 /// <reference path="../content/plugins/bootstrap-slider/bootstrap-slider.js" />
 /// <reference path="../content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js" />
 /// <reference path="../content/plugins/chartjs/Chart.js" />
