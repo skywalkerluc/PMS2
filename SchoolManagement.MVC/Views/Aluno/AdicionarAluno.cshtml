@@ -134,17 +134,17 @@
                             <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Turma)
                                 @{
-                        List<SelectListItem> listaTurmas = new List<SelectListItem>();
+                                    List<SelectListItem> listaTurmas = new List<SelectListItem>();
 
-                        foreach (var item in @ViewBag.ListaTurmas)
-                        {
-                            SelectListItem selec = new SelectListItem()
-                            {
-                                Value = item.Value,
-                                Text = item.Text
-                            };
-                            listaTurmas.Add(selec);
-                        }
+                                    foreach (var item in @ViewBag.ListaTurmas)
+                                    {
+                                        SelectListItem selec = new SelectListItem()
+                                        {
+                                            Value = item.Value,
+                                            Text = item.Text
+                                        };
+                                        listaTurmas.Add(selec);
+                                    }
                         @Html.DropDownListFor(m => m.turmaEscolhida, listaTurmas, new { @class = "form-control select2", placeholder = "Selecione uma turma", style = "width: 100%;", id = "turma" })
                                 }
                                 @Html.ValidationMessageFor(model => model.Turma)
@@ -198,7 +198,7 @@
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
                         </div>
 
-                    }
+                                    }
                 </div>
             </div><!--/.col (left) -->
             <!-- right column -->
@@ -219,3 +219,13 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="~/Scripts/jquery-2.1.4.min.js"></script>
 <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+
+<div id="boxes">
+    <div id="dialog" class="window">
+        <br />
+        @ViewBag.AlertMessage <br /><br /><br />
+    </div>
+</div>
+
+
+

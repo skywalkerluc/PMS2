@@ -291,6 +291,11 @@
     <Content Include="Content\imagens\BackGroundLogin.jpg" />
     <Content Include="Content\imagens\LogoPMS.png" />
     <Content Include="Content\imagens\notice.png" />
+    <Content Include="Content\jsLink\css\code.ionicframework.com.ionicons.2.0.1.css.ionicons.min.css" />
+    <Content Include="Content\jsLink\css\maxcdn.bootstrapcdn.com.font-awesome.4.4.0.css.font-awesome.min.css" />
+    <Content Include="Content\jsLink\js\ajax.googleapis.com.ajax.libs.jquery.1.11.3.jquery.min.js" />
+    <Content Include="Content\jsLink\js\cdnjs.cloudflare.com.ajax.libs.moment.js.2.10.2.moment.min.js" />
+    <Content Include="Content\jsLink\js\code.jquery.com.ui.1.11.4.jquery-ui.min.js" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\login\css\login.css" />
     <Content Include="Content\login\js\login.js" />

@@ -155,13 +155,23 @@ namespace SchoolManagement.Data.Repositorios
             {
                 List<Turma> ListaRetorno = new List<Turma>();
                 var turmas = this.RecuperarTodos();
+                List<Turma> ListaRecuperada = new List<Turma>();
+
                 foreach (var turma in turmas)
                 {
-                    foreach (var prof in turma.Professores)
+                    Turma turmaY = new Turma();
+                    turmaY = this.RecuperarDadosTurma(turma.TurmaId);
+                    ListaRecuperada.Add(turmaY);
+
+                }
+
+                foreach (var turmaX in ListaRecuperada)
+                {
+                    foreach (var prof in turmaX.Professores)
                     {
                         if (prof.Id != ProfessorId)
                         {
-                            ListaRetorno.Add(turma);
+                            ListaRetorno.Add(turmaX);
                         }
                     }
                 }
@@ -197,8 +207,8 @@ namespace SchoolManagement.Data.Repositorios
                             Vagas = reader.GetInt32(3),
                             AnoLetivo = (new AnoLetivoRepositorio().Recuperar(reader.GetInt32(4)))
                         };
-                        return turma;
                     }
+                    conn.Close();
                     return turma;
                 }
                 else
