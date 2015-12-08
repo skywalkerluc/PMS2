@@ -17,7 +17,10 @@ namespace SchoolManagement.Data.Repositorios
         {
             try
             {
-                Db.Entry(notificacao.TurmaPublicoAlvo).State = EntityState.Unchanged;
+                if (notificacao.TurmaPublicoAlvo != null)
+                {
+                    Db.Entry(notificacao.TurmaPublicoAlvo).State = EntityState.Unchanged;
+                }
                 Db.Entry(notificacao.UsuarioCriacao).State = EntityState.Unchanged;
                 Db.Notificacoes.Add(notificacao);
                 Db.SaveChanges();
@@ -47,7 +50,7 @@ namespace SchoolManagement.Data.Repositorios
             {
                 return false;
             }
-            
+
 
         }
 
@@ -63,7 +66,7 @@ namespace SchoolManagement.Data.Repositorios
             IEnumerable<Notificacao> FiltroNotificacoes = assuntoETurmaEmNotificacao;
 
             return FiltroNotificacoes;
-            
+
         }
 
         public IEnumerable<Notificacao> VisualizarNotificacoesMinhaTurma(int TurmaId)

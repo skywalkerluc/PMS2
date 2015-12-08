@@ -164,6 +164,14 @@ namespace SchoolManagement.MVC.Controllers
             List<SelectListItem> listaProfessor = new List<SelectListItem>();
             var enumProfessor = _professorServico.RecuperarTodos();
 
+            SelectListItem itemVazio = new SelectListItem()
+            {
+                Value = "0",
+                Text = string.Empty
+            };
+
+            listaProfessor.Add(itemVazio);
+
             foreach (var disc in enumProfessor)
             {
                 SelectListItem listItem = new SelectListItem()
@@ -198,21 +206,42 @@ namespace SchoolManagement.MVC.Controllers
             ViewBag.ListaTurmas = notif.ListaTurmas;
         }
 
+        [HttpGet]
+        public void PreencherListaTurmas(FiltroNotificacao notif)
+        {
+            List<SelectListItem> listaTurmas = new List<SelectListItem>();
+            var enumTurma = _turmaServico.RecuperarTodos();
+
+            foreach (var disc in enumTurma)
+            {
+                SelectListItem listItem = new SelectListItem()
+                {
+                    Value = disc.TurmaId.ToString(),
+                    Text = disc.Descricao
+                };
+                listaTurmas.Add(listItem);
+            }
+
+            notif.ListaTurmas = listaTurmas;
+            ViewBag.ListaTurmas = notif.ListaTurmas;
+        }
+
+
         //GET
         [HttpGet]
         public ActionResult RecuperarNotificacao()
         {
-            var notf = new NotificacaoViewModel();
+            var notf = new FiltroNotificacao();
             PreencherListaTurmas(notf);
             return View("FiltroParaConsultaDeNotificacao");
         }
 
         //POST
         [HttpPost]
-        public ActionResult RecuperarNotificacao(NotificacaoViewModel notificacaoFiltro)
+        public ActionResult RecuperarNotificacao(FiltroNotificacao notificacaoFiltro)
         {
             var assunto = notificacaoFiltro.Assunto;
-            var turma = notificacaoFiltro.turmaEscolhida;
+            var turma = notificacaoFiltro.TurmaSelecionada;
 
             var notificacao1 = _notificacaoServico.BuscarNotificacaoPorAssunto(assunto, turma);
             var notificacao2 = Mapper.Map<IEnumerable<Notificacao>, IEnumerable<NotificacaoViewModel>>(notificacao1);

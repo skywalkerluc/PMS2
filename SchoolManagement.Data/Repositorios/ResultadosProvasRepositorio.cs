@@ -91,5 +91,44 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
+        public List<ResultadosProvas> RecuperarResultadosProva(int ProvaId)
+        {
+            try
+            {
+                List<ResultadosProvas> ListaRetorno = new List<ResultadosProvas>();
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM ResultadosProvas AS RP WHERE RP.Prova_ProvaId = " + ProvaId, conn);
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ResultadosProvas result = new ResultadosProvas()
+                        {
+                            ResultadoId = reader.GetInt32(0),
+                            Observacao = reader.GetString(1),
+                            Nota = reader.GetInt32(2),
+                            Gabarito = reader.GetString(3),
+                            Aluno = (new AlunoRepositorio().RecuperarDadosAluno(reader.GetInt32(4))),
+                            Prova = (new ProvaRepositorio().RecuperarProva(reader.GetInt32(5)))
+                        };
+                        ListaRetorno.Add(result);
+                    }
+                    conn.Close();
+                    return ListaRetorno;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
     }
 }

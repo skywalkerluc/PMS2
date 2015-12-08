@@ -32,22 +32,27 @@
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Local)
+                                    @Html.DisplayNameFor(model => model.DataEvento)
                                 </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.Descricao)
                                 </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Local)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PrecoEvento)
+                                </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.DataCriacao)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DataEvento)
-                                </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.NecessidadeAprovacao)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PrecoEvento)
                                 </th>
                                 <th></th>
                             </tr>
@@ -56,22 +61,27 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Local)
+                                        @Html.DisplayFor(modelItem => item.DataEvento)
                                     </td>
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Descricao)
                                     </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Local)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoEvento)
+                                    </td>
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DataCriacao)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DataEvento)
-                                    </td>
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NecessidadeAprovacao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PrecoEvento)
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalhes", "DetailsOutroUsuario", new { id = item.EventoId }) 
