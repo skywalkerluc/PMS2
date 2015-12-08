@@ -10,7 +10,6 @@ namespace SchoolManagement.Domain.Entidades
 {
     public class Aluno : Usuario
     {
-        public Etnia Etnia { get; set; }
         public string Observacoes { get; set; }
         public ICollection<Responsavel> Responsaveis { get; set; }
         public StatusCadastro StatusCadastro { get; set; }

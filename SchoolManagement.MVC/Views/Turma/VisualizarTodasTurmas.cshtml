@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.TurmaViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Todas Turmas";
+    ViewBag.Title = "Visualizar Todas as Turmas";
 }
 
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
     <section class="content-header">
         <h1>
             Turma
-            <small>Visualizar Todas Turmas</small>
+            <small>Visualizar Todas as Turmas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Turma</li>
-            <li class="active">Visualizar Todas Turmas</li>
+            <li class="active">Visualizar Todas as Turmas</li>
         </ol>
     </section>
 
@@ -25,12 +25,15 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualizar Todas Turmas</h3>
+                        <h3 class="box-title">Visualizar Todas as Turmas</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
                         <table class="table">
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AnoLetivo.Ano)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Descricao)
                                 </th>
@@ -40,6 +43,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Vagas)
                                 </th>
+                                
                                 <th></th>
                             </tr>
 
@@ -47,14 +51,25 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                        @Html.DisplayFor(modelItem => item.AnoLetivo.Ano)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.HorariosTurmaId)
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+
+                                    @{
+                                var valor = item.HorariosTurmaId;
+                                string resultado = RecuperarValorHorarioTurma(valor);
+                                    }
+                                    <td>
+                                        @*@Html.HiddenFor(modelItem => item.HorariosTurmaId)*@
+                                        @*@Html.DisplayFor(RecuperarValorHorarioTurma())*@
+                                        @Html.DisplayName(resultado)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Vagas)
                                     </td>
+                                                                        
                                     <td>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.TurmaId }) |
                                         @Html.ActionLink("Details", "Details", new { id = item.TurmaId }) |
@@ -72,3 +87,25 @@
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
+@functions{
+    public string RecuperarValorHorarioTurma(int value)
+    {
+        string descricaoRetorno = string.Empty;
+        switch (value)
+        {
+            case 1:
+                descricaoRetorno = "Manhã";
+                break;
+            case 2:
+                descricaoRetorno = "Tarde";
+                break;
+            case 3:
+                descricaoRetorno = "Noite";
+                break;
+            default:
+                descricaoRetorno = string.Empty;
+                break;
+        }
+        return descricaoRetorno;
+    }
+}

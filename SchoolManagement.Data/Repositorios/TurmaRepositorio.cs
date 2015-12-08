@@ -12,6 +12,9 @@ namespace SchoolManagement.Data.Repositorios
 {
     public class TurmaRepositorio : RepositorioBase<Turma>, ITurmaRepositorio
     {
+        private readonly AnoLetivoRepositorio anoLetivoRep;
+        private readonly ProfessorRepositorio professorRep;
+
         public Turma IncluirTurma(Turma turma)
         {
             try
@@ -64,33 +67,41 @@ namespace SchoolManagement.Data.Repositorios
             return frequencias;
         }
 
-        public IEnumerable<Turma> FiltrarTurma(string descTurma, Professor professor, AnoLetivo ano, int horarioId)
+        public IEnumerable<Turma> FiltrarTurma(string descTurma, int ProfessorId, int AnoLetivo, int horarioId)
         {
-            List<Turma> ListaTurmasFiltradas = new List<Turma>();
-            var turmaFiltro = from t in Db.Turmas.Where(t => t.Descricao == null || t.Descricao == descTurma
-                                  || t.AnoLetivo.AnoLetivoId == 0 || t.AnoLetivo.AnoLetivoId == ano.AnoLetivoId
-                                  || t.HorariosTurmaId == 0 || t.HorariosTurmaId == horarioId)
-                              select t;
+            List<Turma> ListaTurmas = new List<Turma>();
+            
 
-            if (professor != null)
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+            SqlCommand command = new SqlCommand("SELECT * FROM Turma AS T INNER JOIN ProfessorTurma AS PT ON T.TurmaId = PT.Turma_TurmaId WHERE T.Descricao = " + descTurma + " OR " + descTurma + " IS NULL AND PT.Professor_Id = " + ProfessorId + " OR " + ProfessorId + " IS NULL AND T.AnoLetivo_AnoLetivoId = " + AnoLetivo + " OR " + AnoLetivo + " IS NULL AND T.HorariosTurmaId = " + horarioId + " OR " + horarioId + " IS NULL", conn);
+            conn.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
             {
-                foreach (var turmaFiltrada in turmaFiltro)
+                while (reader.Read())
                 {
-                    foreach (var prof in turmaFiltrada.Professores)
+                    List<Professor> ListaProfessores = new List<Professor>();
+                    Professor professor = new Professor();
+                    professor = (new ProfessorRepositorio().Recuperar(reader.GetInt32(5)));
+                    ListaProfessores.Add(professor);
+
+                    Turma turma = new Turma()
                     {
-                        if (prof.Id == professor.Id)
-                        {
-                            ListaTurmasFiltradas.Add(turmaFiltrada);
-                        }
-                    }
+                        TurmaId = reader.GetInt32(0),
+                        Descricao = reader.GetString(1),
+                        HorariosTurmaId = reader.GetInt32(2),
+                        Vagas = reader.GetInt32(3),
+                        AnoLetivo = (new AnoLetivoRepositorio().Recuperar(reader.GetInt32(4))),
+                        Professores = ListaProfessores
+                    };
+                    ListaTurmas.Add(turma);
                 }
-                IEnumerable<Turma> RetornoTurmaFiltrada = ListaTurmasFiltradas;
-                return RetornoTurmaFiltrada;
+                return ListaTurmas;
             }
             else
             {
-                IEnumerable<Turma> RetornoTurmaFiltrada = turmaFiltro;
-                return RetornoTurmaFiltrada;
+                throw new NotImplementedException();
             }
 
         }
@@ -160,6 +171,65 @@ namespace SchoolManagement.Data.Repositorios
             {
                 throw new NotImplementedException(ex.Message.ToString());
             }
+        }
+
+        public Turma RecuperarDadosTurma(int TurmaId)
+        {
+            try
+            {
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM Turma AS T WHERE T.TurmaId = " + TurmaId, conn);
+                conn.Open();
+
+                Turma turma = new Turma();
+
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        turma = new Turma()
+                        {
+                            TurmaId = reader.GetInt32(0),
+                            Descricao = reader.GetString(1),
+                            HorariosTurmaId = reader.GetInt32(2),
+                            Vagas = reader.GetInt32(3),
+                            AnoLetivo = (new AnoLetivoRepositorio().Recuperar(reader.GetInt32(4)))
+                        };
+                        return turma;
+                    }
+                    return turma;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+            
+        }
+
+        public bool AtualizarDadosTurma(Turma turma)
+        {
+            try
+            {
+                SqlParameter TurmaIdParameter = new SqlParameter("@TurmaId", turma.TurmaId);
+                SqlParameter DescricaoParameter = new SqlParameter("@Descrição", turma.Descricao);
+                SqlParameter HorarioIdParameter = new SqlParameter("@HorarioTurmaId", turma.HorariosTurmaId);
+                SqlParameter VagasParameter = new SqlParameter("@Vagas", turma.Vagas);
+
+                var query = this.Db.Database.ExecuteSqlCommand("UPDATE Turma SET Descricao = @Descrição, HorariosTurmaId = @HorarioTurmaId, Vagas = @Vagas WHERE TurmaId = @TurmaId", TurmaIdParameter, DescricaoParameter, HorarioIdParameter, VagasParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+            
         }
 
     }

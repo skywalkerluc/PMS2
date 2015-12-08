@@ -15,5 +15,8 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<Aluno> ExibirDadosAlunoRelacionado(int responsavelId);
         IEnumerable<Responsavel> FiltrarResponsavel(string nomeResponsavel, int idAluno);
         List<Dictionary<int, string>> ExibirDadosAlunoRelacionado2(int responsavelId);
+        bool RemoverResponsavel(int ResponsavelId);
+        Responsavel RecuperarDadosResponsavel(int ResponsavelId);
+        bool AtualizarDadosResponsavel(Responsavel responsavel);
     }
 }

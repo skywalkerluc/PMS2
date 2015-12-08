@@ -48,5 +48,21 @@ namespace SchoolManagement.Domain.Servicos
         {
             return _responsavelRepositorio.ExibirDadosAlunoRelacionado2(responsavelId);
         }
+
+        public bool RemoverResponsavel(int ResponsavelId)
+        {
+            return _responsavelRepositorio.RemoverResponsavel(ResponsavelId);
+        }
+
+        public Responsavel RecuperarDadosResponsavel(int ResponsavelId)
+        {
+            return _responsavelRepositorio.RecuperarDadosResponsavel(ResponsavelId);
+        }
+
+        public bool AtualizarDadosResponsavel(Responsavel responsavel)
+        {
+            return _responsavelRepositorio.AtualizarDadosResponsavel(responsavel);
+        }
+
     }
 }

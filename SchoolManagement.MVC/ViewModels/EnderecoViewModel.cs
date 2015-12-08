@@ -7,7 +7,7 @@ namespace SchoolManagement.MVC.ViewModels
     public class EnderecoViewModel
     {
         [Display(Name = "Endereco")]
-        public string Endereco { get; set; }
+        public string NomeRua { get; set; }
 
         [Display(Name = "Nº")]
         public int Numero { get; set; }

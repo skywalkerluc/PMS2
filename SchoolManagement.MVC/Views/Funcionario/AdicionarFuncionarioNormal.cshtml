@@ -66,9 +66,9 @@
                                 @Html.ValidationMessageFor(model => model.Endereco.Cep)
                             </div>
                             <div class="form-group col-md-6">
-                                @Html.LabelFor(m => m.Endereco.Endereco)
-                                @Html.TextBoxFor(m => m.Endereco.Endereco, new { @placeholder = "Endereço", @id = "Endereco", @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Endereco.Endereco)
+                                @Html.LabelFor(m => m.Endereco.NomeRua)
+                                @Html.TextBoxFor(m => m.Endereco.NomeRua, new { @placeholder = "Endereço", @id = "Endereco", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Endereco.NomeRua)
                             </div>
                             <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Endereco.Numero)

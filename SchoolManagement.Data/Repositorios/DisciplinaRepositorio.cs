@@ -121,5 +121,22 @@ namespace SchoolManagement.Data.Repositorios
                 throw new NotImplementedException(ex.Message.ToString());
             }
         }
+
+        public bool AtualizarDadosDisciplina(Disciplina disciplina)
+        {
+            try
+            {
+                var DisciplinaIdParameter = new SqlParameter("@DisciplinaId", disciplina.DisciplinaId);
+                var NomeDisciplinaParameter = new SqlParameter("@NomeDisciplina", disciplina.NomeDisciplina);
+
+                var query = this.Db.Database.ExecuteSqlCommand("UPDATE Disciplina SET NomeDisciplina = @NomeDisciplina WHERE DisciplinaId = @DisciplinaId", NomeDisciplinaParameter, DisciplinaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+            
+        }
     }
 }

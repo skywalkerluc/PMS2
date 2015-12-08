@@ -54,7 +54,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /Aluno/Details/5
         public ActionResult Details(int id)
         {
-            var aluno = _alunoApp.Recuperar(id);
+            var aluno = _alunoApp.RecuperarDadosAluno(id);
             var alunoViewModel = Mapper.Map<Aluno, AlunoViewModel>(aluno);
 
             return View("DetalhesAluno", alunoViewModel);
@@ -117,7 +117,7 @@ namespace SchoolManagement.MVC.Controllers
                 TurmaViewModel turmaT = new TurmaViewModel();
                 turmaT.TurmaId = aluno.turmaEscolhida;
 
-                var turmaRecuperada = _turmaApp.Recuperar(turmaT.TurmaId);
+                var turmaRecuperada = _turmaApp.RecuperarDadosTurma(turmaT.TurmaId);
 
                 List<Aluno> ListaAlunos = new List<Aluno>();
                 ListaAlunos.Add(alunoDomain);
@@ -142,7 +142,7 @@ namespace SchoolManagement.MVC.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var aluno = _alunoApp.Recuperar(id);
+            var aluno = _alunoApp.RecuperarDadosAluno(id);
             var alunoViewModel = Mapper.Map<Aluno, AlunoViewModel>(aluno);
             return View("EditarAluno", alunoViewModel);
         }
@@ -156,7 +156,7 @@ namespace SchoolManagement.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var alunoDomain = Mapper.Map<AlunoViewModel, Aluno>(aluno);
-                _alunoApp.Atualizar(alunoDomain);
+                _alunoApp.AtualizarDadosAluno(alunoDomain);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -167,7 +167,7 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /Aluno/Delete/5
         public ActionResult Delete(int id)
         {
-            var aluno = _alunoApp.Recuperar(id);
+            var aluno = _alunoApp.RecuperarDadosAluno(id);
             var alunoViewModel = Mapper.Map<Aluno, AlunoViewModel>(aluno);
 
             return View("DeleteAluno", alunoViewModel);
@@ -179,9 +179,7 @@ namespace SchoolManagement.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var aluno = _alunoApp.Recuperar(id);
-
-            var sucesso = _alunoApp.Remover(aluno);
+            var sucesso = _alunoApp.RemoverAluno(id);
             if (sucesso)
                 return RedirectToAction("Index", "Aluno");
             else
@@ -244,7 +242,7 @@ namespace SchoolManagement.MVC.Controllers
 
         public ActionResult VerAlunosMinhaTurma(int AlunoId)
         {
-            var aluno = _alunoApp.Recuperar(AlunoId);
+            var aluno = _alunoApp.RecuperarDadosAluno(AlunoId);
             var alunosTurma = _alunoApp.RecuperarAlunosTurma(aluno.Turma.TurmaId);
 
             var alunosMapeados = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(alunosTurma);
@@ -258,7 +256,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
 
-            var aluno = _alunoApp.Recuperar(idUsuario);
+            var aluno = _alunoApp.RecuperarDadosAluno(idUsuario);
             var notas = _resultadosProvasApp.RecuperarNotasAluno(aluno.Id);
             var notasMapeadas = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(notas);
             return View("VisualizarMinhasNotas", notasMapeadas);
@@ -325,7 +323,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             List<ResponsavelViewModel> ListaRetorno = new List<ResponsavelViewModel>();
             int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
-            var aluno = _alunoApp.Recuperar(idUsuario);
+            var aluno = _alunoApp.RecuperarDadosAluno(idUsuario);
             var alunoMapped = Mapper.Map<Aluno, AlunoViewModel>(aluno);
             if (alunoMapped != null)
             {

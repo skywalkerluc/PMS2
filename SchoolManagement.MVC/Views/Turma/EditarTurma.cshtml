@@ -43,13 +43,40 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.HorariosTurmaId, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.HorariosTurmaId, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.HorariosTurmaId, "", new { @class = "text-danger" })
-                                    </div>
+                                <div class="form-horizontal">
+                                    @Html.LabelFor(m => m.HorariosTurmaId, htmlAttributes: new { @class = "control-label col-md-2" }) 
+                                    @{
+                                        List<SelectListItem> listaHorarios = new List<SelectListItem>();
+                                        SelectListItem itemVazio = new SelectListItem()
+                                        {
+                                            Value = "0",
+                                            Text = ""
+                                        };
+                                        SelectListItem itemManha = new SelectListItem()
+                                        {
+                                            Value = "1",
+                                            Text = "Manhã"
+                                        };
+                                        SelectListItem itemTarde = new SelectListItem()
+                                        {
+                                            Value = "2",
+                                            Text = "Tarde"
+                                        };
+                                        SelectListItem itemNoite = new SelectListItem()
+                                        {
+                                            Value = "3",
+                                            Text = "Noite"
+                                        };
+                                        listaHorarios.Add(itemVazio);
+                                        listaHorarios.Add(itemManha);
+                                        listaHorarios.Add(itemTarde);
+                                        listaHorarios.Add(itemNoite);
+                                    }
+                                    @Html.DropDownListFor(m => m.HorariosTurmaId, listaHorarios, new { @class = "form-control", placeholder = "Selecione o horário da turma", style = "width: 100%;", id = "HorarioTurma" })
+                                    @Html.ValidationMessageFor(model => model.HorariosTurmaId)
                                 </div>
+
+                                @Html.HiddenFor(m => m.TurmaId);
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Vagas, htmlAttributes: new { @class = "control-label col-md-2" })
