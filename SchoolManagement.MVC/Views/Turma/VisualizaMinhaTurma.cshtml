@@ -40,9 +40,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Vagas)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.anoletivoSelecionado)
-                                </th>
+                                
                                 <th></th>
                             </tr>
 
@@ -50,14 +48,16 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => Model.Descricao)
                                 </td>
+                                    @{
+                                        var valor = Model.HorariosTurmaId;
+                                        string resultado = RecuperarValorHorarioTurma(valor);
+                                    }      
                                 <td>
-                                    @Html.DisplayFor(modelItem => Model.HorariosTurmaId)
-                                </td>
+                                    @*@Html.HiddenFor(modelItem => item.HorariosTurmaId)*@
+                                    @*@Html.DisplayFor(RecuperarValorHorarioTurma())*@
+                                    @Html.DisplayName(resultado)
                                 <td>
                                     @Html.DisplayFor(modelItem => Model.Vagas)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => Model.anoletivoSelecionado)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Detalhes", "DetalhesMinhaTurma", new { id = Model.TurmaId })
@@ -72,3 +72,26 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+@functions{
+    public string RecuperarValorHorarioTurma(int value)
+    {
+        string descricaoRetorno = string.Empty;
+        switch (value)
+        {
+            case 1:
+                descricaoRetorno = "Manhã";
+                break;
+            case 2:
+                descricaoRetorno = "Tarde";
+                break;
+            case 3:
+                descricaoRetorno = "Noite";
+                break;
+            default:
+                descricaoRetorno = string.Empty;
+                break;
+        }
+        return descricaoRetorno;
+    }
+}

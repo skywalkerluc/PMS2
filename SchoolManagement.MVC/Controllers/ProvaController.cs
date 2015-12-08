@@ -52,20 +52,28 @@ namespace SchoolManagement.MVC.Controllers
         // GET: Prova/Create
         public ActionResult Create()
         {
-
             var prova = new ProvaViewModel();
-            PreencherListaDisciplinaProfessor(prova);
-            PreencherListaTurmasProfessor(prova);
+            var user = _usuarioServico.Recuperar((int)Session["UsuarioId"]);
+            if (user.indicadorAcesso == 4)
+            {
+                PreencherListaDisciplinaProfessor(prova);
+                PreencherListaTurmasProfessor(prova);
+            }
+            else
+            {
+                PreencherListaDisciplina(prova);
+                PreencherListaTurma(prova);
+            }
             return View("CadastrarProva");
         }
 
         // POST: Prova/Create
         [HttpPost]
-        public ActionResult Create(ProvaViewModel prova)
+        public ActionResult CadastrarProva(ProvaViewModel prova)
         {
             try
             {
-                if(prova.disciplinasTeste != 0)
+                if (prova.disciplinasTeste != 0)
                 {
                     var disciplina = _disciplinaServico.Recuperar(prova.disciplinasTeste);
                     var disciplinaViewModel = Mapper.Map<Disciplina, DisciplinaViewModel>(disciplina);
@@ -81,22 +89,22 @@ namespace SchoolManagement.MVC.Controllers
                 int valorEnumTipo = (int)Enum.Parse(typeof(SchoolManagement.MVC.ViewModels.TipoProva), Enum.GetName(typeof(SchoolManagement.MVC.ViewModels.TipoProva), tipo));
                 //fim adiquirindo valor dos enumeradores
 
-                prova.status = valorEnumStatus;
-                prova.tipo = valorEnumTipo;
+                prova.Status = valorEnumStatus;
+                prova.Tipo = valorEnumTipo;
 
-                var turma = Mapper.Map<Turma,TurmaViewModel>(_turmaServico.Recuperar(prova.turmaLista));
+                var turma = Mapper.Map<Turma, TurmaViewModel>(_turmaServico.Recuperar(prova.turmaLista));
                 prova.Turma = turma;
 
                 var professor = Mapper.Map<Professor, ProfessorViewModel>(_professorApp.Recuperar((int)Session["UsuarioId"]));
                 prova.Professores = professor;
 
                 var provaDomain = Mapper.Map<ProvaViewModel, Prova>(prova);
-                
+
                 var attmpt = _provaApp.IncluirProva(provaDomain);
 
                 if (attmpt != null)
                 {
-                    
+
                     var notif = new NotificacaoViewModel()
                     {
                         Assunto = "Uma nova prova foi adicionada.",
@@ -160,7 +168,7 @@ namespace SchoolManagement.MVC.Controllers
 
             var provaSelecionado = Mapper.Map<Prova, Prova>(prova);
             _provaApp.ExcluirProva(provaSelecionado.ProvaId);
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -194,6 +202,23 @@ namespace SchoolManagement.MVC.Controllers
                     Text = String.Concat(turma.Descricao, " (", this.RecuperarValorHorarioTurma(turma.HorariosTurmaId), ")")
                 };
                 prova.ListaTurmas = new List<SelectListItem>();
+                prova.ListaTurmas.Add(select);
+            }
+            ViewBag.ListaTurmas = prova.ListaTurmas;
+        }
+
+        private void PreencherListaTurma(ProvaViewModel prova)
+        {
+            var turmas = _turmaServico.RecuperarTodos();
+            prova.ListaTurmas = new List<SelectListItem>();
+            foreach (var turma in turmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = turma.TurmaId.ToString(),
+                    Text = String.Concat(turma.Descricao, " (", this.RecuperarValorHorarioTurma(turma.HorariosTurmaId), ")")
+                };
+                
                 prova.ListaTurmas.Add(select);
             }
             ViewBag.ListaTurmas = prova.ListaTurmas;
@@ -263,7 +288,7 @@ namespace SchoolManagement.MVC.Controllers
             var prova2 = _provaApp.BuscarPorDisciplina(disciplina);
             var prova3 = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(prova2);
 
-            return View("ResultadoPesquisaProva", prova3.ToList()); 
+            return View("ResultadoPesquisaProva", prova3.ToList());
         }
 
         public ActionResult VisualizarTodasProvas()
@@ -294,7 +319,7 @@ namespace SchoolManagement.MVC.Controllers
             return View("DetalhesResultadoNotaSelecionada", provaViewModel);
         }
 
-        
+
         public ActionResult RecuperarProvasProfessor(int ProfessorId)
         {
             var attmpt = _provaApp.RecuperarProvasProfessor(ProfessorId);

@@ -37,17 +37,12 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Unidade)
                                 </th>
+                                
                                 <th>
-                                    @Html.DisplayNameFor(model => model.disciplinasTeste)
+                                    @Html.DisplayNameFor(model => model.Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.professoresLista)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.status)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tipo)
+                                    @Html.DisplayNameFor(model => model.Tipo)
                                 </th>
                                 <th></th>
                             </tr>
@@ -62,16 +57,10 @@
                                         @Html.DisplayFor(modelItem => item.Unidade)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.disciplinasTeste)
+                                        @Html.DisplayName(RecuperarStatusProva((int)item.StatusProva))
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.professoresLista)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.status)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tipo)
+                                        @Html.DisplayName(RecuperarValorTipoProva((int)item.TipoProva))
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalhes", "DetalhesProvaSelecionada", new {  id=item.ProvaId })
@@ -87,3 +76,48 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+@functions{
+    private string RecuperarValorTipoProva(int tipo)
+    {
+        string result = string.Empty;
+        switch (tipo)
+        {
+            case 1:
+                result = "Prova Normal";
+                break;
+            case 2:
+                result = "Prova de Recuperação 1";
+                break;
+            case 3:
+                result = "Prova de Recuperação 2";
+                break;
+            case 4:
+                result = "Prova de segunda chamada";
+                break;
+            case 5:
+                result = "Prova final";
+                break;
+            default:
+                break;
+        }
+        return result;
+    }
+    
+    private string RecuperarStatusProva(int status)
+    {
+        string result = string.Empty;
+        switch (status)
+        {
+            case 1:
+                result = "Pendente";
+                break;
+            case 2:
+                result = "Concluída";
+                break;
+            default:
+                break;
+        }
+        return result;
+    }
+}
