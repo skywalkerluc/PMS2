@@ -58,17 +58,17 @@
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.Professor)
                                         @{
-                        List<SelectListItem> listaProfessores = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaProfessores)
-                        {
-                            SelectListItem selec = new SelectListItem()
-                            {
-                                Value = item.Value,
-                                Text = item.Text
-                            };
-                            listaProfessores.Add(selec);
-                        }
-                        @Html.DropDownListFor(m => m.professorSelecionado, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione uma professor", style = "width: 100%;", id = "professor" })
+                                            List<SelectListItem> listaProfessores = new List<SelectListItem>();
+                                            foreach (var item in @ViewBag.ListaProfessores)
+                                            {
+                                                SelectListItem selec = new SelectListItem()
+                                                {
+                                                    Value = item.Value,
+                                                    Text = item.Text
+                                                };
+                                                listaProfessores.Add(selec);
+                                            }
+                                            @Html.DropDownListFor(m => m.professorSelecionado, listaProfessores, new { @class = "form-control select2", placeholder = "Selecione uma professor", style = "width: 100%;", id = "professor" })
                                         }
                                         @Html.ValidationMessageFor(model => model.Professor)
                                     </div>

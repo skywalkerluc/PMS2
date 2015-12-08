@@ -83,8 +83,8 @@ namespace SchoolManagement.Data.Repositorios
                 }
             }
 
-            if(prova.Professores != null)
-            { 
+            if (prova.Professores != null)
+            {
                 Db.Entry(prova.Professores).State = EntityState.Detached;
             }
 
@@ -239,7 +239,7 @@ namespace SchoolManagement.Data.Repositorios
             {
                 throw new NotImplementedException(ex.Message.ToString());
             }
-            
+
         }
 
         public IEnumerable<Prova> RecuperarTodasAsProvas()
@@ -271,9 +271,91 @@ namespace SchoolManagement.Data.Repositorios
             }
             else
             {
-                throw new NotImplementedException();
+                return ListaRetorno;
             }
         }
+
+        public IEnumerable<Prova> RecuperarProvasPendentesTurmaProfessor(int ProfessorId, int TurmaId)
+        {
+            try
+            {
+                List<Prova> ListaRetorno = new List<Prova>();
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM Prova AS P WHERE P.Professores_Id = " + ProfessorId + " OR " + ProfessorId + " IS NULL AND P.Turma_TurmaId = " + TurmaId + " OR " + TurmaId + " IS NULL", conn);
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Prova pr = new Prova()
+                        {
+                            ProvaId = reader.GetInt32(0),
+                            DataProva = reader.GetDateTime(1),
+                            Unidade = reader.GetInt32(2),
+                            StatusProva = reader.GetInt32(3),
+                            TipoProva = reader.GetInt32(4),
+                            Disciplina = (new DisciplinaRepositorio().Recuperar(reader.GetInt32(5))),
+                            Professores = (new ProfessorRepositorio().Recuperar(reader.GetInt32(6))),
+                            Turma = (new TurmaRepositorio().Recuperar(reader.GetInt32(7)))
+                        };
+                        ListaRetorno.Add(pr);
+                    }
+                    return ListaRetorno;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
+        public IEnumerable<Prova> RecuperarProvasConcluidas(int TurmaId)
+        {
+            try
+            {
+                List<Prova> ListaRetorno = new List<Prova>();
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM Prova AS P WHERE P.StatusProva = 2 AND P.Turma_TurmaId = " + TurmaId, conn);
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Prova pr = new Prova()
+                        {
+                            ProvaId = reader.GetInt32(0),
+                            DataProva = reader.GetDateTime(1),
+                            Unidade = reader.GetInt32(2),
+                            StatusProva = reader.GetInt32(3),
+                            TipoProva = reader.GetInt32(4),
+                            Disciplina = (new DisciplinaRepositorio().Recuperar(reader.GetInt32(5))),
+                            Professores = (new ProfessorRepositorio().Recuperar(reader.GetInt32(6))),
+                            Turma = (new TurmaRepositorio().Recuperar(reader.GetInt32(7)))
+                        };
+                        ListaRetorno.Add(pr);
+                    }
+                    conn.Close();
+                    return ListaRetorno;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
 
     }
 }

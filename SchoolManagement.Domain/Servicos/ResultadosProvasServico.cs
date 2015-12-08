@@ -43,5 +43,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._resultadosProvasRep.RemoverResultadosAlunos(resultadosProvas);
         }
+
+        public List<ResultadosProvas> RecuperarResultadosProva(int ProvaId)
+        {
+            return this._resultadosProvasRep.RecuperarResultadosProva(ProvaId);
+        }
     }
 }

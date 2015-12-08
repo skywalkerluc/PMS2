@@ -59,6 +59,8 @@
                                         @Html.ValidationMessageFor(model => model.Editora, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+
+                                @Html.HiddenFor(m => m.LivroId)
                             </div>
 
 

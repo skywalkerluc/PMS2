@@ -38,5 +38,9 @@ namespace SchoolManagement.MVC.ViewModels
 
         public int status { get; set; }
         public int tipo { get; set; }
+
+        public int provaIdSelecionado { get; set; }
+
+        
     }
 }

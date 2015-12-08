@@ -1,4 +1,4 @@
-﻿@model SchoolManagement.MVC.ViewModels.NotificacaoViewModel
+﻿@model SchoolManagement.MVC.ViewModels.FiltroViewModel.FiltroNotificacao
 
 @{
     ViewBag.Title = ViewBag.Title = "Filtro - Notificações";
@@ -68,7 +68,7 @@
                                             };
                                             listaTurmas.Add(selec);
                                         }
-                                        @Html.DropDownListFor(m => m.turmaEscolhida, listaTurmas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
+                                        @Html.DropDownListFor(m => m.TurmaSelecionada, listaTurmas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
                                     }
 
                                     @Html.ValidationMessageFor(model => model.ListaTurmas)

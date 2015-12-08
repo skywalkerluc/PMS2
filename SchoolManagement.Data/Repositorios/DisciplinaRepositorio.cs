@@ -121,5 +121,56 @@ namespace SchoolManagement.Data.Repositorios
                 throw new NotImplementedException(ex.Message.ToString());
             }
         }
+
+        public bool AtualizarDadosDisciplina(Disciplina disciplina)
+        {
+            try
+            {
+                var DisciplinaIdParameter = new SqlParameter("@DisciplinaId", disciplina.DisciplinaId);
+                var NomeDisciplinaParameter = new SqlParameter("@NomeDisciplina", disciplina.NomeDisciplina);
+
+                var query = this.Db.Database.ExecuteSqlCommand("UPDATE Disciplina SET NomeDisciplina = @NomeDisciplina WHERE DisciplinaId = @DisciplinaId", NomeDisciplinaParameter, DisciplinaIdParameter);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
+        public IEnumerable<Disciplina> RecuperarDisciplinasTurmaProfessor(int TurmaId, int ProfessorId)
+        {
+            try
+            {
+                List<Disciplina> ListaRetorno = new List<Disciplina>();
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM Disciplina AS D JOIN DisciplinaTurma  AS DT ON D.DisciplinaId = DT.Disciplina_DisciplinaId JOIN ProfessorDisciplina AS PD ON PD.Disciplina_DisciplinaId = DT.Disciplina_DisciplinaId WHERE PD.Professor_Id = " + ProfessorId + " AND DT.Turma_TurmaId = " + TurmaId, conn);
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Disciplina result = new Disciplina()
+                        {
+                            DisciplinaId = reader.GetInt32(0),
+                            NomeDisciplina = reader.GetString(1)
+                        };
+                        ListaRetorno.Add(result);
+                    }
+                    conn.Close();
+                    return ListaRetorno;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
     }
 }

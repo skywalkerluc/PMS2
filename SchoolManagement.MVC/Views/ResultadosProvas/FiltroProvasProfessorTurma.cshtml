@@ -1,4 +1,4 @@
-﻿@model SchoolManagement.MVC.ViewModels.TurmaViewModel
+﻿@model SchoolManagement.MVC.ViewModels.ProvaViewModel
 
 @{
     ViewBag.Title = "Filtro Turmas Professor Leciona";
@@ -25,13 +25,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Notas
-            <small>Turmas que Leciono</small>
+            Professor
+            <small>Filtro Provas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Notas</a></li>
-            <li class="active">Turmas que Leciono</li>
+            <li><a href="#">Professor</a></li>
+            <li class="active">Filtro Provas</li>
         </ol>
     </section>
 
@@ -40,32 +40,32 @@
         <div class="example-modal">
             <div class="modal">
                 <div class="modal-dialog">
-                    @using (Html.BeginForm("FiltroTurmasProvaProfessorLeciona", "ResultadosProvas", FormMethod.Get))
+                    @using (Html.BeginForm("VisualizarAlunosTurmasProfessorLecionaLancarNota", "ResultadosProvas", FormMethod.Post))
                     {
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Filtro Turmas que Leciono</h4>
+                                <h4 class="modal-title">Filtro Provas</h4>
                             </div>
                             <div class="modal-body">
 
                                 <div class="form-group col-md-12">
-                                    @Html.LabelFor(m => m.ListaTurmas)
+                                    @Html.LabelFor(m => m.Disciplina.NomeDisciplina)
 
                                     @{
-                        List<SelectListItem> listaTurmas = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaTurmas)
+                        List<SelectListItem> listaprovasResultado = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaProvasResultadoNota)
                         {
                             SelectListItem selec = new SelectListItem()
                             {
                                 Value = item.Value,
                                 Text = item.Text
                             };
-                            listaTurmas.Add(selec);
+                            listaprovasResultado.Add(selec);
                         }
-                        @Html.DropDownListFor(m => m.TurmaId, listaTurmas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
+                        @Html.DropDownListFor(m => m.provaIdSelecionado, listaprovasResultado, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
                                     }
 
-                                    @Html.ValidationMessageFor(model => model.ListaTurmas)
+                                    @Html.ValidationMessageFor(model => model.Disciplina.NomeDisciplina)
                                 </div>
 
                             </div>

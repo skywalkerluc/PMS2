@@ -20,8 +20,9 @@ namespace SchoolManagement.MVC.Controllers
         private readonly IAlunoServico _alunoApp;
         private readonly INotificacaoServico _notificacaoServico;
         private readonly ITurmaServico _turmaServico;
+        private readonly IUsuarioServico _usuarioServico;
 
-        public ProvaController(IProvaServico provaApp, IDisciplinaServico disciplinaServico, IProfessorServico professorApp, IResultadosProvasServico resultadoProvaApp, IAlunoServico alunoApp, INotificacaoServico notificacaoServico, ITurmaServico turmaServico)
+        public ProvaController(IProvaServico provaApp, IDisciplinaServico disciplinaServico, IProfessorServico professorApp, IResultadosProvasServico resultadoProvaApp, IAlunoServico alunoApp, INotificacaoServico notificacaoServico, ITurmaServico turmaServico, IUsuarioServico usuarioServico)
         {
             _provaApp = provaApp;
             _disciplinaServico = disciplinaServico;
@@ -30,6 +31,7 @@ namespace SchoolManagement.MVC.Controllers
             _alunoApp = alunoApp;
             _notificacaoServico = notificacaoServico;
             _turmaServico = turmaServico;
+            _usuarioServico = usuarioServico;
         }
 
         // GET: Prova
@@ -244,7 +246,12 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult RecuperarProvaPorDisciplina()
         {
             var prova = new ProvaViewModel();
-            PreencherListaDisciplinaProfessor(prova);
+            var user = this._usuarioServico.Recuperar((int)Session["UsuarioId"]);
+            if (user.indicadorAcesso == 6)
+                PreencherListaDisciplina(prova);
+            else
+                PreencherListaDisciplinaProfessor(prova);
+
             return View("FiltroConsultaProva");
         }
 
@@ -259,7 +266,12 @@ namespace SchoolManagement.MVC.Controllers
             return View("ResultadoPesquisaProva", prova3.ToList()); 
         }
 
-
+        public ActionResult VisualizarTodasProvas()
+        {
+            var provas = _provaApp.RecuperarTodasAsProvas();
+            var provasMapped = Mapper.Map<IEnumerable<Prova>, IEnumerable<ProvaViewModel>>(provas);
+            return View("VisualizarTodasProvas", provasMapped);
+        }
 
 
         public ActionResult VisualizarNotasDoAluno()

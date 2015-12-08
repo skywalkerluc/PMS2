@@ -12,17 +12,6 @@ namespace SchoolManagement.Domain.Entidades
         Feminino
     }
 
-    public enum Etnia
-    {
-        Branco,
-        Negro,
-        Pardo,
-        Mulato,
-        Índio,
-        Caboclo,
-        Cafuzo
-    }
-
     public enum StatusProva
     {
         Pendente =  1,

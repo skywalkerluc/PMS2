@@ -138,5 +138,72 @@ namespace SchoolManagement.MVC.Controllers
             }
             
         }
+
+        [HttpGet]
+        public ActionResult FiltroTurmasFrequenciaProfessorLeciona()
+        {
+            int professorId = (int)Session["UsuarioId"];
+            List<SelectListItem> ListaTurmasFrequencia = new List<SelectListItem>();
+            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmasFrequencia.Add(select);
+            }
+
+            ViewBag.ListaTurmasFrequencia = ListaTurmasFrequencia;
+
+            return View("FiltroDisciplinaFrequenciaProfessor");
+        }
+
+        [HttpGet]
+        public ActionResult FiltroDisciplinaFrequenciaProfessorLeciona(TurmaViewModel turma)
+        {
+            int professorId = (int)Session["UsuarioId"];
+
+            List<SelectListItem> ListaDisciplinaFrequencia = new List<SelectListItem>();
+
+            var listaTurmas = _disciplinaServico.recupera(professorId);
+
+            foreach (var item in listaTurmas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaDisciplinaFrequencia.Add(select);
+            }
+
+            ViewBag.ListaDisciplinaFrequencia = ListaDisciplinaFrequencia;
+
+            return View("FiltroDisciplinaFrequenciaProfessor");
+        }
+
+
+        private string RecuperarValorHorarioTurma(int value)
+        {
+            string descricaoRetorno = string.Empty;
+            switch (value)
+            {
+                case 1:
+                    descricaoRetorno = "Manhã";
+                    break;
+                case 2:
+                    descricaoRetorno = "Tarde";
+                    break;
+                case 3:
+                    descricaoRetorno = "Noite";
+                    break;
+                default:
+                    descricaoRetorno = string.Empty;
+                    break;
+            }
+            return descricaoRetorno;
+        }
 	}
 }

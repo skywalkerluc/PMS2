@@ -11,8 +11,6 @@ namespace SchoolManagement.MVC.ViewModels
 {
     public class AlunoViewModel : UsuarioViewModel
     {
-        public Etnia Etnia { get; set; }
-
         [Display(Name = "Observações")]
         public string Observacoes { get; set; }
 
@@ -32,5 +30,7 @@ namespace SchoolManagement.MVC.ViewModels
         public List<SelectListItem> AlunosResponsavel { get; set; }
 
         public int alunoSelecionadoResponsavel { get; set; }
+
+        public int notas { get; set; }
     }
 }

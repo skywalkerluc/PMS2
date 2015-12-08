@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResponsavelViewModel>
 
 @{
-    ViewBag.Title = "Visualizar Todos Responsáveis";
+    ViewBag.Title = "Visualizar todos os Responsáveis";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Funcionário
-            <small>Visualização de Todos Funcionários</small>
+            Responsável
+            <small>Visualizar todos os Responsáveis</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Funcionário</li>
-            <li class="active">Visualização de Todos Funcionários</li>
+            <li class="active">Responsável</li>
+            <li class="active">Visualizar todos os Responsáveis</li>
         </ol>
     </section>
 
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Visualização de Todos Funcionario</h3>
+                        <h3 class="box-title">Visualizar todos os Responsáveis</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
 
@@ -38,30 +38,12 @@
                                     @Html.DisplayNameFor(model => model.DataNascimento)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Rg)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Cpf)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Nacionalidade)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Naturalidade)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.UserLogin)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Senha)
-                                </th>
-                                
-                                <th>
                                     @Html.DisplayNameFor(model => model.FuncaoTrabalhista)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Renda)
-                                </th>
+                                
                                 <th></th>
                             </tr>
 
@@ -75,28 +57,10 @@
                                         @Html.DisplayFor(modelItem => item.DataNascimento)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Rg)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Cpf)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Nacionalidade)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Naturalidade)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.UserLogin)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Senha)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.FuncaoTrabalhista)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Renda)
                                     </td>
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |

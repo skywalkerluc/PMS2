@@ -17,12 +17,15 @@ namespace SchoolManagement.MVC.Controllers
         private readonly Utilizavel _util;
         private readonly ITurmaServico _turmaServico;
         private readonly IAlunoServico _alunoServico;
-        public ResultadosProvasController(IResultadosProvasServico resultadosProvasApp, Utilizavel util, ITurmaServico turmaServico,  IAlunoServico alunoServico)
+        private readonly IProvaServico _provaApp;
+
+        public ResultadosProvasController(IResultadosProvasServico resultadosProvasApp, Utilizavel util, ITurmaServico turmaServico, IAlunoServico alunoServico, IProvaServico provaApp)
         {
             _resultadosProvasApp = resultadosProvasApp;
             _util = util;
             _turmaServico = turmaServico;
             _alunoServico = alunoServico;
+            _provaApp = provaApp;
         }
 
         //
@@ -55,16 +58,49 @@ namespace SchoolManagement.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult LancarNotasTurma(List<ResultadosProvasViewModel> resultados)
+        public ActionResult LancarNotasTurma(FormCollection resultados)
         {
             try
             {
-                foreach (var item in resultados)
+                var AlunosLista = resultados["item.Aluno.Id"];
+                var NotasLista = resultados["item.resul"];
+
+                int provaIdEscolhida = (int)Session["provaIdselecionado"];
+
+                var prova = _provaApp.RecuperarProva(provaIdEscolhida);
+                var provaMap = Mapper.Map<Prova, ProvaViewModel>(prova);
+
+                 
+                string[] quebAlunos = AlunosLista.Split(',');
+                string[] quebNotas = NotasLista.Split(',');
+
+
+                List<ResultadosProvasViewModel> listResultados = new List<ResultadosProvasViewModel>();
+
+                for (int i = 0; i < quebAlunos.Length; i++)
+                {
+                    ResultadosProvasViewModel rp = new ResultadosProvasViewModel();
+
+                    var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
+                    var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
+
+                    rp.Aluno = alunoMap;
+                    rp.Nota = Convert.ToInt32(quebNotas[i]);
+                    rp.Prova = provaMap;
+                    rp.Observacao = "";
+                    rp.Gabarito = "";
+
+                    listResultados.Add(rp);
+                }
+
+
+                foreach (var item in listResultados)
                 {
                     var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
                     var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
                 }
-                return View("Home", "Index");
+
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
@@ -121,10 +157,36 @@ namespace SchoolManagement.MVC.Controllers
             return View("FiltroTurmasProfessorLecionaLancarNotas");
         }
 
-        [HttpPost]
-        public ActionResult VisualizarAlunosTurmasProfessorLecionaLancarNota()
+        [HttpGet]
+        public ActionResult FiltroTurmasProvaProfessorLeciona(TurmaViewModel turma)
         {
-            List<Aluno> AlunosBackEnd = new List<Aluno>();
+            int professorId = (int)Session["UsuarioId"];
+            int turmaIdEscolhida = turma.TurmaId;
+
+            List<SelectListItem> ListaProvasResultadoNota = new List<SelectListItem>();
+            var listaProvas = _provaApp.RecuperarProvasPendentesTurmaProfessor(professorId, turmaIdEscolhida);
+            foreach (var item in listaProvas)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = Convert.ToString(item.ProvaId),
+                    Text = item.Disciplina.NomeDisciplina
+                };
+                ListaProvasResultadoNota.Add(select);
+            }
+
+            ViewBag.ListaProvasResultadoNota = ListaProvasResultadoNota;
+
+            return View("FiltroProvasProfessorTurma");
+        }
+
+        [HttpPost]
+        public ActionResult VisualizarAlunosTurmasProfessorLecionaLancarNota(ProvaViewModel provaid2)
+        {
+
+            Session["provaIdselecionado"] = provaid2.provaIdSelecionado;
+
+            List<ResultadosProvas> AlunosBackEnd = new List<ResultadosProvas>();
 
             int professorId = (int)Session["UsuarioId"];
             //VisualizarTurmasProfessor
@@ -135,12 +197,16 @@ namespace SchoolManagement.MVC.Controllers
                 var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
                 foreach (var aluno in alunos)
                 {
-                    AlunosBackEnd.Add(aluno);
+                    ResultadosProvas rp = new ResultadosProvas();
+                    rp.Aluno = aluno;
+                    AlunosBackEnd.Add(rp);
                 }
             }
+            Utilizavel util = new Utilizavel();
+            ViewBag.ListaNotas = util.PreencherListasNotas();
 
-            var alunosMapped = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(AlunosBackEnd);
+            var alunosMapped = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(AlunosBackEnd);
             return View("VisualizarAlunosTurmasProfessorLecionaLancarNotas", alunosMapped);
         }
-	}
+    }
 }

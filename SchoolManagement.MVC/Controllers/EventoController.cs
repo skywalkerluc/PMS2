@@ -14,11 +14,15 @@ namespace SchoolManagement.MVC.Controllers
     {
         private readonly IEventoServico _eventoServico;
         private readonly IFuncionarioServico _funcionarioServico;
+        private readonly IUsuarioServico _usuarioServico;
+        private readonly INotificacaoServico _notificacaoServico;
 
-        public EventoController(IEventoServico eventoServico, IFuncionarioServico funcionarioServico)
+        public EventoController(IEventoServico eventoServico, IFuncionarioServico funcionarioServico, IUsuarioServico usuarioServico, INotificacaoServico notifServico)
         {
             _eventoServico = eventoServico;
             _funcionarioServico = funcionarioServico;
+            _usuarioServico = usuarioServico;
+            _notificacaoServico = notifServico;
         }
 
         //
@@ -72,7 +76,6 @@ namespace SchoolManagement.MVC.Controllers
         {
             try
             {
-                evento.DataEvento = DateTime.Now.Date;
                 evento.DataCriacao = DateTime.Now.Date;
 
                 List<FuncionarioViewModel> ListaFuncionarios = new List<FuncionarioViewModel>();
@@ -82,12 +85,28 @@ namespace SchoolManagement.MVC.Controllers
                     var funcionarioViewModel = Mapper.Map<Funcionario, FuncionarioViewModel>(funcionario);
 
                     ListaFuncionarios.Add(funcionarioViewModel);
+                    evento.FuncionarioResponsavel = ListaFuncionarios;
                 }
 
-                evento.FuncionarioResponsavel = ListaFuncionarios;
+                
 
                 var eventoDomain = Mapper.Map<EventoViewModel, Evento>(evento);
-                _eventoServico.IncluirEvento(eventoDomain);
+                var attmpt = _eventoServico.IncluirEvento(eventoDomain);
+
+                if (attmpt != null)
+                {
+                    var usuarioCriacao = Mapper.Map<Usuario, UsuarioViewModel>(_usuarioServico.Recuperar((int)Session["UsuarioId"]));
+                    var notif = new NotificacaoViewModel()
+                    {
+                        Assunto = "Um novo evento foi adicionado",
+                        DataCriacao = DateTime.Now,
+                        Descricao = "Um novo evento foi adicionado por :" + usuarioCriacao.Nome + ".", 
+                        UsuarioCriacao = Mapper.Map<Usuario, UsuarioViewModel>(_usuarioServico.Recuperar((int)Session["UsuarioId"])),
+                    };
+                    var notifMapped = Mapper.Map<NotificacaoViewModel, Notificacao>(notif);
+                    var attmptNotf = _notificacaoServico.CriarNotificacao(notifMapped);
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -150,6 +169,13 @@ namespace SchoolManagement.MVC.Controllers
         {
             List<SelectListItem> listaFuncionarios = new List<SelectListItem>();
             var enumFuncionarios = _funcionarioServico.RecuperarTodos();
+
+            SelectListItem itemBranco = new SelectListItem()
+            {
+                Value = "0",
+                Text = string.Empty
+            };
+            listaFuncionarios.Add(itemBranco);
 
             foreach (var disc in enumFuncionarios)
             {

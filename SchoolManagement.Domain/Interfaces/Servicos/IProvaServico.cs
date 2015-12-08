@@ -17,5 +17,7 @@ namespace SchoolManagement.Domain.Interfaces.Servicos
         IEnumerable<Prova> RecuperarProvasTurma(int TurmaId);
         bool ExcluirProva(int ProvaId);
         IEnumerable<Prova> RecuperarTodasAsProvas();
+        IEnumerable<Prova> RecuperarProvasPendentesTurmaProfessor(int ProfessorId, int TurmaId);
+        IEnumerable<Prova> RecuperarProvasConcluidas(int TurmaId);
     }
 }

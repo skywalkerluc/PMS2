@@ -22,5 +22,7 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         bool RemoverDisciplinasTurma(int TurmaId, List<Disciplina> ListaDisciplinas);
 
         IEnumerable<Disciplina> RecuperarDisciplinasProfessorLeciona(int ProfessorId);
+
+        IEnumerable<Disciplina> RecuperarDisciplinasTurmaProfessor(int TurmaId, int ProfessorId);
     }
 }
