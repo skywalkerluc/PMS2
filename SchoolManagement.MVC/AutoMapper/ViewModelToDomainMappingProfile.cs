@@ -37,6 +37,7 @@ namespace SchoolManagement.MVC.AutoMapper
             Mapper.CreateMap<Livro, LivroViewModel>();
             Mapper.CreateMap<TrabalhosExtras, TrabalhosExtrasViewModel>();
             Mapper.CreateMap<ConteudosExtras, ConteudosExtrasViewModel>();
+            Mapper.CreateMap<Frequencia, FrequenciaViewModel>();
         }
     }
 }
