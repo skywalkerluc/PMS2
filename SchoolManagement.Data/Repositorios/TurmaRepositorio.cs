@@ -155,13 +155,23 @@ namespace SchoolManagement.Data.Repositorios
             {
                 List<Turma> ListaRetorno = new List<Turma>();
                 var turmas = this.RecuperarTodos();
+                List<Turma> ListaRecuperada = new List<Turma>();
+
                 foreach (var turma in turmas)
                 {
-                    foreach (var prof in turma.Professores)
+                    Turma turmaY = new Turma();
+                    turmaY = this.RecuperarProfessoresTurma(turma.TurmaId);
+                    ListaRecuperada.Add(turmaY);
+
+                }
+
+                foreach (var turmaX in ListaRecuperada)
+                {
+                    foreach (var prof in turmaX.Professores)
                     {
                         if (prof.Id != ProfessorId)
                         {
-                            ListaRetorno.Add(turma);
+                            ListaRetorno.Add(turmaX);
                         }
                     }
                 }
@@ -197,8 +207,8 @@ namespace SchoolManagement.Data.Repositorios
                             Vagas = reader.GetInt32(3),
                             AnoLetivo = (new AnoLetivoRepositorio().Recuperar(reader.GetInt32(4)))
                         };
-                        return turma;
                     }
+                    conn.Close();
                     return turma;
                 }
                 else
@@ -230,6 +240,48 @@ namespace SchoolManagement.Data.Repositorios
                 throw new NotImplementedException(ex.Message.ToString());
             }
             
+        }
+
+        public Turma RecuperarProfessoresTurma(int TurmaId)
+        {
+            try
+            {
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM ProfessorTurma AS PT WHERE PT.Turma_TurmaId = " + TurmaId, conn);
+                conn.Open();
+
+                Turma turma = new Turma();
+
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        List<Professor> ListaProf = new List<Professor>();
+                        Professor prof = new Professor();
+                        prof = (new ProfessorRepositorio().Recuperar(reader.GetInt32(0)));
+                        ListaProf.Add(prof);
+
+                        turma = new Turma()
+                        {
+                            Professores = ListaProf,
+                            TurmaId = reader.GetInt32(1)
+                        };
+                    }
+                    conn.Close();
+                    return turma;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+
         }
 
     }

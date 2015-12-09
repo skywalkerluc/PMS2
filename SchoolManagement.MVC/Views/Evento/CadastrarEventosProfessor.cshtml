@@ -38,7 +38,7 @@
                             <!-- textarea -->
                             <div class="form-group col-md-12">
                                 @Html.LabelFor(m => m.Descricao)
-                                @Html.TextAreaFor(m => m.Descricao, new { @placeholder = "Descricao", @id = "Descricao", @class = "form-control" })
+                                @Html.TextAreaFor(m => m.Descricao, new { @placeholder = "Descrição", @id = "Descricao", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Descricao)
                             </div>
 
@@ -51,7 +51,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    @Html.TextBoxFor(m => m.DataEvento, new { @id = "data", @onKeyPress = "formata_data(this,document.form.cpf);return Apenas_Numeros(event);", @size = "11", @maxlength = "11", @placeholder = "Data de nascimento", @class = "form-control timepicker" })
+                                    @Html.TextBoxFor(m => m.DataEvento, new { @id = "data", @onKeyPress = "formata_data(this,document.form.cpf);return Apenas_Numeros(event);", @size = "11", @maxlength = "11", @placeholder = "Data do evento", @class = "form-control timepicker" })
                                     @Html.ValidationMessageFor(model => model.DataEvento)
                                 </div><!-- /.input group -->
                             </div><!-- /.form group -->

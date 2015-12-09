@@ -13,6 +13,8 @@ namespace SchoolManagement.MVC.ViewModels
         public int ProvaId { get; set; }
 
         public DisciplinaViewModel Disciplina { get; set; }
+
+        [Display(Name = "Professor")]
         public ProfessorViewModel Professores { get; set; }
         public TurmaViewModel Turma { get; set; }
 
