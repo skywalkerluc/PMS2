@@ -142,7 +142,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Acesso\" />
-    <Folder Include="Views\AnoLetivo\" />
     <Folder Include="Views\CustomActions\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
@@ -1624,6 +1623,11 @@
     <Content Include="Views\Frequencia\FiltroTurmasFrequenciaConsultaProfessor.cshtml" />
     <Content Include="Views\Frequencia\FiltroDisciplinaFrequenciaConsultaProfessor.cshtml" />
     <Content Include="Views\Frequencia\VisualizarAlunosFrequenciaConsulta.cshtml" />
+    <Content Include="Views\AnoLetivo\CreateAnoLetivo.cshtml" />
+    <Content Include="Views\AnoLetivo\DeletarAnoLetivo.cshtml" />
+    <Content Include="Views\AnoLetivo\DetalhesAnoLetivo.cshtml" />
+    <Content Include="Views\AnoLetivo\EditarAnoLetivo.cshtml" />
+    <Content Include="Views\AnoLetivo\VisualizarAnoLetivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

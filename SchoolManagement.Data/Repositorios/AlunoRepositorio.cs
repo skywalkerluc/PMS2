@@ -160,7 +160,7 @@ namespace SchoolManagement.Data.Repositorios
                             Senha = reader.GetString(22),
                             indicadorAcesso = reader.GetInt32(23),
                             Turma = _turmaRep.Recuperar(reader.GetInt32(25)),
-                            Observacoes = SafeGetString(reader, 26),
+                            Observacoes = "",
                             StatusCadastro = (StatusCadastro)reader.GetInt32(27)
                         };
                         conn.Close();
@@ -185,13 +185,13 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
-        public static string SafeGetString(this SqlDataReader reader, int colIndex)
-        {
-            if (!reader.IsDBNull(colIndex))
-                return reader.GetString(colIndex);
-            else
-                return string.Empty;
-        }
+        //public static string SafeGetString(this SqlDataReader reader, int colIndex)
+        //{
+        //    if (!reader.IsDBNull(colIndex))
+        //        return reader.GetString(colIndex);
+        //    else
+        //        return string.Empty;
+        //}
 
         public bool AtualizarDadosAluno(Aluno aluno)
         {

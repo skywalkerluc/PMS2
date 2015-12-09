@@ -1,0 +1,73 @@
+﻿@model SchoolManagement.MVC.ViewModels.AnoLetivoViewModel
+
+@{
+    ViewBag.Title = "EditarAnoLetivo";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Ano Letivo
+            <small>Editar Ano Letivo</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Ano Letivo</li>
+            <li class="active">Editar Ano Letivo</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    @using (Html.BeginForm())
+                    {
+                        <div class="box-body">
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                <h4>AnoLetivoViewModel</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QntUnidades, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.QntUnidades, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.QntUnidades, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Ano, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                @*@Html.ActionLink("Voltar", "ResultadoConsultaAluno")*@
+                                @*@Html.ActionLink("Voltar", "Index", "Home")*@
+                                @Html.ActionLink("Voltar", "Index")
+                            </div>
+                        </div><!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" value="Save" class="btn btn-primary">Salvar</button>
+                        </div>
+                    }
+
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
