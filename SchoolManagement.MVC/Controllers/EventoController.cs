@@ -222,7 +222,7 @@ namespace SchoolManagement.MVC.Controllers
         //POST
         [HttpPost]
         public ActionResult RecuperarEventoPorDescricaoOutroUsuario(EventoViewModel evento)
-        {
+        {      
             if (evento.eventoEscolhido == null)
             {
                 var evento2 = new EventoViewModel();
