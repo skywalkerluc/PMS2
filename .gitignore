@@ -240,3 +240,5 @@ SchoolManagement.MVC/Web.config
 *.config
 SchoolManagement.MVC/SchoolManagement.MVC.csproj
 *.config
+SchoolManagement.MVC/Web.config
+*.resx
