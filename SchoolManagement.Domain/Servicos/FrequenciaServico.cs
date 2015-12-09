@@ -48,5 +48,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._frequenciaRep.RemoverFrequenciasAlunos(frequenciasAlunos);
         }
+
+        public Frequencia RecuperarDadosFrequencia(int FrequenciaId)
+        {
+            return this._frequenciaRep.RecuperarDadosFrequencia(FrequenciaId);
+        }
     }
 }

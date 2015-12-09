@@ -1,7 +1,7 @@
 ﻿@model SchoolManagement.MVC.ViewModels.AnoLetivoViewModel
 
 @{
-    ViewBag.Title = "CreateAnoLetivo";
+    ViewBag.Title = "AnoLetivo";
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -35,13 +35,13 @@
                             @Html.ValidationSummary(true)
                             <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.QntUnidades)
-                                @Html.EditorFor(m => m.QntUnidades, new { @placeholder = "unidade", @id = "nome", @class = "form-control" })
+                                @Html.EditorFor(m => m.QntUnidades, new { @placeholder = "Unidades", @id = "nome", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.QntUnidades)
                             </div>
 
                             <div class="form-group col-md-6">
                                 @Html.LabelFor(m => m.Ano)
-                                @Html.EditorFor(m => m.Ano, new { @placeholder = "Nome completo", @id = "nome", @class = "form-control" })
+                                @Html.EditorFor(m => m.Ano, new { @placeholder = "Ano", @id = "nome", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Ano)
                             </div>
 

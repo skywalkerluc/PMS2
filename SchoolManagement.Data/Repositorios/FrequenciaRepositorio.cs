@@ -67,7 +67,7 @@ namespace SchoolManagement.Data.Repositorios
                 var message = ex.Message.ToString();
                 throw new NotImplementedException(message);
             }
-            
+
         }
 
         public Frequencia AlterarFrequenciaAluno(Frequencia frequencia)
@@ -77,8 +77,8 @@ namespace SchoolManagement.Data.Repositorios
             var disciplinaId = new SqlParameter("@DisciplinaId", SqlDbType.Int);
             var dataReferencia = new SqlParameter("@DataReferencia", SqlDbType.DateTime);
             var presenca = new SqlParameter("@Presenca", SqlDbType.Int);
-            
-            if(frequencia.Presente)
+
+            if (frequencia.Presente)
             {
                 presenca.SqlValue = 1;
             }
@@ -131,5 +131,50 @@ namespace SchoolManagement.Data.Repositorios
                 parametro.SqlValue = valorAtributo;
             }
         }
+
+        public Frequencia RecuperarDadosFrequencia(int FrequenciaId)
+        {
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Frequencia AS F WHERE F.FrequenciaId = " + FrequenciaId, conn);
+                conn.Open();
+
+                Frequencia frequencia = new Frequencia();
+
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        frequencia = new Frequencia()
+                        {
+                            FrequenciaId = reader.GetInt32(0),
+                            DataReferencia = reader.GetDateTime(1),
+                            Presente = reader.GetBoolean(2),
+                            Aluno = (new AlunoRepositorio().RecuperarDadosAluno(reader.GetInt32(3))),
+                            Disciplina = (new DisciplinaRepositorio().Recuperar(reader.GetInt32(4)))
+                        };
+                        //conn.Close();
+                        //return aluno;
+                    }
+                    conn.Close();
+                    return frequencia;
+
+                }
+                else
+                {
+                    conn.Close();
+                    return frequencia;
+                }
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
     }
 }
+    

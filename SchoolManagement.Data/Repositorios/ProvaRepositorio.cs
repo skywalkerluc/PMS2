@@ -262,9 +262,9 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Prova> RecuperarProvasConcluidasTurmaProfessor(int ProfessorId, int TurmaId)
         {
+            List<Prova> ListaRetorno = new List<Prova>();
             try
             {
-                List<Prova> ListaRetorno = new List<Prova>();
                 SqlConnection conn = (SqlConnection)Db.Database.Connection;
                 SqlCommand command = new SqlCommand("SELECT * FROM Prova AS P WHERE P.StatusProva = 2 AND P.Turma_TurmaId = " + TurmaId + "AND P.Professores_Id = " + ProfessorId, conn);
                 //SqlCommand command = new SqlCommand("SELECT * FROM Prova AS P WHERE P.Professores_Id = " + ProfessorId + " OR " + ProfessorId + " IS NULL AND P.Turma_TurmaId = " + TurmaId + " OR " + TurmaId + " IS NULL", conn);
@@ -292,13 +292,21 @@ namespace SchoolManagement.Data.Repositorios
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    return ListaRetorno;
                 }
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.Message.ToString());
+                return ListaRetorno;
             }
+        }
+
+        public static string SafeGetString(SqlDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            else
+                return string.Empty;
         }
 
         public bool AtualizarStatusProva(int ProvaId, int StatusProva)

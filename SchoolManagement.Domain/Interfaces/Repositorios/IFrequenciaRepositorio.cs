@@ -15,5 +15,6 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<Frequencia> RecuperarHistorioFrequenciasTurma(int TurmaId);
         Frequencia AlterarFrequenciaAluno(Frequencia frequencia);
         bool RemoverFrequenciasAlunos(List<Frequencia> frequenciasAlunos);
+        Frequencia RecuperarDadosFrequencia(int FrequenciaId);
     }
 }
