@@ -365,9 +365,19 @@ namespace SchoolManagement.MVC.Controllers
                 var alun = Mapper.Map<IEnumerable<Aluno>, IEnumerable<AlunoViewModel>>(alunos);
                 foreach (var aluno in alun)
                 {
-                    FrequenciaViewModel f = new FrequenciaViewModel();
-                    f.Aluno = aluno;
-                    AlunosBackEnd.Add(f);
+                    var frequenciaAluno = _frequenciaServico.RecuperarHistoricoFrequenciasAluno(aluno.Id);
+                    var frequenciaMapped = Mapper.Map<IEnumerable<Frequencia>, IEnumerable<FrequenciaViewModel>>(frequenciaAluno);
+                    
+                    foreach(var frequencia in frequenciaMapped)
+                    {
+                        FrequenciaViewModel f = new FrequenciaViewModel();
+                        f.Aluno = aluno;
+                        f.DataReferencia = frequencia.DataReferencia;
+                        f.Presente = frequencia.Presente;
+
+                        AlunosBackEnd.Add(f);
+                    }
+                   
                 }
             }
 
