@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel>
+
+@{
+    ViewBag.Title = "VisualizarAlunosProvasConcluidas";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Resultado Notas
+            <small>Consultar Notas</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Resultado Notas</li>
+            <li class="active">Consultar Notas</</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Observacao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nota)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Gabarito)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Aluno.Nome)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Observacao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nota)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Gabarito)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Aluno.Nome))
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ResultadoId }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.ResultadoId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ResultadoId })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

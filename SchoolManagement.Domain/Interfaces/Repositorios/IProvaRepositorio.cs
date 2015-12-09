@@ -19,5 +19,7 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         IEnumerable<Prova> RecuperarTodasAsProvas();
         IEnumerable<Prova> RecuperarProvasPendentesTurmaProfessor(int ProfessorId, int TurmaId);
         IEnumerable<Prova> RecuperarProvasConcluidas(int TurmaId);
+
+        IEnumerable<Prova> RecuperarProvasConcluidasTurmaProfessor(int ProfessorId, int TurmaId);
     }
 }

@@ -40,7 +40,7 @@
         <div class="example-modal">
             <div class="modal">
                 <div class="modal-dialog">
-                    @using (Html.BeginForm("VisualizarAlunosTurmasProfessorLecionaLancarNota", "ResultadosProvas", FormMethod.Post))
+                    @using (Html.BeginForm("VisualizarAlunosProvasConcluidas", "ResultadosProvas", FormMethod.Post))
                     {
                         <div class="modal-content">
                             <div class="modal-header">
@@ -52,17 +52,17 @@
                                     @Html.LabelFor(m => m.Disciplina.NomeDisciplina)
 
                                     @{
-                        List<SelectListItem> listaprovasResultado = new List<SelectListItem>();
-                        foreach (var item in @ViewBag.ListaProvasResultadoNota)
+                        List<SelectListItem> listaprovasResultadoConcluidas = new List<SelectListItem>();
+                        foreach (var item in @ViewBag.ListaProvasResultadoNotaConcluidas)
                         {
                             SelectListItem selec = new SelectListItem()
                             {
                                 Value = item.Value,
                                 Text = item.Text
                             };
-                            listaprovasResultado.Add(selec);
+                            listaprovasResultadoConcluidas.Add(selec);
                         }
-                        @Html.DropDownListFor(m => m.ProvaId, listaprovasResultado, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
+                        @Html.DropDownListFor(m => m.ProvaId, listaprovasResultadoConcluidas, new { @class = "form-control", placeholder = "Selecione uma Turma", style = "width: 100%;", id = "turmas" })
                                     }
 
                                     @Html.ValidationMessageFor(model => model.Disciplina.NomeDisciplina)

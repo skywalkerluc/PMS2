@@ -68,5 +68,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._provaRep.RecuperarProvasConcluidas(TurmaId);
         }
+
+        public IEnumerable<Prova> RecuperarProvasConcluidasTurmaProfessor(int ProfessorId, int TurmaId)
+        {
+            return this._provaRep.RecuperarProvasConcluidasTurmaProfessor(ProfessorId, TurmaId);
+        }
     }
 }

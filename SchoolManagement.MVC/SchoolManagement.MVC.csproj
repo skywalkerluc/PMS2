@@ -1183,6 +1183,12 @@
     <Content Include="Views\Frequencia\FiltroFrequenciaTurmaProfessor.cshtml" />
     <Content Include="Views\Frequencia\FiltroDisciplinaFrequenciaProfessor.cshtml" />
     <Content Include="Views\Frequencia\VisualizarAlunosTurmasProfessorLecionaFrequencia.cshtml" />
+    <Content Include="Views\ResultadosProvas\FiltroTurmasConsultaLancarNotas.cshtml" />
+    <Content Include="Views\ResultadosProvas\FiltroProvasConsultaLancarNotas.cshtml" />
+    <Content Include="Views\ResultadosProvas\VisualizarAlunosProvasConcluidas.cshtml" />
+    <Content Include="Views\Frequencia\FiltroTurmasFrequenciaConsultaProfessor.cshtml" />
+    <Content Include="Views\Frequencia\FiltroDisciplinaFrequenciaConsultaProfessor.cshtml" />
+    <Content Include="Views\Frequencia\VisualizarAlunosFrequenciaConsulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
