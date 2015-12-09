@@ -42,8 +42,9 @@ namespace SchoolManagement.MVC.Controllers
 
         //
         // GET: /AnoLetivo/Create
-        public ActionResult Create()
+        public ActionResult Create(string mensageAlert)
         {
+            ViewBag.AlertMessage = mensageAlert;
             var anoLetivo = new AnoLetivoViewModel();
             return View("CreateAnoLetivo", anoLetivo);
         }
@@ -58,7 +59,9 @@ namespace SchoolManagement.MVC.Controllers
                 if (anoLetivo.QntUnidades < 1)
                 {
 
-                    throw new NotImplementedException("Erro ao adicionar novo ano letivo");
+                    ViewBag.AlertMessage = "Erro ao adicionar novo ano letivo";
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Create", "AnoLetivo", new { mensageAlert });
                 }
 
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
@@ -66,18 +69,22 @@ namespace SchoolManagement.MVC.Controllers
 
                 if (attempt != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.AlertMessage = "Ano letivo cadastrado com sucesso.";
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Index", "Home", new { mensageAlert });
                 }
                 else
                 {
                     ViewBag.AlertMessage = "Erro ao adicionar novo ano letivo";
-                    throw new NotImplementedException("Erro ao adicionar novo ano letivo");
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Create", "AnoLetivo", new { mensageAlert });
                 }
             }
             catch
             {
                 ViewBag.AlertMessage = "Erro ao adicionar novo ano letivo";
-                throw new NotImplementedException("Erro ao adicionar novo ano letivo");
+                var mensageAlert = ViewBag.AlertMessage;
+                return RedirectToAction("Create", "AnoLetivo", new { mensageAlert });
             }
         }
 

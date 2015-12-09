@@ -90,12 +90,15 @@ namespace SchoolManagement.MVC.Controllers
 
                 var professorDomain = Mapper.Map<ProfessorViewModel, Professor>(professor);
                 _professorApp.IncluirProfessor(professorDomain);
-                return RedirectToAction("Index", "Home");
+                ViewBag.AlertMessage = "Professor foi cadastrado com sucesso.";
+                var mensageAlert = ViewBag.AlertMessage;
+                return RedirectToAction("Index", "Home", new { mensageAlert });
             }
             catch (Exception ex)
             {
-                var mensagemErro = ex.Message.ToString();
-                return RedirectToAction("Index", "Home", mensagemErro);
+                ViewBag.AlertMessage = "Erro ao cadastrar o Professor.";
+                var mensageAlert = ViewBag.AlertMessage;
+                return RedirectToAction("Index", "Home", new { mensageAlert });
             }
         }
 
