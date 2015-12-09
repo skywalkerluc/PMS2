@@ -32,6 +32,74 @@ $(document).on("change", "#func", function () {
 });
 
 
+    window.onload = function () {
+
+        //Quando o campo cep perde o foco.
+        $("#Cep").blur(function () {
+
+            //Nova variável com valor do campo "cep".
+            var cep = $(this).val();
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#Endereco").val("...");
+                $("#Bairro").val("...");
+                $("#Cidade").val("...");
+                $("#Estado").val("...");
+
+
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=jsonp&callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#Endereco").val(dados.logradouro);
+                        $("#Endereco").focus();
+                        $("#Bairro").val(dados.bairro);
+                        $("#Bairro").focus();
+                        $("#Cidade").val(dados.cidade);
+                        $("#Cidade").focus();
+                        $("#Estado").val(dados.uf);
+                        $("#Estado").focus();
+
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+
+        });
+    }
+
+function limpa_formulário_cep() {
+    // Limpa valores do formulário de cep.
+    $("#Endereco").val("...");
+    $("#Bairro").val("...");
+    $("#Cidade").val("...");
+    $("#Estado").val("...");
+
+}
+
+$(document).ready(function () {
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'pt'
+    });
+});
+
+
 
 
 
