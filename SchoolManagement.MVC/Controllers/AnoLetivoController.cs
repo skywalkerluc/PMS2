@@ -23,9 +23,10 @@ namespace SchoolManagement.MVC.Controllers
         // GET: /AnoLetivo/
         public ActionResult Index()
         {
-            var anos = _anoLetivoServico.RecuperarTodos();
-            var anosMapped = Mapper.Map<IEnumerable<AnoLetivo>, IEnumerable<AnoLetivoViewModel>>(anos);
-            return View("VisualizarAnosLetivos", anosMapped);
+            //var anos = _anoLetivoServico.RecuperarTodos();
+            //var anosMapped = Mapper.Map<IEnumerable<AnoLetivo>, IEnumerable<AnoLetivoViewModel>>(anos);
+            //return View("VisualizarAnosLetivos", anosMapped);
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -34,7 +35,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             var anos = _anoLetivoServico.Recuperar(id);
             var anoMapped = Mapper.Map<AnoLetivo, AnoLetivoViewModel>(anos);
-            return View("VisualizarDadosAnoLetivo", anoMapped);
+            return View("DetalhesAnoLetivo", anoMapped);
         }
 
         //
@@ -42,7 +43,7 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult Create()
         {
             var anoLetivo = new AnoLetivoViewModel();
-            return View("IncluirAnoLetivo", anoLetivo);
+            return View("CreateAnoLetivo", anoLetivo);
         }
 
         //
@@ -63,7 +64,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 if (attempt != null)
                 {
-                    return View("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -84,7 +85,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             var anos = _anoLetivoServico.Recuperar(id);
             var anoMapped = Mapper.Map<AnoLetivo, AnoLetivoViewModel>(anos);
-            return View("AtualizarDadosAnoLetivo", anoMapped);
+            return View("EditarAnoLetivo", anoMapped);
         }
 
         //
@@ -126,7 +127,7 @@ namespace SchoolManagement.MVC.Controllers
         {
             var anos = _anoLetivoServico.Recuperar(id);
             var anoMapped = Mapper.Map<AnoLetivo, AnoLetivoViewModel>(anos);
-            return View("RemoverAnoLetivo", anoMapped);
+            return View("DeletarAnoLetivo", anoMapped);
         }
 
         //
@@ -154,6 +155,13 @@ namespace SchoolManagement.MVC.Controllers
                 ViewBag.AlertMessage = "Erro ao remover determinado ano letivo";
                 throw new NotImplementedException("Erro ao remover determinado ano letivo");
             }
+        }
+
+        public ActionResult VisualizarAnosLetivo()
+        {
+            var disc = _anoLetivoServico.RecuperarTodos();
+            var discMapped = Mapper.Map<IEnumerable<AnoLetivo>, IEnumerable<AnoLetivoViewModel>>(disc);
+            return View("VisualizarAnoLetivo", discMapped);
         }
     }
 }

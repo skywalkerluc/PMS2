@@ -1,0 +1,64 @@
+﻿@model SchoolManagement.MVC.ViewModels.AnoLetivoViewModel
+
+@{
+    ViewBag.Title = "DetalhesAnoLetivo";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Ano Letivo
+            <small>Detalhes de Ano Letivo</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Ano Letivo</li>
+            <li class="active">Detalhes de Ano Letivo</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Resultado de Consulta Alunos</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div>
+                            <h4>AnoLetivoViewModel</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.QntUnidades)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.QntUnidades)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Ano)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Ano)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.AnoLetivoId }) |
+                            @Html.ActionLink("Voltar", "Index")
+                        </p>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

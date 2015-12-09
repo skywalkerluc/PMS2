@@ -38,26 +38,85 @@ namespace SchoolManagement.MVC.Controllers
             return View("RecuperarTodosResultadosProvas", resultadosMapped);
         }
 
-        [HttpGet]
-        public ActionResult LancarNotasTurma()
-        {
-            int professorId = (int)Session["UsuarioId"];
-            List<SelectListItem> ListaTurmas = new List<SelectListItem>();
-            var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
-            foreach (var item in listaTurmas)
-            {
-                SelectListItem select = new SelectListItem()
-                {
-                    Value = item.TurmaId.ToString(),
-                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
-                };
-                ListaTurmas.Add(select);
-            }
+        //[HttpGet]
+        //public ActionResult LancarNotasTurma(FormCollection resultados)
+        //{
+        //    //int professorId = (int)Session["UsuarioId"];
+        //    //List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+        //    //var listaTurmas = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+        //    //foreach (var item in listaTurmas)
+        //    //{
+        //    //    SelectListItem select = new SelectListItem()
+        //    //    {
+        //    //        Value = item.TurmaId.ToString(),
+        //    //        Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+        //    //    };
+        //    //    ListaTurmas.Add(select);
+        //    //}
 
-            return View("LancarNotasSelecaoTurma", ListaTurmas);
+        //    //return View("LancarNotasSelecaoTurma", ListaTurmas);
+
+        //    try
+        //    {
+
+        //    }
+        //    catch(Exce)
+        //    {
+
+        //    }
+        //}
+
+        public ActionResult LancarNotasTurma(FormCollection resultados)
+        {
+            try
+            {
+                var AlunosLista = resultados["item.Aluno.Id"];
+                var NotasLista = resultados["item.resul"];
+
+                int provaIdEscolhida = (int)Session["provaIdselecionado"];
+
+                var prova = _provaApp.RecuperarProva(provaIdEscolhida);
+                var provaMap = Mapper.Map<Prova, ProvaViewModel>(prova);
+
+
+                string[] quebAlunos = AlunosLista.Split(',');
+                string[] quebNotas = NotasLista.Split(',');
+
+
+                List<ResultadosProvasViewModel> listResultados = new List<ResultadosProvasViewModel>();
+
+                for (int i = 0; i < quebAlunos.Length; i++)
+                {
+                    ResultadosProvasViewModel rp = new ResultadosProvasViewModel();
+
+                    var aluno = _alunoServico.RecuperarDadosAluno(Convert.ToInt32(quebAlunos[i]));
+                    var alunoMap = Mapper.Map<Aluno, AlunoViewModel>(aluno);
+
+                    rp.Aluno = alunoMap;
+                    rp.Nota = Convert.ToInt32(quebNotas[i]);
+                    rp.Prova = provaMap;
+                    rp.Observacao = "";
+                    rp.Gabarito = "";
+
+                    listResultados.Add(rp);
+                }
+
+
+                foreach (var item in listResultados)
+                {
+                    var resultMapped = Mapper.Map<ResultadosProvasViewModel, ResultadosProvas>(item);
+                    var atmpt = _resultadosProvasApp.IncluirNotaAluno(resultMapped);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
         }
 
-       
+
 
         public ActionResult RecuperarNotasAluno(int alunoId)
         {
@@ -152,8 +211,8 @@ namespace SchoolManagement.MVC.Controllers
                     rp.Aluno = aluno;
                     AlunosBackEnd.Add(rp);
                 }
-            } 
-            
+            }
+
             Utilizavel util = new Utilizavel();
             ViewBag.ListaNotas = util.PreencherListasNotas();
 
@@ -190,7 +249,7 @@ namespace SchoolManagement.MVC.Controllers
             int turmaIdEscolhida = turma.TurmaId;
 
             List<SelectListItem> ListaProvasResultadoNotaConcluidas = new List<SelectListItem>();
-            var listaProvasConcluidas = _provaApp.RecuperarProvasConcluidasTurmaProfessor(professorId,turmaIdEscolhida);
+            var listaProvasConcluidas = _provaApp.RecuperarProvasConcluidasTurmaProfessor(professorId, turmaIdEscolhida);
             foreach (var item in listaProvasConcluidas)
             {
                 SelectListItem select = new SelectListItem()

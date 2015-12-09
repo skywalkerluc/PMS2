@@ -160,7 +160,7 @@ namespace SchoolManagement.Data.Repositorios
                             Senha = reader.GetString(22),
                             indicadorAcesso = reader.GetInt32(23),
                             Turma = _turmaRep.Recuperar(reader.GetInt32(25)),
-                            Observacoes = SafeGetString(reader, 26),
+                            Observacoes = "",
                             StatusCadastro = (StatusCadastro)reader.GetInt32(27)
                         };
                         conn.Close();
