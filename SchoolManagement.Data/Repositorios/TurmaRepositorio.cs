@@ -144,33 +144,40 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId)
         {
-            List<Turma> ListaRetorno = new List<Turma>();
-            List<Turma> ListaRecuperada = new List<Turma>();
-            try
-            {
-                var turmas = this.RecuperarTodos();
-                var professores = this.RecuperarTodos();
+            var professorIdParameter = new SqlParameter("@ProfessorId", professorId);
 
-                foreach (var turma in turmas)
-            {
-                    foreach (var prof in professores)
-                {
-                        if (turma.TurmaId == prof.TurmaId)
-                        {
-                            if (!ListaRecuperada.Contains(turma))
-                            {
-                                ListaRecuperada.Add(turma);
-                }
-            }
-                    }
-                }
-                return ListaRecuperada;
-            }
-            catch (Exception ex)
-            {
-                return ListaRecuperada;
-            }
+            var query = this.Db.Turmas.SqlQuery("SELECT * FROM Turma AS T INNER JOIN ProfessorTurma AS PT ON T.TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorIdParameter).ToList();
+            return query;
         }
+        //public IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId)
+        //{
+        //    List<Turma> ListaRetorno = new List<Turma>();
+        //    List<Turma> ListaRecuperada = new List<Turma>();
+        //    try
+        //    {
+        //        var turmas = this.RecuperarTodos();
+        //        var professores = this.RecuperarTodos();
+
+        //        foreach (var turma in turmas)
+        //    {
+        //            foreach (var prof in professores)
+        //        {
+        //                if (turma.TurmaId == prof.TurmaId)
+        //                {
+        //                    if (!ListaRecuperada.Contains(turma))
+        //                    {
+        //                        ListaRecuperada.Add(turma);
+        //        }
+        //    }
+        //            }
+        //        }
+        //        return ListaRecuperada;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ListaRecuperada;
+        //    }
+        //}
 
         public IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId)
         {
