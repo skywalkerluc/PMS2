@@ -23,5 +23,15 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._anoLetivoRep.IncluirAnoLetivo(anoLetivo);
         }
+
+        public bool RemoverAnoLetivo(int AnoLetivoId)
+        {
+            return this._anoLetivoRep.RemoverAnoLetivo(AnoLetivoId);
+        }
+
+        public bool AlterarDadosAnoLetivo(AnoLetivo anoLetivo)
+        {
+            return this._anoLetivoRep.AlterarDadosAnoLetivo(anoLetivo);
+        }
     }
 }
