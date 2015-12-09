@@ -1,20 +1,20 @@
-﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ProvaViewModel>
+﻿@model IEnumerable<SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel>
 
 @{
-    ViewBag.Title = "Resultado de filtro - Prova";
+    ViewBag.Title = "VisualizarAlunosProvasConcluidas";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Prova
-            <small>Resultado de filtro - Prova</small>
+            Resultado Notas
+            <small>Consultar Notas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Prova</li>
-            <li class="active">Resultado de filtro - Prova</li>
+            <li class="active">Resultado Notas</li>
+            <li class="active">Consultar Notas</</li>
         </ol>
     </section>
 
@@ -25,26 +25,22 @@
             <div class="col-md-12">
                 <div class="box box-default">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Resultado de filtro - Prova</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DataProva)
+                                    @Html.DisplayNameFor(model => model.Observacao)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Disciplina)
+                                    @Html.DisplayNameFor(model => model.Nota)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Professores)
+                                    @Html.DisplayNameFor(model => model.Gabarito)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.StatusProva)
+                                    @Html.DisplayNameFor(model => model.Aluno.Nome)
                                 </th>
-
-                                
                                 <th></th>
                             </tr>
 
@@ -52,22 +48,21 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DataProva)
+                                        @Html.DisplayFor(modelItem => item.Observacao)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Disciplina.NomeDisciplina)
+                                        @Html.DisplayFor(modelItem => item.Nota)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Professores.Nome)
+                                        @Html.DisplayFor(modelItem => item.Gabarito)
                                     </td>
                                     <td>
-                                        @Html.DisplayName(RecuperarValorStatusProva((int)item.StatusProva))
+                                        @Html.DisplayFor(modelItem => item.Aluno.Nome))
                                     </td>
-
                                     <td>
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.ProvaId }) |
-                                        @Html.ActionLink("Detalhes", "Details", new { id = item.ProvaId }) |
-                                        @Html.ActionLink("Deletar", "Delete", new { id = item.ProvaId })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ResultadoId }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.ResultadoId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ResultadoId })
                                     </td>
                                 </tr>
                             }
@@ -80,22 +75,3 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-
-@functions{
-    private string RecuperarValorStatusProva(int status)
-    {
-        string result = string.Empty;
-        switch (status)
-        {
-            case 1:
-                result = "Pendente";
-                break;
-            case 2:
-                result = "Concluída";
-                break;
-            default:
-                break;
-        }
-        return result;
-    }
-}
