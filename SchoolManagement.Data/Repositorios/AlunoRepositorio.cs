@@ -27,7 +27,7 @@ namespace SchoolManagement.Data.Repositorios
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.Message.ToString());
             }
         }
 
@@ -185,13 +185,13 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
-        //public static string SafeGetString(this SqlDataReader reader, int colIndex)
-        //{
-        //    if (!reader.IsDBNull(colIndex))
-        //        return reader.GetString(colIndex);
-        //    else
-        //        return string.Empty;
-        //}
+        public static string SafeGetString(SqlDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            else
+                return string.Empty;
+        }
 
         public bool AtualizarDadosAluno(Aluno aluno)
         {

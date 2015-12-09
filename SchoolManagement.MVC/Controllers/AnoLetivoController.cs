@@ -102,7 +102,7 @@ namespace SchoolManagement.MVC.Controllers
                 }
 
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
-                var attempt = _anoLetivoServico.Atualizar(anoLetivoMapped);
+                var attempt = _anoLetivoServico.AlterarDadosAnoLetivo(anoLetivoMapped);
 
                 if (attempt)
                 {
@@ -138,7 +138,7 @@ namespace SchoolManagement.MVC.Controllers
             try
             {
                 var anoLetivoMapped = Mapper.Map<AnoLetivoViewModel, AnoLetivo>(anoLetivo);
-                var attempt = _anoLetivoServico.Remover(anoLetivoMapped);
+                var attempt = _anoLetivoServico.RemoverAnoLetivo(anoLetivoMapped.AnoLetivoId);
 
                 if (attempt != false)
                 {

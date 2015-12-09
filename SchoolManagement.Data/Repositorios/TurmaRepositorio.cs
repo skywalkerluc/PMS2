@@ -144,73 +144,61 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId)
         {
-            List<Turma> ListaTurmas = new List<Turma>();
-            SqlConnection conn = (SqlConnection)Db.Database.Connection;
-            SqlCommand command = new SqlCommand("SELECT * FROM ProfessorTurma AS PT WHERE PT.Professor_Id = " + professorId, conn);
-            conn.Open();
-
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
+            List<Turma> ListaRetorno = new List<Turma>();
+            List<Turma> ListaRecuperada = new List<Turma>();
+            try
             {
-                while (reader.Read())
+                var turmas = this.RecuperarTodos();
+                var professores = this.RecuperarTodos();
+
+                foreach (var turma in turmas)
+            {
+                    foreach (var prof in professores)
                 {
-                    Turma turma = this.RecuperarDadosTurma(reader.GetInt32(1));
-                    ListaTurmas.Add(turma);
+                        if (turma.TurmaId == prof.TurmaId)
+                        {
+                            if (!ListaRecuperada.Contains(turma))
+                            {
+                                ListaRecuperada.Add(turma);
                 }
-                conn.Close();
-                return ListaTurmas;
             }
-            else
+                    }
+                }
+                return ListaRecuperada;
+            }
+            catch (Exception ex)
             {
-                return ListaTurmas;
+                return ListaRecuperada;
             }
-
         }
 
         public IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId)
         {
             List<Turma> ListaRetorno = new List<Turma>();
-            List<Turma> TurmaRecuperada = new List<Turma>();
+            List<Turma> ListaRecuperada = new List<Turma>();
             try
             {
-                
                 var turmas = this.RecuperarTodos();
-                List<Dictionary<int, int>> ListaRecuperada = new List<Dictionary<int, int>>();
+                var professores = this.RecuperarTodos();
 
                 foreach (var turma in turmas)
                 {
-                    var turmaProfDic = this.RecuperarProfessoresTurma(turma.TurmaId);
-                    foreach (var item in turmaProfDic)
+                    foreach (var prof in professores)
                     {
-                        Turma turmaY = new Turma();
-                        turmaY = this.Recuperar(item.Values.ToList()[0]);
-                        turmaY.Professores.Add((new ProfessorRepositorio().Recuperar(item.Keys.ToList()[0])));
-                        TurmaRecuperada.Add(turmaY);
-                    }
-                }
-
-                foreach (var turmaX in TurmaRecuperada)
-                {
-                    if (turmaX.Professores == null)
-                    {
-                        ListaRetorno.Add(turmaX);
-                    }
-                    else
-                    {
-                        foreach (var prof in turmaX.Professores)
+                        if (turma.TurmaId != prof.TurmaId)
                         {
-                            if (prof.Id != ProfessorId)
+                            if (!ListaRecuperada.Contains(turma))
                             {
-                                ListaRetorno.Add(turmaX);
+                                ListaRecuperada.Add(turma);
                             }
                         }
                     }
                 }
-                return ListaRetorno;
+                return ListaRecuperada;
             }
             catch (Exception ex)
             {
-                return ListaRetorno;
+                return ListaRecuperada;
             }
         }
 
@@ -244,7 +232,8 @@ namespace SchoolManagement.Data.Repositorios
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    conn.Close();
+                    return turma;
                 }
             }
             catch (Exception ex)
