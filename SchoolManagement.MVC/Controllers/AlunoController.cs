@@ -88,21 +88,23 @@ namespace SchoolManagement.MVC.Controllers
                 aluno.indicadorAcesso = 2;
                 aluno.Endereco.Pais = "Brasil";
 
-
                 if (!_usuarioApp.verificarCPFSendoUtilizado(aluno.Cpf))
                 {
                     ViewBag.AlertMessage = "Este CPF já está sendo utilizado.";
-                    throw new ArgumentNullException(aluno.Cpf, "Este CPF já está sendo utilizado.");
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Create", "Aluno", new { mensageAlert });
                 }
                 if (!_usuarioApp.VerificarLoginExistente(aluno.UserLogin))
                 {
                     ViewBag.AlertMessage = "Este nome de usuário já está sendo utilizado.";
-                    throw new ArgumentNullException(aluno.UserLogin, "Este nome de usuário já está sendo utilizado.");
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Create", "Aluno", new { mensageAlert });
                 }
                 if (!_usuarioApp.VerificarRGSendoUtilizado(aluno.Rg))
                 {
                     ViewBag.AlertMessage = "Este RG já está sendo utilizado.";
-                    throw new ArgumentNullException(aluno.Rg, "Este RG já está sendo utilizado.");
+                    var mensageAlert = ViewBag.AlertMessage;
+                    return RedirectToAction("Create", "Aluno", new { mensageAlert });
                 }
 
                 var dia = aluno.DataNascimento.Day;
@@ -127,15 +129,16 @@ namespace SchoolManagement.MVC.Controllers
                 //ViewBag.TituloMensagem = "Sucesso";
                 //ViewBag.MensagemErro = "Aluno cadastrado com sucesso!";
 
-                ViewData["AlertMensage"] = "Aluno cadastrado com sucesso!";
-                var mensageAlert = ViewData["AlertMensage"];
-                return RedirectToAction("Index", "Home");
+                ViewBag.AlertMessage = "Aluno cadastrado com sucesso!";
+                var mensageAlertSucesso = ViewBag.AlertMessage;
+                return RedirectToAction("Index", "Home", new { mensageAlertSucesso });
             }
             catch (Exception ex)
             {
                 var mensagemErro = ex.Message.ToString();
                 ViewBag.AlertMessage = mensagemErro;
-                throw new NotImplementedException(mensagemErro);
+                var mensageAlert = ViewBag.AlertMessage;
+                return RedirectToAction("Create", "Aluno", new { mensageAlert });
             }
         }
 

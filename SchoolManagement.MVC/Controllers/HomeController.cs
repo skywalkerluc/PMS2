@@ -13,6 +13,13 @@ namespace SchoolManagement.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Index(string mensageAlert)
+        {
+            ViewBag.AlertMessage = mensageAlert;
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
