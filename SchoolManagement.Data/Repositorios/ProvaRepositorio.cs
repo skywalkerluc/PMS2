@@ -301,6 +301,22 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
+        public bool AtualizarStatusProva(int ProvaId, int StatusProva)
+        {
+            try
+            {
+                var provaIdParameter = new SqlParameter("@ProvaId", ProvaId);
+                var statusProvaParameter = new SqlParameter("@StatusProva", StatusProva);
+
+                var query = this.Db.Database.ExecuteSqlCommand("UPDATE Prova SET StatusProva = @StatusProva WHERE ProvaId = @ProvaId", provaIdParameter, statusProvaParameter);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
 
     }
 }

@@ -63,8 +63,9 @@ namespace SchoolManagement.MVC.Controllers
         //
         // GET: /Aluno/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string mensageAlert)
         {
+            ViewBag.AlertMessage = mensageAlert;
             var aluno = new AlunoViewModel();
             var filtro = new FiltroAluno();
             PreencherListaTurma(aluno, filtro);
@@ -189,7 +190,8 @@ namespace SchoolManagement.MVC.Controllers
                 return RedirectToAction("Index", "Aluno");
             else
                 ViewBag.AlertMessage = "Erro ao tentar excluir um aluno";
-                throw new NotImplementedException("Erro ao tentar excluir um aluno");
+                var mensageAlert = ViewBag.AlertMessage;
+                return RedirectToAction("Index", "Home", new { mensageAlert });
         }
 
         [HttpGet]
