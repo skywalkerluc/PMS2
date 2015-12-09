@@ -223,16 +223,26 @@ namespace SchoolManagement.MVC.Controllers
         [HttpPost]
         public ActionResult RecuperarEventoPorDescricaoOutroUsuario(EventoViewModel evento)
         {
-            var eventoDescricao = _eventoServico.Recuperar(Convert.ToInt32(evento.eventoEscolhido));
-            var eventoViewModel = Mapper.Map<Evento, EventoViewModel>(eventoDescricao);
+            if (evento.eventoEscolhido == null)
+            {
+                var evento2 = new EventoViewModel();
+                PreencherListaEventos(evento2);
+                return View("FiltroParaConsultaDeEventosOutroUsuario");
+            }
+            else
+            {
+                var eventoDescricao = _eventoServico.Recuperar(Convert.ToInt32(evento.eventoEscolhido));
+                var eventoViewModel = Mapper.Map<Evento, EventoViewModel>(eventoDescricao);
 
-            var descricao = eventoViewModel.Descricao;
+                var descricao = eventoViewModel.Descricao;
 
 
-            var evento1 = _eventoServico.BuscarEventoPorDescricao(descricao);
-            var evento2 = Mapper.Map<IEnumerable<Evento>, IEnumerable<EventoViewModel>>(evento1);
+                var evento1 = _eventoServico.BuscarEventoPorDescricao(descricao);
+                var evento2 = Mapper.Map<IEnumerable<Evento>, IEnumerable<EventoViewModel>>(evento1);
 
-            return View("ResultaConsultaEventosOutroUsuario", evento2.ToList());
+                return View("ResultaConsultaEventosOutroUsuario", evento2.ToList());
+            }
+            
         }
 
         private void PreencherListaEventos(EventoViewModel evento)

@@ -154,7 +154,7 @@ namespace SchoolManagement.Data.Repositorios
             {
                 while (reader.Read())
                 {
-                    Turma turma = this.Recuperar(reader.GetInt32(1));
+                    Turma turma = this.RecuperarDadosTurma(reader.GetInt32(1));
                     ListaTurmas.Add(turma);
                 }
                 conn.Close();

@@ -76,12 +76,14 @@
                                                 }
                                             </div>
 
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => item.DataReferencia, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => item.DataReferencia, new { htmlAttributes = new { @class = "form-control" } })
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
                                                 </div>
-                                            </div>
+                                                @Html.TextBoxFor(m => item.DataReferencia, new { @id = "data", @size = "11", @maxlength = "11", @placeholder = "Data de nascimento", @class = "form-control datepicker col-md-12", @style = "height: 34px" })
+                                                @Html.ValidationMessageFor(model => item.DataReferencia)
+                                                @*<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>*@
+                                            </div><!-- /.input group -->
 
                                         </td>
                                     </tr>
@@ -98,11 +100,52 @@
         </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+<script src="~/Content/plugins/select2/select2.full.min.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="~/Content/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="~/Content/util/util.js"></script>
+<script src="~/Content/bootstrap/jquery_ui_min.js"></script>
+<script src="~/Content/bootstrap/raphael-min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/bootstrap-datepicker-globalize.js"></script>
+<script src="~/Scripts/locales/bootstrap-datepicker.pt-BR.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+
+@if (@ViewBag.AlertMessage != null)
+{
+    <script>
+        $(function () {
+            $("#dialog").dialog({
+                height: 200,
+                modal: true,
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
+}
+
 
 <script>
-    $("#resultadoAluno").change(function ()
-    {
-        var val = $('#resultadoAluno').val();
-        console.log(val);
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'pt-BR'
+        });
     });
 </script>
