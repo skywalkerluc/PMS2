@@ -15,14 +15,14 @@ namespace SchoolManagement.Data.Migrations
                         Nome = c.String(nullable: false, maxLength: 100, unicode: false),
                         DataNascimento = c.DateTime(nullable: false),
                         DataCadastro = c.DateTime(nullable: false),
-                        Rg = c.String(nullable: false, maxLength: 100, unicode: false),
-                        Cpf = c.String(nullable: false, maxLength: 100, unicode: false),
+                        Rg = c.String(maxLength: 100, unicode: false),
+                        Cpf = c.String(maxLength: 100, unicode: false),
                         Nacionalidade = c.String(maxLength: 100, unicode: false),
                         Naturalidade = c.String(maxLength: 100, unicode: false),
-                        Foto = c.Byte(nullable: false),
+                        Foto = c.Byte(),
                         Sexo = c.Int(nullable: false),
                         Endereco_NomeRua = c.String(maxLength: 100, unicode: false),
-                        Endereco_Numero = c.Int(nullable: false),
+                        Endereco_Numero = c.Int(),
                         Endereco_Cep = c.String(maxLength: 100, unicode: false),
                         Endereco_Bairro = c.String(maxLength: 100, unicode: false),
                         Endereco_Complemento = c.String(maxLength: 100, unicode: false),
@@ -31,9 +31,9 @@ namespace SchoolManagement.Data.Migrations
                         Endereco_Pais = c.String(maxLength: 100, unicode: false),
                         Contato_Email = c.String(maxLength: 100, unicode: false),
                         Contato_Telefone = c.String(maxLength: 100, unicode: false),
-                        Contato_Celular = c.String(nullable: false, maxLength: 100, unicode: false),
-                        UserLogin = c.String(maxLength: 100, unicode: false),
-                        Senha = c.String(maxLength: 100, unicode: false),
+                        Contato_Celular = c.String(maxLength: 100, unicode: false),
+                        UserLogin = c.String(nullable: false, maxLength: 50, unicode: false),
+                        Senha = c.String(nullable: false, maxLength: 20, unicode: false),
                         indicadorAcesso = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -80,10 +80,13 @@ namespace SchoolManagement.Data.Migrations
                         Autor = c.String(maxLength: 100, unicode: false),
                         Editora = c.String(maxLength: 100, unicode: false),
                         Disciplina_DisciplinaId = c.Int(),
+                        Turma_TurmaId = c.Int(),
                     })
                 .PrimaryKey(t => t.LivroId)
                 .ForeignKey("dbo.Disciplina", t => t.Disciplina_DisciplinaId)
-                .Index(t => t.Disciplina_DisciplinaId);
+                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
+                .Index(t => t.Disciplina_DisciplinaId)
+                .Index(t => t.Turma_TurmaId);
             
             CreateTable(
                 "dbo.Experiencia",
@@ -173,8 +176,12 @@ namespace SchoolManagement.Data.Migrations
                         DataEvento = c.DateTime(nullable: false),
                         NecessidadeAprovacao = c.Boolean(nullable: false),
                         PrecoEvento = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        NomeAcompanhante = c.String(maxLength: 100, unicode: false),
+                        FuncionarioResponsavel_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.EventoId);
+                .PrimaryKey(t => t.EventoId)
+                .ForeignKey("dbo.Funcionario", t => t.FuncionarioResponsavel_Id)
+                .Index(t => t.FuncionarioResponsavel_Id);
             
             CreateTable(
                 "dbo.Frequencia",
@@ -199,7 +206,7 @@ namespace SchoolManagement.Data.Migrations
                         LojaId = c.Int(nullable: false),
                         NomeLoja = c.String(maxLength: 100, unicode: false),
                         Endereco_NomeRua = c.String(maxLength: 100, unicode: false),
-                        Endereco_Numero = c.Int(nullable: false),
+                        Endereco_Numero = c.Int(),
                         Endereco_Cep = c.String(maxLength: 100, unicode: false),
                         Endereco_Bairro = c.String(maxLength: 100, unicode: false),
                         Endereco_Complemento = c.String(maxLength: 100, unicode: false),
@@ -208,7 +215,7 @@ namespace SchoolManagement.Data.Migrations
                         Endereco_Pais = c.String(maxLength: 100, unicode: false),
                         Contato_Email = c.String(maxLength: 100, unicode: false),
                         Contato_Telefone = c.String(maxLength: 100, unicode: false),
-                        Contato_Celular = c.String(nullable: false, maxLength: 100, unicode: false),
+                        Contato_Celular = c.String(maxLength: 100, unicode: false),
                     })
                 .PrimaryKey(t => t.LojaId);
             
@@ -217,8 +224,8 @@ namespace SchoolManagement.Data.Migrations
                 c => new
                     {
                         NotificacaoId = c.Int(nullable: false, identity: true),
-                        Assunto = c.String(maxLength: 100, unicode: false),
-                        Descricao = c.String(maxLength: 100, unicode: false),
+                        Assunto = c.String(maxLength: 1000, unicode: false),
+                        Descricao = c.String(maxLength: 1000, unicode: false),
                         DataCriacao = c.DateTime(nullable: false),
                         TurmaPublicoAlvo_TurmaId = c.Int(),
                         UsuarioCriacao_Id = c.Int(),
@@ -328,6 +335,19 @@ namespace SchoolManagement.Data.Migrations
                 .Index(t => t.Disciplina_DisciplinaId);
             
             CreateTable(
+                "dbo.ProfessorTurma",
+                c => new
+                    {
+                        Professor_Id = c.Int(nullable: false),
+                        Turma_TurmaId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Professor_Id, t.Turma_TurmaId })
+                .ForeignKey("dbo.Professor", t => t.Professor_Id)
+                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
+                .Index(t => t.Professor_Id)
+                .Index(t => t.Turma_TurmaId);
+            
+            CreateTable(
                 "dbo.DisciplinaTurma",
                 c => new
                     {
@@ -344,10 +364,8 @@ namespace SchoolManagement.Data.Migrations
                 "dbo.Aluno",
                 c => new
                     {
-                        NumeroMatricula = c.String(maxLength: 100, unicode: false),
                         Id = c.Int(nullable: false),
                         Turma_TurmaId = c.Int(),
-                        Etnia = c.Int(nullable: false),
                         Observacoes = c.String(maxLength: 100, unicode: false),
                         StatusCadastro = c.Int(nullable: false),
                     })
@@ -362,32 +380,25 @@ namespace SchoolManagement.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Evento_EventoId = c.Int(),
                         Funcao = c.String(maxLength: 100, unicode: false),
                         PoderAdministrativo = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Usuario", t => t.Id)
-                .ForeignKey("dbo.Evento", t => t.Evento_EventoId)
-                .Index(t => t.Id)
-                .Index(t => t.Evento_EventoId);
+                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.Professor",
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Turma_TurmaId = c.Int(),
                         Notificacao_NotificacaoId = c.Int(),
-                        Matricula = c.String(maxLength: 100, unicode: false),
                         Especialidade = c.String(maxLength: 100, unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Funcionario", t => t.Id)
-                .ForeignKey("dbo.Turma", t => t.Turma_TurmaId)
                 .ForeignKey("dbo.Notificacao", t => t.Notificacao_NotificacaoId)
                 .Index(t => t.Id)
-                .Index(t => t.Turma_TurmaId)
                 .Index(t => t.Notificacao_NotificacaoId);
             
             CreateTable(
@@ -408,9 +419,7 @@ namespace SchoolManagement.Data.Migrations
         {
             DropForeignKey("dbo.Responsavel", "Id", "dbo.Usuario");
             DropForeignKey("dbo.Professor", "Notificacao_NotificacaoId", "dbo.Notificacao");
-            DropForeignKey("dbo.Professor", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Professor", "Id", "dbo.Funcionario");
-            DropForeignKey("dbo.Funcionario", "Evento_EventoId", "dbo.Evento");
             DropForeignKey("dbo.Funcionario", "Id", "dbo.Usuario");
             DropForeignKey("dbo.Aluno", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Aluno", "Id", "dbo.Usuario");
@@ -428,12 +437,16 @@ namespace SchoolManagement.Data.Migrations
             DropForeignKey("dbo.Notificacao", "TurmaPublicoAlvo_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.Frequencia", "Disciplina_DisciplinaId", "dbo.Disciplina");
             DropForeignKey("dbo.Frequencia", "Aluno_Id", "dbo.Aluno");
+            DropForeignKey("dbo.Evento", "FuncionarioResponsavel_Id", "dbo.Funcionario");
             DropForeignKey("dbo.Contrato", "Aluno_Id", "dbo.Aluno");
             DropForeignKey("dbo.ConteudosExtras", "TurmaPublicoAlvo_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.ConteudosExtras", "Professor_Id", "dbo.Professor");
             DropForeignKey("dbo.Boleto", "Aluno_Id", "dbo.Aluno");
+            DropForeignKey("dbo.Livro", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.DisciplinaTurma", "Turma_TurmaId", "dbo.Turma");
             DropForeignKey("dbo.DisciplinaTurma", "Disciplina_DisciplinaId", "dbo.Disciplina");
+            DropForeignKey("dbo.ProfessorTurma", "Turma_TurmaId", "dbo.Turma");
+            DropForeignKey("dbo.ProfessorTurma", "Professor_Id", "dbo.Professor");
             DropForeignKey("dbo.Experiencia", "Funcionario_Id", "dbo.Funcionario");
             DropForeignKey("dbo.ProfessorDisciplina", "Disciplina_DisciplinaId", "dbo.Disciplina");
             DropForeignKey("dbo.ProfessorDisciplina", "Professor_Id", "dbo.Professor");
@@ -443,14 +456,14 @@ namespace SchoolManagement.Data.Migrations
             DropForeignKey("dbo.ResponsavelAluno", "Responsavel_Id", "dbo.Responsavel");
             DropIndex("dbo.Responsavel", new[] { "Id" });
             DropIndex("dbo.Professor", new[] { "Notificacao_NotificacaoId" });
-            DropIndex("dbo.Professor", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Professor", new[] { "Id" });
-            DropIndex("dbo.Funcionario", new[] { "Evento_EventoId" });
             DropIndex("dbo.Funcionario", new[] { "Id" });
             DropIndex("dbo.Aluno", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Aluno", new[] { "Id" });
             DropIndex("dbo.DisciplinaTurma", new[] { "Turma_TurmaId" });
             DropIndex("dbo.DisciplinaTurma", new[] { "Disciplina_DisciplinaId" });
+            DropIndex("dbo.ProfessorTurma", new[] { "Turma_TurmaId" });
+            DropIndex("dbo.ProfessorTurma", new[] { "Professor_Id" });
             DropIndex("dbo.ProfessorDisciplina", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.ProfessorDisciplina", new[] { "Professor_Id" });
             DropIndex("dbo.ResponsavelAluno", new[] { "Aluno_Id" });
@@ -469,11 +482,13 @@ namespace SchoolManagement.Data.Migrations
             DropIndex("dbo.Notificacao", new[] { "TurmaPublicoAlvo_TurmaId" });
             DropIndex("dbo.Frequencia", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.Frequencia", new[] { "Aluno_Id" });
+            DropIndex("dbo.Evento", new[] { "FuncionarioResponsavel_Id" });
             DropIndex("dbo.Contrato", new[] { "Aluno_Id" });
             DropIndex("dbo.ConteudosExtras", new[] { "TurmaPublicoAlvo_TurmaId" });
             DropIndex("dbo.ConteudosExtras", new[] { "Professor_Id" });
             DropIndex("dbo.Boleto", new[] { "Aluno_Id" });
             DropIndex("dbo.Experiencia", new[] { "Funcionario_Id" });
+            DropIndex("dbo.Livro", new[] { "Turma_TurmaId" });
             DropIndex("dbo.Livro", new[] { "Disciplina_DisciplinaId" });
             DropIndex("dbo.Turma", new[] { "AnoLetivo_AnoLetivoId" });
             DropTable("dbo.Responsavel");
@@ -481,6 +496,7 @@ namespace SchoolManagement.Data.Migrations
             DropTable("dbo.Funcionario");
             DropTable("dbo.Aluno");
             DropTable("dbo.DisciplinaTurma");
+            DropTable("dbo.ProfessorTurma");
             DropTable("dbo.ProfessorDisciplina");
             DropTable("dbo.ResponsavelAluno");
             DropTable("dbo.TrabalhosExtras");
