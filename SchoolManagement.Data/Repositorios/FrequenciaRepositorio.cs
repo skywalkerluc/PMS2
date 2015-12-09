@@ -29,6 +29,23 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
+        public bool RemoverFrequencia(int FrequenciaId)
+        {
+            try
+            {
+                var frequ = this.Recuperar(FrequenciaId);
+                Db.Entry(frequ.Aluno).State = EntityState.Unchanged;
+                Db.Entry(frequ.Disciplina).State = EntityState.Unchanged;
+                Db.Frequencia.Remove(frequ);
+                Db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public IEnumerable<Frequencia> RecuperarHistoricoFrequenciasAluno(int AlunoId)
         {
             var query = from f in Db.Frequencia

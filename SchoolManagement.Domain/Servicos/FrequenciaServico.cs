@@ -24,6 +24,11 @@ namespace SchoolManagement.Domain.Servicos
             return this._frequenciaRep.IncluirFrequenciaAluno(frequencia);
         }
 
+        public bool RemoverFrequencia(int FrequenciaId)
+        {
+            return this._frequenciaRep.RemoverFrequencia(FrequenciaId);
+        }
+
         public IEnumerable<Frequencia> RecuperarHistoricoFrequenciasAluno(int AlunoId)
         {
             return this._frequenciaRep.RecuperarHistoricoFrequenciasAluno(AlunoId);
