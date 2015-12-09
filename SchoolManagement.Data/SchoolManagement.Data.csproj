@@ -72,9 +72,13 @@
     <Compile Include="EntityConfig\UsuarioConfig.cs" />
     <Compile Include="EntityConfig\ProfessorConfig.cs" />
     <Compile Include="EntityConfig\ResponsavelConfig.cs" />
-    <Compile Include="Migrations\201512082139319_DBSchoolManagement.cs" />
-    <Compile Include="Migrations\201512082139319_DBSchoolManagement.Designer.cs">
-      <DependentUpon>201512082139319_DBSchoolManagement.cs</DependentUpon>
+    <Compile Include="Migrations\201512082032505_DBSchoolManagement.cs" />
+    <Compile Include="Migrations\201512082032505_DBSchoolManagement.Designer.cs">
+      <DependentUpon>201512082032505_DBSchoolManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512081752402_school4.cs" />
+    <Compile Include="Migrations\201512081752402_school4.Designer.cs">
+      <DependentUpon>201512081752402_school4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,8 +114,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512082139319_DBSchoolManagement.resx">
-      <DependentUpon>201512082139319_DBSchoolManagement.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512082032505_DBSchoolManagement.resx">
+      <DependentUpon>201512082032505_DBSchoolManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512081752402_school4.resx">
+      <DependentUpon>201512081752402_school4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

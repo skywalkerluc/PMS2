@@ -69,7 +69,7 @@ namespace SchoolManagement.MVC.Controllers
 
         // POST: Prova/Create
         [HttpPost]
-        public ActionResult CadastrarProva(ProvaViewModel prova)
+        public ActionResult Create(ProvaViewModel prova)
         {
             try
             {

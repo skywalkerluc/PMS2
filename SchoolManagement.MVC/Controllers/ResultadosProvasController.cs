@@ -135,7 +135,7 @@ namespace SchoolManagement.MVC.Controllers
         public ActionResult VisualizarAlunosTurmasProfessorLecionaLancarNota(ProvaViewModel provaid2)
         {
 
-            Session["provaIdselecionado"] = provaid2.provaIdSelecionado;
+            Session["provaIdselecionado"] = provaid2.ProvaId;
 
             List<ResultadosProvas> AlunosBackEnd = new List<ResultadosProvas>();
 

@@ -37,136 +37,25 @@ namespace SchoolManagement.Data.Repositorios
 
         public Prova IncluirProva(Prova prova)
         {
-            Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
-            Db.Entry(prova.Turma).State = EntityState.Unchanged;
+            try
+            {
+                var DataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
+                var UnidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
+                var StatusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
+                var TipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
+                var DisciplicaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
+                var ProfessoreIdParameter = new SqlParameter("@ProfessorId", prova.Professores.Id);
+                var TurmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
 
-            //Db.Provas.Attach(prova);
-            Db.Provas.Add(prova);
-            Db.SaveChanges();
+                var query = Db.Database.ExecuteSqlCommand("INSERT INTO Prova (DataProva, Unidade, StatusProva, TipoProva, Disciplina_DisciplinaId, Professores_Id, Turma_TurmaId) VALUES (@DataProva, @Unidade, @StatusProva, @TipoProva, @DisciplinaId, @ProfessorId, @TurmaId)", DataProvaParameter, UnidadeParameter, StatusProvaParameter, TipoProvaParameter, DisciplicaIdParameter, ProfessoreIdParameter, TurmaIdParameter);
 
-        //    //Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
-        //    //Db.Entry(prova.Professores).State = EntityState.Unchanged;
-        //    //Db.Provas.Add(prova);
-        //    //Db.SaveChanges();
-
-        //    //return prova;
-
-        //    //var dataProvaParameter = new SqlParameter("@DataProva", prova.DataProva);
-        //    //var unidadeParameter = new SqlParameter("@Unidade", prova.Unidade);
-        //    //var statusProvaParameter = new SqlParameter("@StatusProva", prova.StatusProva);
-        //    //var tipoProvaParameter = new SqlParameter("@TipoProva", prova.TipoProva);
-        //    //var disciplinaIdParameter = new SqlParameter("@DisciplinaId", prova.Disciplina.DisciplinaId);
-        //    //var professorIdParameter = new SqlParameter("@ProfessorId", prova.Professores.Id);
-        //    //var turmaIdParameter = new SqlParameter("@TurmaId", prova.Turma.TurmaId);
-
-        //    //var query = this.Db.Database.ExecuteSqlCommand("INSERT INTO [dbo].[Prova] ([DataProva], [Unidade], [StatusProva], [TipoProva], [Disciplina_DisciplinaId], [Professores_Id], [Turma_TurmaId]) VALUES (@DataProva, @Unidade, @StatusProva, @TipoProva, @DisciplinaId, @ProfessorId, @TurmaId)", 
-        //    //    dataProvaParameter, unidadeParameter, statusProvaParameter, tipoProvaParameter, disciplinaIdParameter, professorIdParameter, turmaIdParameter);
-        //    //return prova;
-
-
-
-        //    Db.Entry(prova.Disciplina).State = EntityState.Unchanged;
-
-        //    if(prova.Professores != null)
-        //    {
-        //        Db.Entry(prova.Professores).State = EntityState.Unchanged;
-        //    }
+                return prova;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
             
-        //    //if (prova.Disciplina.Livros != null)
-        //    //{
-        //    //    foreach (var livro in prova.Disciplina.Livros)
-        //    //    {
-        //    //        Db.Entry(livro).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Disciplina.Professores != null)
-        //    //{
-        //    //    foreach (var prof in prova.Disciplina.Professores)
-        //    //    {
-        //    //        Db.Entry(prof).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Disciplina.Turmas != null)
-        //    //{
-        //    //    foreach (var turma in prova.Disciplina.Turmas)
-        //    //    {
-        //    //        Db.Entry(turma).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Professores != null)
-        //    //{
-        //    //    Db.Entry(prova.Professores).State = EntityState.Unchanged;
-        //    //}
-
-        //    //if (prova.Professores.Disciplinas != null)
-        //    //{
-        //    //    foreach (var disc in prova.Professores.Disciplinas)
-        //    //    {
-        //    //        Db.Entry(disc).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Professores.Turmas != null)
-        //    //{
-        //    //    foreach (var turm in prova.Professores.Turmas)
-        //    //    {
-        //    //        Db.Entry(turm).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-
-        //    if (prova.Turma != null)
-        //    {
-        //        Db.Entry(prova.Turma).State = EntityState.Unchanged;
-        //    }
-
-        //    //if (prova.Turma.Alunos != null)
-        //    //{
-        //    //    foreach (var aluno in prova.Turma.Alunos)
-        //    //    {
-        //    //        Db.Entry(aluno).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Turma.AnoLetivo != null)
-        //    //{
-        //    //    Db.Entry(prova.Turma.AnoLetivo).State = EntityState.Unchanged;
-        //    //}
-
-
-        //    //if (prova.Turma.Disciplinas != null)
-        //    //{
-        //    //    foreach (var disc in prova.Turma.Disciplinas)
-        //    //    {
-        //    //        Db.Entry(disc).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Turma.Materiais != null)
-        //    //{
-        //    //    foreach (var material in prova.Turma.Materiais)
-        //    //    {
-        //    //        Db.Entry(material).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //if (prova.Turma.Professores != null)
-        //    //{
-        //    //    foreach (var prof in prova.Turma.Professores)
-        //    //    {
-        //    //        Db.Entry(prof).State = EntityState.Unchanged;
-        //    //    }
-        //    //}
-
-        //    //Db.Provas.Attach(prova);
-        //    Db.SaveChanges();
-        //    Db.Provas.Add(prova);
-        //    Db.SaveChanges();
-
-            return prova;
         }
 
         public bool AtualizarDadosProva(Prova prova)
@@ -215,11 +104,12 @@ namespace SchoolManagement.Data.Repositorios
                     };
                     ListaRetorno.Add(pr);
                 }
+                conn.Close();
                 return ListaRetorno;
             }
             else
             {
-                throw new NotImplementedException();
+                return ListaRetorno;
             }
         }
 

@@ -117,7 +117,7 @@ namespace SchoolManagement.MVC.Controllers
                 TurmaViewModel turmaT = new TurmaViewModel();
                 turmaT.TurmaId = aluno.turmaEscolhida;
 
-                var turmaRecuperada = _turmaApp.RecuperarDadosTurma(turmaT.TurmaId);
+                var turmaRecuperada = _turmaApp.Recuperar(turmaT.TurmaId);
 
                 List<Aluno> ListaAlunos = new List<Aluno>();
                 ListaAlunos.Add(alunoDomain);

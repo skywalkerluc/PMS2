@@ -160,7 +160,7 @@ namespace SchoolManagement.Data.Repositorios
                 foreach (var turma in turmas)
                 {
                     Turma turmaY = new Turma();
-                    turmaY = this.RecuperarDadosTurma(turma.TurmaId);
+                    turmaY = this.RecuperarProfessoresTurma(turma.TurmaId);
                     ListaRecuperada.Add(turmaY);
 
                 }
@@ -240,6 +240,48 @@ namespace SchoolManagement.Data.Repositorios
                 throw new NotImplementedException(ex.Message.ToString());
             }
             
+        }
+
+        public Turma RecuperarProfessoresTurma(int TurmaId)
+        {
+            try
+            {
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM ProfessorTurma AS PT WHERE PT.Turma_TurmaId = " + TurmaId, conn);
+                conn.Open();
+
+                Turma turma = new Turma();
+
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        List<Professor> ListaProf = new List<Professor>();
+                        Professor prof = new Professor();
+                        prof = (new ProfessorRepositorio().Recuperar(reader.GetInt32(0)));
+                        ListaProf.Add(prof);
+
+                        turma = new Turma()
+                        {
+                            Professores = ListaProf,
+                            TurmaId = reader.GetInt32(1)
+                        };
+                    }
+                    conn.Close();
+                    return turma;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+
         }
 
     }
