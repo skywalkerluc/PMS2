@@ -1630,6 +1630,9 @@
     <Content Include="Views\AnoLetivo\VisualizarAnoLetivo.cshtml" />
     <Content Include="Views\Frequencia\DetalhesFrequenciaConsulta.cshtml" />
     <Content Include="Views\Frequencia\ExcluirFrequencia.cshtml" />
+    <Content Include="Views\Frequencia\EditarFrequencia.cshtml" />
+    <Content Include="Views\ResultadosProvas\EditarResultadosProvas.cshtml" />
+    <Content Include="Views\ResultadosProvas\DeleteResultado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">

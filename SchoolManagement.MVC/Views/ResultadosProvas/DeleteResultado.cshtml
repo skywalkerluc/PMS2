@@ -1,20 +1,20 @@
-﻿@model SchoolManagement.MVC.ViewModels.AnoLetivoViewModel
+﻿@model SchoolManagement.MVC.ViewModels.ResultadosProvasViewModel
 
 @{
-    ViewBag.Title = "DeletarAnoLetivo";
+    ViewBag.Title = "DeleteResultado";
 }
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Ano Letivo
-            <small>Deletar Ano Letivo</small>
+            Resultado Notas
+            <small>Delete Notas</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Ano Letivo</li>
-            <li class="active">Deletar Ano Letivo</li>
+            <li class="active">Resultado Notas</li>
+            <li class="active">Delete Notas</</li>
         </ol>
     </section>
 
@@ -27,37 +27,55 @@
                     <div class="box-header with-border">
                     </div><!-- /.box-header -->
                     <div class="box-body">
-
                         <div>
-                            <h4>AnoLetivoViewModel</h4>
                             <hr />
                             <dl class="dl-horizontal">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.QntUnidades)
+                                    @Html.DisplayNameFor(model => model.Observacao)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.QntUnidades)
+                                    @Html.DisplayFor(model => model.Observacao)
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Ano)
+                                    @Html.DisplayNameFor(model => model.Nota)
                                 </dt>
 
                                 <dd>
-                                    @Html.DisplayFor(model => model.Ano)
+                                    @Html.DisplayFor(model => model.Nota)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Gabarito)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Gabarito)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.resul)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.resul)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.resulAluno)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.resulAluno)
                                 </dd>
 
                             </dl>
 
-                            @using (Html.BeginForm("Delete", "AnoLetivo", FormMethod.Post))
+                            @using (Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()
-                                
-                                @Html.HiddenFor(model => model.AnoLetivoId);
-                                @Html.HiddenFor(model => model.QntUnidades)
-                                @Html.HiddenFor(model => model.Ano)
-                                
+
                                 <div class="form-actions no-color">
                                     <input type="submit" value="Delete" class="btn btn-default" /> |
                                     @Html.ActionLink("Voltar", "Index")
@@ -71,17 +89,3 @@
         </div>   <!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-@{
-    if (ViewBag.AlertMessage != null)
-    {
-        <div id="dialog" title="Aviso!">
-            <p>@ViewBag.AlertMessage</p>
-        </div>
-    }
-}
-
-<script>
-    $(document).ready(function () {
-        $("#dialog").dialog("open");
-    });
-</script>

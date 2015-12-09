@@ -442,5 +442,29 @@ namespace SchoolManagement.MVC.Controllers
             throw new NotImplementedException("Erro ao tentar excluir uma frequencia");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var frequencia = _frequenciaServico.Recuperar(id);
+            var frequenciaViewModel = Mapper.Map<Frequencia, FrequenciaViewModel>(frequencia);
+            return View("EditarFrequencia", frequenciaViewModel);
+        }
+
+        //
+        // POST: /Funcionario/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(FrequenciaViewModel frequencia)
+        {
+            if (ModelState.IsValid)
+            {
+                var frequenciaDomain = Mapper.Map<FrequenciaViewModel, Frequencia>(frequencia);
+                _frequenciaServico.AlterarFrequenciaAluno(frequenciaDomain);
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Index", "Home", frequencia);
+        }
+
+
 	}
 }

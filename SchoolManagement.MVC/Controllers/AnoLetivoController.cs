@@ -108,7 +108,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 if (attempt)
                 {
-                    return View("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace SchoolManagement.MVC.Controllers
 
                 if (attempt != false)
                 {
-                    return View("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

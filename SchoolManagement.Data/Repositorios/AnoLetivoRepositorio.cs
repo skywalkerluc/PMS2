@@ -34,7 +34,10 @@ namespace SchoolManagement.Data.Repositorios
             try
             {
                 var anoLetivo = this.Recuperar(AnoLetivoId);
-                Db.Entry(anoLetivo.Turmas).State = EntityState.Unchanged;
+                if (anoLetivo.Turmas != null && anoLetivo.Turmas.Count != 0)
+                {
+                    Db.Entry(anoLetivo.Turmas).State = EntityState.Unchanged;
+                }
                 Db.AnosLetivos.Remove(anoLetivo);
                 Db.SaveChanges();
                 return true;
@@ -49,7 +52,10 @@ namespace SchoolManagement.Data.Repositorios
         {
             try
             {
-                Db.Entry(anoLetivo.Turmas).State = EntityState.Unchanged;
+                if (anoLetivo.Turmas != null && anoLetivo.Turmas.Count != 0)
+                {
+                    Db.Entry(anoLetivo.Turmas).State = EntityState.Unchanged;
+                }
                 Db.Entry(anoLetivo).State = EntityState.Modified;
                 Db.SaveChanges();
                 return true;
