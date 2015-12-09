@@ -130,5 +130,57 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
+        public ResultadosProvas RecuperarResultadosProvasPorId(int ResultadoProvaId)
+        {
+            ResultadosProvas result = new ResultadosProvas();
+            try
+            {
+                SqlConnection conn = (SqlConnection)Db.Database.Connection;
+                SqlCommand command = new SqlCommand("SELECT * FROM ResultadosProvas AS RP WHERE RP.ResultadoId = " + ResultadoProvaId, conn);
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        result = new ResultadosProvas()
+                        {
+                            ResultadoId = reader.GetInt32(0),
+                            Observacao = (reader.GetString(1) ?? string.Empty),
+                            Nota = reader.GetInt32(2),
+                            Gabarito = reader.GetString(3),
+                            Aluno = (new AlunoRepositorio().RecuperarDadosAluno(reader.GetInt32(4))),
+                            Prova = (new ProvaRepositorio().RecuperarProva(reader.GetInt32(5)))
+                        };
+                    }
+                    conn.Close();
+                    return result;
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException(ex.Message.ToString());
+            }
+        }
+
+        public bool RemoverResultadoProva(int ResultadoProvaId)
+        {
+            try
+            {
+                var ResultadoParameter = new SqlParameter("@ResultadoProvaId", ResultadoProvaId);
+                var query = this.Db.Database.ExecuteSqlCommand("DELETE FROM ResultadosProvas WHERE ResultadoId = @ResultadoProvaId", ResultadoParameter);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

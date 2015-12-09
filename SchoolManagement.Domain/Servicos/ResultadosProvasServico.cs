@@ -48,5 +48,15 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._resultadosProvasRep.RecuperarResultadosProva(ProvaId);
         }
+
+        public ResultadosProvas RecuperarResultadosProvasPorId(int ResultadoProvaId)
+        {
+            return this._resultadosProvasRep.RecuperarResultadosProvasPorId(ResultadoProvaId);
+        }
+
+        public bool RemoverResultadoProva(int ResultadoProvaId)
+        {
+            return this._resultadosProvasRep.RemoverResultadoProva(ResultadoProvaId);
+        }
     }
 }

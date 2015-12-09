@@ -15,5 +15,7 @@ namespace SchoolManagement.Domain.Interfaces.Repositorios
         bool AlterarResultadoAluno(ResultadosProvas resultado);
         bool RemoverResultadosAlunos(List<ResultadosProvas> resultadosProvas);
         List<ResultadosProvas> RecuperarResultadosProva(int ProvaId);
+        ResultadosProvas RecuperarResultadosProvasPorId(int ResultadoProvaId);
+        bool RemoverResultadoProva(int ResultadoProvaId);
     }
 }
