@@ -26,7 +26,9 @@ namespace SchoolManagement.MVC.Controllers
             //var anos = _anoLetivoServico.RecuperarTodos();
             //var anosMapped = Mapper.Map<IEnumerable<AnoLetivo>, IEnumerable<AnoLetivoViewModel>>(anos);
             //return View("VisualizarAnosLetivos", anosMapped);
-            return RedirectToAction("Index", "Home");
+            var disc = _anoLetivoServico.RecuperarTodos();
+            var discMapped = Mapper.Map<IEnumerable<AnoLetivo>, IEnumerable<AnoLetivoViewModel>>(disc);
+            return View("VisualizarAnoLetivo", discMapped);
         }
 
         //

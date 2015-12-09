@@ -1,0 +1,75 @@
+﻿@model SchoolManagement.MVC.ViewModels.FrequenciaViewModel
+
+@{
+    ViewBag.Title = "ExcluirFrequencia";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Frequencia
+            <small>Deletar Frequencia</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Frequencia</li>
+            <li class="active">Deletar Frequencia</</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.FrequenciaId)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.FrequenciaId)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataReferencia)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataReferencia)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Presente)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Presente)
+                                </dd>
+
+                            </dl>
+
+                            @using (Html.BeginForm("Delete", "Frequencia", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                                    @Html.ActionLink("Votlar", "voltarFrequencia")
+                                </div>
+                            }
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+            </div><!--/.col (left) -->
+            <!-- right column -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

@@ -374,6 +374,7 @@ namespace SchoolManagement.MVC.Controllers
                         f.Aluno = aluno;
                         f.DataReferencia = frequencia.DataReferencia;
                         f.Presente = frequencia.Presente;
+                        f.FrequenciaId = frequencia.FrequenciaId;
 
                         AlunosBackEnd.Add(f);
                     }
@@ -385,5 +386,61 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarAlunosFrequenciaConsulta", alunosMapped);
 
         }
+
+        public ActionResult Details(int id)
+        {
+            var resultado = _frequenciaServico.Recuperar(id);
+            var resultadoViewModel = Mapper.Map<Frequencia, FrequenciaViewModel>(resultado);
+
+            return View("DetalhesFrequenciaConsulta", resultadoViewModel);
+        }
+
+        public ActionResult voltarFrequencia()
+        {
+            int professorId = (int)Session["UsuarioId"];
+
+            List<SelectListItem> ListaTurmasFrequenciaConsulta = new List<SelectListItem>();
+            var listaTurmasConsulta = _turmaServico.RecuperarTurmasQueProfessorLeciona(professorId);
+            foreach (var item in listaTurmasConsulta)
+            {
+                SelectListItem select = new SelectListItem()
+                {
+                    Value = item.TurmaId.ToString(),
+                    Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                };
+                ListaTurmasFrequenciaConsulta.Add(select);
+            }
+
+            ViewBag.ListaTurmasFrequenciaConsulta = ListaTurmasFrequenciaConsulta;
+
+            return View("FiltroTurmasFrequenciaConsultaProfessor");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var frequencia = _frequenciaServico.Recuperar(id);
+            var frequenciaViewModel = Mapper.Map<Frequencia, FrequenciaViewModel>(frequencia);
+
+            return View("ExcluirFrequencia", frequenciaViewModel);
+        }
+
+        //
+        // POST: /Aluno/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Frequencia f = new Frequencia();
+            f.FrequenciaId = id;
+
+            var sucesso = _frequenciaServico.Remover(f);
+
+            if (sucesso)
+                return RedirectToAction("Index", "Professor");
+            else
+                ViewBag.AlertMessage = "Erro ao tentar excluir uma frequencia";
+            throw new NotImplementedException("Erro ao tentar excluir uma frequencia");
+        }
+
 	}
 }

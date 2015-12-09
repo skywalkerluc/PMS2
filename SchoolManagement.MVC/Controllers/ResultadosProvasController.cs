@@ -268,7 +268,6 @@ namespace SchoolManagement.MVC.Controllers
         [HttpPost]
         public ActionResult VisualizarAlunosProvasConcluidas(ProvaViewModel provaid3)
         {
-
             Session["provaIdselecionado"] = provaid3.ProvaId;
 
             List<ResultadosProvas> AlunosBackEnd = new List<ResultadosProvas>();
@@ -282,9 +281,18 @@ namespace SchoolManagement.MVC.Controllers
                 var alunos = _alunoServico.RecuperarAlunosTurma(turma.TurmaId).ToList();
                 foreach (var aluno in alunos)
                 {
-                    ResultadosProvas rp = new ResultadosProvas();
-                    rp.Aluno = aluno;
-                    AlunosBackEnd.Add(rp);
+                    var prov = _resultadosProvasApp.RecuperarNotasAluno(aluno.Id);
+                    var provMap = Mapper.Map<IEnumerable<ResultadosProvas>, IEnumerable<ResultadosProvasViewModel>>(prov);
+
+                    foreach(var p in provMap)
+                    {
+
+                        ResultadosProvas rp = new ResultadosProvas();
+                        rp.Aluno = aluno;
+                        rp.Nota = p.Nota;
+                        AlunosBackEnd.Add(rp);
+                    }
+
                 }
             }
 

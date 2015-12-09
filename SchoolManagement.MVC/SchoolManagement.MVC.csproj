@@ -1628,6 +1628,8 @@
     <Content Include="Views\AnoLetivo\DetalhesAnoLetivo.cshtml" />
     <Content Include="Views\AnoLetivo\EditarAnoLetivo.cshtml" />
     <Content Include="Views\AnoLetivo\VisualizarAnoLetivo.cshtml" />
+    <Content Include="Views\Frequencia\DetalhesFrequenciaConsulta.cshtml" />
+    <Content Include="Views\Frequencia\ExcluirFrequencia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Data\SchoolManagement.Data.csproj">
