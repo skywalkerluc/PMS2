@@ -73,5 +73,10 @@ namespace SchoolManagement.Domain.Servicos
         {
             return this._provaRep.RecuperarProvasConcluidasTurmaProfessor(ProfessorId, TurmaId);
         }
+
+        public bool AtualizarStatusProva(int ProvaId, int StatusProva)
+        {
+            return this._provaRep.AtualizarStatusProva(ProvaId, StatusProva);
+        }
     }
 }
