@@ -70,7 +70,7 @@ namespace SchoolManagement.Data.Repositorios
         public IEnumerable<Turma> FiltrarTurma(string descTurma, int ProfessorId, int AnoLetivo, int horarioId)
         {
             List<Turma> ListaTurmas = new List<Turma>();
-            
+
 
             SqlConnection conn = (SqlConnection)Db.Database.Connection;
             SqlCommand command = new SqlCommand("SELECT * FROM Turma AS T INNER JOIN ProfessorTurma AS PT ON T.TurmaId = PT.Turma_TurmaId WHERE T.Descricao = " + descTurma + " OR " + descTurma + " IS NULL AND PT.Professor_Id = " + ProfessorId + " OR " + ProfessorId + " IS NULL AND T.AnoLetivo_AnoLetivoId = " + AnoLetivo + " OR " + AnoLetivo + " IS NULL AND T.HorariosTurmaId = " + horarioId + " OR " + horarioId + " IS NULL", conn);
@@ -97,6 +97,7 @@ namespace SchoolManagement.Data.Repositorios
                     };
                     ListaTurmas.Add(turma);
                 }
+                conn.Close();
                 return ListaTurmas;
             }
             else
@@ -143,35 +144,65 @@ namespace SchoolManagement.Data.Repositorios
 
         public IEnumerable<Turma> RecuperarTurmasQueProfessorLeciona(int professorId)
         {
-            var professorIdParameter = new SqlParameter("@ProfessorId", professorId);
-        
-            var query = this.Db.Turmas.SqlQuery("SELECT * FROM Turma AS T INNER JOIN ProfessorTurma AS PT ON T.TurmaId = PT.Turma_TurmaId WHERE PT.Professor_Id = @ProfessorId", professorIdParameter).ToList();
-            return query;
+            List<Turma> ListaTurmas = new List<Turma>();
+            SqlConnection conn = (SqlConnection)Db.Database.Connection;
+            SqlCommand command = new SqlCommand("SELECT * FROM ProfessorTurma AS PT WHERE PT.Professor_Id = " + professorId, conn);
+            conn.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Turma turma = this.Recuperar(reader.GetInt32(1));
+                    ListaTurmas.Add(turma);
+                }
+                conn.Close();
+                return ListaTurmas;
+            }
+            else
+            {
+                return ListaTurmas;
+            }
+
         }
 
         public IEnumerable<Turma> RecuperarTurmasProfessorNaoLeciona(int ProfessorId)
         {
+            List<Turma> ListaRetorno = new List<Turma>();
+            List<Turma> TurmaRecuperada = new List<Turma>();
             try
             {
-                List<Turma> ListaRetorno = new List<Turma>();
+                
                 var turmas = this.RecuperarTodos();
-                List<Turma> ListaRecuperada = new List<Turma>();
+                List<Dictionary<int, int>> ListaRecuperada = new List<Dictionary<int, int>>();
 
                 foreach (var turma in turmas)
                 {
-                    Turma turmaY = new Turma();
-                    turmaY = this.RecuperarProfessoresTurma(turma.TurmaId);
-                    ListaRecuperada.Add(turmaY);
-
+                    var turmaProfDic = this.RecuperarProfessoresTurma(turma.TurmaId);
+                    foreach (var item in turmaProfDic)
+                    {
+                        Turma turmaY = new Turma();
+                        turmaY = this.Recuperar(item.Values.ToList()[0]);
+                        turmaY.Professores.Add((new ProfessorRepositorio().Recuperar(item.Keys.ToList()[0])));
+                        TurmaRecuperada.Add(turmaY);
+                    }
                 }
 
-                foreach (var turmaX in ListaRecuperada)
+                foreach (var turmaX in TurmaRecuperada)
                 {
-                    foreach (var prof in turmaX.Professores)
+                    if (turmaX.Professores == null)
                     {
-                        if (prof.Id != ProfessorId)
+                        ListaRetorno.Add(turmaX);
+                    }
+                    else
+                    {
+                        foreach (var prof in turmaX.Professores)
                         {
-                            ListaRetorno.Add(turmaX);
+                            if (prof.Id != ProfessorId)
+                            {
+                                ListaRetorno.Add(turmaX);
+                            }
                         }
                     }
                 }
@@ -179,7 +210,7 @@ namespace SchoolManagement.Data.Repositorios
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.Message.ToString());
+                return ListaRetorno;
             }
         }
 
@@ -220,7 +251,7 @@ namespace SchoolManagement.Data.Repositorios
             {
                 throw new NotImplementedException(ex.Message.ToString());
             }
-            
+
         }
 
         public bool AtualizarDadosTurma(Turma turma)
@@ -239,42 +270,35 @@ namespace SchoolManagement.Data.Repositorios
             {
                 throw new NotImplementedException(ex.Message.ToString());
             }
-            
+
         }
 
-        public Turma RecuperarProfessoresTurma(int TurmaId)
+        public List<Dictionary<int, int>> RecuperarProfessoresTurma(int TurmaId)
         {
+            List<Dictionary<int, int>> ListDict = new List<Dictionary<int, int>>();
+
             try
             {
                 SqlConnection conn = (SqlConnection)Db.Database.Connection;
                 SqlCommand command = new SqlCommand("SELECT * FROM ProfessorTurma AS PT WHERE PT.Turma_TurmaId = " + TurmaId, conn);
                 conn.Open();
 
-                Turma turma = new Turma();
-
-
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        List<Professor> ListaProf = new List<Professor>();
-                        Professor prof = new Professor();
-                        prof = (new ProfessorRepositorio().Recuperar(reader.GetInt32(0)));
-                        ListaProf.Add(prof);
-
-                        turma = new Turma()
-                        {
-                            Professores = ListaProf,
-                            TurmaId = reader.GetInt32(1)
-                        };
+                        Dictionary<int, int> dic = new Dictionary<int, int>();
+                        dic.Add(reader.GetInt32(0), reader.GetInt32(1));
+                        ListDict.Add(dic);
                     }
                     conn.Close();
-                    return turma;
+                    return ListDict;
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    conn.Close();
+                    return ListDict;
                 }
             }
             catch (Exception ex)

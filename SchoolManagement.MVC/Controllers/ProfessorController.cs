@@ -265,7 +265,19 @@ namespace SchoolManagement.MVC.Controllers
             var professorId = professor.Id;
             if (professorId != 0)
             {
-                ViewBag.ListaTurmas = _turmaServico.RecuperarTurmasProfessorNaoLeciona(professorId);
+                
+                var turmas = _turmaServico.RecuperarTurmasProfessorNaoLeciona(professorId);
+                List<SelectListItem> ListaTurmas = new List<SelectListItem>();
+                foreach (var item in turmas)
+                {
+                    SelectListItem select = new SelectListItem()
+                    {
+                        Value = item.TurmaId.ToString(),
+                        Text = String.Concat(item.Descricao, " (", this.RecuperarValorHorarioTurma(item.HorariosTurmaId), ")")
+                    };
+                    ListaTurmas.Add(select);
+                }
+                ViewBag.ListaTurmas = ListaTurmas;
             }
             else
             {
