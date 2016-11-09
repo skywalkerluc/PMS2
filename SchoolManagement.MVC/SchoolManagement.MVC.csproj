@@ -142,6 +142,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Acesso\" />
+    <Folder Include="Views\Administrador\" />
     <Folder Include="Views\CustomActions\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
@@ -164,6 +165,9 @@
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivroController.cs" />
+    <Compile Include="Controllers\NewControllers\AdministradorController.cs" />
+    <Compile Include="Controllers\NewControllers\AlunoController.cs" />
+    <Compile Include="Controllers\NewControllers\Util.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\ProvaController.cs" />

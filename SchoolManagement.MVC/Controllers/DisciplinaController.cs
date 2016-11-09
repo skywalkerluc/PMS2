@@ -188,17 +188,7 @@ namespace SchoolManagement.MVC.Controllers
             return View("VisualizarTodasDisciplinas", discMapped);
         }
 
-        public ActionResult VerDisciplinasMinhaTurma()
-        {
-            int idUsuario = Convert.ToInt32(Session["UsuarioId"].ToString());
-
-            var aluno = _alunoApp.Recuperar(idUsuario);
-            var alunosTurma = _disciplinaApp.RecuperarDisciplinasTurma(aluno.Turma.TurmaId);
-
-            var disciplinasMapeados = Mapper.Map<IEnumerable<Disciplina>, IEnumerable<DisciplinaViewModel>>(alunosTurma);
-
-            return View("VisualizarDisciplinasMinhaTurma", disciplinasMapeados);
-        }
+        
 
         public ActionResult DetalhesDisciplinasMinhaTurma(int id)
         {
