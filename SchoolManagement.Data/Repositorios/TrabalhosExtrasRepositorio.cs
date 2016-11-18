@@ -1,15 +1,12 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class TrabalhosExtrasRepositorio : RepositorioBase<TrabalhosExtras>, ITrabalhosExtrasRepositorio
+    public class TrabalhosExtrasRepositorio : RepositorioBase<TrabalhosExtras>/*, ITrabalhosExtrasRepositorio*/
     {
         public bool IncluirTrabalhoExtra(TrabalhosExtras trabalhoExtra)
         {

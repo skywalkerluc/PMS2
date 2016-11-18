@@ -29,9 +29,6 @@ namespace SchoolManagement.MVC.ViewModels
         [Display(Name = "Turma (Público-alvo)")]
         public TurmaViewModel TurmaPublicoAlvo { get; set; }
 
-        [Display(Name = "Professores (Público-alvo)")]
-        public ICollection<ProfessorViewModel> ProfessoresPublicoAlvo { get; set; }
-
         [Display(Name = "Professor")]
         public List<SelectListItem> ListaProfessores { get; set; }
 

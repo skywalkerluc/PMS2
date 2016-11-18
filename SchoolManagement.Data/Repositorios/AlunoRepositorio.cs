@@ -1,13 +1,9 @@
 ﻿using SchoolManagement.Domain.Entidades;
 using SchoolManagement.Domain.Interfaces.Repositorios;
-using SchoolManagement.Data.Repositorios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SchoolManagement.Data.Repositorios
 {
@@ -251,5 +247,9 @@ namespace SchoolManagement.Data.Repositorios
             
         }
 
+
+
+
+        
     }
 }

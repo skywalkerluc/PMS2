@@ -1,5 +1,4 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +7,7 @@ using System.Linq;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class ProfessorRepositorio : RepositorioBase<Professor>, IProfessorRepositorio
+    public class ProfessorRepositorio : RepositorioBase<Professor>/*, IProfessorRepositorio*/
     {
         public Professor IncluirProfessor(Professor professor)
         {

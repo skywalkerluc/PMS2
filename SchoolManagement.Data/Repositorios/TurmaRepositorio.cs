@@ -1,16 +1,13 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class TurmaRepositorio : RepositorioBase<Turma>, ITurmaRepositorio
+    public class TurmaRepositorio : RepositorioBase<Turma>/*, ITurmaRepositorio*/
     {
         private readonly AnoLetivoRepositorio anoLetivoRep;
         private readonly ProfessorRepositorio professorRep;
@@ -203,7 +200,7 @@ namespace SchoolManagement.Data.Repositorios
                 }
                 return ListaRecuperada;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return ListaRecuperada;
             }

@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{3B33C4E4-D292-4F6D-A599-DF5C641A508A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{DAF97AD5-0643-411D-B196-054B055C80DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{DAF97AD5-0643-411D-B196-054B055C80DF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Data", "3 - Data", "{E8283367-68FE-4567-8D76-D9180D7487B9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Data", "4 - Data", "{E8283367-68FE-4567-8D76-D9180D7487B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Data", "SchoolManagement.Data\SchoolManagement.Data.csproj", "{B0A252C2-00B3-4D5D-8AB0-B27609700915}"
 EndProject
@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{DF09FFC8-5
 		..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Query.sql = ..\..\Source\Workspaces\SchoolManagement\Banco de Dados (Scripts)\Query.sql
 		SchoolManagement.Data\Util\Views para serem criadas.txt = SchoolManagement.Data\Util\Views para serem criadas.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Business", "2 - Business", "{52378CB8-BD47-48AA-8306-88F74AA850B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagement.Business", "SchoolManagement.Business\SchoolManagement.Business.csproj", "{444E71C8-160D-4CD8-946A-29523B1B5B9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +44,10 @@ Global
 		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444E71C8-160D-4CD8-946A-29523B1B5B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444E71C8-160D-4CD8-946A-29523B1B5B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444E71C8-160D-4CD8-946A-29523B1B5B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444E71C8-160D-4CD8-946A-29523B1B5B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +57,6 @@ Global
 		{DBD6E816-3222-4321-AB6F-E2078CCEE79B} = {DAF97AD5-0643-411D-B196-054B055C80DF}
 		{1A442370-DCC9-4B88-A0FA-5DF57CFEB239} = {3B33C4E4-D292-4F6D-A599-DF5C641A508A}
 		{DF09FFC8-55A3-466C-8CFA-613154EAA30F} = {E8283367-68FE-4567-8D76-D9180D7487B9}
+		{444E71C8-160D-4CD8-946A-29523B1B5B9C} = {52378CB8-BD47-48AA-8306-88F74AA850B2}
 	EndGlobalSection
 EndGlobal

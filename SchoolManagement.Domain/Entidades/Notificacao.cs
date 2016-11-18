@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Domain.Entidades
 {
@@ -21,6 +16,5 @@ namespace SchoolManagement.Domain.Entidades
 
         public Turma TurmaPublicoAlvo { get; set; }
 
-        public ICollection<Professor> ProfessoresPublicoAlvo { get; set; }
     }
 }

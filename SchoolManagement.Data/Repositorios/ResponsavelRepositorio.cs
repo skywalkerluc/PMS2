@@ -1,16 +1,13 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class ResponsavelRepositorio : RepositorioBase<Responsavel>, IResponsavelRepositorio
+    public class ResponsavelRepositorio : RepositorioBase<Responsavel>/*, IResponsavelRepositorio*/
     {
         private readonly AlunoRepositorio _alunoRep;
 
@@ -89,7 +86,7 @@ namespace SchoolManagement.Data.Repositorios
         public IEnumerable<Responsavel> FiltrarResponsavel(string nomeResponsavel, int idAluno)
         {
             var enumResponsavel = from d in Db.Responsaveis
-                                  where d.Alunos.All(a => a.Id == idAluno || idAluno == null)
+                                  where d.Alunos.All(a => a.Id == idAluno)
                                   where d.Nome == nomeResponsavel || nomeResponsavel == null
                                   select d;
 

@@ -1,19 +1,14 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class DisciplinaRepositorio : RepositorioBase<Disciplina>, IDisciplinaRepositorio
+    public class DisciplinaRepositorio : RepositorioBase<Disciplina>/*, IDisciplinaRepositorio*/
     {
-        private readonly TurmaRepositorio _turmaRep;
-
         public Disciplina IncluirDisciplina(Disciplina disciplina)
         {
             try
@@ -41,7 +36,7 @@ namespace SchoolManagement.Data.Repositorios
         {
 
             var disciplinaFiltro = from d in Db.Disciplinas
-                                   where d.Livros.All(l => l.LivroId == LivroId || LivroId == null)
+                                   where d.Livros.All(l => l.LivroId == LivroId)
                                    where d.NomeDisciplina == nomeDisciplina || nomeDisciplina == string.Empty || nomeDisciplina == null
                                    select d;
 

@@ -1,15 +1,10 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class AnoLetivoRepositorio : RepositorioBase<AnoLetivo>, IAnoLetivoRepositorio
+    public class AnoLetivoRepositorio : RepositorioBase<AnoLetivo>/*, IAnoLetivoRepositorio*/
     {
         public AnoLetivo IncluirAnoLetivo(AnoLetivo anoLetivo)
         {
@@ -42,7 +37,7 @@ namespace SchoolManagement.Data.Repositorios
                 Db.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

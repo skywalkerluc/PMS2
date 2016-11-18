@@ -1,16 +1,13 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class ConteudosExtrasRepositorio : RepositorioBase<ConteudosExtras>, IConteudoExtraRepositorio
+    public class ConteudosExtrasRepositorio : RepositorioBase<ConteudosExtras>/*, IConteudosExtrasRepositorio*/
     {
         public ConteudosExtras IncluirConteudosExtras(ConteudosExtras conteudosExtras)
         {

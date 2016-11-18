@@ -1,16 +1,12 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class ProvaRepositorio : RepositorioBase<Prova>, IProvaRepositorio
+    public class ProvaRepositorio : RepositorioBase<Prova>/*, IProvaRepositorio*/
     {
         private readonly TurmaRepositorio _turmaRep;
         private readonly ProfessorRepositorio _profRep;
@@ -295,7 +291,7 @@ namespace SchoolManagement.Data.Repositorios
                     return ListaRetorno;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return ListaRetorno;
             }

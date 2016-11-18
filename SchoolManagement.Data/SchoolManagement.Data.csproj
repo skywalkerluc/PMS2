@@ -83,6 +83,12 @@
     <Compile Include="Repositorios\FuncionarioRepositorio.cs" />
     <Compile Include="Repositorios\LivroRepositorio.cs" />
     <Compile Include="Repositorios\LojasRecomendadasRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\AlunoRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\AnoLetivoRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\ConteudosExtrasRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\DisciplinaRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\NotificacaoRepositorio.cs" />
+    <Compile Include="Repositorios\NewReps\RepositorioBase.cs" />
     <Compile Include="Repositorios\NotificacaoRepositorio.cs" />
     <Compile Include="Repositorios\ProfessorRepositorio.cs" />
     <Compile Include="Repositorios\ProvaRepositorio.cs" />

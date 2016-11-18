@@ -1,5 +1,5 @@
 ﻿using SchoolManagement.Data.Contexto;
-using SchoolManagement.Domain.Entidades;
+using SchoolManagement.Domain.Cross;
 using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace SchoolManagement.Data.Repositorios
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.Message.ToString());
             }
         }
 
@@ -87,7 +87,32 @@ namespace SchoolManagement.Data.Repositorios
             }
         }
 
-        
+        RetornoBase<bool> IRepositorioBase<TEntity>.Incluir(TEntity param)
+        {
+            throw new NotImplementedException();
+        }
+
+        RetornoBase IRepositorioBase<TEntity>.Recuperar(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        RetornoBase<TEntity> IRepositorioBase<TEntity>.RecuperarTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        RetornoBase<bool> IRepositorioBase<TEntity>.Atualizar(TEntity param)
+        {
+            throw new NotImplementedException();
+        }
+
+        RetornoBase<bool> IRepositorioBase<TEntity>.Remover(TEntity param)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         #endregion
 

@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cross\RetornoBase.cs" />
     <Compile Include="Entidades\Aluno.cs" />
     <Compile Include="Entidades\AnoLetivo.cs" />
     <Compile Include="Entidades\Boleto.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Entidades\Turma.cs" />
     <Compile Include="Interfaces\Repositorios\IAlunoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IAnoLetivoRepositorio.cs" />
-    <Compile Include="Interfaces\Repositorios\IConteudoExtraRepositorio.cs" />
+    <Compile Include="Interfaces\Repositorios\IConteudosExtrasRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IDisciplinaRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IEventoRepositorio.cs" />
     <Compile Include="Interfaces\Repositorios\IFrequenciaRepositorio.cs" />
@@ -115,24 +116,6 @@
     <Compile Include="Interfaces\Servicos\ITurmaServico.cs" />
     <Compile Include="Interfaces\Servicos\IUsuarioServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicos\AlunoServico.cs" />
-    <Compile Include="Servicos\AnoLetivoServico.cs" />
-    <Compile Include="Servicos\ConteudoExtraServico.cs" />
-    <Compile Include="Servicos\DisciplinaServico.cs" />
-    <Compile Include="Servicos\EventoServico.cs" />
-    <Compile Include="Servicos\FrequenciaServico.cs" />
-    <Compile Include="Servicos\FuncionarioServico.cs" />
-    <Compile Include="Servicos\LivroServico.cs" />
-    <Compile Include="Servicos\LojasRecomendadasServico.cs" />
-    <Compile Include="Servicos\NotificacaoServico.cs" />
-    <Compile Include="Servicos\ProfessorServico.cs" />
-    <Compile Include="Servicos\ProvaServico.cs" />
-    <Compile Include="Servicos\ResponsavelServico.cs" />
-    <Compile Include="Servicos\ResultadosProvasServico.cs" />
-    <Compile Include="Servicos\ServicoBase.cs" />
-    <Compile Include="Servicos\TrabalhosExtrasServico.cs" />
-    <Compile Include="Servicos\TurmaServico.cs" />
-    <Compile Include="Servicos\UsuarioServico.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

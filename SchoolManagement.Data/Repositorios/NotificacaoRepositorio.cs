@@ -1,17 +1,14 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class NotificacaoRepositorio : RepositorioBase<Notificacao>, INotificacaoRepositorio
+    public class NotificacaoRepositorio : RepositorioBase<Notificacao>/*, INotificacaoRepositorio*/
     {
         public Notificacao CriarNotificacao(Notificacao notificacao)
         {

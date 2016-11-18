@@ -1,15 +1,11 @@
 ﻿using SchoolManagement.Domain.Entidades;
-using SchoolManagement.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Data.Repositorios
 {
-    public class UsuarioRepositorio : RepositorioBase<Usuario>, IRepositorioUsuario
+    public class UsuarioRepositorio : RepositorioBase<Usuario>/*, IRepositorioUsuario*/
     {
         /// <summary>
         /// Implementação do método para autenticar login e recuperar o identificador do usuário
@@ -99,13 +95,13 @@ namespace SchoolManagement.Data.Repositorios
 
                     foreach (var notificacao in TodasAsNotificacoes)
                     {
-                        foreach (var professorPublicoAlvo in notificacao.ProfessoresPublicoAlvo)
-                        {
-                            if(professor.Id == professorPublicoAlvo.Id)
-                            {
-                                ListaNotificacao.Add(notificacao);
-                            }
-                        }
+                        //foreach (var professorPublicoAlvo in notificacao.ProfessoresPublicoAlvo)
+                        //{
+                        //    if(professor.Id == professorPublicoAlvo.Id)
+                        //    {
+                        //        ListaNotificacao.Add(notificacao);
+                        //    }
+                        //}
                     }
                     IEnumerable<Notificacao> RetornoNotificacao = ListaNotificacao;
                     return RetornoNotificacao;
